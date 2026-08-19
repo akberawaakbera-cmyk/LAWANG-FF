@@ -1,0 +1,127 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.icon-btn {
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  margin: 0;
+  background: #151a23;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.tab {
+  flex: 1;
+  background: #11151e;
+  color: #8d94a3;
+  padding: 11px 5px;
+  margin: 0;
+}
+
+.tab.active {
+  background: #3478f6;
+  color: white;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.hero {
+  background: #11151e;
+  border: 1px solid #1d2330;
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 15px;
+}
+
+.hero h2 {
+  margin: 12px 0 8px;
+}
+
+.hero p {
+  color: #8d94a3;
+  line-height: 1.5;
+}
+
+.badge {
+  font-size: 10px;
+  background: #1b2435;
+  color: #7ea8ff;
+  padding: 6px 9px;
+  border-radius: 7px;
+}
+
+.stats {
+  display: flex;
+  gap: 12px;
+}
+
+.stat {
+  flex: 1;
+  background: #11151e;
+  border: 1px solid #1d2330;
+  border-radius: 14px;
+  padding: 18px;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-size: 24px;
+}
+
+.stat span {
+  color: #8d94a3;
+  font-size: 10px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #252c39;
+  background: #090c11;
+  color: white;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-profile {
+  width: auto;
+  padding: 8px 12px;
+  margin: 0;
+  background: #272d38;
+  font-size: 11px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px 0 10px;
+  color: #666e7c;
+}
