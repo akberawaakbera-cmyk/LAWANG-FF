@@ -1,140 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="Injector">
-<link rel="apple-touch-icon" href="assets/icon-192.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a0f">
+  <title>Lawang Injector</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Lawang">
+</head>
 
 <body>
 
-<div class="app">
+<!-- LOGIN -->
 
-  <header class="topbar">
-    <div class="brand">
-      <div class="logo">⚡</div>
-      <div>
-        <h1>INJECTOR</h1>
-        <p>TEST LAB</p>
-      </div>
+<div id="loginPage" class="login-page">
+
+  <div class="login-card">
+
+    <div class="lawang-logo">
+      <div class="logo-symbol">⚡</div>
+      <h1>LAWANG</h1>
+      <p>INJECTOR</p>
     </div>
 
-    <button class="icon-btn" id="settingsBtn">⚙️</button>
-  </header>
+    <h2>Welcome Back</h2>
+    <p class="muted">Sign in to continue</p>
 
-  <div class="status">
-    <span class="dot"></span>
-    <span id="statusText">TEST MODE READY</span>
+    <input
+      id="username"
+      type="text"
+      placeholder="Username"
+      autocomplete="username"
+    >
+
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+      autocomplete="current-password"
+    >
+
+    <button id="loginBtn" class="primary">
+      LOGIN
+    </button>
+
+    <div id="loginMessage"></div>
+
   </div>
 
-  <nav class="tabs">
-    <button class="tab active" data-page="home">HOME</button>
-    <button class="tab" data-page="injector">INJECTOR</button>
-    <button class="tab" data-page="profiles">PROFILES</button>
-  </nav>
+</div>
+
+
+<!-- APP -->
+
+<div id="appPage" class="app hidden">
+
+  <header class="topbar">
+
+    <div class="brand">
+
+      <div class="mini-logo">⚡</div>
+
+      <div>
+        <strong>LAWANG</strong>
+        <span>INJECTOR</span>
+      </div>
+
+    </div>
+
+    <button id="logoutBtn" class="small-btn">
+      Logout
+    </button>
+
+  </header>
+
 
   <!-- HOME -->
 
-  <main id="home" class="page active">
+  <main id="homePage" class="page active">
 
-    <section class="hero">
-      <span class="badge">DEVELOPER BUILD</span>
-      <h2>Test Control Center</h2>
+    <section class="welcome">
+
+      <span class="badge">
+        DEVELOPER TEST
+      </span>
+
+      <h1>Dashboard</h1>
+
       <p>
-        Configure simulated gameplay behaviors and prepare
-        anti-cheat test scenarios.
+        Welcome to Lawang Injector Test Lab.
       </p>
 
-      <button class="primary" data-page-target="injector">
-        OPEN INJECTOR
-      </button>
     </section>
 
-    <section class="stats">
 
-      <div class="stat">
-        <strong id="enabledCount">0</strong>
-        <span>ACTIVE TESTS</span>
+    <section class="dashboard-grid">
+
+      <div class="dashboard-card">
+        <span>●</span>
+        <strong>TEST MODE</strong>
+        <small>Ready</small>
       </div>
 
-      <div class="stat">
-        <strong id="profileCount">0</strong>
-        <span>PROFILES</span>
+      <div class="dashboard-card">
+        <span>⚙</span>
+        <strong>CONFIG</strong>
+        <small id="activeCount">0 Active</small>
       </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>Quick Access</h2>
+
+      <button
+        class="menu-button"
+        data-open="selectionPage">
+
+        🎯 Test Selection
+
+      </button>
+
+      <button
+        class="menu-button"
+        data-open="profilePage">
+
+        👤 My Profile
+
+      </button>
+
+      <button
+        class="menu-button"
+        data-open="settingsPage">
+
+        ⚙️ Settings
+
+      </button>
 
     </section>
 
   </main>
 
 
-  <!-- INJECTOR -->
+  <!-- SELECTION -->
 
-  <main id="injector" class="page">
+  <main id="selectionPage" class="page">
+
+    <div class="page-title">
+
+      <button class="backBtn">‹</button>
+
+      <div>
+        <h1>Selection</h1>
+        <p>Test configurations</p>
+      </div>
+
+    </div>
+
 
     <section class="card">
-      <h2>Combat Tests</h2>
+
+      <h2>Combat Simulation</h2>
 
       <div class="option">
         <span>Auto Headshot Test</span>
+
         <label class="switch">
           <input type="checkbox" data-test>
           <span></span>
         </label>
+
       </div>
+
 
       <div class="option">
         <span>Auto Kill Simulation</span>
+
         <label class="switch">
           <input type="checkbox" data-test>
           <span></span>
         </label>
+
       </div>
+
 
       <div class="option">
         <span>Silent Mode Simulation</span>
+
         <label class="switch">
           <input type="checkbox" data-test>
           <span></span>
         </label>
+
       </div>
+
 
       <div class="option">
         <span>Crosshair</span>
+
         <label class="switch">
           <input type="checkbox" data-test>
           <span></span>
         </label>
+
       </div>
+
     </section>
 
 
     <section class="card">
-      <h2>ESP Tests</h2>
+
+      <h2>ESP Simulation</h2>
+
 
       <div class="option">
         <span>ESP Line</span>
+
         <label class="switch">
           <input type="checkbox" data-test>
           <span></span>
         </label>
+
       </div>
+
 
       <div class="option">
         <span>ESP Box</span>
+
         <label class="switch">
           <input type="checkbox" data-test>
           <span></span>
         </label>
+
       </div>
+
 
       <div class="option">
         <span>ESP Health</span>
+
         <label class="switch">
           <input type="checkbox" data-test>
           <span></span>
         </label>
+
       </div>
+
     </section>
 
 
@@ -143,13 +260,18 @@
       <h2>POV / FOV</h2>
 
       <div class="slider-row">
+
         <span>POV</span>
-        <strong id="povValue">90°</strong>
+
+        <strong id="povValue">
+          90°
+        </strong>
+
       </div>
 
       <input
-        type="range"
         id="pov"
+        type="range"
         min="40"
         max="180"
         value="90"
@@ -160,16 +282,21 @@
 
     <section class="card">
 
-      <h2>Movement</h2>
+      <h2>Movement Test</h2>
 
       <div class="slider-row">
+
         <span>Speed</span>
-        <strong id="speedValue">1.0x</strong>
+
+        <strong id="speedValue">
+          1.0x
+        </strong>
+
       </div>
 
       <input
-        type="range"
         id="speed"
+        type="range"
         min="1"
         max="4"
         step="0.1"
@@ -179,49 +306,177 @@
     </section>
 
 
-    <button class="primary" id="apply">
+    <button id="applyBtn" class="primary">
       APPLY TEST CONFIG
     </button>
 
-    <button class="secondary" id="reset">
+    <button id="resetBtn" class="secondary">
       RESET
     </button>
 
-    <div id="message"></div>
+    <div id="configMessage"></div>
 
   </main>
 
 
-  <!-- PROFILES -->
+  <!-- PROFILE -->
 
-  <main id="profiles" class="page">
+  <main id="profilePage" class="page">
 
-    <section class="card">
+    <div class="page-title">
 
-      <h2>Test Profiles</h2>
+      <button class="backBtn">‹</button>
 
-      <input
-        type="text"
-        id="profileName"
-        placeholder="Profile name"
-      >
+      <div>
+        <h1>Profile</h1>
+        <p>Your account</p>
+      </div>
 
-      <button class="primary" id="saveProfile">
-        SAVE PROFILE
-      </button>
+    </div>
+
+
+    <section class="profile-card">
+
+      <div class="avatar">
+        L
+      </div>
+
+      <h2 id="profileUsername">
+        User
+      </h2>
+
+      <p>
+        Developer Test Account
+      </p>
 
     </section>
 
-    <div id="profilesList"></div>
+
+    <section class="card">
+
+      <div class="profile-row">
+        <span>Account Status</span>
+        <strong class="online">
+          Active
+        </strong>
+      </div>
+
+      <div class="profile-row">
+        <span>Mode</span>
+        <strong>Developer</strong>
+      </div>
+
+    </section>
 
   </main>
 
 
-  <footer>
-    <small>Developer Test Environment • No game connection</small>
-  </footer>
+  <!-- SETTINGS -->
+
+  <main id="settingsPage" class="page">
+
+    <div class="page-title">
+
+      <button class="backBtn">‹</button>
+
+      <div>
+        <h1>Settings</h1>
+        <p>Application settings</p>
+      </div>
+
+    </div>
+
+
+    <section class="card">
+
+      <div class="option">
+
+        <span>Dark Mode</span>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            checked
+            disabled
+          >
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+      <div class="option">
+
+        <span>Developer Mode</span>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            checked
+          >
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- BOTTOM NAV -->
+
+  <nav class="bottom-nav">
+
+    <button
+      class="nav-item active"
+      data-nav="homePage">
+
+      <span>⌂</span>
+      Home
+
+    </button>
+
+
+    <button
+      class="nav-item"
+      data-nav="selectionPage">
+
+      <span>◉</span>
+      Select
+
+    </button>
+
+
+    <button
+      class="nav-item"
+      data-nav="profilePage">
+
+      <span>●</span>
+      Profile
+
+    </button>
+
+
+    <button
+      class="nav-item"
+      data-nav="settingsPage">
+
+      <span>⚙</span>
+      Settings
+
+    </button>
+
+  </nav>
 
 </div>
+
 
 <script src="app.js"></script>
 
