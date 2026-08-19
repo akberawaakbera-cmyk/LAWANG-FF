@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Injector Test Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="app">
+
+    <header>
+      <div class="logo">⚡</div>
+      <div>
+        <h1>INJECTOR</h1>
+        <p>TEST CONFIGURATION PANEL</p>
+      </div>
+    </header>
+
+    <div class="status">
+      <span class="dot"></span>
+      TEST MODE READY
+    </div>
+
+    <section class="card">
+      <h2>Combat</h2>
+
+      <div class="option">
+        <span>Auto Headshot</span>
+        <label class="switch">
+          <input type="checkbox" id="headshot">
+          <span></span>
+        </label>
+      </div>
+
+      <div class="option">
+        <span>Auto Kill Test</span>
+        <label class="switch">
+          <input type="checkbox" id="autokill">
+          <span></span>
+        </label>
+      </div>
+
+      <div class="option">
+        <span>Silent Mode</span>
+        <label class="switch">
+          <input type="checkbox" id="silent">
+          <span></span>
+        </label>
+      </div>
+
+      <div class="option">
+        <span>Crosshair</span>
+        <label class="switch">
+          <input type="checkbox" id="crosshair">
+          <span></span>
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ESP</h2>
+
+      <div class="option">
+        <span>ESP Line</span>
+        <label class="switch">
+          <input type="checkbox">
+          <span></span>
+        </label>
+      </div>
+
+      <div class="option">
+        <span>ESP Box</span>
+        <label class="switch">
+          <input type="checkbox">
+          <span></span>
+        </label>
+      </div>
+
+      <div class="option">
+        <span>ESP Health</span>
+        <label class="switch">
+          <input type="checkbox">
+          <span></span>
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>POV / FOV</h2>
+
+      <div class="slider-row">
+        <span>POV</span>
+        <strong id="povValue">90°</strong>
+      </div>
+
+      <input
+        type="range"
+        id="pov"
+        min="40"
+        max="180"
+        value="90"
+      >
+    </section>
+
+    <section class="card">
+      <h2>Movement Test</h2>
+
+      <div class="slider-row">
+        <span>Speed</span>
+        <strong id="speedValue">1.0x</strong>
+      </div>
+
+      <input
+        type="range"
+        id="speed"
+        min="1"
+        max="4"
+        step="0.1"
+        value="1"
+      >
+    </section>
+
+    <button id="apply">APPLY TEST CONFIG</button>
+    <button id="reset" class="secondary">RESET</button>
+
+    <div id="message"></div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
