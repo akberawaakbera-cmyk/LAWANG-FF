@@ -1,6 +1,7 @@
 /* =========================================================
    LAWANGEN INJECTOR
-   MOBILE APP UI
+   MOBILE APP UI — UPDATED
+   UI / TEST SIMULATION ONLY
 ========================================================= */
 
 * {
@@ -14,7 +15,7 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100%;
-  background: #080a0f;
+  background: #070912;
   color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
     "Segoe UI", sans-serif;
@@ -42,14 +43,26 @@ button {
 
 
 /* =========================================================
-   APP CONTAINER
+   APP
 ========================================================= */
 
 .app {
   width: 100%;
   min-height: 100vh;
-  background: #080a0f;
   padding-bottom: 90px;
+
+  background:
+    radial-gradient(
+      circle at 15% 5%,
+      rgba(83, 69, 255, 0.18),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(0, 204, 255, 0.13),
+      transparent 30%
+    ),
+    #070912;
 }
 
 .screen {
@@ -58,7 +71,6 @@ button {
 
 
 /* =========================================================
-   IMPORTANT:
    ONE SCREEN AT A TIME
 ========================================================= */
 
@@ -91,10 +103,16 @@ button {
 
   background:
     radial-gradient(
-      circle at top,
-      #17233b 0,
-      #080a0f 45%
-    );
+      circle at 20% 10%,
+      rgba(105, 70, 255, 0.32),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 85%,
+      rgba(0, 204, 255, 0.18),
+      transparent 35%
+    ),
+    #070912;
 }
 
 .login-box {
@@ -103,19 +121,22 @@ button {
 
   padding: 30px 22px;
 
-  border-radius: 26px;
+  border-radius: 28px;
 
-  background: rgba(17, 21, 30, 0.96);
+  background: rgba(13, 17, 28, 0.96);
 
-  border: 1px solid #242c3a;
+  border: 1px solid rgba(120, 130, 255, 0.18);
 
   box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.45);
+    0 25px 80px rgba(0, 0, 0, 0.55),
+    0 0 50px rgba(72, 83, 255, 0.08);
+
+  backdrop-filter: blur(20px);
 }
 
 
 /* =========================================================
-   LOGO
+   COLORFUL LOGO
 ========================================================= */
 
 .brand-logo {
@@ -124,12 +145,12 @@ button {
 }
 
 .logo-mark {
-  width: 76px;
-  height: 76px;
+  width: 82px;
+  height: 82px;
 
-  margin: 0 auto 14px;
+  margin: 0 auto 15px;
 
-  border-radius: 22px;
+  border-radius: 24px;
 
   display: flex;
   align-items: center;
@@ -137,22 +158,26 @@ button {
 
   background:
     linear-gradient(
-      145deg,
-      #3478f6,
-      #6b45ff
+      135deg,
+      #00d4ff 0%,
+      #6c4cff 45%,
+      #ff3cac 100%
     );
 
   box-shadow:
-    0 12px 35px rgba(52, 120, 246, 0.28);
+    0 12px 40px rgba(91, 76, 255, 0.35),
+    0 0 35px rgba(0, 212, 255, 0.12);
 
   overflow: hidden;
 }
 
-.logo-mark svg,
-.logo-mark img {
+.logo-mark img,
+.logo-mark svg {
   width: 100%;
   height: 100%;
+
   display: block;
+
   object-fit: contain;
 }
 
@@ -162,18 +187,62 @@ button {
   font-size: 26px;
 
   letter-spacing: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ffffff,
+      #83dfff,
+      #a68cff
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
 }
 
 .brand-logo span {
   display: block;
 
-  margin-top: 4px;
+  margin-top: 5px;
 
-  color: #7f8795;
+  color: #7e879b;
 
   font-size: 10px;
 
   letter-spacing: 4px;
+}
+
+
+/* =========================================================
+   DEVELOPER INTRO
+========================================================= */
+
+.developer-intro {
+  text-align: center;
+
+  margin: -10px 0 22px;
+}
+
+.developer-intro strong {
+  display: block;
+
+  font-size: 14px;
+
+  color: #8ecbff;
+
+  letter-spacing: 1px;
+}
+
+.developer-intro span {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #687287;
+
+  font-size: 10px;
 }
 
 
@@ -183,6 +252,7 @@ button {
 
 .login-title {
   text-align: center;
+
   margin-bottom: 22px;
 }
 
@@ -218,20 +288,26 @@ button {
 
   border-radius: 13px;
 
-  border: 1px solid #252c38;
+  border: 1px solid #252c3b;
 
-  background: #090c12;
+  background: #080b13;
 
   color: #fff;
 
   outline: none;
+
+  transition: 0.2s;
 }
 
 .login-box input:focus {
-  border-color: #3478f6;
+  border-color: #6a65ff;
 
   box-shadow:
-    0 0 0 3px rgba(52, 120, 246, 0.1);
+    0 0 0 3px rgba(93, 91, 255, 0.12);
+}
+
+.login-box input::placeholder {
+  color: #50596b;
 }
 
 
@@ -259,24 +335,33 @@ button {
 }
 
 .primary-button {
-  background: #3478f6;
+  background:
+    linear-gradient(
+      135deg,
+      #3478f6,
+      #6955ff
+    );
 
   color: #fff;
 
   box-shadow:
-    0 8px 22px rgba(52, 120, 246, 0.18);
+    0 9px 25px rgba(76, 91, 255, 0.25);
 }
 
 .secondary-button {
-  background: #181d27;
+  background: #171c28;
 
   color: #fff;
+
+  border: 1px solid #252d3c;
 }
 
 .danger-button {
-  background: #24151a;
+  background: #29151c;
 
   color: #ff7183;
+
+  border: 1px solid #48202a;
 }
 
 .guest-button {
@@ -292,17 +377,8 @@ button {
 .danger-button:active,
 .guest-button:active {
   transform: scale(0.98);
+
   opacity: 0.82;
-}
-
-.text-button {
-  background: transparent;
-
-  color: #76a3ff;
-
-  font-size: 12px;
-
-  padding: 7px;
 }
 
 .message {
@@ -331,9 +407,12 @@ button {
 
   padding: 0 20px;
 
-  border-bottom: 1px solid #171c25;
+  border-bottom: 1px solid #171d2a;
 
-  background: #080a0f;
+  background:
+    rgba(7, 9, 18, 0.94);
+
+  backdrop-filter: blur(18px);
 }
 
 .app-brand {
@@ -344,10 +423,10 @@ button {
 }
 
 .small-logo {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
 
-  border-radius: 11px;
+  border-radius: 12px;
 
   display: flex;
   align-items: center;
@@ -355,20 +434,22 @@ button {
 
   background:
     linear-gradient(
-      145deg,
-      #3478f6,
-      #6b45ff
+      135deg,
+      #00d4ff,
+      #684dff,
+      #ff3cac
     );
 
   overflow: hidden;
+
+  box-shadow:
+    0 5px 20px rgba(82, 71, 255, 0.25);
 }
 
-.small-logo svg,
-.small-logo img {
+.small-logo img,
+.small-logo svg {
   width: 100%;
   height: 100%;
-
-  display: block;
 
   object-fit: contain;
 }
@@ -399,9 +480,16 @@ button {
 
   border-radius: 50%;
 
-  background: #151a23;
+  background:
+    linear-gradient(
+      135deg,
+      #20283a,
+      #151a27
+    );
 
   color: #fff;
+
+  border: 1px solid #303a50;
 }
 
 
@@ -410,15 +498,44 @@ button {
 ========================================================= */
 
 .welcome-card {
-  background: #11151e;
+  position: relative;
+  overflow: hidden;
 
-  border: 1px solid #1d2330;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(20, 25, 42, 0.98),
+      rgba(13, 17, 29, 0.98)
+    );
+
+  border: 1px solid #252d40;
 
   border-radius: 20px;
 
   padding: 22px;
 
   margin-bottom: 14px;
+}
+
+.welcome-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 130px;
+  height: 130px;
+
+  right: -55px;
+  top: -55px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 212, 255, 0.18),
+      rgba(116, 67, 255, 0.15)
+    );
 }
 
 .welcome-card h1 {
@@ -434,9 +551,11 @@ button {
 .developer-badge {
   display: inline-block;
 
-  background: #182337;
+  background: rgba(76, 91, 255, 0.12);
 
   color: #76a3ff;
+
+  border: 1px solid rgba(105, 102, 255, 0.2);
 
   border-radius: 7px;
 
@@ -447,15 +566,20 @@ button {
   letter-spacing: 1px;
 }
 
+
+/* =========================================================
+   STATUS
+========================================================= */
+
 .status-card {
   display: flex;
   align-items: center;
 
   gap: 13px;
 
-  background: #11151e;
+  background: #111622;
 
-  border: 1px solid #1d2330;
+  border: 1px solid #20283a;
 
   border-radius: 16px;
 
@@ -481,6 +605,11 @@ button {
   margin-top: 3px;
 }
 
+
+/* =========================================================
+   HOME GRID
+========================================================= */
+
 .section-title {
   margin: 25px 3px 12px;
 
@@ -504,9 +633,14 @@ button {
 
   border-radius: 17px;
 
-  border: 1px solid #1d2330;
+  border: 1px solid #20283a;
 
-  background: #11151e;
+  background:
+    linear-gradient(
+      145deg,
+      #121723,
+      #0e131e
+    );
 
   color: #fff;
 
@@ -514,11 +648,17 @@ button {
 
   transition:
     transform 0.12s ease,
-    opacity 0.12s ease;
+    opacity 0.12s ease,
+    border-color 0.15s ease;
+}
+
+.home-card:hover {
+  border-color: #39476a;
 }
 
 .home-card:active {
   transform: scale(0.98);
+
   opacity: 0.82;
 }
 
@@ -575,11 +715,13 @@ button {
 
   border-radius: 12px;
 
-  background: #151a23;
+  background: #151b28;
 
   color: #fff;
 
   font-size: 27px;
+
+  border: 1px solid #252e40;
 }
 
 
@@ -607,9 +749,14 @@ button {
 
   border-radius: 15px;
 
-  background: #11151e;
+  background:
+    linear-gradient(
+      145deg,
+      #121723,
+      #0e131e
+    );
 
-  border: 1px solid #1d2330;
+  border: 1px solid #20283a;
 
   color: #fff;
 
@@ -622,6 +769,7 @@ button {
 
 .menu-item:active {
   transform: scale(0.985);
+
   opacity: 0.82;
 }
 
@@ -633,7 +781,12 @@ button {
 
   border-radius: 12px;
 
-  background: #181e29;
+  background:
+    linear-gradient(
+      135deg,
+      #1c2638,
+      #151b29
+    );
 
   display: flex;
   align-items: center;
@@ -674,9 +827,14 @@ button {
 .slider-card,
 .info-card,
 .instruction-card {
-  background: #11151e;
+  background:
+    linear-gradient(
+      145deg,
+      #121722,
+      #0e131d
+    );
 
-  border: 1px solid #1d2330;
+  border: 1px solid #20283a;
 
   border-radius: 17px;
 
@@ -694,7 +852,7 @@ button {
 
   gap: 15px;
 
-  border-bottom: 1px solid #1c222c;
+  border-bottom: 1px solid #1c2432;
 }
 
 .control-row:last-child {
@@ -706,120 +864,23 @@ button {
   display: block;
 }
 
+.control-row strong {
+  font-size: 13px;
+}
+
 .control-row span {
   color: #6f7887;
 
   font-size: 10px;
 
   margin-top: 4px;
+
+  line-height: 1.4;
 }
 
 
 /* =========================================================
-   SWITCH
-========================================================= */
-
-.switch {
-  flex-shrink: 0;
-}
-
-.switch input {
-  display: none;
-}
-
-.switch span {
-  display: block;
-
-  width: 48px;
-  height: 27px;
-
-  border-radius: 20px;
-
-  background: #303744;
-
-  position: relative;
-}
-
-.switch span::after {
-  content: "";
-
-  position: absolute;
-
-  width: 21px;
-  height: 21px;
-
-  top: 3px;
-  left: 3px;
-
-  background: #fff;
-
-  border-radius: 50%;
-
-  transition: 0.2s;
-}
-
-.switch input:checked + span {
-  background: #3478f6;
-}
-
-.switch input:checked + span::after {
-  transform: translateX(21px);
-}
-
-
-/* =========================================================
-   SLIDERS
-========================================================= */
-
-.slider-title {
-  display: flex;
-  justify-content: space-between;
-
-  margin-bottom: 17px;
-}
-
-.slider-title strong {
-  color: #76a3ff;
-}
-
-input[type="range"] {
-  width: 100%;
-
-  accent-color: #3478f6;
-}
-
-
-/* =========================================================
-   TEST BUTTONS
-========================================================= */
-
-.test-trigger,
-.test-action {
-  min-width: 70px;
-
-  min-height: 40px;
-
-  padding: 0 13px;
-
-  border-radius: 10px;
-
-  background: #182337;
-
-  color: #76a3ff;
-
-  font-size: 11px;
-
-  font-weight: 700;
-}
-
-.test-trigger:active,
-.test-action:active {
-  transform: scale(0.96);
-}
-
-
-/* =========================================================
-   EXTRA TEST MENU
+   NEW TEST OPTIONS
 ========================================================= */
 
 .extra-test-list {
@@ -842,13 +903,26 @@ input[type="range"] {
 
   border-radius: 15px;
 
-  background: #11151e;
+  background:
+    linear-gradient(
+      145deg,
+      #121723,
+      #0e131e
+    );
 
-  border: 1px solid #1d2330;
+  border: 1px solid #20283a;
 
   color: #fff;
 
   text-align: left;
+
+  transition:
+    border-color 0.15s ease,
+    transform 0.12s ease;
+}
+
+.extra-test-card:active {
+  transform: scale(0.985);
 }
 
 .extra-test-icon {
@@ -859,7 +933,12 @@ input[type="range"] {
 
   border-radius: 12px;
 
-  background: #181e29;
+  background:
+    linear-gradient(
+      135deg,
+      #202c43,
+      #171d2c
+    );
 
   display: flex;
   align-items: center;
@@ -886,6 +965,171 @@ input[type="range"] {
   color: #707988;
 
   font-size: 10px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   SWITCH
+========================================================= */
+
+.switch {
+  flex-shrink: 0;
+}
+
+.switch input {
+  display: none;
+}
+
+.switch span {
+  display: block;
+
+  width: 48px;
+  height: 27px;
+
+  border-radius: 20px;
+
+  background: #303744;
+
+  position: relative;
+
+  transition: 0.2s;
+}
+
+.switch span::after {
+  content: "";
+
+  position: absolute;
+
+  width: 21px;
+  height: 21px;
+
+  top: 3px;
+  left: 3px;
+
+  background: #fff;
+
+  border-radius: 50%;
+
+  transition: 0.2s;
+}
+
+.switch input:checked + span {
+  background:
+    linear-gradient(
+      90deg,
+      #3478f6,
+      #7358ff
+    );
+}
+
+.switch input:checked + span::after {
+  transform: translateX(21px);
+}
+
+
+/* =========================================================
+   SLIDERS
+========================================================= */
+
+.slider-title {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 17px;
+}
+
+.slider-title strong {
+  color: #76a3ff;
+}
+
+input[type="range"] {
+  width: 100%;
+
+  accent-color: #5d75ff;
+}
+
+
+/* =========================================================
+   SPEED PRESETS
+========================================================= */
+
+.speed-presets {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, 1fr);
+
+  gap: 7px;
+
+  margin-top: 13px;
+}
+
+.speed-preset {
+  min-height: 36px;
+
+  border-radius: 9px;
+
+  background: #181f2d;
+
+  border: 1px solid #252f42;
+
+  color: #8da8e8;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+.speed-preset.active {
+  background:
+    linear-gradient(
+      135deg,
+      #3478f6,
+      #6955ff
+    );
+
+  color: #fff;
+
+  border-color: transparent;
+}
+
+
+/* =========================================================
+   TEST BUTTONS
+========================================================= */
+
+.test-trigger,
+.test-action {
+  min-width: 70px;
+
+  min-height: 40px;
+
+  padding: 0 13px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #182641,
+      #1b2140
+    );
+
+  color: #76a3ff;
+
+  border: 1px solid #2c3b5a;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+.test-trigger:active,
+.test-action:active {
+  transform: scale(0.96);
 }
 
 
@@ -896,9 +1140,14 @@ input[type="range"] {
 .profile-box {
   text-align: center;
 
-  background: #11151e;
+  background:
+    linear-gradient(
+      145deg,
+      #121723,
+      #0e131e
+    );
 
-  border: 1px solid #1d2330;
+  border: 1px solid #20283a;
 
   border-radius: 20px;
 
@@ -908,8 +1157,8 @@ input[type="range"] {
 }
 
 .avatar {
-  width: 75px;
-  height: 75px;
+  width: 78px;
+  height: 78px;
 
   margin: auto;
 
@@ -917,9 +1166,10 @@ input[type="range"] {
 
   background:
     linear-gradient(
-      145deg,
-      #3478f6,
-      #6b45ff
+      135deg,
+      #00d4ff,
+      #694dff,
+      #ff3cac
     );
 
   display: flex;
@@ -931,6 +1181,9 @@ input[type="range"] {
   font-weight: 700;
 
   color: #fff;
+
+  box-shadow:
+    0 10px 35px rgba(96, 75, 255, 0.25);
 }
 
 .profile-box h2 {
@@ -945,6 +1198,7 @@ input[type="range"] {
 
 .info-card > div {
   display: flex;
+
   justify-content: space-between;
 
   padding: 14px 0;
@@ -972,64 +1226,6 @@ input[type="range"] {
 
 
 /* =========================================================
-   HOW TO PLAY
-========================================================= */
-
-.instruction-step {
-  display: flex;
-
-  gap: 12px;
-
-  padding: 13px 0;
-
-  border-bottom: 1px solid #1c222c;
-}
-
-.instruction-step:last-child {
-  border-bottom: 0;
-}
-
-.step-number {
-  width: 30px;
-  height: 30px;
-
-  flex-shrink: 0;
-
-  border-radius: 9px;
-
-  background: #182337;
-
-  color: #76a3ff;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 12px;
-
-  font-weight: 700;
-}
-
-.step-text strong {
-  display: block;
-
-  font-size: 13px;
-}
-
-.step-text span {
-  display: block;
-
-  margin-top: 4px;
-
-  color: #707988;
-
-  font-size: 10px;
-
-  line-height: 1.5;
-}
-
-
-/* =========================================================
    LOGS
 ========================================================= */
 
@@ -1042,9 +1238,14 @@ input[type="range"] {
 }
 
 .log-item {
-  background: #11151e;
+  background:
+    linear-gradient(
+      145deg,
+      #121722,
+      #0e131d
+    );
 
-  border: 1px solid #1d2330;
+  border: 1px solid #20283a;
 
   border-radius: 13px;
 
@@ -1058,10 +1259,16 @@ input[type="range"] {
   display: block;
 }
 
+.log-item strong {
+  font-size: 12px;
+}
+
 .log-item small {
   color: #68717f;
 
   margin-top: 5px;
+
+  font-size: 10px;
 }
 
 
@@ -1087,15 +1294,15 @@ input[type="range"] {
   justify-content: space-around;
 
   background:
-    rgba(12, 15, 21, 0.96);
+    rgba(10, 13, 21, 0.96);
 
-  border-top: 1px solid #1c222c;
+  border-top: 1px solid #1c2432;
 
   z-index: 100;
 
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(18px);
 
-  -webkit-backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .nav-button {
@@ -1125,7 +1332,7 @@ input[type="range"] {
 }
 
 .nav-button.active {
-  color: #5d95ff;
+  color: #6d9cff;
 }
 
 
@@ -1155,6 +1362,13 @@ input[type="range"] {
     padding: 13px;
   }
 
+  .speed-presets {
+    gap: 5px;
+  }
+
+  .speed-preset {
+    font-size: 9px;
+  }
 }
 
 
@@ -1200,7 +1414,7 @@ input[type="range"] {
 
 
 /* =========================================================
-   GENERAL TOUCH FEEDBACK
+   GENERAL TOUCH
 ========================================================= */
 
 button {
