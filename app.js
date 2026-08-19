@@ -1,6 +1,6 @@
 /* =========================================================
    LAWANGEN INJECTOR
-   Developer Test Interface — UI/SIMULATION ONLY
+   Developer Test Interface — UI / SIMULATION ONLY
 ========================================================= */
 
 
@@ -13,6 +13,7 @@ const loginScreen = document.getElementById("loginScreen");
 const app = document.getElementById("app");
 
 function openScreen(screenId) {
+
   screens.forEach(screen => {
     screen.classList.toggle(
       "active",
@@ -36,41 +37,105 @@ function openScreen(screenId) {
 
 /* ================= LOGIN ================= */
 
-const loginButton = document.getElementById("loginButton");
-const usernameInput = document.getElementById("username");
-const passwordInput = document.getElementById("password");
-const loginMessage = document.getElementById("loginMessage");
+const loginButton =
+  document.getElementById("loginButton");
 
-loginButton?.addEventListener("click", () => {
+const usernameInput =
+  document.getElementById("username");
 
-  const username = usernameInput.value.trim();
-  const password = passwordInput.value.trim();
+/*
+  Password is removed.
+  Your HTML should contain:
 
-  if (!username || !password) {
-    loginMessage.textContent =
-      "Please enter username and password.";
+  <input id="key" type="text" placeholder="Enter your key">
+*/
+
+const keyInput =
+  document.getElementById("key");
+
+const loginMessage =
+  document.getElementById("loginMessage");
+
+
+function performLogin() {
+
+  const username =
+    usernameInput?.value.trim() || "";
+
+  const key =
+    keyInput?.value.trim() || "";
+
+  if (!username || !key) {
+
+    if (loginMessage) {
+      loginMessage.textContent =
+        "Please enter username and key.";
+    }
+
     return;
   }
 
   /*
-    Demo login only.
-    No real authentication backend is used.
+    UI / demo login only.
+    No real game authentication or injection.
   */
 
-  localStorage.setItem("lawangenUser", username);
+  localStorage.setItem(
+    "lawangenUser",
+    username
+  );
 
   updateProfile(username);
 
-  loginMessage.textContent = "";
+  if (loginMessage) {
+    loginMessage.textContent = "";
+  }
 
-  loginScreen.classList.add("hidden");
-  app.classList.remove("hidden");
+  loginScreen?.classList.add("hidden");
+  app?.classList.remove("hidden");
 
   openScreen("homeScreen");
 
-  addLog("Developer test login successful");
+  addLog(
+    "Developer test login successful"
+  );
+}
 
-});
+
+loginButton?.addEventListener(
+  "click",
+  performLogin
+);
+
+
+/* ================= ENTER KEY LOGIN ================= */
+
+usernameInput?.addEventListener(
+  "keydown",
+  event => {
+
+    if (event.key === "Enter") {
+
+      if (keyInput) {
+        keyInput.focus();
+      }
+
+    }
+
+  }
+);
+
+
+keyInput?.addEventListener(
+  "keydown",
+  event => {
+
+    if (event.key === "Enter") {
+      performLogin();
+    }
+
+  }
+);
 
 
 /* ================= PROFILE ================= */
@@ -88,10 +153,11 @@ function updateProfile(username) {
     document.querySelector(".avatar");
 
   if (avatar && username) {
+
     avatar.textContent =
       username.charAt(0).toUpperCase();
-  }
 
+  }
 }
 
 
@@ -101,15 +167,19 @@ document
   .querySelectorAll("[data-screen]")
   .forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+      "click",
+      () => {
 
-      const target = button.dataset.screen;
+        const target =
+          button.dataset.screen;
 
-      if (target) {
-        openScreen(target);
+        if (target) {
+          openScreen(target);
+        }
+
       }
-
-    });
+    );
 
   });
 
@@ -118,11 +188,12 @@ document
 
 document
   .getElementById("profileButton")
-  ?.addEventListener("click", () => {
-
-    openScreen("profileScreen");
-
-  });
+  ?.addEventListener(
+    "click",
+    () => {
+      openScreen("profileScreen");
+    }
+  );
 
 
 /* ================= BACK BUTTONS ================= */
@@ -131,11 +202,18 @@ document
   .querySelectorAll(".back-button")
   .forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+      "click",
+      () => {
 
-      openScreen("selectionScreen");
+        /*
+          Return to Selection for test pages.
+        */
 
-    });
+        openScreen("selectionScreen");
+
+      }
+    );
 
   });
 
@@ -148,12 +226,19 @@ const povSlider =
 const povValue =
   document.getElementById("povValue");
 
-povSlider?.addEventListener("input", () => {
+povSlider?.addEventListener(
+  "input",
+  () => {
 
-  povValue.textContent =
-    `${povSlider.value}°`;
+    if (povValue) {
 
-});
+      povValue.textContent =
+        `${povSlider.value}°`;
+
+    }
+
+  }
+);
 
 
 /* ================= SPEED ================= */
@@ -164,18 +249,32 @@ const speedSlider =
 const speedValue =
   document.getElementById("speedValue");
 
-speedSlider?.addEventListener("input", () => {
+speedSlider?.addEventListener(
+  "input",
+  () => {
 
-  speedValue.textContent =
-    `${Number(speedSlider.value).toFixed(1)}x`;
+    if (speedValue) {
 
-});
+      speedValue.textContent =
+        `${Number(speedSlider.value).toFixed(1)}x`;
+
+    }
+
+  }
+);
 
 
-/* ================= TEST OPTIONS ================= */
+/* =========================================================
+   TEST OPTIONS
+========================================================= */
 
 const testInputs =
-  document.querySelectorAll("input[data-test]");
+  document.querySelectorAll(
+    "input[data-test]"
+  );
+
+
+/* ================= ACTIVE COUNT ================= */
 
 function getActiveTests() {
 
@@ -185,151 +284,278 @@ function getActiveTests() {
 
 }
 
+
 function updateActiveCount() {
 
   const activeCount =
     document.getElementById("activeCount");
 
   if (activeCount) {
+
     activeCount.textContent =
       `${getActiveTests()} Active`;
+
   }
 
 }
 
 
+/* =========================================================
+   NEW OPTIONS
+=========================================================
+
+   These names are supported automatically
+   when added to index.html:
+
+   AWM Killing
+   AWM Headshot
+   AWM Auto Headshot
+   ESP Name
+   Running
+   Fast Running
+
+========================================================= */
+
+
 testInputs.forEach(input => {
 
-  input.addEventListener("change", () => {
+  input.addEventListener(
+    "change",
+    () => {
 
-    updateActiveCount();
+      updateActiveCount();
 
-    const name =
-      input.dataset.name || "Test option";
+      const name =
+        input.dataset.name ||
+        input.getAttribute("aria-label") ||
+        "Test option";
 
-    addLog(
-      `${name}: ${input.checked ? "ENABLED" : "DISABLED"}`
-    );
+      addLog(
+        `${name}: ${
+          input.checked
+            ? "ENABLED"
+            : "DISABLED"
+        }`
+      );
 
-  });
+    }
+  );
 
 });
 
 
-/* ================= APPLY ================= */
+/* =========================================================
+   RUNNING MULTIPLIER
+========================================================= */
+
+const runningSlider =
+  document.getElementById(
+    "runningSlider"
+  );
+
+const runningValue =
+  document.getElementById(
+    "runningValue"
+  );
+
+
+function updateRunningValue() {
+
+  if (
+    runningSlider &&
+    runningValue
+  ) {
+
+    runningValue.textContent =
+      `${runningSlider.value}x`;
+
+  }
+
+}
+
+
+runningSlider?.addEventListener(
+  "input",
+  updateRunningValue
+);
+
+
+/* =========================================================
+   APPLY CONFIGURATION
+========================================================= */
 
 document
   .getElementById("applyConfig")
-  ?.addEventListener("click", () => {
+  ?.addEventListener(
+    "click",
+    () => {
 
-    const configuration = {
-
-      activeTests:
+      const activeTests =
         Array.from(
           document.querySelectorAll(
             "input[data-test]:checked"
           )
         ).map(
           input =>
-            input.dataset.name || "Test"
-        ),
+            input.dataset.name ||
+            input.getAttribute("aria-label") ||
+            "Test"
+        );
 
-      pov:
-        povSlider
-          ? Number(povSlider.value)
-          : 90,
 
-      speed:
-        speedSlider
-          ? Number(speedSlider.value)
-          : 1
+      const configuration = {
 
-    };
+        activeTests,
 
-    localStorage.setItem(
-      "lawangenTestConfig",
-      JSON.stringify(configuration)
-    );
+        pov:
+          povSlider
+            ? Number(povSlider.value)
+            : 90,
 
-    addLog(
-      `${configuration.activeTests.length} test option(s) configured`
-    );
+        speed:
+          speedSlider
+            ? Number(speedSlider.value)
+            : 1,
 
-    const statusText =
-      document.getElementById("statusText");
+        runningMultiplier:
+          runningSlider
+            ? Number(runningSlider.value)
+            : 1
 
-    if (statusText) {
-      statusText.textContent =
-        "TEST CONFIG READY";
+      };
+
+
+      localStorage.setItem(
+        "lawangenTestConfig",
+        JSON.stringify(configuration)
+      );
+
+
+      addLog(
+        `${activeTests.length} test option(s) configured`
+      );
+
+
+      const statusText =
+        document.getElementById(
+          "statusText"
+        );
+
+      if (statusText) {
+
+        statusText.textContent =
+          "TEST CONFIG READY";
+
+      }
+
+
+      openScreen("logsScreen");
+
     }
-
-    openScreen("logsScreen");
-
-  });
+  );
 
 
-/* ================= RESET ================= */
+/* =========================================================
+   RESET
+========================================================= */
 
 document
   .getElementById("resetConfig")
-  ?.addEventListener("click", () => {
+  ?.addEventListener(
+    "click",
+    () => {
 
-    testInputs.forEach(input => {
-      input.checked = false;
-    });
+      testInputs.forEach(
+        input => {
+          input.checked = false;
+        }
+      );
 
-    if (povSlider) {
-      povSlider.value = 90;
+
+      if (povSlider) {
+        povSlider.value = 90;
+      }
+
+
+      if (speedSlider) {
+        speedSlider.value = 1;
+      }
+
+
+      if (runningSlider) {
+        runningSlider.value = 1;
+      }
+
+
+      if (povValue) {
+        povValue.textContent =
+          "90°";
+      }
+
+
+      if (speedValue) {
+        speedValue.textContent =
+          "1.0x";
+      }
+
+
+      updateRunningValue();
+
+
+      localStorage.removeItem(
+        "lawangenTestConfig"
+      );
+
+
+      updateActiveCount();
+
+      addLog(
+        "Test configuration reset"
+      );
+
     }
-
-    if (speedSlider) {
-      speedSlider.value = 1;
-    }
-
-    if (povValue) {
-      povValue.textContent = "90°";
-    }
-
-    if (speedValue) {
-      speedValue.textContent = "1.0x";
-    }
-
-    localStorage.removeItem(
-      "lawangenTestConfig"
-    );
-
-    updateActiveCount();
-
-    addLog("Test configuration reset");
-
-  });
+  );
 
 
-/* ================= LOG SYSTEM ================= */
+/* =========================================================
+   LOG SYSTEM
+========================================================= */
 
 const logsContainer =
-  document.getElementById("logsContainer");
+  document.getElementById(
+    "logsContainer"
+  );
+
 
 function addLog(text) {
 
   if (!logsContainer) return;
 
+
   const empty =
-    logsContainer.querySelector(".empty-log");
+    logsContainer.querySelector(
+      ".empty-log"
+    );
+
 
   if (empty) {
     empty.remove();
   }
 
+
   const item =
     document.createElement("div");
 
-  item.className = "log-item";
+  item.className =
+    "log-item";
+
 
   const strong =
     document.createElement("strong");
 
-  strong.textContent = text;
+  strong.textContent =
+    text;
+
 
   const small =
     document.createElement("small");
@@ -337,78 +563,131 @@ function addLog(text) {
   small.textContent =
     new Date().toLocaleTimeString();
 
+
   item.appendChild(strong);
   item.appendChild(small);
+
 
   logsContainer.prepend(item);
 
 }
 
 
-/* ================= SIMULATION EVENTS ================= */
+/* =========================================================
+   SIMULATION EVENTS
+========================================================= */
 
 document
   .querySelectorAll(".test-trigger")
   .forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+      "click",
+      () => {
 
-      const eventName =
-        button.dataset.event || "TEST_EVENT";
+        const eventName =
+          button.dataset.event ||
+          "TEST_EVENT";
 
-      addLog(
-        `Simulation event: ${eventName}`
-      );
 
-      const statusText =
-        document.getElementById("statusText");
+        addLog(
+          `Simulation event: ${eventName}`
+        );
 
-      if (statusText) {
-        statusText.textContent =
-          "SIMULATION EVENT GENERATED";
+
+        const statusText =
+          document.getElementById(
+            "statusText"
+          );
+
+
+        if (statusText) {
+
+          statusText.textContent =
+            "SIMULATION EVENT GENERATED";
+
+        }
+
+
+        const originalText =
+          button.textContent;
+
+
+        button.textContent =
+          "DONE";
+
+
+        setTimeout(
+          () => {
+
+            button.textContent =
+              originalText || "TEST";
+
+          },
+          900
+        );
+
       }
-
-      button.textContent = "DONE";
-
-      setTimeout(() => {
-        button.textContent = "TEST";
-      }, 900);
-
-    });
+    );
 
   });
 
 
-/* ================= CLEAR LOGS ================= */
+/* =========================================================
+   CLEAR LOGS
+========================================================= */
 
 document
   .getElementById("clearLogs")
-  ?.addEventListener("click", () => {
+  ?.addEventListener(
+    "click",
+    () => {
 
-    if (!logsContainer) return;
-
-    logsContainer.innerHTML = `
-      <div class="empty-log">
-        No test activity yet.
-      </div>
-    `;
-
-  });
+      if (!logsContainer) return;
 
 
-/* ================= LOGOUT ================= */
+      logsContainer.innerHTML = `
+        <div class="empty-log">
+          No test activity yet.
+        </div>
+      `;
+
+    }
+  );
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 function logout() {
 
-  localStorage.removeItem("lawangenUser");
+  localStorage.removeItem(
+    "lawangenUser"
+  );
 
-  app.classList.add("hidden");
-  loginScreen.classList.remove("hidden");
 
-  usernameInput.value = "";
-  passwordInput.value = "";
+  app?.classList.add("hidden");
 
-  loginMessage.textContent = "";
+  loginScreen?.classList.remove(
+    "hidden"
+  );
+
+
+  if (usernameInput) {
+    usernameInput.value = "";
+  }
+
+
+  if (keyInput) {
+    keyInput.value = "";
+  }
+
+
+  if (loginMessage) {
+    loginMessage.textContent = "";
+  }
+
 
   openScreen("homeScreen");
 
@@ -417,89 +696,178 @@ function logout() {
 
 document
   .getElementById("logoutButton")
-  ?.addEventListener("click", logout);
+  ?.addEventListener(
+    "click",
+    logout
+  );
+
 
 document
   .getElementById("logoutButtonSettings")
-  ?.addEventListener("click", logout);
+  ?.addEventListener(
+    "click",
+    logout
+  );
 
 
-/* ================= LOAD CONFIG ================= */
+/* =========================================================
+   LOAD CONFIGURATION
+========================================================= */
 
 function loadConfiguration() {
 
-  const saved =
-    JSON.parse(
-      localStorage.getItem(
-        "lawangenTestConfig"
-      ) || "null"
-    );
+  let saved = null;
 
-  if (!saved) return;
 
+  try {
+
+    saved =
+      JSON.parse(
+        localStorage.getItem(
+          "lawangenTestConfig"
+        ) || "null"
+      );
+
+  } catch (error) {
+
+    saved = null;
+
+  }
+
+
+  if (!saved) {
+
+    updateRunningValue();
+    updateActiveCount();
+
+    return;
+
+  }
+
+
+  /* ---------- POV ---------- */
 
   if (
     povSlider &&
     typeof saved.pov === "number"
   ) {
 
-    povSlider.value = saved.pov;
+    povSlider.value =
+      saved.pov;
 
-    povValue.textContent =
-      `${saved.pov}°`;
+
+    if (povValue) {
+
+      povValue.textContent =
+        `${saved.pov}°`;
+
+    }
 
   }
 
+
+  /* ---------- SPEED ---------- */
 
   if (
     speedSlider &&
     typeof saved.speed === "number"
   ) {
 
-    speedSlider.value = saved.speed;
+    speedSlider.value =
+      saved.speed;
 
-    speedValue.textContent =
-      `${Number(saved.speed).toFixed(1)}x`;
+
+    if (speedValue) {
+
+      speedValue.textContent =
+        `${Number(saved.speed).toFixed(1)}x`;
+
+    }
+
+  }
+
+
+  /* ---------- RUNNING ---------- */
+
+  if (
+    runningSlider &&
+    typeof saved.runningMultiplier === "number"
+  ) {
+
+    runningSlider.value =
+      saved.runningMultiplier;
 
   }
 
 
-  if (Array.isArray(saved.activeTests)) {
+  updateRunningValue();
 
-    testInputs.forEach(input => {
 
-      input.checked =
-        saved.activeTests.includes(
-          input.dataset.name
-        );
+  /* ---------- TEST OPTIONS ---------- */
 
-    });
+  if (
+    Array.isArray(
+      saved.activeTests
+    )
+  ) {
+
+    testInputs.forEach(
+      input => {
+
+        const name =
+          input.dataset.name ||
+          input.getAttribute(
+            "aria-label"
+          );
+
+
+        input.checked =
+          saved.activeTests.includes(
+            name
+          );
+
+      }
+    );
 
   }
+
 
   updateActiveCount();
 
 }
 
 
-/* ================= SAVED LOGIN ================= */
+/* =========================================================
+   SAVED LOGIN
+========================================================= */
 
 const savedUser =
-  localStorage.getItem("lawangenUser");
+  localStorage.getItem(
+    "lawangenUser"
+  );
+
 
 if (savedUser) {
 
   updateProfile(savedUser);
 
-  loginScreen.classList.add("hidden");
-  app.classList.remove("hidden");
+  loginScreen?.classList.add(
+    "hidden"
+  );
+
+  app?.classList.remove(
+    "hidden"
+  );
 
   openScreen("homeScreen");
 
 }
 
 
-/* ================= INITIAL ================= */
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
 loadConfiguration();
+updateRunningValue();
 updateActiveCount();
