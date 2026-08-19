@@ -1,194 +1,338 @@
-const pages = document.querySelectorAll(".page");
-const tabs = document.querySelectorAll(".tab");
+const screens = document.querySelectorAll(".app-screen");
+const navigationButtons = document.querySelectorAll(
+  "[data-screen]"
+);
 
-function showPage(pageName) {
-  pages.forEach(page => {
-    page.classList.toggle("active", page.id === pageName);
-  });
+function openScreen(screenId) {
 
-  tabs.forEach(tab => {
-    tab.classList.toggle(
+  screens.forEach(screen => {
+    screen.classList.toggle(
       "active",
-      tab.dataset.page === pageName
+      screen.id === screenId
     );
   });
+
+  navigationButtons.forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.screen === screenId
+    );
+  });
+
+  window.scrollTo({
+    top: 0,
+    behavior: "instant"
+  });
 }
 
-tabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    showPage(tab.dataset.page);
-  });
-});
 
-document.querySelectorAll("[data-page-target]").forEach(button => {
-  button.addEventListener("click", () => {
-    showPage(button.dataset.pageTarget);
-  });
-});
+/* ================= LOGIN ================= */
 
+const loginScreen =
+  document.getElementById("loginScreen");
 
-/* POV */
+const app =
+  document.getElementById("app");
 
-const pov = document.getElementById("pov");
-const povValue = document.getElementById("povValue");
+const loginButton =
+  document.getElementById("loginButton");
 
-pov.addEventListener("input", () => {
-  povValue.textContent = `${pov.value}°`;
-});
+const usernameInput =
+  document.getElementById("username");
 
+const passwordInput =
+  document.getElementById("password");
 
-/* SPEED */
+const loginMessage =
+  document.getElementById("loginMessage");
 
-const speed = document.getElementById("speed");
-const speedValue = document.getElementById("speedValue");
+loginButton.addEventListener("click", () => {
 
-speed.addEventListener("input", () => {
-  speedValue.textContent =
-    `${Number(speed.value).toFixed(1)}x`;
-});
+  const username =
+    usernameInput.value.trim();
 
+  const password =
+    passwordInput.value.trim();
 
-/* ACTIVE TEST COUNT */
+  if (!username || !password) {
 
-const enabledCount = document.getElementById("enabledCount");
+    loginMessage.textContent =
+      "Please enter username and password.";
 
-function updateCount() {
-  const active =
-    document.querySelectorAll(
-      'input[data-test]:checked'
-    ).length;
+    return;
+  }
 
-  enabledCount.textContent = active;
-}
-
-document.querySelectorAll("input[data-test]").forEach(input => {
-  input.addEventListener("change", updateCount);
-});
-
-
-/* APPLY */
-
-const message = document.getElementById("message");
-
-document.getElementById("apply").addEventListener("click", () => {
-
-  const active =
-    document.querySelectorAll(
-      'input[data-test]:checked'
-    ).length;
-
-  message.textContent =
-    `${active} test option(s) configured.`;
-
-  document.getElementById("statusText").textContent =
-    "TEST CONFIG READY";
-});
-
-
-/* RESET */
-
-document.getElementById("reset").addEventListener("click", () => {
-
-  document.querySelectorAll(
-    'input[data-test]'
-  ).forEach(input => {
-    input.checked = false;
-  });
-
-  pov.value = 90;
-  speed.value = 1;
-
-  povValue.textContent = "90°";
-  speedValue.textContent = "1.0x";
-
-  updateCount();
-
-  message.textContent =
-    "Configuration reset.";
-
-  document.getElementById("statusText").textContent =
-    "TEST MODE READY";
-});
-
-
-/* PROFILES */
-
-const profileName =
-  document.getElementById("profileName");
-
-const profilesList =
-  document.getElementById("profilesList");
-
-let profiles =
-  JSON.parse(
-    localStorage.getItem("testProfiles") || "[]"
+  localStorage.setItem(
+    "lawangUser",
+    username
   );
 
-function renderProfiles() {
+  document.getElementById(
+    "profileName"
+  ).textContent = username;
 
-  profilesList.innerHTML = "";
+  loginScreen.classList.add("hidden");
+  app.classList.remove("hidden");
 
-  profiles.forEach((profile, index) => {
+  openScreen("homeScreen");
+});
 
-    const card = document.createElement("div");
 
-    card.className = "card";
+/* ================= NAVIGATION ================= */
 
-    card.innerHTML = `
-      <div class="profile">
-        <strong>${profile}</strong>
-        <button
-          class="delete-profile"
-          data-index="${index}">
-          DELETE
-        </button>
-      </div>
-    `;
+document
+  .querySelectorAll("[data-screen]")
+  .forEach(button => {
 
-    profilesList.appendChild(card);
+    button.addEventListener("click", () => {
+
+      const target =
+        button.dataset.screen;
+
+      openScreen(target);
+    });
+
   });
 
-  document.getElementById("profileCount")
-    .textContent = profiles.length;
 
-  document.querySelectorAll(".delete-profile")
-    .forEach(button => {
+/* ================= BACK BUTTONS ================= */
 
-      button.addEventListener("click", () => {
+document
+  .querySelectorAll(".back-button")
+  .forEach(button => {
 
-        profiles.splice(
-          Number(button.dataset.index),
-          1
-        );
+    button.addEventListener("click", () => {
 
-        localStorage.setItem(
-          "testProfiles",
-          JSON.stringify(profiles)
-        );
-
-        renderProfiles();
-      });
+      openScreen("selectionScreen");
 
     });
-}
 
-document.getElementById("saveProfile")
-  .addEventListener("click", () => {
-
-    const name = profileName.value.trim();
-
-    if (!name) return;
-
-    profiles.push(name);
-
-    localStorage.setItem(
-      "testProfiles",
-      JSON.stringify(profiles)
-    );
-
-    profileName.value = "";
-
-    renderProfiles();
   });
 
-renderProfiles();
+
+/* ================= PROFILE ================= */
+
+document
+  .getElementById("profileButton")
+  .addEventListener("click", () => {
+
+    openScreen("profileScreen");
+
+  });
+
+
+/* ================= POV ================= */
+
+const povSlider =
+  document.getElementById("povSlider");
+
+const povValue =
+  document.getElementById("povValue");
+
+povSlider.addEventListener("input", () => {
+
+  povValue.textContent =
+    `${povSlider.value}°`;
+
+});
+
+
+/* ================= SPEED ================= */
+
+const speedSlider =
+  document.getElementById("speedSlider");
+
+const speedValue =
+  document.getElementById("speedValue");
+
+speedSlider.addEventListener("input", () => {
+
+  speedValue.textContent =
+    `${Number(speedSlider.value).toFixed(1)}x`;
+
+});
+
+
+/* ================= ACTIVE TESTS ================= */
+
+const testInputs =
+  document.querySelectorAll(
+    "input[data-test]"
+  );
+
+function getActiveTests() {
+
+  return document.querySelectorAll(
+    "input[data-test]:checked"
+  ).length;
+
+}
+
+function updateActiveCount() {
+
+  const count =
+    getActiveTests();
+
+  const activeCount =
+    document.getElementById("activeCount");
+
+  if (activeCount) {
+
+    activeCount.textContent =
+      `${count} Active`;
+
+  }
+
+}
+
+testInputs.forEach(input => {
+
+  input.addEventListener(
+    "change",
+    updateActiveCount
+  );
+
+});
+
+
+/* ================= APPLY CONFIG ================= */
+
+document
+  .getElementById("applyConfig")
+  .addEventListener("click", () => {
+
+    const count =
+      getActiveTests();
+
+    localStorage.setItem(
+      "activeTests",
+      count
+    );
+
+    addLog(
+      `${count} test option(s) configured`
+    );
+
+    openScreen("logsScreen");
+
+  });
+
+
+/* ================= RESET ================= */
+
+document
+  .getElementById("resetConfig")
+  .addEventListener("click", () => {
+
+    testInputs.forEach(input => {
+
+      input.checked = false;
+
+    });
+
+    povSlider.value = 90;
+    speedSlider.value = 1;
+
+    povValue.textContent = "90°";
+    speedValue.textContent = "1.0x";
+
+    updateActiveCount();
+
+    addLog("Test configuration reset");
+
+  });
+
+
+/* ================= LOGS ================= */
+
+const logsContainer =
+  document.getElementById(
+    "logsContainer"
+  );
+
+function addLog(text) {
+
+  if (!logsContainer) return;
+
+  const empty =
+    logsContainer.querySelector(
+      ".empty-log"
+    );
+
+  if (empty) {
+    empty.remove();
+  }
+
+  const item =
+    document.createElement("div");
+
+  item.className = "log-item";
+
+  item.innerHTML = `
+    <strong>${text}</strong>
+    <small>${new Date().toLocaleTimeString()}</small>
+  `;
+
+  logsContainer.prepend(item);
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+function logout() {
+
+  localStorage.removeItem(
+    "lawangUser"
+  );
+
+  app.classList.add("hidden");
+  loginScreen.classList.remove("hidden");
+
+  usernameInput.value = "";
+  passwordInput.value = "";
+
+  openScreen("homeScreen");
+
+}
+
+document
+  .getElementById("logoutButton")
+  .addEventListener(
+    "click",
+    logout
+  );
+
+
+document
+  .getElementById("logoutBtn")
+  ?.addEventListener(
+    "click",
+    logout
+  );
+
+
+/* ================= SAVED LOGIN ================= */
+
+const savedUser =
+  localStorage.getItem(
+    "lawangUser"
+  );
+
+if (savedUser) {
+
+  document.getElementById(
+    "profileName"
+  ).textContent = savedUser;
+
+  loginScreen.classList.add("hidden");
+  app.classList.remove("hidden");
+
+  openScreen("homeScreen");
+
+}
+
+
+/* ================= INITIAL STATE ================= */
+
+updateActiveCount();
