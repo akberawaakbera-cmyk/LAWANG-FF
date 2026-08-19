@@ -38,28 +38,38 @@
 
     </div>
 
+
     <div id="loginForm">
 
       <div class="login-title">
-        <h2>Welcome Back</h2>
-        <p>Sign in to your developer environment</p>
+        <h2>Developer Lawangin 444</h2>
+        <p>Enter your username and key</p>
       </div>
+
 
       <label>Username</label>
 
       <input
         id="username"
         type="text"
-        placeholder="Enter username"
+        placeholder="Enter your username"
         autocomplete="username">
 
-      <label>Password</label>
+
+      <label>Key</label>
+
+      <!--
+        The ID remains "password" temporarily so the
+        existing app.js does not break.
+        UI shows this as KEY, not Password.
+      -->
 
       <input
         id="password"
-        type="password"
-        placeholder="Enter password"
-        autocomplete="current-password">
+        type="text"
+        placeholder="Enter your key"
+        autocomplete="off">
+
 
       <button
         id="loginButton"
@@ -67,11 +77,13 @@
         LOGIN
       </button>
 
+
       <button
         id="guestButton"
         class="secondary-button">
         CONTINUE AS GUEST
       </button>
+
 
       <p id="loginMessage" class="message"></p>
 
@@ -82,13 +94,17 @@
 </div>
 
 
+
 <!-- =========================================================
      MAIN APP
 ========================================================= -->
 
 <div id="app" class="app hidden">
 
-  <!-- TOP BAR -->
+
+  <!-- =======================================================
+       TOP BAR
+  ======================================================= -->
 
   <header class="top-bar">
 
@@ -100,10 +116,11 @@
 
       <div>
         <strong>LAWANGEN</strong>
-        <small>INJECTOR</small>
+        <small>DEVELOPER 444</small>
       </div>
 
     </div>
+
 
     <button
       id="profileButton"
@@ -112,6 +129,7 @@
     </button>
 
   </header>
+
 
 
   <!-- =====================================================
@@ -124,14 +142,23 @@
 
     <section class="welcome-card">
 
+      <div class="developer-hero-logo">
+        <div class="developer-logo-mark">
+          <span>LE</span>
+        </div>
+      </div>
+
+
       <span class="developer-badge">
-        LAWANGEN DEVELOPER TEST
+        DEVELOPER
       </span>
 
-      <h1>Welcome</h1>
+
+      <h1>LAWANGIN 444</h1>
+
 
       <p>
-        Your controlled anti-cheat test environment is ready.
+        Developer Lawangin 444
       </p>
 
     </section>
@@ -156,15 +183,21 @@
 
     <div class="home-grid">
 
+
       <button
         class="home-card"
         data-screen="selectionScreen">
 
         <div class="home-icon">🎯</div>
+
         <strong>Selection</strong>
-        <span>Test scenarios</span>
+
+        <span>
+          Test scenarios
+        </span>
 
       </button>
+
 
 
       <button
@@ -172,10 +205,15 @@
         data-screen="logsScreen">
 
         <div class="home-icon">📋</div>
+
         <strong>Logs</strong>
-        <span>Test activity</span>
+
+        <span>
+          Test activity
+        </span>
 
       </button>
+
 
 
       <button
@@ -183,10 +221,15 @@
         data-screen="profileScreen">
 
         <div class="home-icon">👤</div>
+
         <strong>Profile</strong>
-        <span>Developer account</span>
+
+        <span>
+          Developer account
+        </span>
 
       </button>
+
 
 
       <button
@@ -194,14 +237,20 @@
         data-screen="settingsScreen">
 
         <div class="home-icon">⚙️</div>
+
         <strong>Settings</strong>
-        <span>Preferences</span>
+
+        <span>
+          Preferences
+        </span>
 
       </button>
+
 
     </div>
 
   </main>
+
 
 
   <!-- =====================================================
@@ -217,14 +266,21 @@
       <button class="back-button">‹</button>
 
       <div>
+
         <h1>Selection</h1>
-        <p>Choose a controlled test category</p>
+
+        <p>
+          Choose a controlled test category
+        </p>
+
       </div>
 
     </div>
 
 
+
     <section class="menu-list">
+
 
       <button
         class="menu-item"
@@ -233,13 +289,19 @@
         <div class="menu-icon">⚔️</div>
 
         <div class="menu-text">
+
           <strong>Combat Tests</strong>
-          <span>Aim and combat anomaly simulations</span>
+
+          <span>
+            Aim and combat anomaly simulations
+          </span>
+
         </div>
 
         <b>›</b>
 
       </button>
+
 
 
       <button
@@ -249,13 +311,19 @@
         <div class="menu-icon">👁️</div>
 
         <div class="menu-text">
+
           <strong>Visual Tests</strong>
-          <span>ESP and visual anomaly simulations</span>
+
+          <span>
+            ESP and visual anomaly simulations
+          </span>
+
         </div>
 
         <b>›</b>
 
       </button>
+
 
 
       <button
@@ -265,13 +333,19 @@
         <div class="menu-icon">🎮</div>
 
         <div class="menu-text">
+
           <strong>POV & Movement</strong>
-          <span>FOV and movement anomaly testing</span>
+
+          <span>
+            FOV and movement anomaly testing
+          </span>
+
         </div>
 
         <b>›</b>
 
       </button>
+
 
 
       <button
@@ -281,13 +355,19 @@
         <div class="menu-icon">🏟️</div>
 
         <div class="menu-text">
+
           <strong>Lobby Tests</strong>
-          <span>Controlled lobby-event simulations</span>
+
+          <span>
+            Controlled lobby-event simulations
+          </span>
+
         </div>
 
         <b>›</b>
 
       </button>
+
 
 
       <button
@@ -297,17 +377,24 @@
         <div class="menu-icon">🛡️</div>
 
         <div class="menu-text">
+
           <strong>Anti-Cheat Test</strong>
-          <span>Detection and integrity scenarios</span>
+
+          <span>
+            Detection and integrity scenarios
+          </span>
+
         </div>
 
         <b>›</b>
 
       </button>
 
+
     </section>
 
   </main>
+
 
 
   <!-- =====================================================
@@ -323,89 +410,249 @@
       <button class="back-button">‹</button>
 
       <div>
+
         <h1>Combat Tests</h1>
-        <p>Controlled combat-event simulations</p>
+
+        <p>
+          Controlled combat-event simulations
+        </p>
+
       </div>
 
     </div>
 
 
+
     <section class="control-card">
+
+
+      <!-- OLD OPTION -->
 
       <div class="control-row">
 
         <div>
-          <strong>Auto Headshot Test</strong>
-          <span>Generate an abnormal aim-event simulation</span>
+
+          <strong>
+            Auto Headshot Test
+          </strong>
+
+          <span>
+            Generate an abnormal aim-event simulation
+          </span>
+
         </div>
 
+
         <label class="switch">
+
           <input
             type="checkbox"
             data-test
             data-name="Auto Headshot Test">
+
           <span></span>
+
         </label>
 
       </div>
 
 
+
+      <!-- OLD OPTION -->
+
       <div class="control-row">
 
         <div>
-          <strong>Auto Kill Event Test</strong>
-          <span>Simulate an abnormal elimination event</span>
+
+          <strong>
+            Auto Kill Event Test
+          </strong>
+
+          <span>
+            Simulate an abnormal elimination event
+          </span>
+
         </div>
 
+
         <label class="switch">
+
           <input
             type="checkbox"
             data-test
             data-name="Auto Kill Event Test">
+
           <span></span>
+
         </label>
 
       </div>
 
 
+
+      <!-- OLD OPTION -->
+
       <div class="control-row">
 
         <div>
-          <strong>Silent Aim Test</strong>
-          <span>Simulate an abnormal targeting pattern</span>
+
+          <strong>
+            Silent Aim Test
+          </strong>
+
+          <span>
+            Simulate an abnormal targeting pattern
+          </span>
+
         </div>
 
+
         <label class="switch">
+
           <input
             type="checkbox"
             data-test
             data-name="Silent Aim Test">
+
           <span></span>
+
         </label>
 
       </div>
 
+
+
+      <!-- OLD OPTION -->
 
       <div class="control-row">
 
         <div>
-          <strong>Crosshair Test</strong>
-          <span>Crosshair behavior simulation</span>
+
+          <strong>
+            Crosshair Test
+          </strong>
+
+          <span>
+            Crosshair behavior simulation
+          </span>
+
         </div>
 
+
         <label class="switch">
+
           <input
             type="checkbox"
             data-test
             data-name="Crosshair Test">
+
           <span></span>
+
         </label>
 
       </div>
 
+
+
+      <!-- NEW: AWM KILLING -->
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            AWM Killing
+          </strong>
+
+          <span>
+            Controlled AWM elimination-event simulation
+          </span>
+
+        </div>
+
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            data-test
+            data-name="AWM Killing">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+
+      <!-- NEW: AWM HEADSHOT -->
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            AWM Headshot
+          </strong>
+
+          <span>
+            Controlled AWM headshot-event simulation
+          </span>
+
+        </div>
+
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            data-test
+            data-name="AWM Headshot">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+
+      <!-- NEW: AWM AUTO HEADSHOT -->
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            AWM Auto Headshot
+          </strong>
+
+          <span>
+            Controlled automated aim-event simulation
+          </span>
+
+        </div>
+
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            data-test
+            data-name="AWM Auto Headshot">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
     </section>
 
   </main>
+
 
 
   <!-- =====================================================
@@ -421,89 +668,185 @@
       <button class="back-button">‹</button>
 
       <div>
+
         <h1>Visual Tests</h1>
-        <p>Controlled visual-event simulations</p>
+
+        <p>
+          Controlled visual-event simulations
+        </p>
+
       </div>
 
     </div>
 
 
+
     <section class="control-card">
+
+
+      <!-- OLD -->
 
       <div class="control-row">
 
         <div>
-          <strong>ESP Line Test</strong>
-          <span>Simulate an unauthorized visual line</span>
+
+          <strong>
+            ESP Line Test
+          </strong>
+
+          <span>
+            Simulate an unauthorized visual line
+          </span>
+
         </div>
 
+
         <label class="switch">
+
           <input
             type="checkbox"
             data-test
             data-name="ESP Line Test">
+
           <span></span>
+
         </label>
 
       </div>
 
 
+
+      <!-- OLD -->
+
       <div class="control-row">
 
         <div>
-          <strong>ESP Box Test</strong>
-          <span>Simulate bounding-box behavior</span>
+
+          <strong>
+            ESP Box Test
+          </strong>
+
+          <span>
+            Simulate bounding-box behavior
+          </span>
+
         </div>
 
+
         <label class="switch">
+
           <input
             type="checkbox"
             data-test
             data-name="ESP Box Test">
+
           <span></span>
+
         </label>
 
       </div>
 
 
+
+      <!-- OLD -->
+
       <div class="control-row">
 
         <div>
-          <strong>ESP Health Test</strong>
-          <span>Simulate unauthorized health information</span>
+
+          <strong>
+            ESP Health Test
+          </strong>
+
+          <span>
+            Simulate unauthorized health information
+          </span>
+
         </div>
 
+
         <label class="switch">
+
           <input
             type="checkbox"
             data-test
             data-name="ESP Health Test">
+
           <span></span>
+
         </label>
 
       </div>
 
+
+
+      <!-- OLD -->
 
       <div class="control-row">
 
         <div>
-          <strong>Wall Vision Test</strong>
-          <span>Simulate abnormal visibility behavior</span>
+
+          <strong>
+            Wall Vision Test
+          </strong>
+
+          <span>
+            Simulate abnormal visibility behavior
+          </span>
+
         </div>
 
+
         <label class="switch">
+
           <input
             type="checkbox"
             data-test
             data-name="Wall Vision Test">
+
           <span></span>
+
         </label>
 
       </div>
 
+
+
+      <!-- NEW: ESP NAME -->
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            ESP Name
+          </strong>
+
+          <span>
+            Controlled player-name visual simulation
+          </span>
+
+        </div>
+
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            data-test
+            data-name="ESP Name">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
     </section>
 
   </main>
+
 
 
   <!-- =====================================================
@@ -519,22 +862,35 @@
       <button class="back-button">‹</button>
 
       <div>
+
         <h1>POV & Movement</h1>
-        <p>Controlled movement anomaly testing</p>
+
+        <p>
+          Controlled movement anomaly testing
+        </p>
+
       </div>
 
     </div>
 
 
+
+    <!-- POV -->
+
     <section class="slider-card">
 
       <div class="slider-title">
 
-        <span>POV / FOV</span>
+        <span>
+          POV / FOV
+        </span>
 
-        <strong id="povValue">90°</strong>
+        <strong id="povValue">
+          90°
+        </strong>
 
       </div>
+
 
       <input
         id="povSlider"
@@ -546,65 +902,168 @@
     </section>
 
 
+
+    <!-- NEW RUNNING SPEED -->
+
     <section class="slider-card">
 
       <div class="slider-title">
 
-        <span>Movement Speed Test</span>
+        <span>
+          Running Speed
+        </span>
 
-        <strong id="speedValue">1.0x</strong>
+        <strong id="speedValue">
+          1.0x
+        </strong>
 
       </div>
+
 
       <input
         id="speedSlider"
         type="range"
         min="1"
-        max="4"
+        max="10"
         step="0.1"
         value="1">
 
     </section>
 
 
+
     <section class="control-card">
+
+
+      <!-- NEW RUNNING -->
 
       <div class="control-row">
 
         <div>
-          <strong>Speed Anomaly Test</strong>
-          <span>Generate a controlled speed event</span>
+
+          <strong>
+            Running
+          </strong>
+
+          <span>
+            Controlled running-event simulation
+          </span>
+
         </div>
 
+
         <label class="switch">
+
+          <input
+            type="checkbox"
+            data-test
+            data-name="Running">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+
+      <!-- NEW FAST RUNNING -->
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            Fast Running
+          </strong>
+
+          <span>
+            Controlled movement-speed simulation
+          </span>
+
+        </div>
+
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            data-test
+            data-name="Fast Running">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+
+      <!-- OLD -->
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            Speed Anomaly Test
+          </strong>
+
+          <span>
+            Generate a controlled speed event
+          </span>
+
+        </div>
+
+
+        <label class="switch">
+
           <input
             type="checkbox"
             data-test
             data-name="Speed Anomaly Test">
+
           <span></span>
+
         </label>
 
       </div>
 
+
+
+      <!-- OLD -->
 
       <div class="control-row">
 
         <div>
-          <strong>Teleport Anomaly Test</strong>
-          <span>Simulate an impossible-position event</span>
+
+          <strong>
+            Teleport Anomaly Test
+          </strong>
+
+          <span>
+            Simulate an impossible-position event
+          </span>
+
         </div>
 
+
         <label class="switch">
+
           <input
             type="checkbox"
             data-test
             data-name="Teleport Anomaly Test">
+
           <span></span>
+
         </label>
 
       </div>
 
+
     </section>
+
 
 
     <button
@@ -623,6 +1082,7 @@
   </main>
 
 
+
   <!-- =====================================================
        LOBBY TESTS
   ===================================================== -->
@@ -636,21 +1096,36 @@
       <button class="back-button">‹</button>
 
       <div>
+
         <h1>Lobby Tests</h1>
-        <p>Controlled lobby-event simulations</p>
+
+        <p>
+          Controlled lobby-event simulations
+        </p>
+
       </div>
 
     </div>
 
 
+
     <section class="control-card">
+
 
       <div class="control-row">
 
         <div>
-          <strong>Lobby Kill Event</strong>
-          <span>Simulate an unauthorized lobby elimination event</span>
+
+          <strong>
+            Lobby Kill Event
+          </strong>
+
+          <span>
+            Simulate an unauthorized lobby elimination event
+          </span>
+
         </div>
+
 
         <button
           class="test-trigger"
@@ -661,12 +1136,21 @@
       </div>
 
 
+
       <div class="control-row">
 
         <div>
-          <strong>All-Enemy Event</strong>
-          <span>Simulate an impossible multi-target event</span>
+
+          <strong>
+            All-Enemy Event
+          </strong>
+
+          <span>
+            Simulate an impossible multi-target event
+          </span>
+
         </div>
+
 
         <button
           class="test-trigger"
@@ -677,12 +1161,21 @@
       </div>
 
 
+
       <div class="control-row">
 
         <div>
-          <strong>Lobby Teleport Event</strong>
-          <span>Simulate an impossible position change</span>
+
+          <strong>
+            Lobby Teleport Event
+          </strong>
+
+          <span>
+            Simulate an impossible position change
+          </span>
+
         </div>
+
 
         <button
           class="test-trigger"
@@ -692,9 +1185,11 @@
 
       </div>
 
+
     </section>
 
   </main>
+
 
 
   <!-- =====================================================
@@ -710,21 +1205,36 @@
       <button class="back-button">‹</button>
 
       <div>
+
         <h1>Anti-Cheat Test</h1>
-        <p>Controlled detection scenarios</p>
+
+        <p>
+          Controlled detection scenarios
+        </p>
+
       </div>
 
     </div>
 
 
+
     <section class="control-card">
+
 
       <div class="control-row">
 
         <div>
-          <strong>Speed Anomaly</strong>
-          <span>Generate controlled movement anomaly</span>
+
+          <strong>
+            Speed Anomaly
+          </strong>
+
+          <span>
+            Generate controlled movement anomaly
+          </span>
+
         </div>
+
 
         <button
           class="test-trigger"
@@ -735,12 +1245,21 @@
       </div>
 
 
+
       <div class="control-row">
 
         <div>
-          <strong>Aim Anomaly</strong>
-          <span>Generate controlled aim anomaly</span>
+
+          <strong>
+            Aim Anomaly
+          </strong>
+
+          <span>
+            Generate controlled aim anomaly
+          </span>
+
         </div>
+
 
         <button
           class="test-trigger"
@@ -751,12 +1270,21 @@
       </div>
 
 
+
       <div class="control-row">
 
         <div>
-          <strong>Visual Anomaly</strong>
-          <span>Generate controlled visual anomaly</span>
+
+          <strong>
+            Visual Anomaly
+          </strong>
+
+          <span>
+            Generate controlled visual anomaly
+          </span>
+
         </div>
+
 
         <button
           class="test-trigger"
@@ -767,12 +1295,21 @@
       </div>
 
 
+
       <div class="control-row">
 
         <div>
-          <strong>Integrity Test</strong>
-          <span>Test integrity-monitoring response</span>
+
+          <strong>
+            Integrity Test
+          </strong>
+
+          <span>
+            Test integrity-monitoring response
+          </span>
+
         </div>
+
 
         <button
           class="test-trigger"
@@ -782,9 +1319,11 @@
 
       </div>
 
+
     </section>
 
   </main>
+
 
 
   <!-- =====================================================
@@ -800,22 +1339,32 @@
       <button class="back-button">‹</button>
 
       <div>
+
         <h1>Profile</h1>
-        <p>Developer account</p>
+
+        <p>
+          Developer account
+        </p>
+
       </div>
 
     </div>
 
 
+
     <section class="profile-box">
 
-      <div class="avatar">
-        L
+      <div class="avatar profile-logo">
+
+        <span>LE</span>
+
       </div>
 
+
       <h2 id="profileName">
-        LAWANGEN
+        LAWANGIN 444
       </h2>
+
 
       <span>
         Developer Account
@@ -824,24 +1373,53 @@
     </section>
 
 
+
     <section class="info-card">
 
-      <div>
-        <span>Developer</span>
-        <strong>LAWANGEN</strong>
-      </div>
 
       <div>
-        <span>Status</span>
-        <strong class="online">Active</strong>
+
+        <span>
+          Developer
+        </span>
+
+        <strong>
+          LAWANGIN 444
+        </strong>
+
       </div>
 
+
+
       <div>
-        <span>Account Type</span>
-        <strong>Developer</strong>
+
+        <span>
+          Status
+        </span>
+
+        <strong class="online">
+          Active
+        </strong>
+
       </div>
+
+
+
+      <div>
+
+        <span>
+          Account Type
+        </span>
+
+        <strong>
+          Developer
+        </strong>
+
+      </div>
+
 
     </section>
+
 
 
     <button
@@ -851,6 +1429,7 @@
     </button>
 
   </main>
+
 
 
   <!-- =====================================================
@@ -866,60 +1445,110 @@
       <button class="back-button">‹</button>
 
       <div>
+
         <h1>Settings</h1>
-        <p>Application preferences</p>
+
+        <p>
+          Application preferences
+        </p>
+
       </div>
 
     </div>
 
 
+
     <section class="control-card">
 
+
       <div class="control-row">
 
         <div>
-          <strong>Developer Mode</strong>
-          <span>Enable testing interface</span>
+
+          <strong>
+            Developer Mode
+          </strong>
+
+          <span>
+            Enable testing interface
+          </span>
+
         </div>
 
+
         <label class="switch">
-          <input type="checkbox" checked>
+
+          <input
+            type="checkbox"
+            checked>
+
           <span></span>
+
         </label>
 
       </div>
 
 
+
       <div class="control-row">
 
         <div>
-          <strong>Test Notifications</strong>
-          <span>Show test status messages</span>
+
+          <strong>
+            Test Notifications
+          </strong>
+
+          <span>
+            Show test status messages
+          </span>
+
         </div>
 
+
         <label class="switch">
-          <input type="checkbox" checked>
+
+          <input
+            type="checkbox"
+            checked>
+
           <span></span>
+
         </label>
 
       </div>
 
 
+
       <div class="control-row">
 
         <div>
-          <strong>Haptic Feedback</strong>
-          <span>Mobile interaction feedback</span>
+
+          <strong>
+            Haptic Feedback
+          </strong>
+
+          <span>
+            Mobile interaction feedback
+          </span>
+
         </div>
 
+
         <label class="switch">
-          <input type="checkbox" checked>
+
+          <input
+            type="checkbox"
+            checked>
+
           <span></span>
+
         </label>
 
       </div>
+
 
     </section>
+
 
 
     <button
@@ -929,6 +1558,7 @@
     </button>
 
   </main>
+
 
 
   <!-- =====================================================
@@ -944,11 +1574,17 @@
       <button class="back-button">‹</button>
 
       <div>
+
         <h1>Logs</h1>
-        <p>Test activity</p>
+
+        <p>
+          Test activity
+        </p>
+
       </div>
 
     </div>
+
 
 
     <section id="logsContainer">
@@ -960,6 +1596,7 @@
     </section>
 
 
+
     <button
       id="clearLogs"
       class="secondary-button">
@@ -969,20 +1606,26 @@
   </main>
 
 
+
   <!-- =====================================================
        BOTTOM NAVIGATION
   ===================================================== -->
 
   <nav class="bottom-navigation">
 
+
     <button
       class="nav-button active"
       data-screen="homeScreen">
 
       <span>⌂</span>
-      <small>Home</small>
+
+      <small>
+        Home
+      </small>
 
     </button>
+
 
 
     <button
@@ -990,9 +1633,13 @@
       data-screen="selectionScreen">
 
       <span>◉</span>
-      <small>Select</small>
+
+      <small>
+        Select
+      </small>
 
     </button>
+
 
 
     <button
@@ -1000,9 +1647,13 @@
       data-screen="profileScreen">
 
       <span>●</span>
-      <small>Profile</small>
+
+      <small>
+        Profile
+      </small>
 
     </button>
+
 
 
     <button
@@ -1010,13 +1661,18 @@
       data-screen="settingsScreen">
 
       <span>⚙</span>
-      <small>Settings</small>
+
+      <small>
+        Settings
+      </small>
 
     </button>
+
 
   </nav>
 
 </div>
+
 
 
 <script src="app.js"></script>
