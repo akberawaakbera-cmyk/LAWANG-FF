@@ -3,68 +3,304 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
   <meta name="theme-color" content="#080a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Lawang">
 
   <title>Lawang Injector</title>
 
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
-
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Lawang">
 </head>
 
 <body>
 
-<!-- ================= LOGIN ================= -->
+
+<!-- =========================================================
+     AUTHENTICATION
+========================================================= -->
 
 <div id="loginScreen" class="screen login-screen">
 
   <div class="login-box">
 
+
+    <!-- LOGO -->
+
     <div class="brand-logo">
-      <div class="logo-mark">⚡</div>
 
-      <div>
-        <h1>LAWANG</h1>
-        <span>INJECTOR</span>
+      <div class="logo-mark">
+
+        <svg viewBox="0 0 100 100" aria-label="Lawang Logo">
+
+          <defs>
+            <linearGradient
+              id="lawangGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%">
+
+              <stop
+                offset="0%"
+                stop-color="#6aa7ff"/>
+
+              <stop
+                offset="100%"
+                stop-color="#3478f6"/>
+
+            </linearGradient>
+          </defs>
+
+
+          <path
+            d="M50 7 L90 29 L90 70 L50 93 L10 70 L10 29 Z"
+            fill="#101722"
+            stroke="url(#lawangGradient)"
+            stroke-width="5"/>
+
+
+          <path
+            d="M59 17 L32 53 H47 L40 83 L70 42 H55 Z"
+            fill="url(#lawangGradient)"/>
+
+        </svg>
+
       </div>
+
+
+      <div class="brand-name">
+
+        <h1>LAWANG</h1>
+
+        <span>INJECTOR</span>
+
+      </div>
+
     </div>
 
-    <div class="login-title">
-      <h2>Welcome Back</h2>
-      <p>Sign in to your test environment</p>
+
+    <!-- LOGIN FORM -->
+
+    <div id="loginForm">
+
+      <div class="login-title">
+
+        <h2>Welcome Back</h2>
+
+        <p>
+          Sign in to your developer environment
+        </p>
+
+      </div>
+
+
+      <label>
+        Username
+      </label>
+
+      <input
+        id="username"
+        type="text"
+        placeholder="Enter username"
+        autocomplete="username"
+      >
+
+
+      <label>
+        Password
+      </label>
+
+      <input
+        id="password"
+        type="password"
+        placeholder="Enter password"
+        autocomplete="current-password"
+      >
+
+
+      <button
+        id="loginButton"
+        class="primary-button">
+
+        LOGIN
+
+      </button>
+
+
+      <button
+        id="showRegister"
+        class="text-button">
+
+        Create New Account
+
+      </button>
+
+
+      <button
+        id="showForgot"
+        class="text-button small">
+
+        Forgot Password?
+
+      </button>
+
+
+      <p
+        id="loginMessage"
+        class="message">
+      </p>
+
     </div>
 
-    <input
-      id="username"
-      type="text"
-      placeholder="Username"
-      autocomplete="username"
-    >
 
-    <input
-      id="password"
-      type="password"
-      placeholder="Password"
-      autocomplete="current-password"
-    >
+    <!-- REGISTER FORM -->
 
-    <button id="loginButton" class="primary-button">
-      LOGIN
-    </button>
+    <div
+      id="registerForm"
+      class="auth-form hidden">
 
-    <p id="loginMessage" class="message"></p>
+      <div class="login-title">
+
+        <h2>Create Account</h2>
+
+        <p>
+          Create your local developer account
+        </p>
+
+      </div>
+
+
+      <label>
+        Username
+      </label>
+
+      <input
+        id="registerUsername"
+        type="text"
+        placeholder="Choose username"
+        autocomplete="username"
+      >
+
+
+      <label>
+        Password
+      </label>
+
+      <input
+        id="registerPassword"
+        type="password"
+        placeholder="Create password"
+        autocomplete="new-password"
+      >
+
+
+      <label>
+        Confirm Password
+      </label>
+
+      <input
+        id="registerConfirm"
+        type="password"
+        placeholder="Confirm password"
+        autocomplete="new-password"
+      >
+
+
+      <button
+        id="registerButton"
+        class="primary-button">
+
+        CREATE ACCOUNT
+
+      </button>
+
+
+      <button
+        id="showLogin"
+        class="text-button">
+
+        ← Back to Login
+
+      </button>
+
+
+      <p
+        id="registerMessage"
+        class="message">
+      </p>
+
+    </div>
+
+
+    <!-- FORGOT PASSWORD -->
+
+    <div
+      id="forgotForm"
+      class="auth-form hidden">
+
+      <div class="login-title">
+
+        <h2>Reset Password</h2>
+
+        <p>
+          Demo password recovery
+        </p>
+
+      </div>
+
+
+      <label>
+        Username
+      </label>
+
+      <input
+        id="forgotUsername"
+        type="text"
+        placeholder="Enter username"
+      >
+
+
+      <button
+        id="forgotButton"
+        class="primary-button">
+
+        RESET
+
+      </button>
+
+
+      <button
+        id="forgotBack"
+        class="text-button">
+
+        ← Back to Login
+
+      </button>
+
+
+      <p
+        id="forgotMessage"
+        class="message">
+      </p>
+
+    </div>
 
   </div>
 
 </div>
 
 
-<!-- ================= APP ================= -->
 
-<div id="app" class="app hidden">
+<!-- =========================================================
+     MAIN APPLICATION
+========================================================= -->
+
+<div
+  id="app"
+  class="app hidden">
 
 
   <!-- TOP BAR -->
@@ -73,29 +309,61 @@
 
     <div class="app-brand">
 
-      <div class="small-logo">⚡</div>
+
+      <div class="small-logo">
+
+        <svg viewBox="0 0 100 100">
+
+          <path
+            d="M50 7 L90 29 L90 70 L50 93 L10 70 L10 29 Z"
+            fill="#101722"
+            stroke="#3478f6"
+            stroke-width="5"/>
+
+          <path
+            d="M59 17 L32 53 H47 L40 83 L70 42 H55 Z"
+            fill="#5da0ff"/>
+
+        </svg>
+
+      </div>
+
 
       <div>
-        <strong>LAWANG</strong>
-        <small>INJECTOR</small>
+
+        <strong>
+          LAWANG
+        </strong>
+
+        <small>
+          INJECTOR
+        </small>
+
       </div>
 
     </div>
 
+
     <button
       id="profileButton"
       class="round-button">
+
       👤
+
     </button>
 
   </header>
 
 
-  <!-- ================= HOME ================= -->
+
+  <!-- =====================================================
+       HOME
+  ===================================================== -->
 
   <main
     id="homeScreen"
     class="screen app-screen active">
+
 
     <section class="welcome-card">
 
@@ -103,10 +371,12 @@
         DEVELOPER TEST
       </span>
 
-      <h1>Welcome</h1>
+      <h1>
+        Welcome
+      </h1>
 
       <p>
-        Your test environment is ready.
+        Your Lawang test environment is ready.
       </p>
 
     </section>
@@ -119,8 +389,15 @@
       </div>
 
       <div>
-        <strong>Test Environment</strong>
-        <span>Ready</span>
+
+        <strong>
+          Test Environment
+        </strong>
+
+        <span id="statusText">
+          Ready
+        </span>
+
       </div>
 
     </section>
@@ -133,15 +410,22 @@
 
     <div class="home-grid">
 
+
       <button
         class="home-card"
         data-screen="selectionScreen">
 
-        <div class="home-icon">🎯</div>
+        <div class="home-icon">
+          🎯
+        </div>
 
-        <strong>Selection</strong>
+        <strong>
+          Selection
+        </strong>
 
-        <span>Test controls</span>
+        <span>
+          Test controls
+        </span>
 
       </button>
 
@@ -150,11 +434,17 @@
         class="home-card"
         data-screen="logsScreen">
 
-        <div class="home-icon">📋</div>
+        <div class="home-icon">
+          📋
+        </div>
 
-        <strong>Logs</strong>
+        <strong>
+          Logs
+        </strong>
 
-        <span>Test activity</span>
+        <span>
+          Test activity
+        </span>
 
       </button>
 
@@ -163,11 +453,17 @@
         class="home-card"
         data-screen="profileScreen">
 
-        <div class="home-icon">👤</div>
+        <div class="home-icon">
+          👤
+        </div>
 
-        <strong>Profile</strong>
+        <strong>
+          Profile
+        </strong>
 
-        <span>Account</span>
+        <span>
+          Account
+        </span>
 
       </button>
 
@@ -176,11 +472,17 @@
         class="home-card"
         data-screen="settingsScreen">
 
-        <div class="home-icon">⚙️</div>
+        <div class="home-icon">
+          ⚙️
+        </div>
 
-        <strong>Settings</strong>
+        <strong>
+          Settings
+        </strong>
 
-        <span>Preferences</span>
+        <span>
+          Preferences
+        </span>
 
       </button>
 
@@ -189,11 +491,15 @@
   </main>
 
 
-  <!-- ================= SELECTION ================= -->
+
+  <!-- =====================================================
+       SELECTION
+  ===================================================== -->
 
   <main
     id="selectionScreen"
     class="screen app-screen">
+
 
     <div class="page-header">
 
@@ -202,14 +508,22 @@
       </button>
 
       <div>
-        <h1>Selection</h1>
-        <p>Choose a test category</p>
+
+        <h1>
+          Selection
+        </h1>
+
+        <p>
+          Choose a test category
+        </p>
+
       </div>
 
     </div>
 
 
     <section class="menu-list">
+
 
       <button
         class="menu-item"
@@ -220,11 +534,20 @@
         </div>
 
         <div class="menu-text">
-          <strong>Combat</strong>
-          <span>Combat simulation controls</span>
+
+          <strong>
+            Combat
+          </strong>
+
+          <span>
+            Combat simulation controls
+          </span>
+
         </div>
 
-        <b>›</b>
+        <b>
+          ›
+        </b>
 
       </button>
 
@@ -238,11 +561,20 @@
         </div>
 
         <div class="menu-text">
-          <strong>Visual</strong>
-          <span>Visual test controls</span>
+
+          <strong>
+            Visual
+          </strong>
+
+          <span>
+            Visual test controls
+          </span>
+
         </div>
 
-        <b>›</b>
+        <b>
+          ›
+        </b>
 
       </button>
 
@@ -256,11 +588,47 @@
         </div>
 
         <div class="menu-text">
-          <strong>POV & Movement</strong>
-          <span>FOV and movement testing</span>
+
+          <strong>
+            POV & Movement
+          </strong>
+
+          <span>
+            FOV and movement testing
+          </span>
+
         </div>
 
-        <b>›</b>
+        <b>
+          ›
+        </b>
+
+      </button>
+
+
+      <button
+        class="menu-item"
+        data-screen="antiCheatScreen">
+
+        <div class="menu-icon">
+          🛡️
+        </div>
+
+        <div class="menu-text">
+
+          <strong>
+            Anti-Cheat Test
+          </strong>
+
+          <span>
+            Controlled detection scenarios
+          </span>
+
+        </div>
+
+        <b>
+          ›
+        </b>
 
       </button>
 
@@ -269,12 +637,16 @@
   </main>
 
 
-  <!-- ================= COMBAT ================= -->
+
+  <!-- =====================================================
+       COMBAT
+  ===================================================== -->
 
   <main
     id="combatScreen"
     class="screen app-screen">
 
+
     <div class="page-header">
 
       <button class="back-button">
@@ -282,8 +654,15 @@
       </button>
 
       <div>
-        <h1>Combat</h1>
-        <p>Simulation controls</p>
+
+        <h1>
+          Combat
+        </h1>
+
+        <p>
+          Simulation controls
+        </p>
+
       </div>
 
     </div>
@@ -291,16 +670,30 @@
 
     <section class="control-card">
 
+
       <div class="control-row">
 
         <div>
-          <strong>Auto Headshot Test</strong>
-          <span>Simulated test behavior</span>
+
+          <strong>
+            Auto Headshot Test
+          </strong>
+
+          <span>
+            Simulated test behavior
+          </span>
+
         </div>
 
         <label class="switch">
-          <input type="checkbox" data-test>
+
+          <input
+            type="checkbox"
+            data-test
+            data-name="Auto Headshot Test">
+
           <span></span>
+
         </label>
 
       </div>
@@ -309,13 +702,26 @@
       <div class="control-row">
 
         <div>
-          <strong>Auto Kill Simulation</strong>
-          <span>Test abnormal combat events</span>
+
+          <strong>
+            Auto Kill Simulation
+          </strong>
+
+          <span>
+            Controlled abnormal-event test
+          </span>
+
         </div>
 
         <label class="switch">
-          <input type="checkbox" data-test>
+
+          <input
+            type="checkbox"
+            data-test
+            data-name="Auto Kill Simulation">
+
           <span></span>
+
         </label>
 
       </div>
@@ -324,13 +730,26 @@
       <div class="control-row">
 
         <div>
-          <strong>Silent Mode Simulation</strong>
-          <span>Anti-cheat test scenario</span>
+
+          <strong>
+            Silent Mode Simulation
+          </strong>
+
+          <span>
+            Anti-cheat test scenario
+          </span>
+
         </div>
 
         <label class="switch">
-          <input type="checkbox" data-test>
+
+          <input
+            type="checkbox"
+            data-test
+            data-name="Silent Mode Simulation">
+
           <span></span>
+
         </label>
 
       </div>
@@ -339,13 +758,26 @@
       <div class="control-row">
 
         <div>
-          <strong>Crosshair Test</strong>
-          <span>Crosshair simulation</span>
+
+          <strong>
+            Crosshair Test
+          </strong>
+
+          <span>
+            Crosshair simulation
+          </span>
+
         </div>
 
         <label class="switch">
-          <input type="checkbox" data-test>
+
+          <input
+            type="checkbox"
+            data-test
+            data-name="Crosshair Test">
+
           <span></span>
+
         </label>
 
       </div>
@@ -355,12 +787,16 @@
   </main>
 
 
-  <!-- ================= VISUAL ================= -->
+
+  <!-- =====================================================
+       VISUAL
+  ===================================================== -->
 
   <main
     id="visualScreen"
     class="screen app-screen">
 
+
     <div class="page-header">
 
       <button class="back-button">
@@ -368,8 +804,15 @@
       </button>
 
       <div>
-        <h1>Visual</h1>
-        <p>Visual simulation controls</p>
+
+        <h1>
+          Visual
+        </h1>
+
+        <p>
+          Visual simulation controls
+        </p>
+
       </div>
 
     </div>
@@ -377,16 +820,30 @@
 
     <section class="control-card">
 
+
       <div class="control-row">
 
         <div>
-          <strong>ESP Line</strong>
-          <span>Visual test simulation</span>
+
+          <strong>
+            ESP Line
+          </strong>
+
+          <span>
+            Visual test simulation
+          </span>
+
         </div>
 
         <label class="switch">
-          <input type="checkbox" data-test>
+
+          <input
+            type="checkbox"
+            data-test
+            data-name="ESP Line">
+
           <span></span>
+
         </label>
 
       </div>
@@ -395,13 +852,26 @@
       <div class="control-row">
 
         <div>
-          <strong>ESP Box</strong>
-          <span>Bounding-box simulation</span>
+
+          <strong>
+            ESP Box
+          </strong>
+
+          <span>
+            Bounding-box simulation
+          </span>
+
         </div>
 
         <label class="switch">
-          <input type="checkbox" data-test>
+
+          <input
+            type="checkbox"
+            data-test
+            data-name="ESP Box">
+
           <span></span>
+
         </label>
 
       </div>
@@ -410,13 +880,26 @@
       <div class="control-row">
 
         <div>
-          <strong>ESP Health</strong>
-          <span>Health indicator simulation</span>
+
+          <strong>
+            ESP Health
+          </strong>
+
+          <span>
+            Health indicator simulation
+          </span>
+
         </div>
 
         <label class="switch">
-          <input type="checkbox" data-test>
+
+          <input
+            type="checkbox"
+            data-test
+            data-name="ESP Health">
+
           <span></span>
+
         </label>
 
       </div>
@@ -426,11 +909,15 @@
   </main>
 
 
-  <!-- ================= MOVEMENT ================= -->
+
+  <!-- =====================================================
+       MOVEMENT
+  ===================================================== -->
 
   <main
     id="movementScreen"
     class="screen app-screen">
+
 
     <div class="page-header">
 
@@ -439,8 +926,15 @@
       </button>
 
       <div>
-        <h1>POV & Movement</h1>
-        <p>Simulation settings</p>
+
+        <h1>
+          POV & Movement
+        </h1>
+
+        <p>
+          Simulation settings
+        </p>
+
       </div>
 
     </div>
@@ -450,7 +944,9 @@
 
       <div class="slider-title">
 
-        <span>POV / FOV</span>
+        <span>
+          POV / FOV
+        </span>
 
         <strong id="povValue">
           90°
@@ -458,13 +954,13 @@
 
       </div>
 
+
       <input
         id="povSlider"
         type="range"
         min="40"
         max="180"
-        value="90"
-      >
+        value="90">
 
     </section>
 
@@ -473,7 +969,9 @@
 
       <div class="slider-title">
 
-        <span>Movement Speed</span>
+        <span>
+          Movement Speed
+        </span>
 
         <strong id="speedValue">
           1.0x
@@ -481,14 +979,14 @@
 
       </div>
 
+
       <input
         id="speedSlider"
         type="range"
         min="1"
         max="4"
         step="0.1"
-        value="1"
-      >
+        value="1">
 
     </section>
 
@@ -513,11 +1011,15 @@
   </main>
 
 
-  <!-- ================= PROFILE ================= -->
+
+  <!-- =====================================================
+       ANTI-CHEAT TEST
+  ===================================================== -->
 
   <main
-    id="profileScreen"
+    id="antiCheatScreen"
     class="screen app-screen">
+
 
     <div class="page-header">
 
@@ -526,8 +1028,153 @@
       </button>
 
       <div>
-        <h1>Profile</h1>
-        <p>Account information</p>
+
+        <h1>
+          Anti-Cheat Test
+        </h1>
+
+        <p>
+          Controlled detection scenarios
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <section class="control-card">
+
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            Speed Anomaly
+          </strong>
+
+          <span>
+            Generate a controlled movement anomaly
+          </span>
+
+        </div>
+
+        <button
+          class="test-trigger"
+          data-event="SPEED_ANOMALY">
+
+          TEST
+
+        </button>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            Aim Anomaly
+          </strong>
+
+          <span>
+            Generate a controlled aim event
+          </span>
+
+        </div>
+
+        <button
+          class="test-trigger"
+          data-event="AIM_ANOMALY">
+
+          TEST
+
+        </button>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            Visual Anomaly
+          </strong>
+
+          <span>
+            Generate a controlled visual event
+          </span>
+
+        </div>
+
+        <button
+          class="test-trigger"
+          data-event="VISUAL_ANOMALY">
+
+          TEST
+
+        </button>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            Integrity Test
+          </strong>
+
+          <span>
+            Test integrity monitoring
+          </span>
+
+        </div>
+
+        <button
+          class="test-trigger"
+          data-event="INTEGRITY_TEST">
+
+          TEST
+
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =====================================================
+       PROFILE
+  ===================================================== -->
+
+  <main
+    id="profileScreen"
+    class="screen app-screen">
+
+
+    <div class="page-header">
+
+      <button class="back-button">
+        ‹
+      </button>
+
+      <div>
+
+        <h1>
+          Profile
+        </h1>
+
+        <p>
+          Account information
+        </p>
+
       </div>
 
     </div>
@@ -535,13 +1182,16 @@
 
     <section class="profile-box">
 
+
       <div class="avatar">
         L
       </div>
 
+
       <h2 id="profileName">
         User
       </h2>
+
 
       <span>
         Developer Test Account
@@ -552,85 +1202,42 @@
 
     <section class="info-card">
 
+
       <div>
-        <span>Status</span>
+
+        <span>
+          Status
+        </span>
+
         <strong class="online">
           Active
         </strong>
+
       </div>
 
+
       <div>
-        <span>Account Type</span>
+
+        <span>
+          Account Type
+        </span>
+
         <strong>
           Developer
         </strong>
+
       </div>
 
-    </section>
-
-  </main>
-
-
-  <!-- ================= SETTINGS ================= -->
-
-  <main
-    id="settingsScreen"
-    class="screen app-screen">
-
-    <div class="page-header">
-
-      <button class="back-button">
-        ‹
-      </button>
 
       <div>
-        <h1>Settings</h1>
-        <p>Application preferences</p>
-      </div>
 
-    </div>
+        <span>
+          Test Profiles
+        </span>
 
-
-    <section class="control-card">
-
-      <div class="control-row">
-
-        <div>
-          <strong>Developer Mode</strong>
-          <span>Enable testing interface</span>
-        </div>
-
-        <label class="switch">
-
-          <input
-            type="checkbox"
-            checked
-          >
-
-          <span></span>
-
-        </label>
-
-      </div>
-
-
-      <div class="control-row">
-
-        <div>
-          <strong>Test Notifications</strong>
-          <span>Show test status messages</span>
-        </div>
-
-        <label class="switch">
-
-          <input
-            type="checkbox"
-            checked
-          >
-
-          <span></span>
-
-        </label>
+        <strong id="profileCount">
+          0
+        </strong>
 
       </div>
 
@@ -648,11 +1255,15 @@
   </main>
 
 
-  <!-- ================= LOGS ================= -->
+
+  <!-- =====================================================
+       SETTINGS
+  ===================================================== -->
 
   <main
-    id="logsScreen"
+    id="settingsScreen"
     class="screen app-screen">
+
 
     <div class="page-header">
 
@@ -661,8 +1272,143 @@
       </button>
 
       <div>
-        <h1>Logs</h1>
-        <p>Test activity</p>
+
+        <h1>
+          Settings
+        </h1>
+
+        <p>
+          Application preferences
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <section class="control-card">
+
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            Developer Mode
+          </strong>
+
+          <span>
+            Enable testing interface
+          </span>
+
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            checked>
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            Test Notifications
+          </strong>
+
+          <span>
+            Show test status messages
+          </span>
+
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            checked>
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            Haptic Feedback
+          </strong>
+
+          <span>
+            Mobile interaction feedback
+          </span>
+
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            checked>
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+    </section>
+
+
+    <button
+      id="logoutButtonSettings"
+      class="danger-button">
+
+      LOGOUT
+
+    </button>
+
+  </main>
+
+
+
+  <!-- =====================================================
+       LOGS
+  ===================================================== -->
+
+  <main
+    id="logsScreen"
+    class="screen app-screen">
+
+
+    <div class="page-header">
+
+      <button class="back-button">
+        ‹
+      </button>
+
+      <div>
+
+        <h1>
+          Logs
+        </h1>
+
+        <p>
+          Test activity
+        </p>
+
       </div>
 
     </div>
@@ -676,19 +1422,37 @@
 
     </section>
 
+
+    <button
+      id="clearLogs"
+      class="secondary-button">
+
+      CLEAR LOGS
+
+    </button>
+
   </main>
 
 
-  <!-- ================= BOTTOM NAV ================= -->
+
+  <!-- =====================================================
+       BOTTOM NAVIGATION
+  ===================================================== -->
 
   <nav class="bottom-navigation">
+
 
     <button
       class="nav-button active"
       data-screen="homeScreen">
 
-      <span>⌂</span>
-      <small>Home</small>
+      <span>
+        ⌂
+      </span>
+
+      <small>
+        Home
+      </small>
 
     </button>
 
@@ -697,8 +1461,13 @@
       class="nav-button"
       data-screen="selectionScreen">
 
-      <span>◉</span>
-      <small>Select</small>
+      <span>
+        ◉
+      </span>
+
+      <small>
+        Select
+      </small>
 
     </button>
 
@@ -707,8 +1476,13 @@
       class="nav-button"
       data-screen="profileScreen">
 
-      <span>●</span>
-      <small>Profile</small>
+      <span>
+        ●
+      </span>
+
+      <small>
+        Profile
+      </small>
 
     </button>
 
@@ -717,8 +1491,13 @@
       class="nav-button"
       data-screen="settingsScreen">
 
-      <span>⚙</span>
-      <small>Settings</small>
+      <span>
+        ⚙
+      </span>
+
+      <small>
+        Settings
+      </small>
 
     </button>
 
