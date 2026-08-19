@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#080a0f">
+
   <title>Lawang Injector</title>
 
   <link rel="stylesheet" href="style.css">
@@ -16,20 +17,25 @@
 
 <body>
 
-<!-- LOGIN -->
+<!-- ================= LOGIN ================= -->
 
-<div id="loginPage" class="login-page">
+<div id="loginScreen" class="screen login-screen">
 
-  <div class="login-card">
+  <div class="login-box">
 
-    <div class="lawang-logo">
-      <div class="logo-symbol">⚡</div>
-      <h1>LAWANG</h1>
-      <p>INJECTOR</p>
+    <div class="brand-logo">
+      <div class="logo-mark">⚡</div>
+
+      <div>
+        <h1>LAWANG</h1>
+        <span>INJECTOR</span>
+      </div>
     </div>
 
-    <h2>Welcome Back</h2>
-    <p class="muted">Sign in to continue</p>
+    <div class="login-title">
+      <h2>Welcome Back</h2>
+      <p>Sign in to your test environment</p>
+    </div>
 
     <input
       id="username"
@@ -45,102 +51,216 @@
       autocomplete="current-password"
     >
 
-    <button id="loginBtn" class="primary">
+    <button id="loginButton" class="primary-button">
       LOGIN
     </button>
 
-    <div id="loginMessage"></div>
+    <p id="loginMessage" class="message"></p>
 
   </div>
 
 </div>
 
 
-<!-- APP -->
+<!-- ================= APP ================= -->
 
-<div id="appPage" class="app hidden">
+<div id="app" class="app hidden">
 
-  <header class="topbar">
 
-    <div class="brand">
+  <!-- TOP BAR -->
 
-      <div class="mini-logo">⚡</div>
+  <header class="top-bar">
+
+    <div class="app-brand">
+
+      <div class="small-logo">⚡</div>
 
       <div>
         <strong>LAWANG</strong>
-        <span>INJECTOR</span>
+        <small>INJECTOR</small>
       </div>
 
     </div>
 
-    <button id="logoutBtn" class="small-btn">
-      Logout
+    <button
+      id="profileButton"
+      class="round-button">
+      👤
     </button>
 
   </header>
 
 
-  <!-- HOME -->
+  <!-- ================= HOME ================= -->
 
-  <main id="homePage" class="page active">
+  <main
+    id="homeScreen"
+    class="screen app-screen active">
 
-    <section class="welcome">
+    <section class="welcome-card">
 
-      <span class="badge">
+      <span class="developer-badge">
         DEVELOPER TEST
       </span>
 
-      <h1>Dashboard</h1>
+      <h1>Welcome</h1>
 
       <p>
-        Welcome to Lawang Injector Test Lab.
+        Your test environment is ready.
       </p>
 
     </section>
 
 
-    <section class="dashboard-grid">
+    <section class="status-card">
 
-      <div class="dashboard-card">
-        <span>●</span>
-        <strong>TEST MODE</strong>
-        <small>Ready</small>
+      <div class="status-icon">
+        ●
       </div>
 
-      <div class="dashboard-card">
-        <span>⚙</span>
-        <strong>CONFIG</strong>
-        <small id="activeCount">0 Active</small>
+      <div>
+        <strong>Test Environment</strong>
+        <span>Ready</span>
       </div>
 
     </section>
 
 
-    <section class="card">
+    <h3 class="section-title">
+      Quick Access
+    </h3>
 
-      <h2>Quick Access</h2>
+
+    <div class="home-grid">
 
       <button
-        class="menu-button"
-        data-open="selectionPage">
+        class="home-card"
+        data-screen="selectionScreen">
 
-        🎯 Test Selection
+        <div class="home-icon">🎯</div>
+
+        <strong>Selection</strong>
+
+        <span>Test controls</span>
 
       </button>
 
-      <button
-        class="menu-button"
-        data-open="profilePage">
 
-        👤 My Profile
+      <button
+        class="home-card"
+        data-screen="logsScreen">
+
+        <div class="home-icon">📋</div>
+
+        <strong>Logs</strong>
+
+        <span>Test activity</span>
 
       </button>
 
-      <button
-        class="menu-button"
-        data-open="settingsPage">
 
-        ⚙️ Settings
+      <button
+        class="home-card"
+        data-screen="profileScreen">
+
+        <div class="home-icon">👤</div>
+
+        <strong>Profile</strong>
+
+        <span>Account</span>
+
+      </button>
+
+
+      <button
+        class="home-card"
+        data-screen="settingsScreen">
+
+        <div class="home-icon">⚙️</div>
+
+        <strong>Settings</strong>
+
+        <span>Preferences</span>
+
+      </button>
+
+    </div>
+
+  </main>
+
+
+  <!-- ================= SELECTION ================= -->
+
+  <main
+    id="selectionScreen"
+    class="screen app-screen">
+
+    <div class="page-header">
+
+      <button class="back-button">
+        ‹
+      </button>
+
+      <div>
+        <h1>Selection</h1>
+        <p>Choose a test category</p>
+      </div>
+
+    </div>
+
+
+    <section class="menu-list">
+
+      <button
+        class="menu-item"
+        data-screen="combatScreen">
+
+        <div class="menu-icon">
+          ⚔️
+        </div>
+
+        <div class="menu-text">
+          <strong>Combat</strong>
+          <span>Combat simulation controls</span>
+        </div>
+
+        <b>›</b>
+
+      </button>
+
+
+      <button
+        class="menu-item"
+        data-screen="visualScreen">
+
+        <div class="menu-icon">
+          👁️
+        </div>
+
+        <div class="menu-text">
+          <strong>Visual</strong>
+          <span>Visual test controls</span>
+        </div>
+
+        <b>›</b>
+
+      </button>
+
+
+      <button
+        class="menu-item"
+        data-screen="movementScreen">
+
+        <div class="menu-icon">
+          🎮
+        </div>
+
+        <div class="menu-text">
+          <strong>POV & Movement</strong>
+          <span>FOV and movement testing</span>
+        </div>
+
+        <b>›</b>
 
       </button>
 
@@ -149,39 +269,34 @@
   </main>
 
 
-  <!-- SELECTION -->
+  <!-- ================= COMBAT ================= -->
 
-  <main id="selectionPage" class="page">
+  <main
+    id="combatScreen"
+    class="screen app-screen">
 
-    <div class="page-title">
+    <div class="page-header">
 
-      <button class="backBtn">‹</button>
+      <button class="back-button">
+        ‹
+      </button>
 
       <div>
-        <h1>Selection</h1>
-        <p>Test configurations</p>
+        <h1>Combat</h1>
+        <p>Simulation controls</p>
       </div>
 
     </div>
 
 
-    <section class="card">
+    <section class="control-card">
 
-      <h2>Combat Simulation</h2>
+      <div class="control-row">
 
-      <div class="option">
-        <span>Auto Headshot Test</span>
-
-        <label class="switch">
-          <input type="checkbox" data-test>
-          <span></span>
-        </label>
-
-      </div>
-
-
-      <div class="option">
-        <span>Auto Kill Simulation</span>
+        <div>
+          <strong>Auto Headshot Test</strong>
+          <span>Simulated test behavior</span>
+        </div>
 
         <label class="switch">
           <input type="checkbox" data-test>
@@ -191,8 +306,12 @@
       </div>
 
 
-      <div class="option">
-        <span>Silent Mode Simulation</span>
+      <div class="control-row">
+
+        <div>
+          <strong>Auto Kill Simulation</strong>
+          <span>Test abnormal combat events</span>
+        </div>
 
         <label class="switch">
           <input type="checkbox" data-test>
@@ -202,26 +321,12 @@
       </div>
 
 
-      <div class="option">
-        <span>Crosshair</span>
+      <div class="control-row">
 
-        <label class="switch">
-          <input type="checkbox" data-test>
-          <span></span>
-        </label>
-
-      </div>
-
-    </section>
-
-
-    <section class="card">
-
-      <h2>ESP Simulation</h2>
-
-
-      <div class="option">
-        <span>ESP Line</span>
+        <div>
+          <strong>Silent Mode Simulation</strong>
+          <span>Anti-cheat test scenario</span>
+        </div>
 
         <label class="switch">
           <input type="checkbox" data-test>
@@ -231,19 +336,12 @@
       </div>
 
 
-      <div class="option">
-        <span>ESP Box</span>
+      <div class="control-row">
 
-        <label class="switch">
-          <input type="checkbox" data-test>
-          <span></span>
-        </label>
-
-      </div>
-
-
-      <div class="option">
-        <span>ESP Health</span>
+        <div>
+          <strong>Crosshair Test</strong>
+          <span>Crosshair simulation</span>
+        </div>
 
         <label class="switch">
           <input type="checkbox" data-test>
@@ -254,14 +352,105 @@
 
     </section>
 
+  </main>
 
-    <section class="card">
 
-      <h2>POV / FOV</h2>
+  <!-- ================= VISUAL ================= -->
 
-      <div class="slider-row">
+  <main
+    id="visualScreen"
+    class="screen app-screen">
 
-        <span>POV</span>
+    <div class="page-header">
+
+      <button class="back-button">
+        ‹
+      </button>
+
+      <div>
+        <h1>Visual</h1>
+        <p>Visual simulation controls</p>
+      </div>
+
+    </div>
+
+
+    <section class="control-card">
+
+      <div class="control-row">
+
+        <div>
+          <strong>ESP Line</strong>
+          <span>Visual test simulation</span>
+        </div>
+
+        <label class="switch">
+          <input type="checkbox" data-test>
+          <span></span>
+        </label>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+          <strong>ESP Box</strong>
+          <span>Bounding-box simulation</span>
+        </div>
+
+        <label class="switch">
+          <input type="checkbox" data-test>
+          <span></span>
+        </label>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+          <strong>ESP Health</strong>
+          <span>Health indicator simulation</span>
+        </div>
+
+        <label class="switch">
+          <input type="checkbox" data-test>
+          <span></span>
+        </label>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= MOVEMENT ================= -->
+
+  <main
+    id="movementScreen"
+    class="screen app-screen">
+
+    <div class="page-header">
+
+      <button class="back-button">
+        ‹
+      </button>
+
+      <div>
+        <h1>POV & Movement</h1>
+        <p>Simulation settings</p>
+      </div>
+
+    </div>
+
+
+    <section class="slider-card">
+
+      <div class="slider-title">
+
+        <span>POV / FOV</span>
 
         <strong id="povValue">
           90°
@@ -270,7 +459,7 @@
       </div>
 
       <input
-        id="pov"
+        id="povSlider"
         type="range"
         min="40"
         max="180"
@@ -280,13 +469,11 @@
     </section>
 
 
-    <section class="card">
+    <section class="slider-card">
 
-      <h2>Movement Test</h2>
+      <div class="slider-title">
 
-      <div class="slider-row">
-
-        <span>Speed</span>
+        <span>Movement Speed</span>
 
         <strong id="speedValue">
           1.0x
@@ -295,7 +482,7 @@
       </div>
 
       <input
-        id="speed"
+        id="speedSlider"
         type="range"
         min="1"
         max="4"
@@ -306,64 +493,77 @@
     </section>
 
 
-    <button id="applyBtn" class="primary">
+    <button
+      id="applyConfig"
+      class="primary-button">
+
       APPLY TEST CONFIG
+
     </button>
 
-    <button id="resetBtn" class="secondary">
+
+    <button
+      id="resetConfig"
+      class="secondary-button">
+
       RESET
-    </button>
 
-    <div id="configMessage"></div>
+    </button>
 
   </main>
 
 
-  <!-- PROFILE -->
+  <!-- ================= PROFILE ================= -->
 
-  <main id="profilePage" class="page">
+  <main
+    id="profileScreen"
+    class="screen app-screen">
 
-    <div class="page-title">
+    <div class="page-header">
 
-      <button class="backBtn">‹</button>
+      <button class="back-button">
+        ‹
+      </button>
 
       <div>
         <h1>Profile</h1>
-        <p>Your account</p>
+        <p>Account information</p>
       </div>
 
     </div>
 
 
-    <section class="profile-card">
+    <section class="profile-box">
 
       <div class="avatar">
         L
       </div>
 
-      <h2 id="profileUsername">
+      <h2 id="profileName">
         User
       </h2>
 
-      <p>
+      <span>
         Developer Test Account
-      </p>
+      </span>
 
     </section>
 
 
-    <section class="card">
+    <section class="info-card">
 
-      <div class="profile-row">
-        <span>Account Status</span>
+      <div>
+        <span>Status</span>
         <strong class="online">
           Active
         </strong>
       </div>
 
-      <div class="profile-row">
-        <span>Mode</span>
-        <strong>Developer</strong>
+      <div>
+        <span>Account Type</span>
+        <strong>
+          Developer
+        </strong>
       </div>
 
     </section>
@@ -371,34 +571,40 @@
   </main>
 
 
-  <!-- SETTINGS -->
+  <!-- ================= SETTINGS ================= -->
 
-  <main id="settingsPage" class="page">
+  <main
+    id="settingsScreen"
+    class="screen app-screen">
 
-    <div class="page-title">
+    <div class="page-header">
 
-      <button class="backBtn">‹</button>
+      <button class="back-button">
+        ‹
+      </button>
 
       <div>
         <h1>Settings</h1>
-        <p>Application settings</p>
+        <p>Application preferences</p>
       </div>
 
     </div>
 
 
-    <section class="card">
+    <section class="control-card">
 
-      <div class="option">
+      <div class="control-row">
 
-        <span>Dark Mode</span>
+        <div>
+          <strong>Developer Mode</strong>
+          <span>Enable testing interface</span>
+        </div>
 
         <label class="switch">
 
           <input
             type="checkbox"
             checked
-            disabled
           >
 
           <span></span>
@@ -408,9 +614,12 @@
       </div>
 
 
-      <div class="option">
+      <div class="control-row">
 
-        <span>Developer Mode</span>
+        <div>
+          <strong>Test Notifications</strong>
+          <span>Show test status messages</span>
+        </div>
 
         <label class="switch">
 
@@ -427,49 +636,89 @@
 
     </section>
 
+
+    <button
+      id="logoutButton"
+      class="danger-button">
+
+      LOGOUT
+
+    </button>
+
   </main>
 
 
-  <!-- BOTTOM NAV -->
+  <!-- ================= LOGS ================= -->
 
-  <nav class="bottom-nav">
+  <main
+    id="logsScreen"
+    class="screen app-screen">
+
+    <div class="page-header">
+
+      <button class="back-button">
+        ‹
+      </button>
+
+      <div>
+        <h1>Logs</h1>
+        <p>Test activity</p>
+      </div>
+
+    </div>
+
+
+    <section id="logsContainer">
+
+      <div class="empty-log">
+        No test activity yet.
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= BOTTOM NAV ================= -->
+
+  <nav class="bottom-navigation">
 
     <button
-      class="nav-item active"
-      data-nav="homePage">
+      class="nav-button active"
+      data-screen="homeScreen">
 
       <span>⌂</span>
-      Home
+      <small>Home</small>
 
     </button>
 
 
     <button
-      class="nav-item"
-      data-nav="selectionPage">
+      class="nav-button"
+      data-screen="selectionScreen">
 
       <span>◉</span>
-      Select
+      <small>Select</small>
 
     </button>
 
 
     <button
-      class="nav-item"
-      data-nav="profilePage">
+      class="nav-button"
+      data-screen="profileScreen">
 
       <span>●</span>
-      Profile
+      <small>Profile</small>
 
     </button>
 
 
     <button
-      class="nav-item"
-      data-nav="settingsPage">
+      class="nav-button"
+      data-screen="settingsScreen">
 
       <span>⚙</span>
-      Settings
+      <small>Settings</small>
 
     </button>
 
