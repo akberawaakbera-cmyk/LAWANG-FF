@@ -3,50 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a0f">
   <title>Injector Test Panel</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <div class="app">
+<div class="app">
 
-    <header>
+  <header class="topbar">
+    <div class="brand">
       <div class="logo">⚡</div>
       <div>
         <h1>INJECTOR</h1>
-        <p>TEST CONFIGURATION PANEL</p>
+        <p>TEST LAB</p>
       </div>
-    </header>
-
-    <div class="status">
-      <span class="dot"></span>
-      TEST MODE READY
     </div>
 
+    <button class="icon-btn" id="settingsBtn">⚙️</button>
+  </header>
+
+  <div class="status">
+    <span class="dot"></span>
+    <span id="statusText">TEST MODE READY</span>
+  </div>
+
+  <nav class="tabs">
+    <button class="tab active" data-page="home">HOME</button>
+    <button class="tab" data-page="injector">INJECTOR</button>
+    <button class="tab" data-page="profiles">PROFILES</button>
+  </nav>
+
+  <!-- HOME -->
+
+  <main id="home" class="page active">
+
+    <section class="hero">
+      <span class="badge">DEVELOPER BUILD</span>
+      <h2>Test Control Center</h2>
+      <p>
+        Configure simulated gameplay behaviors and prepare
+        anti-cheat test scenarios.
+      </p>
+
+      <button class="primary" data-page-target="injector">
+        OPEN INJECTOR
+      </button>
+    </section>
+
+    <section class="stats">
+
+      <div class="stat">
+        <strong id="enabledCount">0</strong>
+        <span>ACTIVE TESTS</span>
+      </div>
+
+      <div class="stat">
+        <strong id="profileCount">0</strong>
+        <span>PROFILES</span>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- INJECTOR -->
+
+  <main id="injector" class="page">
+
     <section class="card">
-      <h2>Combat</h2>
+      <h2>Combat Tests</h2>
 
       <div class="option">
-        <span>Auto Headshot</span>
+        <span>Auto Headshot Test</span>
         <label class="switch">
-          <input type="checkbox" id="headshot">
+          <input type="checkbox" data-test>
           <span></span>
         </label>
       </div>
 
       <div class="option">
-        <span>Auto Kill Test</span>
+        <span>Auto Kill Simulation</span>
         <label class="switch">
-          <input type="checkbox" id="autokill">
+          <input type="checkbox" data-test>
           <span></span>
         </label>
       </div>
 
       <div class="option">
-        <span>Silent Mode</span>
+        <span>Silent Mode Simulation</span>
         <label class="switch">
-          <input type="checkbox" id="silent">
+          <input type="checkbox" data-test>
           <span></span>
         </label>
       </div>
@@ -54,19 +103,20 @@
       <div class="option">
         <span>Crosshair</span>
         <label class="switch">
-          <input type="checkbox" id="crosshair">
+          <input type="checkbox" data-test>
           <span></span>
         </label>
       </div>
     </section>
 
+
     <section class="card">
-      <h2>ESP</h2>
+      <h2>ESP Tests</h2>
 
       <div class="option">
         <span>ESP Line</span>
         <label class="switch">
-          <input type="checkbox">
+          <input type="checkbox" data-test>
           <span></span>
         </label>
       </div>
@@ -74,7 +124,7 @@
       <div class="option">
         <span>ESP Box</span>
         <label class="switch">
-          <input type="checkbox">
+          <input type="checkbox" data-test>
           <span></span>
         </label>
       </div>
@@ -82,13 +132,15 @@
       <div class="option">
         <span>ESP Health</span>
         <label class="switch">
-          <input type="checkbox">
+          <input type="checkbox" data-test>
           <span></span>
         </label>
       </div>
     </section>
 
+
     <section class="card">
+
       <h2>POV / FOV</h2>
 
       <div class="slider-row">
@@ -103,10 +155,13 @@
         max="180"
         value="90"
       >
+
     </section>
 
+
     <section class="card">
-      <h2>Movement Test</h2>
+
+      <h2>Movement</h2>
 
       <div class="slider-row">
         <span>Speed</span>
@@ -121,15 +176,55 @@
         step="0.1"
         value="1"
       >
+
     </section>
 
-    <button id="apply">APPLY TEST CONFIG</button>
-    <button id="reset" class="secondary">RESET</button>
+
+    <button class="primary" id="apply">
+      APPLY TEST CONFIG
+    </button>
+
+    <button class="secondary" id="reset">
+      RESET
+    </button>
 
     <div id="message"></div>
 
-  </div>
+  </main>
 
-  <script src="app.js"></script>
+
+  <!-- PROFILES -->
+
+  <main id="profiles" class="page">
+
+    <section class="card">
+
+      <h2>Test Profiles</h2>
+
+      <input
+        type="text"
+        id="profileName"
+        placeholder="Profile name"
+      >
+
+      <button class="primary" id="saveProfile">
+        SAVE PROFILE
+      </button>
+
+    </section>
+
+    <div id="profilesList"></div>
+
+  </main>
+
+
+  <footer>
+    <small>Developer Test Environment • No game connection</small>
+  </footer>
+
+</div>
+
+<script src="app.js"></script>
+
 </body>
 </html>
