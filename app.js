@@ -1,10 +1,13 @@
 /* =========================================================
    LAWANGEN INJECTOR
-   Developer Test Interface — UI / SIMULATION ONLY
+   Developer Test Interface
+   UI / CONTROLLED SIMULATION ONLY
 ========================================================= */
 
 
-/* ================= GLOBAL ================= */
+/* =========================================================
+   GLOBAL
+========================================================= */
 
 const screens = document.querySelectorAll(".app-screen");
 const navigationButtons = document.querySelectorAll("[data-screen]");
@@ -12,50 +15,110 @@ const navigationButtons = document.querySelectorAll("[data-screen]");
 const loginScreen = document.getElementById("loginScreen");
 const app = document.getElementById("app");
 
-function openScreen(screenId) {
+const loginButton = document.getElementById("loginButton");
+const guestButton = document.getElementById("guestButton");
 
-  screens.forEach(screen => {
-    screen.classList.toggle(
-      "active",
-      screen.id === screenId
-    );
-  });
-
-  navigationButtons.forEach(button => {
-    button.classList.toggle(
-      "active",
-      button.dataset.screen === screenId
-    );
-  });
-
-  window.scrollTo({
-    top: 0,
-    behavior: "instant"
-  });
-}
-
-
-/* ================= LOGIN ================= */
-
-const loginButton =
-  document.getElementById("loginButton");
-
-const usernameInput =
-  document.getElementById("username");
+const usernameInput = document.getElementById("username");
 
 /*
-  Password is removed.
-  Your HTML should contain:
-
-  <input id="key" type="text" placeholder="Enter your key">
+  IMPORTANT:
+  Your current HTML uses id="password".
+  This code supports BOTH:
+  id="key"
+  and
+  id="password"
 */
-
 const keyInput =
-  document.getElementById("key");
+  document.getElementById("key") ||
+  document.getElementById("password");
 
 const loginMessage =
   document.getElementById("loginMessage");
 
+
+/* =========================================================
+   SCREEN NAVIGATION
+========================================================= */
+
+function openScreen(screenId) {
+
+  screens.forEach(screen => {
+
+    screen.classList.toggle(
+      "active",
+      screen.id === screenId
+    );
+
+  });
+
+
+  navigationButtons.forEach(button => {
+
+    button.classList.toggle(
+      "active",
+      button.dataset.screen === screenId
+    );
+
+  });
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "auto"
+  });
+
+}
+
+
+/* =========================================================
+   LOGIN MESSAGE
+========================================================= */
+
+function showLoginMessage(message, type = "") {
+
+  if (!loginMessage) return;
+
+  loginMessage.textContent = message;
+
+  loginMessage.className =
+    `message ${type}`.trim();
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function updateProfile(username) {
+
+  const profileName =
+    document.getElementById("profileName");
+
+  if (profileName) {
+    profileName.textContent =
+      username || "LAWANGIN 444";
+  }
+
+
+  const avatar =
+    document.querySelector(".avatar");
+
+  if (avatar && username) {
+
+    avatar.textContent =
+      username
+        .charAt(0)
+        .toUpperCase();
+
+  }
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
 
 function performLogin() {
 
@@ -65,19 +128,40 @@ function performLogin() {
   const key =
     keyInput?.value.trim() || "";
 
-  if (!username || !key) {
 
-    if (loginMessage) {
-      loginMessage.textContent =
-        "Please enter username and key.";
-    }
+  /* ---------- VALIDATION ---------- */
+
+  if (!username) {
+
+    showLoginMessage(
+      "Please enter your username.",
+      "error"
+    );
+
+    usernameInput?.focus();
 
     return;
   }
 
+
+  if (!key) {
+
+    showLoginMessage(
+      "Please enter your key.",
+      "error"
+    );
+
+    keyInput?.focus();
+
+    return;
+  }
+
+
   /*
-    UI / demo login only.
-    No real game authentication or injection.
+    Controlled local UI login.
+
+    No real game authentication.
+    No game injection.
   */
 
   localStorage.setItem(
@@ -85,22 +169,38 @@ function performLogin() {
     username
   );
 
+
   updateProfile(username);
 
-  if (loginMessage) {
-    loginMessage.textContent = "";
-  }
+
+  showLoginMessage(
+    "",
+    ""
+  );
+
 
   loginScreen?.classList.add("hidden");
   app?.classList.remove("hidden");
 
+
   openScreen("homeScreen");
+
+
+  setStatus(
+    "LOGIN SUCCESSFUL"
+  );
+
 
   addLog(
     "Developer test login successful"
   );
+
 }
 
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
 
 loginButton?.addEventListener(
   "click",
@@ -108,7 +208,65 @@ loginButton?.addEventListener(
 );
 
 
-/* ================= ENTER KEY LOGIN ================= */
+/* =========================================================
+   GUEST LOGIN
+========================================================= */
+
+guestButton?.addEventListener(
+  "click",
+  () => {
+
+    const guestName =
+      "Guest Developer";
+
+
+    localStorage.setItem(
+      "lawangenUser",
+      guestName
+    );
+
+
+    updateProfile(
+      guestName
+    );
+
+
+    showLoginMessage(
+      "",
+      ""
+    );
+
+
+    loginScreen?.classList.add(
+      "hidden"
+    );
+
+    app?.classList.remove(
+      "hidden"
+    );
+
+
+    openScreen(
+      "homeScreen"
+    );
+
+
+    setStatus(
+      "GUEST MODE"
+    );
+
+
+    addLog(
+      "Guest developer mode started"
+    );
+
+  }
+);
+
+
+/* =========================================================
+   ENTER KEY LOGIN
+========================================================= */
 
 usernameInput?.addEventListener(
   "keydown",
@@ -131,37 +289,18 @@ keyInput?.addEventListener(
   event => {
 
     if (event.key === "Enter") {
+
       performLogin();
+
     }
 
   }
 );
 
 
-/* ================= PROFILE ================= */
-
-function updateProfile(username) {
-
-  const profileName =
-    document.getElementById("profileName");
-
-  if (profileName) {
-    profileName.textContent = username;
-  }
-
-  const avatar =
-    document.querySelector(".avatar");
-
-  if (avatar && username) {
-
-    avatar.textContent =
-      username.charAt(0).toUpperCase();
-
-  }
-}
-
-
-/* ================= NAVIGATION ================= */
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 document
   .querySelectorAll("[data-screen]")
@@ -184,19 +323,27 @@ document
   });
 
 
-/* ================= PROFILE BUTTON ================= */
+/* =========================================================
+   PROFILE BUTTON
+========================================================= */
 
 document
   .getElementById("profileButton")
   ?.addEventListener(
     "click",
     () => {
-      openScreen("profileScreen");
+
+      openScreen(
+        "profileScreen"
+      );
+
     }
   );
 
 
-/* ================= BACK BUTTONS ================= */
+/* =========================================================
+   BACK BUTTONS
+========================================================= */
 
 document
   .querySelectorAll(".back-button")
@@ -206,11 +353,9 @@ document
       "click",
       () => {
 
-        /*
-          Return to Selection for test pages.
-        */
-
-        openScreen("selectionScreen");
+        openScreen(
+          "selectionScreen"
+        );
 
       }
     );
@@ -218,13 +363,41 @@ document
   });
 
 
-/* ================= POV ================= */
+/* =========================================================
+   STATUS
+========================================================= */
+
+function setStatus(text) {
+
+  const statusText =
+    document.getElementById(
+      "statusText"
+    );
+
+  if (statusText) {
+
+    statusText.textContent =
+      text;
+
+  }
+
+}
+
+
+/* =========================================================
+   POV / FOV
+========================================================= */
 
 const povSlider =
-  document.getElementById("povSlider");
+  document.getElementById(
+    "povSlider"
+  );
 
 const povValue =
-  document.getElementById("povValue");
+  document.getElementById(
+    "povValue"
+  );
+
 
 povSlider?.addEventListener(
   "input",
@@ -241,13 +414,20 @@ povSlider?.addEventListener(
 );
 
 
-/* ================= SPEED ================= */
+/* =========================================================
+   SPEED
+========================================================= */
 
 const speedSlider =
-  document.getElementById("speedSlider");
+  document.getElementById(
+    "speedSlider"
+  );
 
 const speedValue =
-  document.getElementById("speedValue");
+  document.getElementById(
+    "speedValue"
+  );
+
 
 speedSlider?.addEventListener(
   "input",
@@ -256,7 +436,9 @@ speedSlider?.addEventListener(
     if (speedValue) {
 
       speedValue.textContent =
-        `${Number(speedSlider.value).toFixed(1)}x`;
+        `${Number(
+          speedSlider.value
+        ).toFixed(1)}x`;
 
     }
 
@@ -265,87 +447,7 @@ speedSlider?.addEventListener(
 
 
 /* =========================================================
-   TEST OPTIONS
-========================================================= */
-
-const testInputs =
-  document.querySelectorAll(
-    "input[data-test]"
-  );
-
-
-/* ================= ACTIVE COUNT ================= */
-
-function getActiveTests() {
-
-  return document.querySelectorAll(
-    "input[data-test]:checked"
-  ).length;
-
-}
-
-
-function updateActiveCount() {
-
-  const activeCount =
-    document.getElementById("activeCount");
-
-  if (activeCount) {
-
-    activeCount.textContent =
-      `${getActiveTests()} Active`;
-
-  }
-
-}
-
-
-/* =========================================================
-   NEW OPTIONS
-=========================================================
-
-   These names are supported automatically
-   when added to index.html:
-
-   AWM Killing
-   AWM Headshot
-   AWM Auto Headshot
-   ESP Name
-   Running
-   Fast Running
-
-========================================================= */
-
-
-testInputs.forEach(input => {
-
-  input.addEventListener(
-    "change",
-    () => {
-
-      updateActiveCount();
-
-      const name =
-        input.dataset.name ||
-        input.getAttribute("aria-label") ||
-        "Test option";
-
-      addLog(
-        `${name}: ${
-          input.checked
-            ? "ENABLED"
-            : "DISABLED"
-        }`
-      );
-
-    }
-  );
-
-});
-
-
-/* =========================================================
-   RUNNING MULTIPLIER
+   RUNNING SLIDER
 ========================================================= */
 
 const runningSlider =
@@ -367,7 +469,9 @@ function updateRunningValue() {
   ) {
 
     runningValue.textContent =
-      `${runningSlider.value}x`;
+      `${Number(
+        runningSlider.value
+      ).toFixed(1)}x`;
 
   }
 
@@ -377,6 +481,86 @@ function updateRunningValue() {
 runningSlider?.addEventListener(
   "input",
   updateRunningValue
+);
+
+
+/* =========================================================
+   TEST INPUTS
+========================================================= */
+
+const testInputs =
+  document.querySelectorAll(
+    "input[data-test]"
+  );
+
+
+function getActiveTests() {
+
+  return document.querySelectorAll(
+    "input[data-test]:checked"
+  ).length;
+
+}
+
+
+function updateActiveCount() {
+
+  const activeCount =
+    document.getElementById(
+      "activeCount"
+    );
+
+  if (activeCount) {
+
+    activeCount.textContent =
+      `${getActiveTests()} Active`;
+
+  }
+
+}
+
+
+/* =========================================================
+   TEST SWITCH EVENTS
+========================================================= */
+
+testInputs.forEach(
+  input => {
+
+    input.addEventListener(
+      "change",
+      () => {
+
+        updateActiveCount();
+
+
+        const name =
+          input.dataset.name ||
+          input.getAttribute(
+            "aria-label"
+          ) ||
+          "Test option";
+
+
+        addLog(
+          `${name}: ${
+            input.checked
+              ? "ENABLED"
+              : "DISABLED"
+          }`
+        );
+
+
+        setStatus(
+          input.checked
+            ? `${name} ENABLED`
+            : `${name} DISABLED`
+        );
+
+      }
+    );
+
+  }
 );
 
 
@@ -398,7 +582,9 @@ document
         ).map(
           input =>
             input.dataset.name ||
-            input.getAttribute("aria-label") ||
+            input.getAttribute(
+              "aria-label"
+            ) ||
             "Test"
         );
 
@@ -409,25 +595,36 @@ document
 
         pov:
           povSlider
-            ? Number(povSlider.value)
+            ? Number(
+                povSlider.value
+              )
             : 90,
 
         speed:
           speedSlider
-            ? Number(speedSlider.value)
+            ? Number(
+                speedSlider.value
+              )
             : 1,
 
         runningMultiplier:
           runningSlider
-            ? Number(runningSlider.value)
-            : 1
+            ? Number(
+                runningSlider.value
+              )
+            : 1,
+
+        savedAt:
+          new Date().toISOString()
 
       };
 
 
       localStorage.setItem(
         "lawangenTestConfig",
-        JSON.stringify(configuration)
+        JSON.stringify(
+          configuration
+        )
       );
 
 
@@ -436,27 +633,21 @@ document
       );
 
 
-      const statusText =
-        document.getElementById(
-          "statusText"
-        );
-
-      if (statusText) {
-
-        statusText.textContent =
-          "TEST CONFIG READY";
-
-      }
+      setStatus(
+        "TEST CONFIG READY"
+      );
 
 
-      openScreen("logsScreen");
+      openScreen(
+        "logsScreen"
+      );
 
     }
   );
 
 
 /* =========================================================
-   RESET
+   RESET CONFIG
 ========================================================= */
 
 document
@@ -467,7 +658,10 @@ document
 
       testInputs.forEach(
         input => {
-          input.checked = false;
+
+          input.checked =
+            false;
+
         }
       );
 
@@ -509,6 +703,12 @@ document
 
       updateActiveCount();
 
+
+      setStatus(
+        "CONFIG RESET"
+      );
+
+
       addLog(
         "Test configuration reset"
       );
@@ -529,7 +729,9 @@ const logsContainer =
 
 function addLog(text) {
 
-  if (!logsContainer) return;
+  if (!logsContainer) {
+    return;
+  }
 
 
   const empty =
@@ -544,41 +746,56 @@ function addLog(text) {
 
 
   const item =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
   item.className =
     "log-item";
 
 
   const strong =
-    document.createElement("strong");
+    document.createElement(
+      "strong"
+    );
 
   strong.textContent =
     text;
 
 
   const small =
-    document.createElement("small");
+    document.createElement(
+      "small"
+    );
 
   small.textContent =
     new Date().toLocaleTimeString();
 
 
-  item.appendChild(strong);
-  item.appendChild(small);
+  item.appendChild(
+    strong
+  );
+
+  item.appendChild(
+    small
+  );
 
 
-  logsContainer.prepend(item);
+  logsContainer.prepend(
+    item
+  );
 
 }
 
 
 /* =========================================================
-   SIMULATION EVENTS
+   TEST TRIGGER EVENTS
 ========================================================= */
 
 document
-  .querySelectorAll(".test-trigger")
+  .querySelectorAll(
+    ".test-trigger"
+  )
   .forEach(button => {
 
     button.addEventListener(
@@ -595,18 +812,9 @@ document
         );
 
 
-        const statusText =
-          document.getElementById(
-            "statusText"
-          );
-
-
-        if (statusText) {
-
-          statusText.textContent =
-            "SIMULATION EVENT GENERATED";
-
-        }
+        setStatus(
+          "SIMULATION EVENT GENERATED"
+        );
 
 
         const originalText =
@@ -617,11 +825,19 @@ document
           "DONE";
 
 
+        button.disabled =
+          true;
+
+
         setTimeout(
           () => {
 
             button.textContent =
-              originalText || "TEST";
+              originalText ||
+              "TEST";
+
+            button.disabled =
+              false;
 
           },
           900
@@ -638,12 +854,16 @@ document
 ========================================================= */
 
 document
-  .getElementById("clearLogs")
+  .getElementById(
+    "clearLogs"
+  )
   ?.addEventListener(
     "click",
     () => {
 
-      if (!logsContainer) return;
+      if (!logsContainer) {
+        return;
+      }
 
 
       logsContainer.innerHTML = `
@@ -651,6 +871,11 @@ document
           No test activity yet.
         </div>
       `;
+
+
+      setStatus(
+        "LOGS CLEARED"
+      );
 
     }
   );
@@ -667,7 +892,15 @@ function logout() {
   );
 
 
-  app?.classList.add("hidden");
+  localStorage.removeItem(
+    "lawangenTestConfig"
+  );
+
+
+  app?.classList.add(
+    "hidden"
+  );
+
 
   loginScreen?.classList.remove(
     "hidden"
@@ -684,18 +917,23 @@ function logout() {
   }
 
 
-  if (loginMessage) {
-    loginMessage.textContent = "";
-  }
+  showLoginMessage(
+    "",
+    ""
+  );
 
 
-  openScreen("homeScreen");
+  openScreen(
+    "homeScreen"
+  );
 
 }
 
 
 document
-  .getElementById("logoutButton")
+  .getElementById(
+    "logoutButton"
+  )
   ?.addEventListener(
     "click",
     logout
@@ -703,7 +941,9 @@ document
 
 
 document
-  .getElementById("logoutButtonSettings")
+  .getElementById(
+    "logoutButtonSettings"
+  )
   ?.addEventListener(
     "click",
     logout
@@ -780,7 +1020,9 @@ function loadConfiguration() {
     if (speedValue) {
 
       speedValue.textContent =
-        `${Number(saved.speed).toFixed(1)}x`;
+        `${Number(
+          saved.speed
+        ).toFixed(1)}x`;
 
     }
 
@@ -791,7 +1033,8 @@ function loadConfiguration() {
 
   if (
     runningSlider &&
-    typeof saved.runningMultiplier === "number"
+    typeof saved.runningMultiplier ===
+      "number"
   ) {
 
     runningSlider.value =
@@ -849,17 +1092,24 @@ const savedUser =
 
 if (savedUser) {
 
-  updateProfile(savedUser);
+  updateProfile(
+    savedUser
+  );
+
 
   loginScreen?.classList.add(
     "hidden"
   );
 
+
   app?.classList.remove(
     "hidden"
   );
 
-  openScreen("homeScreen");
+
+  openScreen(
+    "homeScreen"
+  );
 
 }
 
@@ -869,5 +1119,7 @@ if (savedUser) {
 ========================================================= */
 
 loadConfiguration();
+
 updateRunningValue();
+
 updateActiveCount();
