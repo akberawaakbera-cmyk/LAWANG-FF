@@ -1,6 +1,6 @@
 /* =========================================================
-   LAWANGEN — CORRECTED MOBILE UI
-   UI / TEST SIMULATION ONLY
+   LAWANGEN — MOBILE UI
+   Developer UI / Controlled Test Interface
 ========================================================= */
 
 * {
@@ -25,7 +25,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -179,6 +180,11 @@ button {
 
   object-fit: contain;
 }
+
+
+/* =========================================================
+   BRAND NAME
+========================================================= */
 
 .brand-name h1 {
   margin: 0;
@@ -363,6 +369,14 @@ button {
   font-size: 12px;
 }
 
+.message.error {
+  color: #ff6f7f;
+}
+
+.message.success {
+  color: #42df91;
+}
+
 
 /* =========================================================
    TOP BAR
@@ -513,8 +527,13 @@ button {
       #ff3cac
     );
 
-  font-weight: 800;
-  font-size: 20px;
+  overflow: hidden;
+}
+
+.developer-logo-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .developer-badge {
@@ -989,6 +1008,14 @@ input[type="range"] {
 
   font-size: 28px;
   font-weight: 700;
+
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .profile-box h2 {
@@ -1067,6 +1094,400 @@ input[type="range"] {
   margin-top: 5px;
 
   font-size: 10px;
+}
+
+
+/* =========================================================
+   DEVELOPER LOGO EDITOR
+   UI ONLY
+========================================================= */
+
+.developer-only {
+  display: none;
+}
+
+.developer-mode .developer-only {
+  display: block;
+}
+
+.logo-editor-card {
+  background:
+    linear-gradient(
+      145deg,
+      #121722,
+      #0e131d
+    );
+
+  border: 1px solid #303a55;
+
+  border-radius: 18px;
+
+  padding: 17px;
+
+  margin-bottom: 13px;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.22);
+}
+
+.logo-editor-header {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 15px;
+}
+
+.logo-editor-icon {
+  width: 43px;
+  height: 43px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #3478f6,
+      #7358ff
+    );
+
+  font-size: 20px;
+}
+
+.logo-editor-header strong {
+  display: block;
+  font-size: 14px;
+}
+
+.logo-editor-header span {
+  display: block;
+
+  color: #737c8b;
+
+  font-size: 10px;
+
+  margin-top: 3px;
+}
+
+.logo-preview {
+  width: 100px;
+  height: 100px;
+
+  margin: 5px auto 17px;
+
+  border-radius: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #080b13;
+
+  border: 1px solid #30384c;
+
+  box-shadow:
+    inset 0 0 25px rgba(0, 0, 0, 0.35);
+}
+
+.logo-preview img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+.logo-editor-buttons {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 9px;
+}
+
+.logo-editor-button {
+  min-height: 45px;
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #182641,
+      #1b2140
+    );
+
+  border: 1px solid #2c3b5a;
+
+  color: #9ebcff;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+.logo-editor-button.primary {
+  background:
+    linear-gradient(
+      135deg,
+      #3478f6,
+      #6955ff
+    );
+
+  color: #fff;
+
+  border-color: transparent;
+}
+
+.logo-editor-button.danger {
+  background: #29151c;
+
+  color: #ff7183;
+
+  border-color: #48202a;
+}
+
+.logo-editor-button:active {
+  transform: scale(0.97);
+  opacity: 0.82;
+}
+
+
+/* =========================================================
+   HIDDEN FILE INPUT
+========================================================= */
+
+.logo-file-input {
+  display: none !important;
+}
+
+
+/* =========================================================
+   DEVELOPER BADGE
+========================================================= */
+
+.developer-only-badge {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 6px 9px;
+
+  margin-bottom: 12px;
+
+  border-radius: 7px;
+
+  background: rgba(57, 217, 138, 0.08);
+
+  border: 1px solid rgba(57, 217, 138, 0.18);
+
+  color: #50dc98;
+
+  font-size: 9px;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   DEVELOPER LOCKED NOTICE
+========================================================= */
+
+.developer-lock {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 11px;
+
+  margin-top: 10px;
+
+  border-radius: 10px;
+
+  background: rgba(255, 193, 7, 0.06);
+
+  border: 1px solid rgba(255, 193, 7, 0.13);
+
+  color: #aeb4c0;
+
+  font-size: 10px;
+}
+
+.developer-lock strong {
+  color: #e4b84e;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.logo-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 500;
+
+  display: none;
+
+  align-items: flex-end;
+  justify-content: center;
+
+  padding: 15px;
+
+  background: rgba(0, 0, 0, 0.62);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.logo-modal.active {
+  display: flex;
+}
+
+.logo-modal-box {
+  width: 100%;
+  max-width: 430px;
+
+  padding: 20px;
+
+  border-radius: 23px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #151b28,
+      #0d111b
+    );
+
+  border: 1px solid #2a3448;
+
+  box-shadow:
+    0 -10px 60px rgba(0, 0, 0, 0.45);
+
+  animation: modalUp 0.18s ease;
+}
+
+.logo-modal-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+}
+
+.logo-modal-title h2 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.logo-modal-close {
+  width: 35px;
+  height: 35px;
+
+  border-radius: 10px;
+
+  background: #202737;
+
+  color: #fff;
+
+  font-size: 18px;
+}
+
+.logo-modal-actions {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+.logo-modal-actions button {
+  width: 100%;
+  min-height: 48px;
+
+  border-radius: 12px;
+
+  background: #171e2d;
+
+  border: 1px solid #293448;
+
+  color: #fff;
+
+  font-weight: 700;
+}
+
+.logo-modal-actions button.primary {
+  background:
+    linear-gradient(
+      135deg,
+      #3478f6,
+      #6955ff
+    );
+
+  border-color: transparent;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.app-toast {
+  position: fixed;
+
+  left: 50%;
+
+  bottom: 92px;
+
+  transform:
+    translateX(-50%)
+    translateY(15px);
+
+  z-index: 700;
+
+  min-width: 210px;
+  max-width: calc(100% - 35px);
+
+  padding: 12px 15px;
+
+  border-radius: 12px;
+
+  background: rgba(20, 25, 37, 0.97);
+
+  border: 1px solid #303b51;
+
+  color: #fff;
+
+  text-align: center;
+
+  font-size: 11px;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+
+  backdrop-filter: blur(15px);
+}
+
+.app-toast.show {
+  opacity: 1;
+
+  transform:
+    translateX(-50%)
+    translateY(0);
 }
 
 
@@ -1158,6 +1579,10 @@ input[type="range"] {
     gap: 10px;
   }
 
+  .logo-editor-buttons {
+    grid-template-columns: 1fr;
+  }
+
 }
 
 
@@ -1187,6 +1612,20 @@ input[type="range"] {
   from {
     opacity: 0;
     transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes modalUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(25px);
   }
 
   to {
