@@ -1,6 +1,6 @@
 /* =========================================================
-   LAWANGEN — MOBILE UI
-   Developer UI / Controlled Test Interface
+   BUNER-FF — MOBILE APP UI
+   Developer Test Interface
 ========================================================= */
 
 * {
@@ -16,7 +16,7 @@ body {
   min-height: 100%;
 
   background: #070912;
-  color: #fff;
+  color: #ffffff;
 
   font-family:
     -apple-system,
@@ -39,8 +39,8 @@ select {
 button {
   border: 0;
   cursor: pointer;
-  -webkit-user-select: none;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 .hidden {
@@ -52,10 +52,10 @@ button {
    APP
 ========================================================= */
 
+#app,
 .app {
   width: 100%;
   min-height: 100vh;
-
   padding-bottom: 90px;
 
   background:
@@ -72,13 +72,9 @@ button {
     #070912;
 }
 
-.screen {
-  width: 100%;
-}
-
 
 /* =========================================================
-   APP SCREENS
+   SCREENS
 ========================================================= */
 
 .app-screen {
@@ -92,8 +88,6 @@ button {
 
 .app-screen.active {
   display: block !important;
-
-  animation: screenFade 0.15s ease;
 }
 
 
@@ -101,6 +95,7 @@ button {
    LOGIN
 ========================================================= */
 
+#loginScreen,
 .login-screen {
   min-height: 100vh;
 
@@ -166,6 +161,8 @@ button {
   align-items: center;
   justify-content: center;
 
+  overflow: hidden;
+
   background:
     linear-gradient(
       135deg,
@@ -174,8 +171,6 @@ button {
       #ff3cac
     );
 
-  overflow: hidden;
-
   box-shadow:
     0 12px 40px rgba(91, 76, 255, 0.35);
 }
@@ -183,22 +178,19 @@ button {
 .logo-mark img {
   width: 100%;
   height: 100%;
-
-  display: block;
-
   object-fit: contain;
+  display: block;
 }
 
 
 /* =========================================================
-   BRAND NAME
+   BRAND
 ========================================================= */
 
 .brand-name h1 {
   margin: 0;
 
   font-size: 26px;
-
   letter-spacing: 4px;
 
   background:
@@ -223,13 +215,12 @@ button {
   color: #7e879b;
 
   font-size: 10px;
-
   letter-spacing: 4px;
 }
 
 
 /* =========================================================
-   LOGIN TITLE
+   LOGIN
 ========================================================= */
 
 .login-title {
@@ -244,23 +235,16 @@ button {
 
 .login-title p {
   margin: 0;
-
   color: #7f8795;
   font-size: 13px;
 }
 
-
-/* =========================================================
-   LOGIN INPUTS
-========================================================= */
-
 .login-box label {
   display: block;
 
-  margin: 0 0 6px;
+  margin-bottom: 6px;
 
   color: #9aa2b0;
-
   font-size: 11px;
 }
 
@@ -276,12 +260,9 @@ button {
   border: 1px solid #252c3b;
 
   background: #080b13;
-
-  color: #fff;
+  color: #ffffff;
 
   outline: none;
-
-  transition: 0.2s;
 }
 
 .login-box input:focus {
@@ -305,7 +286,6 @@ button {
 .danger-button,
 .guest-button {
   width: 100%;
-
   min-height: 50px;
 
   border-radius: 13px;
@@ -327,7 +307,7 @@ button {
       #6955ff
     );
 
-  color: #fff;
+  color: #ffffff;
 
   box-shadow:
     0 9px 25px rgba(76, 91, 255, 0.25);
@@ -335,25 +315,19 @@ button {
 
 .secondary-button {
   background: #171c28;
-
-  color: #fff;
-
+  color: #ffffff;
   border: 1px solid #252d3c;
 }
 
 .danger-button {
   background: #29151c;
-
   color: #ff7183;
-
   border: 1px solid #48202a;
 }
 
 .guest-button {
   background: #151b26;
-
   border: 1px solid #293241;
-
   color: #9ebcff;
 }
 
@@ -373,7 +347,6 @@ button {
   text-align: center;
 
   color: #8d96a5;
-
   font-size: 12px;
 }
 
@@ -410,7 +383,6 @@ button {
 .app-brand {
   display: flex;
   align-items: center;
-
   gap: 10px;
 }
 
@@ -424,6 +396,8 @@ button {
   align-items: center;
   justify-content: center;
 
+  overflow: hidden;
+
   background:
     linear-gradient(
       135deg,
@@ -431,20 +405,16 @@ button {
       #684dff,
       #ff3cac
     );
-
-  overflow: hidden;
 }
 
 .small-logo img {
   width: 100%;
   height: 100%;
-
   object-fit: contain;
 }
 
 .app-brand strong {
   display: block;
-
   letter-spacing: 3px;
   font-size: 14px;
 }
@@ -455,7 +425,6 @@ button {
   color: #6f7785;
 
   font-size: 8px;
-
   letter-spacing: 2px;
 
   margin-top: 2px;
@@ -474,7 +443,7 @@ button {
       #151a27
     );
 
-  color: #fff;
+  color: #ffffff;
 
   border: 1px solid #303a50;
 }
@@ -513,56 +482,6 @@ button {
   color: #858e9d;
 }
 
-.developer-hero-logo {
-  margin-bottom: 12px;
-}
-
-.developer-logo-mark {
-  width: 62px;
-  height: 62px;
-
-  border-radius: 18px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background:
-    linear-gradient(
-      135deg,
-      #00d4ff,
-      #684dff,
-      #ff3cac
-    );
-
-  overflow: hidden;
-}
-
-.developer-logo-mark img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: contain;
-}
-
-.developer-badge {
-  display: inline-block;
-
-  background: rgba(76, 91, 255, 0.12);
-
-  color: #76a3ff;
-
-  border: 1px solid rgba(105, 102, 255, 0.2);
-
-  border-radius: 7px;
-
-  padding: 6px 9px;
-
-  font-size: 9px;
-
-  letter-spacing: 1px;
-}
-
 
 /* =========================================================
    STATUS
@@ -595,9 +514,7 @@ button {
 
 .status-card span {
   color: #747d8b;
-
   font-size: 12px;
-
   margin-top: 3px;
 }
 
@@ -638,14 +555,9 @@ button {
       #0e131e
     );
 
-  color: #fff;
+  color: #ffffff;
 
   text-align: left;
-
-  transition:
-    transform 0.12s ease,
-    opacity 0.12s ease,
-    border-color 0.15s ease;
 }
 
 .home-card:active {
@@ -665,9 +577,7 @@ button {
 
 .home-card span {
   color: #707988;
-
   font-size: 11px;
-
   margin-top: 5px;
 }
 
@@ -692,9 +602,7 @@ button {
 
 .page-header p {
   margin: 4px 0 0;
-
   color: #737c8b;
-
   font-size: 12px;
 }
 
@@ -706,7 +614,7 @@ button {
 
   background: #151b28;
 
-  color: #fff;
+  color: #ffffff;
 
   font-size: 27px;
 
@@ -720,9 +628,7 @@ button {
 
 .menu-list {
   display: flex;
-
   flex-direction: column;
-
   gap: 10px;
 }
 
@@ -747,7 +653,7 @@ button {
 
   border: 1px solid #20283a;
 
-  color: #fff;
+  color: #ffffff;
 
   text-align: left;
 }
@@ -785,9 +691,7 @@ button {
 
 .menu-text span {
   color: #707988;
-
   font-size: 11px;
-
   margin-top: 4px;
 }
 
@@ -848,11 +752,8 @@ button {
 
 .control-row span {
   color: #6f7887;
-
   font-size: 10px;
-
   margin-top: 4px;
-
   line-height: 1.4;
 }
 
@@ -895,7 +796,7 @@ button {
   top: 3px;
   left: 3px;
 
-  background: #fff;
+  background: #ffffff;
 
   border-radius: 50%;
 
@@ -922,9 +823,7 @@ button {
 
 .slider-title {
   display: flex;
-
   justify-content: space-between;
-
   margin-bottom: 17px;
 }
 
@@ -964,11 +863,6 @@ input[type="range"] {
 
   font-size: 11px;
   font-weight: 700;
-}
-
-.test-trigger:active,
-.test-action:active {
-  transform: scale(0.96);
 }
 
 
@@ -1024,7 +918,6 @@ input[type="range"] {
 .avatar img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
 }
 
@@ -1039,7 +932,6 @@ input[type="range"] {
 
 .info-card > div {
   display: flex;
-
   justify-content: space-between;
 
   padding: 14px 0;
@@ -1066,9 +958,7 @@ input[type="range"] {
 
 .empty-log {
   padding: 35px 15px;
-
   text-align: center;
-
   color: #646d7b;
 }
 
@@ -1100,9 +990,7 @@ input[type="range"] {
 
 .log-item small {
   color: #68717f;
-
   margin-top: 5px;
-
   font-size: 10px;
 }
 
@@ -1111,31 +999,11 @@ input[type="range"] {
    DEVELOPER LOGO MANAGER
 ========================================================= */
 
-/*
-   IMPORTANT:
-   The old CSS used:
-
-   .developer-only {
-     display: none;
-   }
-
-   That was hiding the logo manager.
-
-   The new rule below makes the logo manager visible.
-*/
-
 .developer-only {
   display: block !important;
-
   visibility: visible !important;
-
   opacity: 1 !important;
 }
-
-
-/* =========================================================
-   DEVELOPER LOGO CARD
-========================================================= */
 
 #developerLogoManager {
   width: 100%;
@@ -1156,15 +1024,7 @@ input[type="range"] {
     );
 
   border: 1px solid #303a55;
-
-  box-shadow:
-    0 12px 35px rgba(0, 0, 0, 0.22);
 }
-
-
-/* =========================================================
-   LOGO MANAGER
-========================================================= */
 
 #developerLogoManager .logo-manager {
   width: 100%;
@@ -1179,11 +1039,6 @@ input[type="range"] {
 
   margin-top: 10px;
 }
-
-
-/* =========================================================
-   LOGO PREVIEW
-========================================================= */
 
 #developerLogoManager .logo-preview {
   width: 110px;
@@ -1208,10 +1063,6 @@ input[type="range"] {
     );
 
   border: 1px solid #35415b;
-
-  box-shadow:
-    0 10px 35px rgba(0, 0, 0, 0.4),
-    inset 0 0 25px rgba(0, 0, 0, 0.35);
 }
 
 #developerLogoManager .logo-preview img {
@@ -1223,17 +1074,10 @@ input[type="range"] {
   object-fit: contain;
 }
 
-
-/* =========================================================
-   CHOOSE LOGO
-========================================================= */
-
 #developerLogoManager .logo-file-button {
   width: 100%;
 
   min-height: 50px;
-
-  margin-top: 0;
 
   display: flex;
 
@@ -1256,30 +1100,19 @@ input[type="range"] {
   color: #9ebcff;
 
   font-size: 11px;
-
   font-weight: 700;
-
-  text-align: center;
-
-  transition:
-    transform 0.12s ease,
-    opacity 0.12s ease;
 }
 
-
-/* =========================================================
-   APPLY LOGO
-========================================================= */
+#developerLogoManager #applyDeveloperLogo,
+#developerLogoManager #resetDeveloperLogo {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
 
 #developerLogoManager #applyDeveloperLogo {
-  width: 100%;
-
-  min-height: 50px;
-
-  margin-top: 0;
-
-  border-radius: 12px;
-
   background:
     linear-gradient(
       135deg,
@@ -1287,51 +1120,17 @@ input[type="range"] {
       #6955ff
     );
 
-  color: #fff;
-
-  border: 0;
-
-  font-size: 11px;
-
-  font-weight: 700;
-
-  box-shadow:
-    0 9px 25px rgba(76, 91, 255, 0.25);
+  color: #ffffff;
 }
-
-
-/* =========================================================
-   RESET LOGO
-========================================================= */
 
 #developerLogoManager #resetDeveloperLogo {
-  width: 100%;
-
-  min-height: 50px;
-
-  margin-top: 0;
-
-  border-radius: 12px;
-
   background: #29151c;
-
   color: #ff7183;
-
   border: 1px solid #48202a;
-
-  font-size: 11px;
-
-  font-weight: 700;
 }
-
-
-/* =========================================================
-   LOGO MESSAGE
-========================================================= */
 
 #developerLogoManager #logoManagerMessage {
   width: 100%;
-
   min-height: 18px;
 
   margin: 2px 0 0;
@@ -1351,254 +1150,9 @@ input[type="range"] {
   color: #ff7183;
 }
 
-
-/* =========================================================
-   LOGO BUTTON PRESS
-========================================================= */
-
-#developerLogoManager button:active,
-#developerLogoManager .logo-file-button:active {
-  transform: scale(0.98);
-
-  opacity: 0.82;
-}
-
-
-/* =========================================================
-   HIDDEN FILE INPUT
-========================================================= */
-
 #developerLogoInput,
 .logo-file-input {
   display: none !important;
-}
-
-
-/* =========================================================
-   DEVELOPER BADGE
-========================================================= */
-
-.developer-only-badge {
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 6px;
-
-  padding: 6px 9px;
-
-  margin-bottom: 12px;
-
-  border-radius: 7px;
-
-  background: rgba(57, 217, 138, 0.08);
-
-  border: 1px solid rgba(57, 217, 138, 0.18);
-
-  color: #50dc98;
-
-  font-size: 9px;
-
-  letter-spacing: 1px;
-}
-
-
-/* =========================================================
-   DEVELOPER LOCK
-========================================================= */
-
-.developer-lock {
-  display: flex;
-
-  align-items: center;
-
-  gap: 9px;
-
-  padding: 11px;
-
-  margin-top: 10px;
-
-  border-radius: 10px;
-
-  background: rgba(255, 193, 7, 0.06);
-
-  border: 1px solid rgba(255, 193, 7, 0.13);
-
-  color: #aeb4c0;
-
-  font-size: 10px;
-}
-
-.developer-lock strong {
-  color: #e4b84e;
-}
-
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-.logo-modal {
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 500;
-
-  display: none;
-
-  align-items: flex-end;
-  justify-content: center;
-
-  padding: 15px;
-
-  background: rgba(0, 0, 0, 0.62);
-
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.logo-modal.active {
-  display: flex;
-}
-
-.logo-modal-box {
-  width: 100%;
-  max-width: 430px;
-
-  padding: 20px;
-
-  border-radius: 23px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #151b28,
-      #0d111b
-    );
-
-  border: 1px solid #2a3448;
-
-  box-shadow:
-    0 -10px 60px rgba(0, 0, 0, 0.45);
-
-  animation: modalUp 0.18s ease;
-}
-
-.logo-modal-title {
-  display: flex;
-
-  align-items: center;
-  justify-content: space-between;
-
-  margin-bottom: 18px;
-}
-
-.logo-modal-title h2 {
-  margin: 0;
-  font-size: 17px;
-}
-
-.logo-modal-close {
-  width: 35px;
-  height: 35px;
-
-  border-radius: 10px;
-
-  background: #202737;
-
-  color: #fff;
-
-  font-size: 18px;
-}
-
-.logo-modal-actions {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 9px;
-}
-
-.logo-modal-actions button {
-  width: 100%;
-
-  min-height: 48px;
-
-  border-radius: 12px;
-
-  background: #171e2d;
-
-  border: 1px solid #293448;
-
-  color: #fff;
-
-  font-weight: 700;
-}
-
-.logo-modal-actions button.primary {
-  background:
-    linear-gradient(
-      135deg,
-      #3478f6,
-      #6955ff
-    );
-
-  border-color: transparent;
-}
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-.app-toast {
-  position: fixed;
-
-  left: 50%;
-
-  bottom: 92px;
-
-  transform:
-    translateX(-50%)
-    translateY(15px);
-
-  z-index: 700;
-
-  min-width: 210px;
-  max-width: calc(100% - 35px);
-
-  padding: 12px 15px;
-
-  border-radius: 12px;
-
-  background: rgba(20, 25, 37, 0.97);
-
-  border: 1px solid #303b51;
-
-  color: #fff;
-
-  text-align: center;
-
-  font-size: 11px;
-
-  opacity: 0;
-
-  pointer-events: none;
-
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-
-  backdrop-filter: blur(15px);
-}
-
-.app-toast.show {
-  opacity: 1;
-
-  transform:
-    translateX(-50%)
-    translateY(0);
 }
 
 
@@ -1622,8 +1176,7 @@ input[type="range"] {
   align-items: center;
   justify-content: space-around;
 
-  background:
-    rgba(10, 13, 21, 0.96);
+  background: rgba(10, 13, 21, 0.96);
 
   border-top: 1px solid #1c2432;
 
@@ -1703,12 +1256,13 @@ input[type="range"] {
 
 
 /* =========================================================
-   IPHONE SAFE AREA
+   SAFE AREA
 ========================================================= */
 
 @supports (padding: max(0px)) {
 
-  .login-screen {
+  .login-screen,
+  #loginScreen {
     padding-top:
       max(22px, env(safe-area-inset-top));
 
@@ -1720,7 +1274,7 @@ input[type="range"] {
 
 
 /* =========================================================
-   TRANSITIONS
+   ANIMATION
 ========================================================= */
 
 @keyframes screenFade {
@@ -1735,32 +1289,4 @@ input[type="range"] {
     transform: translateY(0);
   }
 
-}
-
-@keyframes modalUp {
-
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-}
-
-
-/* =========================================================
-   BUTTON RESET
-========================================================= */
-
-button {
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-button:active {
-  opacity: 0.82;
 }
