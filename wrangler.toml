@@ -7,3 +7,8 @@ compatibility_date = "2026-08-20"
 [assets]
 directory = "./"
 binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bunerff-db"
+database_id = "اپنے D1 database کا ID یہاں ڈالیں"
