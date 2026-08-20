@@ -23,9 +23,9 @@
 
   <meta
     name="description"
-    content="BUNER-FF Developer Test Interface">
+    content="BUNER-FF Developer Test App">
 
-  <title>BUNER-FF — Developer Test Interface</title>
+  <title>BUNER-FF — Developer Test</title>
 
   <link rel="stylesheet" href="./style.css">
 
@@ -39,94 +39,14 @@
 <body>
 
 <!-- =========================================================
-     LOGIN
+     APP
 ========================================================= -->
 
-<div id="loginScreen" class="screen login-screen">
+<div id="app" class="app">
 
-  <div class="login-box">
-
-    <div class="brand-logo">
-
-      <div class="logo-mark">
-        <img
-          id="loginLogo"
-          src="./assets/logo.png"
-          alt="BUNER-FF Logo">
-      </div>
-
-      <div class="brand-name">
-        <h1>BUNER-FF</h1>
-
-        <span>
-          DEVELOPER TEST INTERFACE
-        </span>
-      </div>
-
-    </div>
-
-    <div id="loginForm">
-
-      <div class="login-title">
-
-        <h2>BUNER-FF</h2>
-
-        <p>
-          Developer test environment
-        </p>
-
-      </div>
-
-      <label for="username">
-        Username
-      </label>
-
-      <input
-        id="username"
-        type="text"
-        placeholder="Enter your username"
-        autocomplete="username">
-
-      <button
-        id="loginButton"
-        class="primary-button"
-        type="button">
-
-        ENTER APP
-
-      </button>
-
-      <button
-        id="guestButton"
-        class="secondary-button"
-        type="button">
-
-        CONTINUE AS GUEST
-
-      </button>
-
-      <p
-        id="loginMessage"
-        class="message"
-        role="status">
-      </p>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================================================
-     MAIN APP
-========================================================= -->
-
-<div id="app" class="app hidden">
-
-  <!-- =====================================================
+  <!-- =======================================================
        TOP BAR
-  ===================================================== -->
+  ======================================================== -->
 
   <header class="top-bar">
 
@@ -143,13 +63,9 @@
 
       <div>
 
-        <strong>
-          BUNER-FF
-        </strong>
+        <strong>BUNER-FF</strong>
 
-        <small>
-          DEVELOPER TEST
-        </small>
+        <small>DEVELOPER TEST</small>
 
       </div>
 
@@ -158,8 +74,7 @@
     <button
       id="profileButton"
       class="round-button"
-      type="button"
-      aria-label="Open Profile">
+      type="button">
 
       👤
 
@@ -168,9 +83,9 @@
   </header>
 
 
-  <!-- =====================================================
+  <!-- =======================================================
        HOME
-  ===================================================== -->
+  ======================================================== -->
 
   <main
     id="homeScreen"
@@ -206,53 +121,7 @@
     </section>
 
 
-    <!-- ===================================================
-         API STATUS
-    =================================================== -->
-
-    <section
-      class="status-card"
-      id="apiStatusCard">
-
-      <div class="status-icon">
-        ●
-      </div>
-
-      <div>
-
-        <strong>
-          BUNER-FF API
-        </strong>
-
-        <span id="apiStatusText">
-          Checking connection...
-        </span>
-
-      </div>
-
-    </section>
-
-
-    <button
-      id="apiTestButton"
-      class="primary-button"
-      type="button">
-
-      TEST API CONNECTION
-
-    </button>
-
-
-    <p
-      id="apiMessage"
-      class="message"
-      role="status">
-    </p>
-
-
-    <!-- ===================================================
-         ENVIRONMENT STATUS
-    =================================================== -->
+    <!-- API STATUS -->
 
     <section class="status-card">
 
@@ -263,12 +132,55 @@
       <div>
 
         <strong>
-          Test Environment
+          API Status
         </strong>
 
         <span id="statusText">
-          Ready
+          Checking API...
         </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- API INFORMATION -->
+
+    <section class="info-card">
+
+      <div>
+
+        <span>
+          Worker
+        </span>
+
+        <strong>
+          BUNER-FF
+        </strong>
+
+      </div>
+
+      <div>
+
+        <span>
+          API
+        </span>
+
+        <strong id="apiStatus">
+          Checking...
+        </strong>
+
+      </div>
+
+      <div>
+
+        <span>
+          Database
+        </span>
+
+        <strong id="databaseStatus">
+          Checking...
+        </strong>
 
       </div>
 
@@ -281,6 +193,26 @@
 
 
     <div class="home-grid">
+
+      <button
+        class="home-card"
+        data-screen="apiScreen"
+        type="button">
+
+        <div class="home-icon">
+          🌐
+        </div>
+
+        <strong>
+          API
+        </strong>
+
+        <span>
+          API connection
+        </span>
+
+      </button>
+
 
       <button
         class="home-card"
@@ -324,26 +256,6 @@
 
       <button
         class="home-card"
-        data-screen="profileScreen"
-        type="button">
-
-        <div class="home-icon">
-          👤
-        </div>
-
-        <strong>
-          Profile
-        </strong>
-
-        <span>
-          Developer account
-        </span>
-
-      </button>
-
-
-      <button
-        class="home-card"
         data-screen="settingsScreen"
         type="button">
 
@@ -356,7 +268,7 @@
         </strong>
 
         <span>
-          Preferences
+          App settings
         </span>
 
       </button>
@@ -366,9 +278,136 @@
   </main>
 
 
-  <!-- =====================================================
+  <!-- =======================================================
+       API SCREEN
+  ======================================================== -->
+
+  <main
+    id="apiScreen"
+    class="screen app-screen">
+
+    <div class="page-header">
+
+      <button
+        class="back-button"
+        data-screen="homeScreen"
+        type="button">
+
+        ‹
+
+      </button>
+
+      <div>
+
+        <h1>
+          API
+        </h1>
+
+        <p>
+          BUNER-FF API connection
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <section class="control-card">
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            Worker Status
+          </strong>
+
+          <span id="workerStatus">
+            Checking...
+          </span>
+
+        </div>
+
+        <span id="workerIndicator">
+          ●
+        </span>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+
+          <strong>
+            Database
+          </strong>
+
+          <span id="dbStatus">
+            Checking...
+          </span>
+
+        </div>
+
+        <span>
+          ●
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <section class="info-card">
+
+      <div>
+
+        <span>
+          Worker URL
+        </span>
+
+        <strong>
+          buner-ff.akberawaakbera.workers.dev
+        </strong>
+
+      </div>
+
+      <div>
+
+        <span>
+          Test Endpoint
+        </span>
+
+        <strong>
+          /api/test
+        </strong>
+
+      </div>
+
+    </section>
+
+
+    <button
+      id="testApiButton"
+      class="primary-button"
+      type="button">
+
+      TEST API CONNECTION
+
+    </button>
+
+
+    <p
+      id="apiMessage"
+      class="message">
+    </p>
+
+  </main>
+
+
+  <!-- =======================================================
        SELECTION
-  ===================================================== -->
+  ======================================================== -->
 
   <main
     id="selectionScreen"
@@ -378,8 +417,8 @@
 
       <button
         class="back-button"
-        type="button"
-        aria-label="Back">
+        data-screen="homeScreen"
+        type="button">
 
         ‹
 
@@ -392,7 +431,7 @@
         </h1>
 
         <p>
-          Choose a controlled test category
+          Choose a controlled test
         </p>
 
       </div>
@@ -418,14 +457,12 @@
           </strong>
 
           <span>
-            Controlled combat-event simulations
+            Controlled combat simulations
           </span>
 
         </div>
 
-        <b>
-          ›
-        </b>
+        <b>›</b>
 
       </button>
 
@@ -446,14 +483,12 @@
           </strong>
 
           <span>
-            Controlled visual-event simulations
+            Controlled visual simulations
           </span>
 
         </div>
 
-        <b>
-          ›
-        </b>
+        <b>›</b>
 
       </button>
 
@@ -470,7 +505,7 @@
         <div class="menu-text">
 
           <strong>
-            POV &amp; Movement
+            Movement Tests
           </strong>
 
           <span>
@@ -479,37 +514,7 @@
 
         </div>
 
-        <b>
-          ›
-        </b>
-
-      </button>
-
-
-      <button
-        class="menu-item"
-        data-screen="lobbyScreen"
-        type="button">
-
-        <div class="menu-icon">
-          🏟️
-        </div>
-
-        <div class="menu-text">
-
-          <strong>
-            Lobby Tests
-          </strong>
-
-          <span>
-            Controlled lobby-event simulations
-          </span>
-
-        </div>
-
-        <b>
-          ›
-        </b>
+        <b>›</b>
 
       </button>
 
@@ -530,14 +535,12 @@
           </strong>
 
           <span>
-            Controlled detection scenarios
+            Controlled integrity testing
           </span>
 
         </div>
 
-        <b>
-          ›
-        </b>
+        <b>›</b>
 
       </button>
 
@@ -546,9 +549,9 @@
   </main>
 
 
-  <!-- =====================================================
-       COMBAT TESTS
-  ===================================================== -->
+  <!-- =======================================================
+       COMBAT
+  ======================================================== -->
 
   <main
     id="combatScreen"
@@ -558,8 +561,8 @@
 
       <button
         class="back-button"
-        type="button"
-        aria-label="Back">
+        data-screen="selectionScreen"
+        type="button">
 
         ‹
 
@@ -572,7 +575,7 @@
         </h1>
 
         <p>
-          Controlled combat-event simulations
+          Controlled simulation
         </p>
 
       </div>
@@ -591,7 +594,7 @@
           </strong>
 
           <span>
-            Generate a controlled aim-event simulation
+            Controlled test event
           </span>
 
         </div>
@@ -619,7 +622,7 @@
           </strong>
 
           <span>
-            Simulate a controlled target event
+            Controlled target event
           </span>
 
         </div>
@@ -647,7 +650,7 @@
           </strong>
 
           <span>
-            Crosshair behavior simulation
+            Controlled crosshair test
           </span>
 
         </div>
@@ -670,9 +673,9 @@
   </main>
 
 
-  <!-- =====================================================
-       VISUAL TESTS
-  ===================================================== -->
+  <!-- =======================================================
+       VISUAL
+  ======================================================== -->
 
   <main
     id="visualScreen"
@@ -682,8 +685,8 @@
 
       <button
         class="back-button"
-        type="button"
-        aria-label="Back">
+        data-screen="selectionScreen"
+        type="button">
 
         ‹
 
@@ -696,7 +699,7 @@
         </h1>
 
         <p>
-          Controlled visual-event simulations
+          Controlled visual testing
         </p>
 
       </div>
@@ -715,7 +718,7 @@
           </strong>
 
           <span>
-            Simulate controlled visual-line behavior
+            Controlled visual event
           </span>
 
         </div>
@@ -743,7 +746,7 @@
           </strong>
 
           <span>
-            Simulate controlled bounding-box behavior
+            Controlled box event
           </span>
 
         </div>
@@ -771,7 +774,7 @@
           </strong>
 
           <span>
-            Controlled name-display simulation
+            Controlled name event
           </span>
 
         </div>
@@ -794,9 +797,9 @@
   </main>
 
 
-  <!-- =====================================================
+  <!-- =======================================================
        MOVEMENT
-  ===================================================== -->
+  ======================================================== -->
 
   <main
     id="movementScreen"
@@ -806,8 +809,8 @@
 
       <button
         class="back-button"
-        type="button"
-        aria-label="Back">
+        data-screen="selectionScreen"
+        type="button">
 
         ‹
 
@@ -816,7 +819,7 @@
       <div>
 
         <h1>
-          POV &amp; Movement
+          Movement
         </h1>
 
         <p>
@@ -877,94 +880,6 @@
     </section>
 
 
-    <section class="control-card">
-
-      <div class="control-row">
-
-        <div>
-
-          <strong>
-            Movement Test
-          </strong>
-
-          <span>
-            Controlled movement-event simulation
-          </span>
-
-        </div>
-
-        <label class="switch">
-
-          <input
-            type="checkbox"
-            data-test
-            data-name="Movement Test">
-
-          <span></span>
-
-        </label>
-
-      </div>
-
-
-      <div class="control-row">
-
-        <div>
-
-          <strong>
-            Speed Test
-          </strong>
-
-          <span>
-            Generate a controlled speed event
-          </span>
-
-        </div>
-
-        <label class="switch">
-
-          <input
-            type="checkbox"
-            data-test
-            data-name="Speed Test">
-
-          <span></span>
-
-        </label>
-
-      </div>
-
-
-      <div class="control-row">
-
-        <div>
-
-          <strong>
-            Position Test
-          </strong>
-
-          <span>
-            Simulate an impossible-position event
-          </span>
-
-        </div>
-
-        <label class="switch">
-
-          <input
-            type="checkbox"
-            data-test
-            data-name="Position Test">
-
-          <span></span>
-
-        </label>
-
-      </div>
-
-    </section>
-
-
     <button
       id="applyConfig"
       class="primary-button"
@@ -987,127 +902,9 @@
   </main>
 
 
-  <!-- =====================================================
-       LOBBY TESTS
-  ===================================================== -->
-
-  <main
-    id="lobbyScreen"
-    class="screen app-screen">
-
-    <div class="page-header">
-
-      <button
-        class="back-button"
-        type="button"
-        aria-label="Back">
-
-        ‹
-
-      </button>
-
-      <div>
-
-        <h1>
-          Lobby Tests
-        </h1>
-
-        <p>
-          Controlled lobby-event simulations
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <section class="control-card">
-
-      <div class="control-row">
-
-        <div>
-
-          <strong>
-            Lobby Event
-          </strong>
-
-          <span>
-            Generate a controlled lobby event
-          </span>
-
-        </div>
-
-        <button
-          class="test-trigger"
-          data-event="LOBBY_EVENT"
-          type="button">
-
-          TEST
-
-        </button>
-
-      </div>
-
-
-      <div class="control-row">
-
-        <div>
-
-          <strong>
-            Multi Target Event
-          </strong>
-
-          <span>
-            Simulate a controlled multi-target event
-          </span>
-
-        </div>
-
-        <button
-          class="test-trigger"
-          data-event="MULTI_TARGET_EVENT"
-          type="button">
-
-          TEST
-
-        </button>
-
-      </div>
-
-
-      <div class="control-row">
-
-        <div>
-
-          <strong>
-            Position Event
-          </strong>
-
-          <span>
-            Simulate a controlled position change
-          </span>
-
-        </div>
-
-        <button
-          class="test-trigger"
-          data-event="POSITION_EVENT"
-          type="button">
-
-          TEST
-
-        </button>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- =====================================================
-       INTEGRITY TESTS
-  ===================================================== -->
+  <!-- =======================================================
+       INTEGRITY
+  ======================================================== -->
 
   <main
     id="integrityScreen"
@@ -1117,8 +914,8 @@
 
       <button
         class="back-button"
-        type="button"
-        aria-label="Back">
+        data-screen="selectionScreen"
+        type="button">
 
         ‹
 
@@ -1131,7 +928,7 @@
         </h1>
 
         <p>
-          Controlled detection scenarios
+          Controlled detection testing
         </p>
 
       </div>
@@ -1150,7 +947,7 @@
           </strong>
 
           <span>
-            Generate a controlled movement anomaly
+            Generate controlled test event
           </span>
 
         </div>
@@ -1176,7 +973,7 @@
           </strong>
 
           <span>
-            Generate a controlled aim anomaly
+            Generate controlled test event
           </span>
 
         </div>
@@ -1202,7 +999,7 @@
           </strong>
 
           <span>
-            Generate a controlled visual anomaly
+            Generate controlled test event
           </span>
 
         </div>
@@ -1218,230 +1015,14 @@
 
       </div>
 
-
-      <div class="control-row">
-
-        <div>
-
-          <strong>
-            Integrity Check
-          </strong>
-
-          <span>
-            Test integrity-monitoring response
-          </span>
-
-        </div>
-
-        <button
-          class="test-trigger"
-          data-event="INTEGRITY_CHECK"
-          type="button">
-
-          TEST
-
-        </button>
-
-      </div>
-
     </section>
 
   </main>
 
 
-  <!-- =====================================================
-       PROFILE
-  ===================================================== -->
-
-  <main
-    id="profileScreen"
-    class="screen app-screen">
-
-    <div class="page-header">
-
-      <button
-        class="back-button"
-        type="button"
-        aria-label="Back">
-
-        ‹
-
-      </button>
-
-      <div>
-
-        <h1>
-          Profile
-        </h1>
-
-        <p>
-          Developer account
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <section class="profile-box">
-
-      <div class="avatar profile-logo">
-
-        <img
-          id="profileLogo"
-          src="./assets/logo.png"
-          alt="BUNER-FF Logo">
-
-      </div>
-
-      <h2 id="profileName">
-        Guest Developer
-      </h2>
-
-      <span>
-        DEVELOPER
-      </span>
-
-    </section>
-
-
-    <section
-      id="developerLogoManager"
-      class="control-card developer-only">
-
-      <div class="control-row">
-
-        <div>
-
-          <strong>
-            Developer Logo
-          </strong>
-
-          <span>
-            Choose a logo from your device
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="logo-manager">
-
-        <div class="logo-preview">
-
-          <img
-            id="developerLogoPreview"
-            src="./assets/logo.png"
-            alt="Logo Preview">
-
-        </div>
-
-
-        <label
-          for="developerLogoInput"
-          class="secondary-button logo-file-button">
-
-          CHOOSE LOGO
-
-        </label>
-
-
-        <input
-          id="developerLogoInput"
-          type="file"
-          accept="image/png,image/jpeg,image/webp"
-          hidden>
-
-
-        <button
-          id="applyDeveloperLogo"
-          class="primary-button"
-          type="button">
-
-          APPLY LOGO
-
-        </button>
-
-
-        <button
-          id="resetDeveloperLogo"
-          class="secondary-button"
-          type="button">
-
-          RESET LOGO
-
-        </button>
-
-
-        <p
-          id="logoManagerMessage"
-          class="message">
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <section class="info-card">
-
-      <div>
-
-        <span>
-          Developer
-        </span>
-
-        <strong id="profileDeveloper">
-          Guest Developer
-        </strong>
-
-      </div>
-
-
-      <div>
-
-        <span>
-          Status
-        </span>
-
-        <strong class="online">
-          Active
-        </strong>
-
-      </div>
-
-
-      <div>
-
-        <span>
-          Account Type
-        </span>
-
-        <strong>
-          Developer Test
-        </strong>
-
-      </div>
-
-    </section>
-
-
-    <button
-      id="logoutButton"
-      class="danger-button"
-      type="button">
-
-      LOGOUT
-
-    </button>
-
-  </main>
-
-
-  <!-- =====================================================
+  <!-- =======================================================
        SETTINGS
-  ===================================================== -->
+  ======================================================== -->
 
   <main
     id="settingsScreen"
@@ -1451,8 +1032,8 @@
 
       <button
         class="back-button"
-        type="button"
-        aria-label="Back">
+        data-screen="homeScreen"
+        type="button">
 
         ‹
 
@@ -1465,7 +1046,7 @@
         </h1>
 
         <p>
-          Application preferences
+          Application settings
         </p>
 
       </div>
@@ -1484,7 +1065,7 @@
           </strong>
 
           <span>
-            Enable testing interface
+            Test environment
           </span>
 
         </div>
@@ -1492,7 +1073,6 @@
         <label class="switch">
 
           <input
-            id="developerMode"
             type="checkbox"
             checked>
 
@@ -1508,11 +1088,11 @@
         <div>
 
           <strong>
-            Test Notifications
+            Notifications
           </strong>
 
           <span>
-            Show test status messages
+            Show test status
           </span>
 
         </div>
@@ -1520,35 +1100,6 @@
         <label class="switch">
 
           <input
-            id="testNotifications"
-            type="checkbox"
-            checked>
-
-          <span></span>
-
-        </label>
-
-      </div>
-
-
-      <div class="control-row">
-
-        <div>
-
-          <strong>
-            Haptic Feedback
-          </strong>
-
-          <span>
-            Mobile interaction feedback
-          </span>
-
-        </div>
-
-        <label class="switch">
-
-          <input
-            id="hapticFeedback"
             type="checkbox"
             checked>
 
@@ -1560,22 +1111,12 @@
 
     </section>
 
-
-    <button
-      id="logoutButtonSettings"
-      class="danger-button"
-      type="button">
-
-      LOGOUT
-
-    </button>
-
   </main>
 
 
-  <!-- =====================================================
+  <!-- =======================================================
        LOGS
-  ===================================================== -->
+  ======================================================== -->
 
   <main
     id="logsScreen"
@@ -1585,8 +1126,8 @@
 
       <button
         class="back-button"
-        type="button"
-        aria-label="Back">
+        data-screen="homeScreen"
+        type="button">
 
         ‹
 
@@ -1599,7 +1140,7 @@
         </h1>
 
         <p>
-          Test activity
+          API and test activity
         </p>
 
       </div>
@@ -1610,7 +1151,7 @@
     <section id="logsContainer">
 
       <div class="empty-log">
-        No test activity yet.
+        No activity yet.
       </div>
 
     </section>
@@ -1628,9 +1169,67 @@
   </main>
 
 
-  <!-- =====================================================
+  <!-- =======================================================
+       PROFILE
+  ======================================================== -->
+
+  <main
+    id="profileScreen"
+    class="screen app-screen">
+
+    <div class="page-header">
+
+      <button
+        class="back-button"
+        data-screen="homeScreen"
+        type="button">
+
+        ‹
+
+      </button>
+
+      <div>
+
+        <h1>
+          Profile
+        </h1>
+
+        <p>
+          Developer
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <section class="profile-box">
+
+      <div class="avatar profile-logo">
+
+        <img
+          id="profileLogo"
+          src="./assets/logo.png"
+          alt="BUNER-FF Logo">
+
+      </div>
+
+      <h2>
+        BUNER-FF
+      </h2>
+
+      <span>
+        DEVELOPER
+      </span>
+
+    </section>
+
+  </main>
+
+
+  <!-- =======================================================
        BOTTOM NAVIGATION
-  ===================================================== -->
+  ======================================================== -->
 
   <nav class="bottom-navigation">
 
@@ -1639,9 +1238,7 @@
       data-screen="homeScreen"
       type="button">
 
-      <span>
-        ⌂
-      </span>
+      <span>⌂</span>
 
       <small>
         Home
@@ -1655,9 +1252,7 @@
       data-screen="selectionScreen"
       type="button">
 
-      <span>
-        ◉
-      </span>
+      <span>◉</span>
 
       <small>
         Select
@@ -1668,15 +1263,13 @@
 
     <button
       class="nav-button"
-      data-screen="profileScreen"
+      data-screen="logsScreen"
       type="button">
 
-      <span>
-        ●
-      </span>
+      <span>●</span>
 
       <small>
-        Profile
+        Logs
       </small>
 
     </button>
@@ -1687,9 +1280,7 @@
       data-screen="settingsScreen"
       type="button">
 
-      <span>
-        ⚙
-      </span>
+      <span>⚙</span>
 
       <small>
         Settings
@@ -1703,77 +1294,181 @@
 
 
 <!-- =========================================================
-     EXISTING APP JAVASCRIPT
-========================================================= -->
-
-<script src="./app.js"></script>
-
-
-<!-- =========================================================
-     BUNER-FF API CONNECTION
+     JAVASCRIPT
 ========================================================= -->
 
 <script>
 
-const BUNER_API =
+const API_BASE =
   "https://buner-ff.akberawaakbera.workers.dev";
 
 
-const apiStatusText =
-  document.getElementById("apiStatusText");
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-const apiMessage =
-  document.getElementById("apiMessage");
+const screens =
+  document.querySelectorAll(".app-screen");
 
-const apiTestButton =
-  document.getElementById("apiTestButton");
+const navigationButtons =
+  document.querySelectorAll("[data-screen]");
 
 
-function setApiStatus(
-  text,
-  type = ""
-) {
+function openScreen(screenId) {
 
-  if (apiStatusText) {
-    apiStatusText.textContent = text;
-  }
+  screens.forEach(screen => {
 
-  if (apiMessage) {
-    apiMessage.textContent = text;
-    apiMessage.className =
-      `message ${type}`.trim();
-  }
+    screen.classList.toggle(
+      "active",
+      screen.id === screenId
+    );
+
+  });
+
+
+  navigationButtons.forEach(button => {
+
+    button.classList.toggle(
+      "active",
+      button.dataset.screen === screenId
+    );
+
+  });
+
+  window.scrollTo(0, 0);
 
 }
 
 
-async function testBunerAPI() {
+navigationButtons.forEach(button => {
 
-  setApiStatus(
-    "Connecting...",
-    ""
+  button.addEventListener(
+    "click",
+    () => {
+
+      const target =
+        button.dataset.screen;
+
+      if (target) {
+        openScreen(target);
+      }
+
+    }
   );
 
-  if (apiTestButton) {
+});
 
-    apiTestButton.disabled = true;
 
-    apiTestButton.textContent =
-      "CONNECTING...";
+/* =========================================================
+   LOG SYSTEM
+========================================================= */
 
+const logsContainer =
+  document.getElementById(
+    "logsContainer"
+  );
+
+
+function addLog(text) {
+
+  if (!logsContainer) return;
+
+  const empty =
+    logsContainer.querySelector(
+      ".empty-log"
+    );
+
+  if (empty) {
+    empty.remove();
   }
+
+  const item =
+    document.createElement("div");
+
+  item.className =
+    "log-item";
+
+  const strong =
+    document.createElement("strong");
+
+  strong.textContent =
+    text;
+
+  const small =
+    document.createElement("small");
+
+  small.textContent =
+    new Date().toLocaleTimeString();
+
+  item.appendChild(strong);
+  item.appendChild(small);
+
+  logsContainer.prepend(item);
+
+}
+
+
+/* =========================================================
+   API TEST
+========================================================= */
+
+async function testAPI() {
+
+  const statusText =
+    document.getElementById(
+      "statusText"
+    );
+
+  const apiStatus =
+    document.getElementById(
+      "apiStatus"
+    );
+
+  const databaseStatus =
+    document.getElementById(
+      "databaseStatus"
+    );
+
+  const workerStatus =
+    document.getElementById(
+      "workerStatus"
+    );
+
+  const dbStatus =
+    document.getElementById(
+      "dbStatus"
+    );
+
+  const apiMessage =
+    document.getElementById(
+      "apiMessage"
+    );
+
+
+  statusText.textContent =
+    "Checking API...";
+
+  apiStatus.textContent =
+    "Checking...";
+
+  databaseStatus.textContent =
+    "Checking...";
+
+  workerStatus.textContent =
+    "Checking...";
+
+  dbStatus.textContent =
+    "Checking...";
 
 
   try {
 
     const response =
       await fetch(
-        `${BUNER_API}/api/test`,
+        API_BASE + "/api/test",
         {
           method: "GET",
-          headers: {
-            "Accept": "application/json"
-          }
+          cache: "no-store"
         }
       );
 
@@ -1782,88 +1477,382 @@ async function testBunerAPI() {
       await response.json();
 
 
-    if (
-      response.ok &&
-      data.success === true
-    ) {
-
-      setApiStatus(
-        "API CONNECTED",
-        "success"
+    if (!response.ok) {
+      throw new Error(
+        data.error ||
+        "API request failed"
       );
-
-      if (apiTestButton) {
-
-        apiTestButton.textContent =
-          "API CONNECTED ✓";
-
-      }
-
-      console.log(
-        "BUNER-FF API RESPONSE:",
-        data
-      );
-
-      return;
-
     }
 
 
-    throw new Error(
-      data.error ||
-      "API returned an error."
-    );
+    if (data.success) {
+
+      statusText.textContent =
+        "API CONNECTED";
+
+      apiStatus.textContent =
+        "Connected";
+
+      workerStatus.textContent =
+        "BUNER-FF Worker Online";
+
+      if (
+        data.database ===
+        "connected"
+      ) {
+
+        databaseStatus.textContent =
+          "Connected";
+
+        dbStatus.textContent =
+          "Connected";
+
+      }
+      else {
+
+        databaseStatus.textContent =
+          "Not Connected";
+
+        dbStatus.textContent =
+          "Not Connected";
+
+      }
+
+
+      if (apiMessage) {
+
+        apiMessage.textContent =
+          "API connection successful.";
+
+        apiMessage.className =
+          "message success";
+
+      }
+
+
+      addLog(
+        "BUNER-FF API connection successful"
+      );
+
+    }
 
   }
 
   catch (error) {
 
+    statusText.textContent =
+      "API ERROR";
+
+    apiStatus.textContent =
+      "Offline";
+
+    workerStatus.textContent =
+      "Connection failed";
+
+    databaseStatus.textContent =
+      "Unknown";
+
+    dbStatus.textContent =
+      "Unknown";
+
+
+    if (apiMessage) {
+
+      apiMessage.textContent =
+        "API connection failed: " +
+        error.message;
+
+      apiMessage.className =
+        "message error";
+
+    }
+
+
+    addLog(
+      "BUNER-FF API connection failed"
+    );
+
     console.error(
-      "BUNER-FF API ERROR:",
+      "API ERROR:",
       error
     );
-
-
-    setApiStatus(
-      "API CONNECTION FAILED",
-      "error"
-    );
-
-
-    if (apiTestButton) {
-
-      apiTestButton.textContent =
-        "RETRY API CONNECTION";
-
-    }
-
-  }
-
-  finally {
-
-    if (apiTestButton) {
-      apiTestButton.disabled = false;
-    }
 
   }
 
 }
 
 
-apiTestButton?.addEventListener(
-  "click",
-  testBunerAPI
+/* =========================================================
+   API BUTTON
+========================================================= */
+
+document
+  .getElementById("testApiButton")
+  ?.addEventListener(
+    "click",
+    testAPI
+  );
+
+
+/* =========================================================
+   TEST EVENTS
+========================================================= */
+
+document
+  .querySelectorAll(".test-trigger")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        const eventName =
+          button.dataset.event ||
+          "TEST_EVENT";
+
+
+        addLog(
+          "Simulation event: " +
+          eventName
+        );
+
+
+        const originalText =
+          button.textContent;
+
+
+        button.textContent =
+          "DONE";
+
+        button.disabled =
+          true;
+
+
+        setTimeout(
+          () => {
+
+            button.textContent =
+              originalText;
+
+            button.disabled =
+              false;
+
+          },
+          900
+        );
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   TEST SWITCHES
+========================================================= */
+
+document
+  .querySelectorAll(
+    "input[data-test]"
+  )
+  .forEach(input => {
+
+    input.addEventListener(
+      "change",
+      () => {
+
+        const name =
+          input.dataset.name ||
+          "Test";
+
+
+        addLog(
+          name +
+          ": " +
+          (
+            input.checked
+              ? "ENABLED"
+              : "DISABLED"
+          )
+        );
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   MOVEMENT SLIDERS
+========================================================= */
+
+const povSlider =
+  document.getElementById(
+    "povSlider"
+  );
+
+const povValue =
+  document.getElementById(
+    "povValue"
+  );
+
+const speedSlider =
+  document.getElementById(
+    "speedSlider"
+  );
+
+const speedValue =
+  document.getElementById(
+    "speedValue"
+  );
+
+
+povSlider?.addEventListener(
+  "input",
+  () => {
+
+    povValue.textContent =
+      povSlider.value + "°";
+
+  }
 );
 
+
+speedSlider?.addEventListener(
+  "input",
+  () => {
+
+    speedValue.textContent =
+      Number(
+        speedSlider.value
+      ).toFixed(1) + "x";
+
+  }
+);
+
+
+/* =========================================================
+   APPLY CONFIG
+========================================================= */
+
+document
+  .getElementById("applyConfig")
+  ?.addEventListener(
+    "click",
+    () => {
+
+      const config = {
+
+        pov:
+          Number(
+            povSlider?.value || 90
+          ),
+
+        speed:
+          Number(
+            speedSlider?.value || 1
+          ),
+
+        savedAt:
+          new Date().toISOString()
+
+      };
+
+
+      localStorage.setItem(
+        "bunerFFConfig",
+        JSON.stringify(config)
+      );
+
+
+      addLog(
+        "Test configuration saved"
+      );
+
+
+      const statusText =
+        document.getElementById(
+          "statusText"
+        );
+
+      statusText.textContent =
+        "CONFIG SAVED";
+
+    }
+  );
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+document
+  .getElementById("resetConfig")
+  ?.addEventListener(
+    "click",
+    () => {
+
+      if (povSlider) {
+        povSlider.value = 90;
+      }
+
+      if (speedSlider) {
+        speedSlider.value = 1;
+      }
+
+      if (povValue) {
+        povValue.textContent =
+          "90°";
+      }
+
+      if (speedValue) {
+        speedValue.textContent =
+          "1.0x";
+      }
+
+
+      localStorage.removeItem(
+        "bunerFFConfig"
+      );
+
+
+      addLog(
+        "Test configuration reset"
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   CLEAR LOGS
+========================================================= */
+
+document
+  .getElementById("clearLogs")
+  ?.addEventListener(
+    "click",
+    () => {
+
+      logsContainer.innerHTML = `
+        <div class="empty-log">
+          No activity yet.
+        </div>
+      `;
+
+    }
+  );
+
+
+/* =========================================================
+   INITIAL API CHECK
+========================================================= */
 
 window.addEventListener(
   "load",
   () => {
 
-    setTimeout(
-      testBunerAPI,
-      700
-    );
+    testAPI();
 
   }
 );
@@ -1881,12 +1870,14 @@ if ("serviceWorker" in navigator) {
 
   window.addEventListener(
     "load",
-    function () {
+    () => {
 
       navigator.serviceWorker
-        .register("./service-worker.js")
+        .register(
+          "./service-worker.js"
+        )
         .then(
-          function (registration) {
+          registration => {
 
             console.log(
               "BUNER-FF Service Worker registered:",
@@ -1896,10 +1887,10 @@ if ("serviceWorker" in navigator) {
           }
         )
         .catch(
-          function (error) {
+          error => {
 
             console.error(
-              "Service Worker registration failed:",
+              "Service Worker error:",
               error
             );
 
@@ -1912,7 +1903,6 @@ if ("serviceWorker" in navigator) {
 }
 
 </script>
-
 
 </body>
 </html>
