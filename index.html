@@ -169,12 +169,7 @@
       CHECK KEY STATUS
     </button>
 
-    <button
-  id="devPreviewButton"
-  class="secondary-button"
-  type="button">
-  DEVELOPER PREVIEW
-</button>
+  
 
     <p id="keyMessage" class="message"></p>
 
@@ -2052,67 +2047,6 @@ document
    DEVELOPER PREVIEW
 ===================================================== */
 
-function openDeveloperPreview() {
-
-  const keyGate =
-    document.getElementById(
-      "keyGate"
-    );
-
-
-  const mainApp =
-    document.getElementById(
-      "mainApp"
-    );
-
-
-  keyGate.classList.add(
-    "hidden"
-  );
-
-
-  mainApp.classList.remove(
-    "hidden"
-  );
-
-
-  openScreen(
-    "homeScreen"
-  );
-
-
-  const message =
-    document.getElementById(
-      "keyMessage"
-    );
-
-
-  message.textContent =
-    "Developer Preview enabled. Backend key validation remains unchanged.";
-
-  message.className =
-    "message success";
-
-
-  addActivity(
-    "Developer Preview opened"
-  );
-
-
-  checkConnection();
-
-}
-
-
-document
-  .getElementById(
-    "devPreviewButton"
-  )
-  .addEventListener(
-    "click",
-    openDeveloperPreview
-  );
-
 
 /* =====================================================
    WORKER + DATABASE
@@ -3603,8 +3537,6 @@ document
    STARTUP
 ===================================================== */
 
-window.addEventListener(
-  "load",
   async () => {
 
     loadAdminToken();
