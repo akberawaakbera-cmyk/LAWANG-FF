@@ -19,21 +19,18 @@
 
   <meta
     name="apple-mobile-web-app-title"
-    content="LAWANGEN">
+    content="BUNER-FF">
 
   <meta
     name="description"
-    content="LAWANGEN controlled developer test interface">
+    content="BUNER-FF Developer Test Interface">
 
-  <title>LAWANGEN — Developer Test Interface</title>
+  <title>BUNER-FF — Developer Test Interface</title>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="./style.css">
 
-  <!-- PWA Manifest -->
   <link rel="manifest" href="./manifest.json">
 
-  <!-- iOS Icon -->
   <link
     rel="apple-touch-icon"
     href="./assets/logo.png">
@@ -52,39 +49,33 @@
     <div class="brand-logo">
 
       <div class="logo-mark">
-
         <img
           id="loginLogo"
           src="./assets/logo.png"
-          alt="LAWANGEN Logo">
-
+          alt="BUNER-FF Logo">
       </div>
 
       <div class="brand-name">
-
-        <h1>LAWANGEN</h1>
+        <h1>BUNER-FF</h1>
 
         <span>
           DEVELOPER TEST INTERFACE
         </span>
-
       </div>
 
     </div>
-
 
     <div id="loginForm">
 
       <div class="login-title">
 
-        <h2>LAWANGEN</h2>
+        <h2>BUNER-FF</h2>
 
         <p>
-          Enter your username and key
+          Developer test environment
         </p>
 
       </div>
-
 
       <label for="username">
         Username
@@ -96,27 +87,14 @@
         placeholder="Enter your username"
         autocomplete="username">
 
-
-      <label for="password">
-        Key
-      </label>
-
-      <input
-        id="password"
-        type="text"
-        placeholder="Enter your key"
-        autocomplete="off">
-
-
       <button
         id="loginButton"
         class="primary-button"
         type="button">
 
-        LOGIN
+        ENTER APP
 
       </button>
-
 
       <button
         id="guestButton"
@@ -126,7 +104,6 @@
         CONTINUE AS GUEST
 
       </button>
-
 
       <p
         id="loginMessage"
@@ -147,7 +124,6 @@
 
 <div id="app" class="app hidden">
 
-
   <!-- =====================================================
        TOP BAR
   ===================================================== -->
@@ -161,15 +137,14 @@
         <img
           id="topLogo"
           src="./assets/logo.png"
-          alt="LAWANGEN">
+          alt="BUNER-FF">
 
       </div>
-
 
       <div>
 
         <strong>
-          LAWANGEN
+          BUNER-FF
         </strong>
 
         <small>
@@ -179,7 +154,6 @@
       </div>
 
     </div>
-
 
     <button
       id="profileButton"
@@ -211,36 +185,80 @@
           <img
             id="homeLogo"
             src="./assets/logo.png"
-            alt="LAWANGEN Logo">
+            alt="BUNER-FF Logo">
 
         </div>
 
       </div>
 
-
       <span class="developer-badge">
         DEVELOPER TEST
       </span>
 
-
       <h1>
-        LAWANGIN 444
+        BUNER-FF
       </h1>
 
-
       <p>
-        CONTROLLED SIMULATION
+        CONTROLLED TEST ENVIRONMENT
       </p>
 
     </section>
 
+
+    <!-- ===================================================
+         API STATUS
+    =================================================== -->
+
+    <section
+      class="status-card"
+      id="apiStatusCard">
+
+      <div class="status-icon">
+        ●
+      </div>
+
+      <div>
+
+        <strong>
+          BUNER-FF API
+        </strong>
+
+        <span id="apiStatusText">
+          Checking connection...
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <button
+      id="apiTestButton"
+      class="primary-button"
+      type="button">
+
+      TEST API CONNECTION
+
+    </button>
+
+
+    <p
+      id="apiMessage"
+      class="message"
+      role="status">
+    </p>
+
+
+    <!-- ===================================================
+         ENVIRONMENT STATUS
+    =================================================== -->
 
     <section class="status-card">
 
       <div class="status-icon">
         ●
       </div>
-
 
       <div>
 
@@ -366,7 +384,6 @@
         ‹
 
       </button>
-
 
       <div>
 
@@ -499,7 +516,7 @@
 
       <button
         class="menu-item"
-        data-screen="antiCheatScreen"
+        data-screen="integrityScreen"
         type="button">
 
         <div class="menu-icon">
@@ -548,7 +565,6 @@
 
       </button>
 
-
       <div>
 
         <h1>
@@ -566,7 +582,6 @@
 
     <section class="control-card">
 
-
       <div class="control-row">
 
         <div>
@@ -580,7 +595,6 @@
           </span>
 
         </div>
-
 
         <label class="switch">
 
@@ -610,7 +624,6 @@
 
         </div>
 
-
         <label class="switch">
 
           <input
@@ -638,7 +651,6 @@
           </span>
 
         </div>
-
 
         <label class="switch">
 
@@ -677,7 +689,6 @@
 
       </button>
 
-
       <div>
 
         <h1>
@@ -695,7 +706,6 @@
 
     <section class="control-card">
 
-
       <div class="control-row">
 
         <div>
@@ -709,7 +719,6 @@
           </span>
 
         </div>
-
 
         <label class="switch">
 
@@ -739,7 +748,6 @@
 
         </div>
 
-
         <label class="switch">
 
           <input
@@ -767,7 +775,6 @@
           </span>
 
         </div>
-
 
         <label class="switch">
 
@@ -806,7 +813,6 @@
 
       </button>
 
-
       <div>
 
         <h1>
@@ -836,7 +842,6 @@
 
       </div>
 
-
       <input
         id="povSlider"
         type="range"
@@ -861,7 +866,6 @@
 
       </div>
 
-
       <input
         id="speedSlider"
         type="range"
@@ -874,7 +878,6 @@
 
 
     <section class="control-card">
-
 
       <div class="control-row">
 
@@ -889,7 +892,6 @@
           </span>
 
         </div>
-
 
         <label class="switch">
 
@@ -919,7 +921,6 @@
 
         </div>
 
-
         <label class="switch">
 
           <input
@@ -947,7 +948,6 @@
           </span>
 
         </div>
-
 
         <label class="switch">
 
@@ -1006,7 +1006,6 @@
 
       </button>
 
-
       <div>
 
         <h1>
@@ -1024,7 +1023,6 @@
 
     <section class="control-card">
 
-
       <div class="control-row">
 
         <div>
@@ -1038,7 +1036,6 @@
           </span>
 
         </div>
-
 
         <button
           class="test-trigger"
@@ -1066,7 +1063,6 @@
 
         </div>
 
-
         <button
           class="test-trigger"
           data-event="MULTI_TARGET_EVENT"
@@ -1093,7 +1089,6 @@
 
         </div>
 
-
         <button
           class="test-trigger"
           data-event="POSITION_EVENT"
@@ -1111,11 +1106,11 @@
 
 
   <!-- =====================================================
-       INTEGRITY TEST
+       INTEGRITY TESTS
   ===================================================== -->
 
   <main
-    id="antiCheatScreen"
+    id="integrityScreen"
     class="screen app-screen">
 
     <div class="page-header">
@@ -1129,11 +1124,10 @@
 
       </button>
 
-
       <div>
 
         <h1>
-          Integrity Test
+          Integrity Tests
         </h1>
 
         <p>
@@ -1146,7 +1140,6 @@
 
 
     <section class="control-card">
-
 
       <div class="control-row">
 
@@ -1161,7 +1154,6 @@
           </span>
 
         </div>
-
 
         <button
           class="test-trigger"
@@ -1189,7 +1181,6 @@
 
         </div>
 
-
         <button
           class="test-trigger"
           data-event="AIM_ANOMALY"
@@ -1216,7 +1207,6 @@
 
         </div>
 
-
         <button
           class="test-trigger"
           data-event="VISUAL_ANOMALY"
@@ -1242,7 +1232,6 @@
           </span>
 
         </div>
-
 
         <button
           class="test-trigger"
@@ -1279,7 +1268,6 @@
 
       </button>
 
-
       <div>
 
         <h1>
@@ -1302,15 +1290,13 @@
         <img
           id="profileLogo"
           src="./assets/logo.png"
-          alt="LAWANGEN Logo">
+          alt="BUNER-FF Logo">
 
       </div>
 
-
       <h2 id="profileName">
-        LAWANGIN 444
+        Guest Developer
       </h2>
-
 
       <span>
         DEVELOPER
@@ -1318,10 +1304,6 @@
 
     </section>
 
-
-    <!-- =====================================================
-         DEVELOPER LOGO MANAGER
-    ===================================================== -->
 
     <section
       id="developerLogoManager"
@@ -1410,8 +1392,8 @@
           Developer
         </span>
 
-        <strong>
-          LAWANGIN 444
+        <strong id="profileDeveloper">
+          Guest Developer
         </strong>
 
       </div>
@@ -1437,7 +1419,7 @@
         </span>
 
         <strong>
-          Developer
+          Developer Test
         </strong>
 
       </div>
@@ -1476,7 +1458,6 @@
 
       </button>
 
-
       <div>
 
         <h1>
@@ -1494,7 +1475,6 @@
 
     <section class="control-card">
 
-
       <div class="control-row">
 
         <div>
@@ -1509,10 +1489,10 @@
 
         </div>
 
-
         <label class="switch">
 
           <input
+            id="developerMode"
             type="checkbox"
             checked>
 
@@ -1537,10 +1517,10 @@
 
         </div>
 
-
         <label class="switch">
 
           <input
+            id="testNotifications"
             type="checkbox"
             checked>
 
@@ -1565,10 +1545,10 @@
 
         </div>
 
-
         <label class="switch">
 
           <input
+            id="hapticFeedback"
             type="checkbox"
             checked>
 
@@ -1612,7 +1592,6 @@
 
       </button>
 
-
       <div>
 
         <h1>
@@ -1654,7 +1633,6 @@
   ===================================================== -->
 
   <nav class="bottom-navigation">
-
 
     <button
       class="nav-button active"
@@ -1725,10 +1703,172 @@
 
 
 <!-- =========================================================
-     APP JAVASCRIPT
+     EXISTING APP JAVASCRIPT
 ========================================================= -->
 
 <script src="./app.js"></script>
+
+
+<!-- =========================================================
+     BUNER-FF API CONNECTION
+========================================================= -->
+
+<script>
+
+const BUNER_API =
+  "https://buner-ff.akberawaakbera.workers.dev";
+
+
+const apiStatusText =
+  document.getElementById("apiStatusText");
+
+const apiMessage =
+  document.getElementById("apiMessage");
+
+const apiTestButton =
+  document.getElementById("apiTestButton");
+
+
+function setApiStatus(
+  text,
+  type = ""
+) {
+
+  if (apiStatusText) {
+    apiStatusText.textContent = text;
+  }
+
+  if (apiMessage) {
+    apiMessage.textContent = text;
+    apiMessage.className =
+      `message ${type}`.trim();
+  }
+
+}
+
+
+async function testBunerAPI() {
+
+  setApiStatus(
+    "Connecting...",
+    ""
+  );
+
+  if (apiTestButton) {
+
+    apiTestButton.disabled = true;
+
+    apiTestButton.textContent =
+      "CONNECTING...";
+
+  }
+
+
+  try {
+
+    const response =
+      await fetch(
+        `${BUNER_API}/api/test`,
+        {
+          method: "GET",
+          headers: {
+            "Accept": "application/json"
+          }
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if (
+      response.ok &&
+      data.success === true
+    ) {
+
+      setApiStatus(
+        "API CONNECTED",
+        "success"
+      );
+
+      if (apiTestButton) {
+
+        apiTestButton.textContent =
+          "API CONNECTED ✓";
+
+      }
+
+      console.log(
+        "BUNER-FF API RESPONSE:",
+        data
+      );
+
+      return;
+
+    }
+
+
+    throw new Error(
+      data.error ||
+      "API returned an error."
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "BUNER-FF API ERROR:",
+      error
+    );
+
+
+    setApiStatus(
+      "API CONNECTION FAILED",
+      "error"
+    );
+
+
+    if (apiTestButton) {
+
+      apiTestButton.textContent =
+        "RETRY API CONNECTION";
+
+    }
+
+  }
+
+  finally {
+
+    if (apiTestButton) {
+      apiTestButton.disabled = false;
+    }
+
+  }
+
+}
+
+
+apiTestButton?.addEventListener(
+  "click",
+  testBunerAPI
+);
+
+
+window.addEventListener(
+  "load",
+  () => {
+
+    setTimeout(
+      testBunerAPI,
+      700
+    );
+
+  }
+);
+
+</script>
 
 
 <!-- =========================================================
@@ -1749,7 +1889,7 @@ if ("serviceWorker" in navigator) {
           function (registration) {
 
             console.log(
-              "LAWANGEN Service Worker registered:",
+              "BUNER-FF Service Worker registered:",
               registration.scope
             );
 
@@ -1759,7 +1899,7 @@ if ("serviceWorker" in navigator) {
           function (error) {
 
             console.error(
-              "LAWANGEN Service Worker registration failed:",
+              "Service Worker registration failed:",
               error
             );
 
