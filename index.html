@@ -67,7 +67,12 @@
       class="secondary-button"
       type="button">
       CHECK KEY STATUS
-    </button>
+    <button
+  id="devPreviewButton"
+  class="secondary-button"
+  type="button">
+  DEV PREVIEW — OPEN PANEL
+</button>
 
     <p id="keyMessage" class="message"></p>
 
@@ -98,6 +103,59 @@
   </div>
 
   <button
+    /* =====================================================
+   DEVELOPER PREVIEW MODE
+   FRONTEND UI PREVIEW ONLY
+===================================================== */
+
+const DEV_PREVIEW_MODE = true;
+
+function openDeveloperPreview() {
+
+  if (!DEV_PREVIEW_MODE) {
+    return;
+  }
+
+  const keyGate =
+    document.getElementById("keyGate");
+
+  const mainApp =
+    document.getElementById("mainApp");
+
+  const keyMessage =
+    document.getElementById("keyMessage");
+
+  // Open the panel UI
+  keyGate.classList.add("hidden");
+  mainApp.classList.remove("hidden");
+
+  // Show preview status
+  keyMessage.textContent =
+    "Developer Preview Mode enabled.";
+
+  keyMessage.className =
+    "message success";
+
+  // Open Home
+  openScreen("homeScreen");
+
+  addActivity(
+    "Developer Preview Mode opened"
+  );
+
+  // Check real Worker/database connection
+  checkConnection();
+}
+
+
+/* Developer Preview button */
+
+document
+  .getElementById("devPreviewButton")
+  ?.addEventListener(
+    "click",
+    openDeveloperPreview
+  );
     id="profileButton"
     class="round-button"
     type="button">
@@ -2411,7 +2469,19 @@ window.addEventListener(
 
   }
 );
+if (DEV_PREVIEW_MODE) {
 
+  document
+    .getElementById("keyGate")
+    .classList.add("hidden");
+
+  document
+    .getElementById("mainApp")
+    .classList.remove("hidden");
+
+  openScreen("homeScreen");
+
+}
 </script>
 
 
