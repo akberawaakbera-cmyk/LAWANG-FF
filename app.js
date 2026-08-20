@@ -1,12 +1,20 @@
 /* =========================================================
-   LAWANGEN INJECTOR
+   BUNER-FF
    Developer Test Interface
    UI / CONTROLLED SIMULATION ONLY
 ========================================================= */
 
 
 /* =========================================================
-   GLOBAL
+   BUNER-FF API
+========================================================= */
+
+const API_BASE =
+  "https://buner-ff.akberawaakbera.workers.dev";
+
+
+/* =========================================================
+   GLOBAL ELEMENTS
 ========================================================= */
 
 const screens =
@@ -39,11 +47,23 @@ const loginMessage =
 
 
 /* =========================================================
-   DEVELOPER CONFIG
+   BUNER-FF CONFIG
 ========================================================= */
+
+const APP_NAME =
+  "BUNER-FF";
 
 const DEVELOPER_USERNAME =
   "LAWANGIN 444";
+
+const USER_STORAGE_KEY =
+  "bunerFFUser";
+
+const CONFIG_STORAGE_KEY =
+  "bunerFFTestConfig";
+
+const LOGO_STORAGE_KEY =
+  "bunerFFDeveloperLogo";
 
 
 /* =========================================================
@@ -123,12 +143,86 @@ function showLoginMessage(
 function updateProfile(username) {
 
   const profileName =
-    document.getElementById("profileName");
+    document.getElementById(
+      "profileName"
+    );
 
   if (profileName) {
 
     profileName.textContent =
       username || DEVELOPER_USERNAME;
+
+  }
+
+}
+
+
+/* =========================================================
+   API HEALTH CHECK
+========================================================= */
+
+async function checkAPI() {
+
+  try {
+
+    setStatus(
+      "CONNECTING TO BUNER-FF API..."
+    );
+
+
+    const response =
+      await fetch(API_BASE, {
+        method: "GET",
+        cache: "no-store"
+      });
+
+
+    if (!response.ok) {
+      throw new Error(
+        `HTTP ${response.status}`
+      );
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if (
+      data &&
+      data.success === true
+    ) {
+
+      setStatus(
+        "BUNER-FF API ONLINE"
+      );
+
+      return true;
+
+    }
+
+
+    setStatus(
+      "BUNER-FF API ONLINE"
+    );
+
+    return true;
+
+  }
+  catch (error) {
+
+    console.error(
+      "BUNER-FF API error:",
+      error
+    );
+
+
+    setStatus(
+      "API CONNECTION ERROR"
+    );
+
+
+    return false;
 
   }
 
@@ -158,31 +252,46 @@ function performLogin() {
     usernameInput?.focus();
 
     return;
+
   }
 
+
+  /*
+    IMPORTANT:
+    Key validation is intentionally
+    NOT connected yet.
+
+    We will add the real key system
+    later after the API is stable.
+  */
 
   if (!key) {
 
     showLoginMessage(
-      "Please enter your key.",
+      "Please enter your test key.",
       "error"
     );
 
     keyInput?.focus();
 
     return;
+
   }
 
 
   localStorage.setItem(
-    "lawangenUser",
+    USER_STORAGE_KEY,
     username
   );
 
 
   updateProfile(username);
 
-  showLoginMessage("", "");
+
+  showLoginMessage(
+    "",
+    ""
+  );
 
 
   loginScreen?.classList.add(
@@ -194,21 +303,26 @@ function performLogin() {
   );
 
 
-  openScreen("homeScreen");
+  openScreen(
+    "homeScreen"
+  );
+
 
   setStatus(
-    "LOGIN SUCCESSFUL"
+    "BUNER-FF APP READY"
   );
 
 
   addLog(
-    "Developer test login successful"
+    "BUNER-FF developer test login"
   );
 
 
   updateDeveloperControls();
 
   loadDeveloperLogo();
+
+  checkAPI();
 
 }
 
@@ -224,7 +338,7 @@ loginButton?.addEventListener(
 
 
 /* =========================================================
-   GUEST LOGIN
+   GUEST MODE
 ========================================================= */
 
 guestButton?.addEventListener(
@@ -236,7 +350,7 @@ guestButton?.addEventListener(
 
 
     localStorage.setItem(
-      "lawangenUser",
+      USER_STORAGE_KEY,
       guestName
     );
 
@@ -267,12 +381,12 @@ guestButton?.addEventListener(
 
 
     setStatus(
-      "GUEST MODE"
+      "BUNER-FF GUEST MODE"
     );
 
 
     addLog(
-      "Guest developer mode started"
+      "BUNER-FF guest mode started"
     );
 
 
@@ -280,12 +394,14 @@ guestButton?.addEventListener(
 
     loadDeveloperLogo();
 
+    checkAPI();
+
   }
 );
 
 
 /* =========================================================
-   ENTER KEY LOGIN
+   ENTER KEY
 ========================================================= */
 
 usernameInput?.addEventListener(
@@ -444,44 +560,6 @@ speedSlider?.addEventListener(
 
 
 /* =========================================================
-   RUNNING SLIDER
-========================================================= */
-
-const runningSlider =
-  document.getElementById(
-    "runningSlider"
-  );
-
-const runningValue =
-  document.getElementById(
-    "runningValue"
-  );
-
-
-function updateRunningValue() {
-
-  if (
-    runningSlider &&
-    runningValue
-  ) {
-
-    runningValue.textContent =
-      `${Number(
-        runningSlider.value
-      ).toFixed(1)}x`;
-
-  }
-
-}
-
-
-runningSlider?.addEventListener(
-  "input",
-  updateRunningValue
-);
-
-
-/* =========================================================
    TEST INPUTS
 ========================================================= */
 
@@ -533,9 +611,6 @@ testInputs.forEach(
 
         const name =
           input.dataset.name ||
-          input.getAttribute(
-            "aria-label"
-          ) ||
           "Test option";
 
 
@@ -579,9 +654,6 @@ document
         ).map(
           input =>
             input.dataset.name ||
-            input.getAttribute(
-              "aria-label"
-            ) ||
             "Test"
         );
 
@@ -600,11 +672,6 @@ document
             ? Number(speedSlider.value)
             : 1,
 
-        runningMultiplier:
-          runningSlider
-            ? Number(runningSlider.value)
-            : 1,
-
         savedAt:
           new Date().toISOString()
 
@@ -612,7 +679,7 @@ document
 
 
       localStorage.setItem(
-        "lawangenTestConfig",
+        CONFIG_STORAGE_KEY,
         JSON.stringify(
           configuration
         )
@@ -664,11 +731,6 @@ document
       }
 
 
-      if (runningSlider) {
-        runningSlider.value = 1;
-      }
-
-
       if (povValue) {
         povValue.textContent = "90°";
       }
@@ -679,11 +741,8 @@ document
       }
 
 
-      updateRunningValue();
-
-
       localStorage.removeItem(
-        "lawangenTestConfig"
+        CONFIG_STORAGE_KEY
       );
 
 
@@ -696,7 +755,7 @@ document
 
 
       addLog(
-        "Test configuration reset"
+        "BUNER-FF test configuration reset"
       );
 
     }
@@ -730,31 +789,44 @@ function addLog(text) {
 
 
   const item =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
   item.className =
     "log-item";
 
 
   const strong =
-    document.createElement("strong");
+    document.createElement(
+      "strong"
+    );
 
   strong.textContent =
     text;
 
 
   const small =
-    document.createElement("small");
+    document.createElement(
+      "small"
+    );
 
   small.textContent =
     new Date().toLocaleTimeString();
 
 
-  item.appendChild(strong);
-  item.appendChild(small);
+  item.appendChild(
+    strong
+  );
+
+  item.appendChild(
+    small
+  );
 
 
-  logsContainer.prepend(item);
+  logsContainer.prepend(
+    item
+  );
 
 }
 
@@ -777,7 +849,7 @@ document
 
 
         addLog(
-          `Simulation event: ${eventName}`
+          `BUNER-FF Simulation: ${eventName}`
         );
 
 
@@ -794,7 +866,8 @@ document
           "DONE";
 
 
-        button.disabled = true;
+        button.disabled =
+          true;
 
 
         setTimeout(
@@ -852,7 +925,7 @@ function isDeveloper() {
 
   const currentUser =
     localStorage.getItem(
-      "lawangenUser"
+      USER_STORAGE_KEY
     );
 
 
@@ -895,14 +968,6 @@ const logoManagerMessage =
 
 
 /* =========================================================
-   LOGO STORAGE KEY
-========================================================= */
-
-const LOGO_STORAGE_KEY =
-  "lawangenDeveloperLogo";
-
-
-/* =========================================================
    LOGO MESSAGE
 ========================================================= */
 
@@ -923,7 +988,7 @@ function showLogoMessage(
 
 
 /* =========================================================
-   APPLY LOGO TO ALL APP LOCATIONS
+   APPLY LOGO
 ========================================================= */
 
 function applyDeveloperLogo(
@@ -937,15 +1002,6 @@ function applyDeveloperLogo(
     return;
   }
 
-
-  /*
-    IMPORTANT:
-    Use IDs instead of searching for
-    src="assets/logo.png".
-
-    This works even after the first
-    logo has already been changed.
-  */
 
   const logoIds = [
     "loginLogo",
@@ -971,27 +1027,6 @@ function applyDeveloperLogo(
 
 
 /* =========================================================
-   PREVIEW SELECTED LOGO
-========================================================= */
-
-function previewDeveloperLogo(
-  imageData
-) {
-
-  if (
-    developerLogoPreview &&
-    imageData
-  ) {
-
-    developerLogoPreview.src =
-      imageData;
-
-  }
-
-}
-
-
-/* =========================================================
    FILE SELECT
 ========================================================= */
 
@@ -1003,12 +1038,8 @@ developerLogoInput?.addEventListener(
       event.target.files?.[0];
 
 
-    if (!file) {
-      return;
-    }
+    if (!file) return;
 
-
-    /* ---------- FILE TYPE ---------- */
 
     const allowedTypes = [
       "image/png",
@@ -1036,8 +1067,6 @@ developerLogoInput?.addEventListener(
     }
 
 
-    /* ---------- FILE SIZE ---------- */
-
     if (
       file.size >
       5 * 1024 * 1024
@@ -1055,8 +1084,6 @@ developerLogoInput?.addEventListener(
     }
 
 
-    /* ---------- READ IMAGE ---------- */
-
     const reader =
       new FileReader();
 
@@ -1071,33 +1098,22 @@ developerLogoInput?.addEventListener(
         typeof imageData !==
         "string"
       ) {
-
-        showLogoMessage(
-          "Could not read the selected image.",
-          "error"
-        );
-
         return;
-
       }
 
 
-      /*
-        Store temporarily as selected logo.
-
-        It is NOT applied to the whole
-        app until APPLY LOGO is pressed.
-      */
-
       sessionStorage.setItem(
-        "lawangenPendingLogo",
+        "bunerFFPendingLogo",
         imageData
       );
 
 
-      previewDeveloperLogo(
-        imageData
-      );
+      if (developerLogoPreview) {
+
+        developerLogoPreview.src =
+          imageData;
+
+      }
 
 
       showLogoMessage(
@@ -1134,14 +1150,14 @@ applyDeveloperLogoButton?.addEventListener(
 
     const pendingLogo =
       sessionStorage.getItem(
-        "lawangenPendingLogo"
+        "bunerFFPendingLogo"
       );
 
 
     if (!pendingLogo) {
 
       showLogoMessage(
-        "First choose a logo from your gallery.",
+        "First choose a logo.",
         "error"
       );
 
@@ -1149,10 +1165,6 @@ applyDeveloperLogoButton?.addEventListener(
 
     }
 
-
-    /*
-      Save permanently in localStorage.
-    */
 
     try {
 
@@ -1165,7 +1177,7 @@ applyDeveloperLogoButton?.addEventListener(
     catch (error) {
 
       showLogoMessage(
-        "Logo is too large to save on this device.",
+        "Logo is too large to save.",
         "error"
       );
 
@@ -1174,17 +1186,18 @@ applyDeveloperLogoButton?.addEventListener(
     }
 
 
-    /*
-      Apply everywhere immediately.
-    */
-
     applyDeveloperLogo(
       pendingLogo
     );
 
 
+    sessionStorage.removeItem(
+      "bunerFFPendingLogo"
+    );
+
+
     showLogoMessage(
-      "Logo applied successfully.",
+      "BUNER-FF logo applied successfully.",
       "success"
     );
 
@@ -1195,23 +1208,9 @@ applyDeveloperLogoButton?.addEventListener(
 
 
     addLog(
-      "Developer logo applied"
+      "BUNER-FF developer logo updated"
     );
 
-
-    /*
-      Clear temporary selection.
-    */
-
-    sessionStorage.removeItem(
-      "lawangenPendingLogo"
-    );
-
-
-    /*
-      Reset file input so the same
-      image can be selected again.
-    */
 
     if (developerLogoInput) {
       developerLogoInput.value = "";
@@ -1235,16 +1234,12 @@ resetDeveloperLogoButton?.addEventListener(
 
 
     sessionStorage.removeItem(
-      "lawangenPendingLogo"
+      "bunerFFPendingLogo"
     );
 
 
-    const defaultLogo =
-      "assets/logo.png";
-
-
     applyDeveloperLogo(
-      defaultLogo
+      "./assets/logo.png"
     );
 
 
@@ -1265,7 +1260,7 @@ resetDeveloperLogoButton?.addEventListener(
 
 
     addLog(
-      "Developer logo reset"
+      "BUNER-FF logo reset"
     );
 
   }
@@ -1273,7 +1268,7 @@ resetDeveloperLogoButton?.addEventListener(
 
 
 /* =========================================================
-   LOAD SAVED LOGO
+   LOAD LOGO
 ========================================================= */
 
 function loadDeveloperLogo() {
@@ -1292,10 +1287,8 @@ function loadDeveloperLogo() {
 
 
     if (developerLogoPreview) {
-
       developerLogoPreview.src =
         savedLogo;
-
     }
 
     return;
@@ -1303,20 +1296,15 @@ function loadDeveloperLogo() {
   }
 
 
-  /*
-    No custom logo saved.
-    Use the original logo.
-  */
-
   applyDeveloperLogo(
-    "assets/logo.png"
+    "./assets/logo.png"
   );
 
 
   if (developerLogoPreview) {
 
     developerLogoPreview.src =
-      "assets/logo.png";
+      "./assets/logo.png";
 
   }
 
@@ -1324,14 +1312,14 @@ function loadDeveloperLogo() {
 
 
 /* =========================================================
-   LOAD PENDING LOGO PREVIEW
+   LOAD PENDING LOGO
 ========================================================= */
 
 function loadPendingLogo() {
 
   const pendingLogo =
     sessionStorage.getItem(
-      "lawangenPendingLogo"
+      "bunerFFPendingLogo"
     );
 
 
@@ -1342,12 +1330,6 @@ function loadPendingLogo() {
 
     developerLogoPreview.src =
       pendingLogo;
-
-
-    showLogoMessage(
-      "Selected logo is waiting for APPLY LOGO.",
-      ""
-    );
 
   }
 
@@ -1369,25 +1351,10 @@ function updateDeveloperControls() {
   if (!manager) return;
 
 
-  /*
-    Your HTML already contains the
-    Developer Logo Manager.
-
-    We do NOT create another picker.
-  */
-
-  if (isDeveloper()) {
-
-    manager.style.display =
-      "block";
-
-  }
-  else {
-
-    manager.style.display =
-      "none";
-
-  }
+  manager.style.display =
+    isDeveloper()
+      ? "block"
+      : "none";
 
 }
 
@@ -1399,18 +1366,12 @@ function updateDeveloperControls() {
 function logout() {
 
   localStorage.removeItem(
-    "lawangenUser"
+    USER_STORAGE_KEY
   );
 
   localStorage.removeItem(
-    "lawangenTestConfig"
+    CONFIG_STORAGE_KEY
   );
-
-
-  /*
-    Keep the saved developer logo.
-    Logging out should NOT delete it.
-  */
 
 
   app?.classList.add(
@@ -1476,7 +1437,7 @@ function loadConfiguration() {
     saved =
       JSON.parse(
         localStorage.getItem(
-          "lawangenTestConfig"
+          CONFIG_STORAGE_KEY
         ) || "null"
       );
 
@@ -1490,15 +1451,12 @@ function loadConfiguration() {
 
   if (!saved) {
 
-    updateRunningValue();
     updateActiveCount();
 
     return;
 
   }
 
-
-  /* ---------- POV ---------- */
 
   if (
     povSlider &&
@@ -1518,8 +1476,6 @@ function loadConfiguration() {
 
   }
 
-
-  /* ---------- SPEED ---------- */
 
   if (
     speedSlider &&
@@ -1542,25 +1498,6 @@ function loadConfiguration() {
   }
 
 
-  /* ---------- RUNNING ---------- */
-
-  if (
-    runningSlider &&
-    typeof saved.runningMultiplier ===
-      "number"
-  ) {
-
-    runningSlider.value =
-      saved.runningMultiplier;
-
-  }
-
-
-  updateRunningValue();
-
-
-  /* ---------- TEST OPTIONS ---------- */
-
   if (
     Array.isArray(
       saved.activeTests
@@ -1571,10 +1508,7 @@ function loadConfiguration() {
       input => {
 
         const name =
-          input.dataset.name ||
-          input.getAttribute(
-            "aria-label"
-          );
+          input.dataset.name;
 
 
         input.checked =
@@ -1599,7 +1533,7 @@ function loadConfiguration() {
 
 const savedUser =
   localStorage.getItem(
-    "lawangenUser"
+    USER_STORAGE_KEY
   );
 
 
@@ -1624,6 +1558,9 @@ if (savedUser) {
     "homeScreen"
   );
 
+
+  checkAPI();
+
 }
 
 
@@ -1632,8 +1569,6 @@ if (savedUser) {
 ========================================================= */
 
 loadConfiguration();
-
-updateRunningValue();
 
 updateActiveCount();
 
@@ -1645,5 +1580,5 @@ updateDeveloperControls();
 
 
 /* =========================================================
-   END
+   END — BUNER-FF
 ========================================================= */
