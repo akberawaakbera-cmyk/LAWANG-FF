@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
   <meta name="theme-color" content="#080a0f">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -19,577 +20,808 @@
 
 <div id="app" class="app">
 
-  <!-- ================================
-       KEY ACTIVATION GATE
-  ================================= -->
+<!-- =====================================================
+     KEY GATE
+===================================================== -->
 
-  <main id="keyGate" class="login-screen">
+<main id="keyGate" class="login-screen">
 
-    <section class="login-box">
+  <section class="login-box">
 
-      <div class="brand-logo">
-        <div class="logo-mark">
-          <img src="./assets/logo.png" alt="BUNER-FF">
-        </div>
+    <div class="brand-logo">
 
-        <div class="brand-name">
-          <h1>BUNER-FF</h1>
-          <span>SECURE DEVELOPER PANEL</span>
-        </div>
+      <div class="logo-mark">
+        <img src="./assets/logo.png" alt="BUNER-FF">
       </div>
 
-      <div class="login-title">
-        <h2>Key Activation</h2>
-        <p>Enter your device activation key</p>
-      </div>
-
-      <label for="activationKey">
-        Activation Key
-      </label>
-
-      <input
-        id="activationKey"
-        type="text"
-        autocomplete="off"
-        autocapitalize="characters"
-        placeholder="XXXX-XXXX-XXXX">
-
-      <button
-        id="activateKeyButton"
-        class="primary-button"
-        type="button">
-        ACTIVATE KEY
-      </button>
-
-      <button
-        id="refreshKeyButton"
-        class="secondary-button"
-        type="button">
-        CHECK KEY STATUS
-      </button>
-
-      <p id="keyMessage" class="message"></p>
-
-    </section>
-
-  </main>
-
-
-  <!-- ================================
-       MAIN APPLICATION
-  ================================= -->
-
-  <div id="mainApp" class="hidden">
-
-    <header class="top-bar">
-
-      <div class="app-brand">
-
-        <div class="small-logo">
-          <img src="./assets/logo.png" alt="BUNER-FF">
-        </div>
-
-        <div>
-          <strong>BUNER-FF</strong>
-          <small>DEVELOPER PANEL</small>
-        </div>
-
-      </div>
-
-      <button
-        id="profileButton"
-        class="round-button"
-        type="button">
-        👤
-      </button>
-
-    </header>
-
-
-    <!-- ================================
-         HOME
-    ================================= -->
-
-    <main id="homeScreen" class="app-screen active">
-
-      <section class="welcome-card">
-
-        <div class="developer-hero-logo">
-          <div class="developer-logo-mark">
-            <img src="./assets/logo.png" alt="BUNER-FF">
-          </div>
-        </div>
-
-        <span class="developer-badge">
-          SECURE TEST ENVIRONMENT
-        </span>
-
+      <div class="brand-name">
         <h1>BUNER-FF</h1>
-
-        <p>
-          Developer and controlled test panel
-        </p>
-
-      </section>
-
-
-      <section class="status-card">
-
-        <div class="status-icon">●</div>
-
-        <div>
-          <strong>System Status</strong>
-          <span id="statusText">Checking...</span>
-        </div>
-
-      </section>
-
-
-      <section class="info-card">
-
-        <div>
-          <span>Worker</span>
-          <strong id="workerHomeStatus">Checking...</strong>
-        </div>
-
-        <div>
-          <span>Database</span>
-          <strong id="databaseStatus">Checking...</strong>
-        </div>
-
-        <div>
-          <span>Key</span>
-          <strong id="keyHomeStatus">Not Activated</strong>
-        </div>
-
-      </section>
-
-
-      <h3 class="section-title">
-        Quick Access
-      </h3>
-
-
-      <div class="home-grid">
-
-        <button class="home-card" data-screen="keyScreen" type="button">
-          <div class="home-icon">🔑</div>
-          <strong>Key</strong>
-          <span>Activation & status</span>
-        </button>
-
-        <button class="home-card" data-screen="activitiesScreen" type="button">
-          <div class="home-icon">📋</div>
-          <strong>Activities</strong>
-          <span>System activity</span>
-        </button>
-
-        <button class="home-card" data-screen="integrityScreen" type="button">
-          <div class="home-icon">🛡️</div>
-          <strong>Tests</strong>
-          <span>Controlled test events</span>
-        </button>
-
-        <button class="home-card" data-screen="apiScreen" type="button">
-          <div class="home-icon">🌐</div>
-          <strong>API</strong>
-          <span>Worker & database</span>
-        </button>
-
+        <span>SECURE DEVELOPER PANEL</span>
       </div>
 
-    </main>
+    </div>
 
+    <div class="login-title">
+      <h2>Key Activation</h2>
+      <p>Enter your device activation key</p>
+    </div>
 
-    <!-- ================================
-         KEY MANAGEMENT
-    ================================= -->
+    <label for="activationKey">Activation Key</label>
 
-    <main id="keyScreen" class="app-screen">
+    <input
+      id="activationKey"
+      type="text"
+      autocomplete="off"
+      autocapitalize="characters"
+      placeholder="BUNER-XXXXXXXXXXXXXXXXXXXXXXXX">
 
-      <div class="page-header">
+    <button
+      id="activateKeyButton"
+      class="primary-button"
+      type="button">
+      ACTIVATE KEY
+    </button>
 
-        <button class="back-button" data-screen="homeScreen" type="button">
-          ‹
-        </button>
+    <button
+      id="refreshKeyButton"
+      class="secondary-button"
+      type="button">
+      CHECK KEY STATUS
+    </button>
 
-        <div>
-          <h1>Key Management</h1>
-          <p>Device activation and key status</p>
-        </div>
+    <p id="keyMessage" class="message"></p>
 
-      </div>
+  </section>
 
+</main>
 
-      <section class="info-card">
 
-        <div>
-          <span>Device ID</span>
-          <strong id="deviceIdText">Generating...</strong>
-        </div>
+<!-- =====================================================
+     MAIN APP
+===================================================== -->
 
-        <div>
-          <span>Key Status</span>
-          <strong id="keyStatusText">Not Activated</strong>
-        </div>
+<div id="mainApp" class="hidden">
 
-        <div>
-          <span>Expiry</span>
-          <strong id="keyExpiryText">—</strong>
-        </div>
+<header class="top-bar">
 
-      </section>
+  <div class="app-brand">
 
+    <div class="small-logo">
+      <img src="./assets/logo.png" alt="BUNER-FF">
+    </div>
 
-      <button
-        id="keyEnableButton"
-        class="primary-button"
-        type="button">
-        ENABLE KEY
-      </button>
-
-      <button
-        id="keyDisableButton"
-        class="danger-button"
-        type="button">
-        DISABLE KEY
-      </button>
-
-      <button
-        id="keyRefreshButton"
-        class="secondary-button"
-        type="button">
-        REFRESH STATUS
-      </button>
-
-      <button
-        id="keyResetButton"
-        class="secondary-button"
-        type="button">
-        RESET DEVICE KEY
-      </button>
-
-      <p id="keyControlMessage" class="message"></p>
-
-    </main>
-
-
-    <!-- ================================
-         ACTIVITIES
-    ================================= -->
-
-    <main id="activitiesScreen" class="app-screen">
-
-      <div class="page-header">
-
-        <button class="back-button" data-screen="homeScreen" type="button">
-          ‹
-        </button>
-
-        <div>
-          <h1>Activities</h1>
-          <p>System activity</p>
-        </div>
-
-      </div>
-
-      <section id="activitiesContainer">
-        <div class="empty-log">
-          No activity yet.
-        </div>
-      </section>
-
-      <button
-        id="clearActivities"
-        class="secondary-button"
-        type="button">
-        CLEAR ACTIVITIES
-      </button>
-
-    </main>
-
-
-    <!-- ================================
-         CONTROLLED TESTS
-    ================================= -->
-
-    <main id="integrityScreen" class="app-screen">
-
-      <div class="page-header">
-
-        <button class="back-button" data-screen="homeScreen" type="button">
-          ‹
-        </button>
-
-        <div>
-          <h1>Controlled Tests</h1>
-          <p>Developer test environment</p>
-        </div>
-
-      </div>
-
-
-      <section class="control-card">
-
-        <div class="control-row">
-          <div>
-            <strong>Headshot Pattern Test</strong>
-            <span>Controlled detection event</span>
-          </div>
-
-          <label class="switch">
-            <input type="checkbox" data-test data-name="Headshot Pattern Test">
-            <span></span>
-          </label>
-        </div>
-
-
-        <div class="control-row">
-          <div>
-            <strong>Enemy Detection Test</strong>
-            <span>Controlled detection simulation</span>
-          </div>
-
-          <label class="switch">
-            <input type="checkbox" data-test data-name="Enemy Detection Test">
-            <span></span>
-          </label>
-        </div>
-
-
-        <div class="control-row">
-          <div>
-            <strong>Visual Detection Test</strong>
-            <span>Controlled visual event</span>
-          </div>
-
-          <label class="switch">
-            <input type="checkbox" data-test data-name="Visual Detection Test">
-            <span></span>
-          </label>
-        </div>
-
-
-        <div class="control-row">
-          <div>
-            <strong>Aim Anomaly Test</strong>
-            <span>Controlled integrity event</span>
-          </div>
-
-          <label class="switch">
-            <input type="checkbox" data-test data-name="Aim Anomaly Test">
-            <span></span>
-          </label>
-        </div>
-
-
-        <div class="control-row">
-          <div>
-            <strong>Speed Anomaly Test</strong>
-            <span>Controlled movement event</span>
-          </div>
-
-          <label class="switch">
-            <input type="checkbox" data-test data-name="Speed Anomaly Test">
-            <span></span>
-          </label>
-        </div>
-
-      </section>
-
-
-      <button
-        id="runAntiCheatTest"
-        class="primary-button"
-        type="button">
-        RUN TEST
-      </button>
-
-      <p id="antiCheatMessage" class="message"></p>
-
-    </main>
-
-
-    <!-- ================================
-         API
-    ================================= -->
-
-    <main id="apiScreen" class="app-screen">
-
-      <div class="page-header">
-
-        <button class="back-button" data-screen="homeScreen" type="button">
-          ‹
-        </button>
-
-        <div>
-          <h1>API</h1>
-          <p>Worker and database connection</p>
-        </div>
-
-      </div>
-
-
-      <section class="control-card">
-
-        <div class="control-row">
-          <div>
-            <strong>Worker</strong>
-            <span id="workerStatus">Checking...</span>
-          </div>
-
-          <span id="workerIndicator">●</span>
-        </div>
-
-
-        <div class="control-row">
-          <div>
-            <strong>Database</strong>
-            <span id="dbStatus">Checking...</span>
-          </div>
-
-          <span>●</span>
-        </div>
-
-      </section>
-
-
-      <section class="info-card">
-
-        <div>
-          <span>Worker</span>
-          <strong>BUNER-FF</strong>
-        </div>
-
-        <div>
-          <span>API</span>
-          <strong>/api/test</strong>
-        </div>
-
-        <div>
-          <span>Database</span>
-          <strong>/api/db-test</strong>
-        </div>
-
-      </section>
-
-
-      <button
-        id="testApiButton"
-        class="primary-button"
-        type="button">
-        CHECK CONNECTION
-      </button>
-
-      <p id="apiMessage" class="message"></p>
-
-    </main>
-
-
-    <!-- ================================
-         SETTINGS
-    ================================= -->
-
-    <main id="settingsScreen" class="app-screen">
-
-      <div class="page-header">
-
-        <button class="back-button" data-screen="homeScreen" type="button">
-          ‹
-        </button>
-
-        <div>
-          <h1>Settings</h1>
-          <p>Application settings</p>
-        </div>
-
-      </div>
-
-
-      <section class="control-card">
-
-        <div class="control-row">
-          <div>
-            <strong>Developer Mode</strong>
-            <span>Developer testing environment</span>
-          </div>
-
-          <label class="switch">
-            <input type="checkbox" checked>
-            <span></span>
-          </label>
-        </div>
-
-
-        <div class="control-row">
-          <div>
-            <strong>Activity Logging</strong>
-            <span>Record local activity</span>
-          </div>
-
-          <label class="switch">
-            <input id="loggingSwitch" type="checkbox" checked>
-            <span></span>
-          </label>
-        </div>
-
-      </section>
-
-    </main>
-
-
-    <!-- ================================
-         NAVIGATION
-    ================================= -->
-
-    <nav class="bottom-navigation">
-
-      <button class="nav-button active" data-screen="homeScreen" type="button">
-        <span>⌂</span>
-        <small>Home</small>
-      </button>
-
-      <button class="nav-button" data-screen="keyScreen" type="button">
-        <span>🔑</span>
-        <small>Key</small>
-      </button>
-
-      <button class="nav-button" data-screen="activitiesScreen" type="button">
-        <span>●</span>
-        <small>Activity</small>
-      </button>
-
-      <button class="nav-button" data-screen="settingsScreen" type="button">
-        <span>⚙</span>
-        <small>Settings</small>
-      </button>
-
-    </nav>
+    <div>
+      <strong>BUNER-FF</strong>
+      <small>DEVELOPER PANEL</small>
+    </div>
 
   </div>
+
+  <button
+    id="profileButton"
+    class="round-button"
+    type="button">
+    👤
+  </button>
+
+</header>
+
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<main id="homeScreen" class="app-screen active">
+
+<section class="welcome-card">
+
+  <div class="developer-hero-logo">
+
+    <div class="developer-logo-mark">
+      <img src="./assets/logo.png" alt="BUNER-FF">
+    </div>
+
+  </div>
+
+  <span class="developer-badge">
+    SECURE TEST ENVIRONMENT
+  </span>
+
+  <h1>BUNER-FF</h1>
+
+  <p>
+    Developer and controlled test panel
+  </p>
+
+</section>
+
+
+<section class="status-card">
+
+  <div class="status-icon">●</div>
+
+  <div>
+    <strong>System Status</strong>
+    <span id="statusText">Checking...</span>
+  </div>
+
+</section>
+
+
+<section class="info-card">
+
+  <div>
+    <span>Worker</span>
+    <strong id="workerHomeStatus">Checking...</strong>
+  </div>
+
+  <div>
+    <span>Database</span>
+    <strong id="databaseStatus">Checking...</strong>
+  </div>
+
+  <div>
+    <span>Key</span>
+    <strong id="keyHomeStatus">Not Activated</strong>
+  </div>
+
+</section>
+
+
+<h3 class="section-title">Quick Access</h3>
+
+
+<div class="home-grid">
+
+  <button
+    class="home-card"
+    data-screen="keyScreen"
+    type="button">
+
+    <div class="home-icon">🔑</div>
+    <strong>Key</strong>
+    <span>Activation & status</span>
+
+  </button>
+
+
+  <button
+    class="home-card"
+    data-screen="adminScreen"
+    type="button">
+
+    <div class="home-icon">🛠️</div>
+    <strong>Admin</strong>
+    <span>Key management</span>
+
+  </button>
+
+
+  <button
+    class="home-card"
+    data-screen="activitiesScreen"
+    type="button">
+
+    <div class="home-icon">📋</div>
+    <strong>Activities</strong>
+    <span>System activity</span>
+
+  </button>
+
+
+  <button
+    class="home-card"
+    data-screen="integrityScreen"
+    type="button">
+
+    <div class="home-icon">🛡️</div>
+    <strong>Tests</strong>
+    <span>Controlled test events</span>
+
+  </button>
+
+
+  <button
+    class="home-card"
+    data-screen="apiScreen"
+    type="button">
+
+    <div class="home-icon">🌐</div>
+    <strong>API</strong>
+    <span>Worker & database</span>
+
+  </button>
+
+
+  <button
+    class="home-card"
+    data-screen="settingsScreen"
+    type="button">
+
+    <div class="home-icon">⚙️</div>
+    <strong>Settings</strong>
+    <span>Application settings</span>
+
+  </button>
+
+</div>
+
+</main>
+
+
+<!-- =====================================================
+     KEY SCREEN
+===================================================== -->
+
+<main id="keyScreen" class="app-screen">
+
+<div class="page-header">
+
+  <button
+    class="back-button"
+    data-screen="homeScreen"
+    type="button">
+    ‹
+  </button>
+
+  <div>
+    <h1>Key Management</h1>
+    <p>Device activation and key status</p>
+  </div>
+
+</div>
+
+
+<section class="info-card">
+
+  <div>
+    <span>Device ID</span>
+    <strong id="deviceIdText">Generating...</strong>
+  </div>
+
+  <div>
+    <span>Key Status</span>
+    <strong id="keyStatusText">Not Activated</strong>
+  </div>
+
+  <div>
+    <span>Expiry</span>
+    <strong id="keyExpiryText">—</strong>
+  </div>
+
+</section>
+
+
+<button
+  id="keyRefreshButton"
+  class="secondary-button"
+  type="button">
+  REFRESH STATUS
+</button>
+
+<p id="keyControlMessage" class="message"></p>
+
+</main>
+
+
+<!-- =====================================================
+     ADMIN
+===================================================== -->
+
+<main id="adminScreen" class="app-screen">
+
+<div class="page-header">
+
+  <button
+    class="back-button"
+    data-screen="homeScreen"
+    type="button">
+    ‹
+  </button>
+
+  <div>
+    <h1>Admin Panel</h1>
+    <p>Secure key administration</p>
+  </div>
+
+</div>
+
+
+<section class="control-card">
+
+  <label for="adminToken">
+    Admin Token
+  </label>
+
+  <input
+    id="adminToken"
+    type="password"
+    autocomplete="off"
+    placeholder="Enter ADMIN_TOKEN">
+
+  <button
+    id="saveAdminToken"
+    class="secondary-button"
+    type="button">
+    SAVE ADMIN TOKEN
+  </button>
+
+</section>
+
+
+<section class="control-card">
+
+  <h3>Generate Activation Key</h3>
+
+  <label for="keyDays">
+    Validity in days
+  </label>
+
+  <input
+    id="keyDays"
+    type="number"
+    min="1"
+    max="3650"
+    value="30">
+
+  <button
+    id="generateKeyButton"
+    class="primary-button"
+    type="button">
+    GENERATE KEY
+  </button>
+
+  <p id="adminMessage" class="message"></p>
+
+</section>
+
+
+<section class="control-card">
+
+  <h3>Activation Keys</h3>
+
+  <button
+    id="loadAdminKeys"
+    class="secondary-button"
+    type="button">
+    REFRESH KEYS
+  </button>
+
+  <div id="adminKeysContainer">
+    <div class="empty-log">
+      No keys loaded.
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     ACTIVITIES
+===================================================== -->
+
+<main id="activitiesScreen" class="app-screen">
+
+<div class="page-header">
+
+  <button
+    class="back-button"
+    data-screen="homeScreen"
+    type="button">
+    ‹
+  </button>
+
+  <div>
+    <h1>Activities</h1>
+    <p>System activity</p>
+  </div>
+
+</div>
+
+
+<section id="activitiesContainer">
+
+  <div class="empty-log">
+    No activity yet.
+  </div>
+
+</section>
+
+
+<button
+  id="clearActivities"
+  class="secondary-button"
+  type="button">
+  CLEAR ACTIVITIES
+</button>
+
+</main>
+
+
+<!-- =====================================================
+     CONTROLLED TESTS
+===================================================== -->
+
+<main id="integrityScreen" class="app-screen">
+
+<div class="page-header">
+
+  <button
+    class="back-button"
+    data-screen="homeScreen"
+    type="button">
+    ‹
+  </button>
+
+  <div>
+    <h1>Controlled Tests</h1>
+    <p>Developer test environment</p>
+  </div>
+
+</div>
+
+
+<section class="control-card">
+
+  <div class="control-row">
+
+    <div>
+      <strong>Headshot Pattern Test</strong>
+      <span>Controlled detection event</span>
+    </div>
+
+    <label class="switch">
+      <input
+        type="checkbox"
+        data-test
+        data-name="Headshot Pattern Test">
+      <span></span>
+    </label>
+
+  </div>
+
+
+  <div class="control-row">
+
+    <div>
+      <strong>Enemy Detection Test</strong>
+      <span>Controlled detection simulation</span>
+    </div>
+
+    <label class="switch">
+      <input
+        type="checkbox"
+        data-test
+        data-name="Enemy Detection Test">
+      <span></span>
+    </label>
+
+  </div>
+
+
+  <div class="control-row">
+
+    <div>
+      <strong>Visual Detection Test</strong>
+      <span>Controlled visual event</span>
+    </div>
+
+    <label class="switch">
+      <input
+        type="checkbox"
+        data-test
+        data-name="Visual Detection Test">
+      <span></span>
+    </label>
+
+  </div>
+
+
+  <div class="control-row">
+
+    <div>
+      <strong>Aim Anomaly Test</strong>
+      <span>Controlled integrity event</span>
+    </div>
+
+    <label class="switch">
+      <input
+        type="checkbox"
+        data-test
+        data-name="Aim Anomaly Test">
+      <span></span>
+    </label>
+
+  </div>
+
+
+  <div class="control-row">
+
+    <div>
+      <strong>Speed Anomaly Test</strong>
+      <span>Controlled movement event</span>
+    </div>
+
+    <label class="switch">
+      <input
+        type="checkbox"
+        data-test
+        data-name="Speed Anomaly Test">
+      <span></span>
+    </label>
+
+  </div>
+
+</section>
+
+
+<button
+  id="runAntiCheatTest"
+  class="primary-button"
+  type="button">
+  RUN TEST
+</button>
+
+<p id="antiCheatMessage" class="message"></p>
+
+</main>
+
+
+<!-- =====================================================
+     API
+===================================================== -->
+
+<main id="apiScreen" class="app-screen">
+
+<div class="page-header">
+
+  <button
+    class="back-button"
+    data-screen="homeScreen"
+    type="button">
+    ‹
+  </button>
+
+  <div>
+    <h1>API</h1>
+    <p>Worker and database connection</p>
+  </div>
+
+</div>
+
+
+<section class="control-card">
+
+  <div class="control-row">
+
+    <div>
+      <strong>Worker</strong>
+      <span id="workerStatus">Checking...</span>
+    </div>
+
+    <span id="workerIndicator">●</span>
+
+  </div>
+
+
+  <div class="control-row">
+
+    <div>
+      <strong>Database</strong>
+      <span id="dbStatus">Checking...</span>
+    </div>
+
+    <span id="dbIndicator">●</span>
+
+  </div>
+
+</section>
+
+
+<section class="info-card">
+
+  <div>
+    <span>Worker</span>
+    <strong>BUNER-FF</strong>
+  </div>
+
+  <div>
+    <span>API</span>
+    <strong>/api/test</strong>
+  </div>
+
+  <div>
+    <span>Database</span>
+    <strong>/api/db-test</strong>
+  </div>
+
+</section>
+
+
+<button
+  id="testApiButton"
+  class="primary-button"
+  type="button">
+  CHECK CONNECTION
+</button>
+
+<p id="apiMessage" class="message"></p>
+
+</main>
+
+
+<!-- =====================================================
+     SETTINGS
+===================================================== -->
+
+<main id="settingsScreen" class="app-screen">
+
+<div class="page-header">
+
+  <button
+    class="back-button"
+    data-screen="homeScreen"
+    type="button">
+    ‹
+  </button>
+
+  <div>
+    <h1>Settings</h1>
+    <p>Application settings</p>
+  </div>
+
+</div>
+
+
+<section class="control-card">
+
+  <div class="control-row">
+
+    <div>
+      <strong>Developer Mode</strong>
+      <span>Developer testing environment</span>
+    </div>
+
+    <label class="switch">
+
+      <input
+        id="developerModeSwitch"
+        type="checkbox"
+        checked>
+
+      <span></span>
+
+    </label>
+
+  </div>
+
+
+  <div class="control-row">
+
+    <div>
+      <strong>Activity Logging</strong>
+      <span>Record local activity</span>
+    </div>
+
+    <label class="switch">
+
+      <input
+        id="loggingSwitch"
+        type="checkbox"
+        checked>
+
+      <span></span>
+
+    </label>
+
+  </div>
+
+</section>
+
+
+<section class="control-card">
+
+  <h3>Device</h3>
+
+  <p id="settingsDeviceId">
+    —
+  </p>
+
+  <button
+    id="clearLocalKey"
+    class="danger-button"
+    type="button">
+    CLEAR LOCAL KEY
+  </button>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="bottom-navigation">
+
+<button
+  class="nav-button active"
+  data-screen="homeScreen"
+  type="button">
+
+  <span>⌂</span>
+  <small>Home</small>
+
+</button>
+
+
+<button
+  class="nav-button"
+  data-screen="keyScreen"
+  type="button">
+
+  <span>🔑</span>
+  <small>Key</small>
+
+</button>
+
+
+<button
+  class="nav-button"
+  data-screen="adminScreen"
+  type="button">
+
+  <span>🛠️</span>
+  <small>Admin</small>
+
+</button>
+
+
+<button
+  class="nav-button"
+  data-screen="settingsScreen"
+  type="button">
+
+  <span>⚙</span>
+  <small>Settings</small>
+
+</button>
+
+</nav>
+
+</div>
 
 </div>
 
 
 <script>
 
+/* =====================================================
+   CONFIG
+===================================================== */
+
 const API_BASE =
   "https://buner-ff.akberawaakbera.workers.dev";
 
 
-/* =========================================
+/* =====================================================
    DEVICE ID
-========================================= */
+===================================================== */
 
 function getDeviceId() {
 
   let id =
-    localStorage.getItem("bunerFFDeviceId");
+    localStorage.getItem(
+      "bunerFFDeviceId"
+    );
 
   if (!id) {
 
     if (
-      crypto &&
+      window.crypto &&
       crypto.randomUUID
     ) {
 
@@ -621,6 +853,7 @@ function getDeviceId() {
   }
 
   return id;
+
 }
 
 
@@ -634,9 +867,15 @@ document.getElementById(
   DEVICE_ID;
 
 
-/* =========================================
-   LOCAL KEY CACHE
-========================================= */
+document.getElementById(
+  "settingsDeviceId"
+).textContent =
+  DEVICE_ID;
+
+
+/* =====================================================
+   LOCAL KEY
+===================================================== */
 
 function getKeyState() {
 
@@ -676,11 +915,96 @@ function clearKeyState() {
 }
 
 
-/* =========================================
-   KEY UI
-========================================= */
+/* =====================================================
+   ADMIN TOKEN
+===================================================== */
 
-function updateKeyUI(data = null) {
+function getAdminToken() {
+
+  return localStorage.getItem(
+    "bunerFFAdminToken"
+  ) || "";
+
+}
+
+
+function saveAdminToken() {
+
+  const input =
+    document.getElementById(
+      "adminToken"
+    );
+
+  const token =
+    input.value.trim();
+
+  if (!token) {
+
+    showAdminMessage(
+      "Please enter ADMIN_TOKEN.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  localStorage.setItem(
+    "bunerFFAdminToken",
+    token
+  );
+
+  showAdminMessage(
+    "Admin token saved.",
+    "success"
+  );
+
+  addActivity(
+    "Admin token configured"
+  );
+
+}
+
+
+function loadAdminToken() {
+
+  const token =
+    getAdminToken();
+
+  document.getElementById(
+    "adminToken"
+  ).value =
+    token;
+
+}
+
+
+/* =====================================================
+   UI HELPERS
+===================================================== */
+
+function showAdminMessage(
+  text,
+  type = ""
+) {
+
+  const element =
+    document.getElementById(
+      "adminMessage"
+    );
+
+  element.textContent =
+    text;
+
+  element.className =
+    "message " + type;
+
+}
+
+
+function updateKeyUI(
+  data = null
+) {
 
   const key =
     data || getKeyState();
@@ -721,34 +1045,16 @@ function updateKeyUI(data = null) {
     key.status || "active";
 
 
-  if (
-    keyStatus !== "active"
-  ) {
-
-    status.textContent =
-      keyStatus.toUpperCase();
-
-    expiry.textContent =
-      key.expires_at ||
-      key.expiresAt ||
-      "—";
-
-    home.textContent =
-      keyStatus.toUpperCase();
-
-    return false;
-
-  }
-
-
   const expires =
     key.expires_at ||
-    key.expiresAt ||
     null;
 
 
   if (
     expires &&
+    Number.isFinite(
+      new Date(expires).getTime()
+    ) &&
     Date.now() >=
     new Date(expires).getTime()
   ) {
@@ -768,22 +1074,22 @@ function updateKeyUI(data = null) {
 
 
   status.textContent =
-    "ACTIVE";
+    keyStatus.toUpperCase();
 
   expiry.textContent =
     expires || "No expiry";
 
   home.textContent =
-    "ACTIVE";
+    keyStatus.toUpperCase();
 
-  return true;
+  return keyStatus === "active";
 
 }
 
 
-/* =========================================
+/* =====================================================
    ACTIVITIES
-========================================= */
+===================================================== */
 
 const activitiesContainer =
   document.getElementById(
@@ -806,11 +1112,6 @@ function addActivity(text) {
   }
 
 
-  if (!activitiesContainer) {
-    return;
-  }
-
-
   const empty =
     activitiesContainer.querySelector(
       ".empty-log"
@@ -822,21 +1123,27 @@ function addActivity(text) {
 
 
   const item =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
   item.className =
     "log-item";
 
 
   const strong =
-    document.createElement("strong");
+    document.createElement(
+      "strong"
+    );
 
   strong.textContent =
     text;
 
 
   const small =
-    document.createElement("small");
+    document.createElement(
+      "small"
+    );
 
   small.textContent =
     new Date().toLocaleString();
@@ -850,14 +1157,15 @@ function addActivity(text) {
 }
 
 
-/* =========================================
+/* =====================================================
    NAVIGATION
-========================================= */
+===================================================== */
 
 const screens =
   document.querySelectorAll(
     ".app-screen"
   );
+
 
 const navigationButtons =
   document.querySelectorAll(
@@ -867,61 +1175,75 @@ const navigationButtons =
 
 function openScreen(id) {
 
-  screens.forEach(screen => {
+  screens.forEach(
+    screen => {
 
-    screen.classList.toggle(
-      "active",
-      screen.id === id
-    );
-
-  });
-
-
-  navigationButtons.forEach(button => {
-
-    button.classList.toggle(
-      "active",
-      button.dataset.screen === id
-    );
-
-  });
-
-
-  window.scrollTo(0, 0);
-
-}
-
-
-navigationButtons.forEach(button => {
-
-  button.addEventListener(
-    "click",
-    () => {
-
-      const id =
-        button.dataset.screen;
-
-      if (id) {
-        openScreen(id);
-      }
+      screen.classList.toggle(
+        "active",
+        screen.id === id
+      );
 
     }
   );
 
-});
 
+  navigationButtons.forEach(
+    button => {
 
-document
-  .getElementById("profileButton")
-  ?.addEventListener(
-    "click",
-    () => openScreen("settingsScreen")
+      button.classList.toggle(
+        "active",
+        button.dataset.screen === id
+      );
+
+    }
   );
 
 
-/* =========================================
-   CONNECTION CHECK
-========================================= */
+  window.scrollTo(
+    0,
+    0
+  );
+
+}
+
+
+navigationButtons.forEach(
+  button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        const id =
+          button.dataset.screen;
+
+        if (id) {
+          openScreen(id);
+        }
+
+      }
+    );
+
+  }
+);
+
+
+document
+  .getElementById(
+    "profileButton"
+  )
+  ?.addEventListener(
+    "click",
+    () =>
+      openScreen(
+        "settingsScreen"
+      )
+  );
+
+
+/* =====================================================
+   WORKER + DATABASE
+===================================================== */
 
 async function checkConnection() {
 
@@ -1055,16 +1377,18 @@ async function checkConnection() {
     status.textContent =
       "CONNECTION ERROR";
 
-    console.error(error);
+    console.error(
+      error
+    );
 
   }
 
 }
 
 
-/* =========================================
+/* =====================================================
    ACTIVATE KEY
-========================================= */
+===================================================== */
 
 async function activateKey() {
 
@@ -1077,6 +1401,7 @@ async function activateKey() {
     document.getElementById(
       "keyMessage"
     );
+
 
   const key =
     input.value.trim();
@@ -1116,15 +1441,17 @@ async function activateKey() {
               "application/json"
           },
 
-          body: JSON.stringify({
+          body:
+            JSON.stringify({
 
-            key:
-              key,
+              key_code:
+                key,
 
-            device_id:
-              DEVICE_ID
+              device_id:
+                DEVICE_ID
 
-          })
+            })
+
         }
       );
 
@@ -1140,7 +1467,7 @@ async function activateKey() {
 
       throw new Error(
         data.error ||
-        "Key activation failed"
+        "Key activation failed."
       );
 
     }
@@ -1149,10 +1476,15 @@ async function activateKey() {
     const keyState = {
 
       key:
+        data.key?.key_code ||
         key,
 
       device_id:
         DEVICE_ID,
+
+      id:
+        data.key?.id ||
+        null,
 
       status:
         data.status ||
@@ -1160,6 +1492,7 @@ async function activateKey() {
 
       expires_at:
         data.expires_at ||
+        data.key?.expires_at ||
         null
 
     };
@@ -1188,12 +1521,21 @@ async function activateKey() {
 
 
     document
-      .getElementById("mainApp")
-      .classList.remove("hidden");
+      .getElementById(
+        "mainApp"
+      )
+      .classList.remove(
+        "hidden"
+      );
+
 
     document
-      .getElementById("keyGate")
-      .classList.add("hidden");
+      .getElementById(
+        "keyGate"
+      )
+      .classList.add(
+        "hidden"
+      );
 
 
     checkConnection();
@@ -1213,9 +1555,9 @@ async function activateKey() {
 }
 
 
-/* =========================================
-   REFRESH KEY STATUS
-========================================= */
+/* =====================================================
+   KEY STATUS
+===================================================== */
 
 async function refreshKey() {
 
@@ -1246,15 +1588,17 @@ async function refreshKey() {
               "application/json"
           },
 
-          body: JSON.stringify({
+          body:
+            JSON.stringify({
 
-            key:
-              stored.key,
+              key_code:
+                stored.key,
 
-            device_id:
-              DEVICE_ID
+              device_id:
+                DEVICE_ID
 
-          })
+            })
+
         }
       );
 
@@ -1273,12 +1617,20 @@ async function refreshKey() {
       updateKeyUI();
 
       document
-        .getElementById("mainApp")
-        .classList.add("hidden");
+        .getElementById(
+          "mainApp"
+        )
+        .classList.add(
+          "hidden"
+        );
 
       document
-        .getElementById("keyGate")
-        .classList.remove("hidden");
+        .getElementById(
+          "keyGate"
+        )
+        .classList.remove(
+          "hidden"
+        );
 
       return;
 
@@ -1312,16 +1664,25 @@ async function refreshKey() {
 
 
     if (
-      data.status !== "active"
+      data.status !==
+      "active"
     ) {
 
       document
-        .getElementById("mainApp")
-        .classList.add("hidden");
+        .getElementById(
+          "mainApp"
+        )
+        .classList.add(
+          "hidden"
+        );
 
       document
-        .getElementById("keyGate")
-        .classList.remove("hidden");
+        .getElementById(
+          "keyGate"
+        )
+        .classList.remove(
+          "hidden"
+        );
 
     }
 
@@ -1344,223 +1705,319 @@ async function refreshKey() {
 }
 
 
-/* =========================================
-   ENABLE / DISABLE KEY
-========================================= */
+/* =====================================================
+   ADMIN REQUEST
+===================================================== */
 
-async function changeKeyStatus(
-  status
+async function adminRequest(
+  path,
+  options = {}
 ) {
 
-  const stored =
-    getKeyState();
+  const token =
+    getAdminToken();
 
-  if (!stored) {
-    return;
+
+  if (!token) {
+
+    throw new Error(
+      "ADMIN_TOKEN is not configured."
+    );
+
   }
 
 
-  const message =
-    document.getElementById(
-      "keyControlMessage"
+  const headers = {
+
+    ...(options.headers || {}),
+
+    "Authorization":
+      `Bearer ${token}`,
+
+    "Content-Type":
+      "application/json"
+
+  };
+
+
+  const response =
+    await fetch(
+      API_BASE + path,
+      {
+        ...options,
+        headers
+      }
     );
+
+
+  const data =
+    await response
+      .json()
+      .catch(
+        () => ({})
+      );
+
+
+  if (!response.ok) {
+
+    throw new Error(
+      data.error ||
+      `Request failed (${response.status})`
+    );
+
+  }
+
+
+  return data;
+
+}
+
+
+/* =====================================================
+   ADMIN: LIST KEYS
+===================================================== */
+
+async function loadAdminKeys() {
+
+  const container =
+    document.getElementById(
+      "adminKeysContainer"
+    );
+
+
+  container.innerHTML =
+    `<div class="empty-log">Loading...</div>`;
 
 
   try {
 
-    const response =
-      await fetch(
-        API_BASE +
-        "/api/keys/status",
+    const data =
+      await adminRequest(
+        "/api/admin/keys",
         {
-          method: "PUT",
-
-          headers: {
-            "Content-Type":
-              "application/json"
-          },
-
-          body: JSON.stringify({
-
-            key:
-              stored.key,
-
-            device_id:
-              DEVICE_ID,
-
-            status:
-              status
-
-          })
+          method: "GET"
         }
       );
 
 
-    const data =
-      await response.json();
+    const keys =
+      data.keys || [];
 
 
-    if (
-      !response.ok ||
-      !data.success
-    ) {
+    if (!keys.length) {
 
-      throw new Error(
-        data.error ||
-        "Unable to update key"
-      );
+      container.innerHTML =
+        `<div class="empty-log">No keys found.</div>`;
+
+      return;
 
     }
 
 
-    const updated = {
-
-      ...stored,
-
-      status:
-        status
-
-    };
+    container.innerHTML = "";
 
 
-    saveKeyState(
-      updated
+    keys.forEach(
+      key => {
+
+        const card =
+          document.createElement(
+            "div"
+          );
+
+        card.className =
+          "log-item";
+
+
+        const title =
+          document.createElement(
+            "strong"
+          );
+
+        title.textContent =
+          key.key_code;
+
+
+        const details =
+          document.createElement(
+            "small"
+          );
+
+        details.textContent =
+          `ID: ${key.id} • Status: ${key.status} • Device: ${key.device_id || "Not bound"}`;
+
+
+        const expiry =
+          document.createElement(
+            "small"
+          );
+
+        expiry.textContent =
+          `Expiry: ${key.expires_at || "No expiry"}`;
+
+
+        const enable =
+          document.createElement(
+            "button"
+          );
+
+        enable.className =
+          "secondary-button";
+
+        enable.textContent =
+          "ENABLE";
+
+        enable.onclick =
+          () =>
+            adminChangeStatus(
+              key.id,
+              "active"
+            );
+
+
+        const disable =
+          document.createElement(
+            "button"
+          );
+
+        disable.className =
+          "danger-button";
+
+        disable.textContent =
+          "DISABLE";
+
+        disable.onclick =
+          () =>
+            adminChangeStatus(
+              key.id,
+              "disabled"
+            );
+
+
+        const reset =
+          document.createElement(
+            "button"
+          );
+
+        reset.className =
+          "secondary-button";
+
+        reset.textContent =
+          "RESET DEVICE";
+
+        reset.onclick =
+          () =>
+            adminResetDevice(
+              key.id
+            );
+
+
+        card.appendChild(title);
+        card.appendChild(details);
+        card.appendChild(expiry);
+        card.appendChild(enable);
+        card.appendChild(disable);
+        card.appendChild(reset);
+
+        container.appendChild(card);
+
+      }
     );
-
-
-    updateKeyUI(
-      updated
-    );
-
-
-    message.textContent =
-      status === "active"
-        ? "Key enabled."
-        : "Key disabled.";
-
-    message.className =
-      "message success";
 
 
     addActivity(
-      status === "active"
-        ? "Key enabled"
-        : "Key disabled"
+      "Admin key list refreshed"
     );
-
-
-    if (
-      status !== "active"
-    ) {
-
-      document
-        .getElementById("mainApp")
-        .classList.add("hidden");
-
-      document
-        .getElementById("keyGate")
-        .classList.remove("hidden");
-
-    }
 
   }
 
   catch (error) {
 
-    message.textContent =
-      error.message;
+    container.innerHTML =
+      `<div class="empty-log">${error.message}</div>`;
 
-    message.className =
-      "message error";
+    showAdminMessage(
+      error.message,
+      "error"
+    );
 
   }
 
 }
 
 
-/* =========================================
-   RESET DEVICE KEY
-========================================= */
+/* =====================================================
+   ADMIN: GENERATE KEY
+===================================================== */
 
-async function resetKey() {
+async function generateKey() {
 
-  const stored =
-    getKeyState();
+  const days =
+    Number(
+      document.getElementById(
+        "keyDays"
+      ).value
+    );
 
-  if (!stored) {
+
+  if (
+    !Number.isFinite(days) ||
+    days < 1 ||
+    days > 3650
+  ) {
+
+    showAdminMessage(
+      "Days must be between 1 and 3650.",
+      "error"
+    );
+
     return;
+
   }
 
 
   try {
 
-    const response =
-      await fetch(
-        API_BASE +
-        "/api/keys/reset",
+    const data =
+      await adminRequest(
+        "/api/admin/keys/generate",
         {
           method: "POST",
 
-          headers: {
-            "Content-Type":
-              "application/json"
-          },
+          body:
+            JSON.stringify({
+              days
+            })
 
-          body: JSON.stringify({
-
-            key:
-              stored.key,
-
-            device_id:
-              DEVICE_ID
-
-          })
         }
       );
 
 
-    const data =
-      await response.json();
+    const generated =
+      data.key?.key_code ||
+      "Generated";
 
 
-    if (
-      !response.ok ||
-      !data.success
-    ) {
-
-      throw new Error(
-        data.error ||
-        "Unable to reset key"
-      );
-
-    }
-
-
-    clearKeyState();
-
-    updateKeyUI();
-
-
-    addActivity(
-      "Device key reset"
+    showAdminMessage(
+      `Key generated: ${generated}`,
+      "success"
     );
 
 
-    document
-      .getElementById("mainApp")
-      .classList.add("hidden");
+    addActivity(
+      "New activation key generated"
+    );
 
-    document
-      .getElementById("keyGate")
-      .classList.remove("hidden");
+
+    await loadAdminKeys();
 
   }
 
   catch (error) {
 
-    console.error(
-      "RESET KEY ERROR:",
-      error
+    showAdminMessage(
+      error.message,
+      "error"
     );
 
   }
@@ -1568,9 +2025,106 @@ async function resetKey() {
 }
 
 
-/* =========================================
-   BUTTON EVENTS
-========================================= */
+/* =====================================================
+   ADMIN: CHANGE STATUS
+===================================================== */
+
+async function adminChangeStatus(
+  id,
+  status
+) {
+
+  try {
+
+    await adminRequest(
+      `/api/admin/keys/${id}/status`,
+      {
+        method: "PUT",
+
+        body:
+          JSON.stringify({
+            status
+          })
+
+      }
+    );
+
+
+    showAdminMessage(
+      `Key ${status}.`,
+      "success"
+    );
+
+
+    addActivity(
+      `Admin changed key ${id} to ${status}`
+    );
+
+
+    await loadAdminKeys();
+
+  }
+
+  catch (error) {
+
+    showAdminMessage(
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   ADMIN: RESET DEVICE
+===================================================== */
+
+async function adminResetDevice(
+  id
+) {
+
+  try {
+
+    await adminRequest(
+      `/api/admin/keys/${id}/reset`,
+      {
+        method: "POST"
+      }
+    );
+
+
+    showAdminMessage(
+      "Device binding reset.",
+      "success"
+    );
+
+
+    addActivity(
+      `Admin reset device for key ${id}`
+    );
+
+
+    await loadAdminKeys();
+
+  }
+
+  catch (error) {
+
+    showAdminMessage(
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 document
   .getElementById(
@@ -1604,69 +2158,79 @@ document
 
 document
   .getElementById(
-    "keyEnableButton"
+    "saveAdminToken"
   )
   ?.addEventListener(
     "click",
-    () =>
-      changeKeyStatus("active")
+    saveAdminToken
   );
 
 
 document
   .getElementById(
-    "keyDisableButton"
+    "generateKeyButton"
   )
   ?.addEventListener(
     "click",
-    () =>
-      changeKeyStatus("disabled")
+    generateKey
   );
 
 
 document
   .getElementById(
-    "keyResetButton"
+    "loadAdminKeys"
   )
   ?.addEventListener(
     "click",
-    resetKey
+    loadAdminKeys
   );
 
 
-/* =========================================
-   CONTROLLED TEST EVENTS
-========================================= */
+document
+  .getElementById(
+    "testApiButton"
+  )
+  ?.addEventListener(
+    "click",
+    checkConnection
+  );
+
+
+/* =====================================================
+   CONTROLLED TESTS
+===================================================== */
 
 document
   .querySelectorAll(
     "input[data-test]"
   )
-  .forEach(input => {
+  .forEach(
+    input => {
 
-    input.addEventListener(
-      "change",
-      () => {
+      input.addEventListener(
+        "change",
+        () => {
 
-        const name =
-          input.dataset.name ||
-          "Test";
+          const name =
+            input.dataset.name ||
+            "Test";
 
 
-        addActivity(
-          name +
-          ": " +
-          (
-            input.checked
-              ? "ENABLED"
-              : "DISABLED"
-          )
-        );
+          addActivity(
+            name +
+            ": " +
+            (
+              input.checked
+                ? "ENABLED"
+                : "DISABLED"
+            )
+          );
 
-      }
-    );
+        }
+      );
 
-  });
+    }
+  );
 
 
 document
@@ -1731,9 +2295,9 @@ document
   );
 
 
-/* =========================================
+/* =====================================================
    CLEAR ACTIVITIES
-========================================= */
+===================================================== */
 
 document
   .getElementById(
@@ -1743,39 +2307,72 @@ document
     "click",
     () => {
 
-      activitiesContainer.innerHTML = `
-        <div class="empty-log">
-          No activity yet.
-        </div>
-      `;
+      activitiesContainer.innerHTML =
+        `
+          <div class="empty-log">
+            No activity yet.
+          </div>
+        `;
 
     }
   );
 
 
-/* =========================================
-   API BUTTON
-========================================= */
+/* =====================================================
+   CLEAR LOCAL KEY
+===================================================== */
 
 document
   .getElementById(
-    "testApiButton"
+    "clearLocalKey"
   )
   ?.addEventListener(
     "click",
-    checkConnection
+    () => {
+
+      clearKeyState();
+
+      updateKeyUI();
+
+
+      document
+        .getElementById(
+          "mainApp"
+        )
+        .classList.add(
+          "hidden"
+        );
+
+
+      document
+        .getElementById(
+          "keyGate"
+        )
+        .classList.remove(
+          "hidden"
+        );
+
+
+      addActivity(
+        "Local activation key cleared"
+      );
+
+    }
   );
 
 
-/* =========================================
+/* =====================================================
    STARTUP
-========================================= */
+===================================================== */
 
 window.addEventListener(
   "load",
   async () => {
 
+    loadAdminToken();
+
     updateKeyUI();
+
 
     const stored =
       getKeyState();
@@ -1785,21 +2382,32 @@ window.addEventListener(
 
       await refreshKey();
 
+
       if (updateKeyUI()) {
 
         document
-          .getElementById("mainApp")
-          .classList.remove("hidden");
+          .getElementById(
+            "mainApp"
+          )
+          .classList.remove(
+            "hidden"
+          );
+
 
         document
-          .getElementById("keyGate")
-          .classList.add("hidden");
-
-        checkConnection();
+          .getElementById(
+            "keyGate"
+          )
+          .classList.add(
+            "hidden"
+          );
 
       }
 
     }
+
+
+    checkConnection();
 
   }
 );
@@ -1809,7 +2417,13 @@ window.addEventListener(
 
 <script>
 
-if ("serviceWorker" in navigator) {
+/* =====================================================
+   SERVICE WORKER
+===================================================== */
+
+if (
+  "serviceWorker" in navigator
+) {
 
   window.addEventListener(
     "load",
