@@ -21,25 +21,9 @@ export default {
       });
     }
 
-    // =====================================================
-    // API TEST
-    // =====================================================
-
-    if (
-      url.pathname === "/api/test" &&
-      request.method === "GET"
-    ) {
-      return json({
-        success: true,
-        message: "API is working",
-        project: "BUNER-FF",
-        timestamp: new Date().toISOString()
-      });
-    }
-
-    // =====================================================
+    // =========================
     // HEALTH
-    // =====================================================
+    // =========================
 
     if (
       url.pathname === "/api/health" &&
@@ -52,9 +36,9 @@ export default {
       });
     }
 
-    // =====================================================
+    // =========================
     // DATABASE TEST
-    // =====================================================
+    // =========================
 
     if (
       url.pathname === "/api/db-test" &&
@@ -69,14 +53,13 @@ export default {
       }
 
       try {
-        const result = await env.DB
+        await env.DB
           .prepare("SELECT 1 AS connected")
           .first();
 
         return json({
           success: true,
-          database: "connected",
-          result
+          database: "connected"
         });
 
       } catch (error) {
@@ -88,9 +71,25 @@ export default {
       }
     }
 
-    // =====================================================
+    // =========================
+    // API TEST
+    // =========================
+
+    if (
+      url.pathname === "/api/test" &&
+      request.method === "GET"
+    ) {
+      return json({
+        success: true,
+        message: "API is working",
+        project: "BUNER-FF",
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    // =========================
     // KEY ACTIVATION
-    // =====================================================
+    // =========================
 
     if (
       url.pathname === "/api/keys/activate" &&
@@ -107,172 +106,16 @@ export default {
         const body = await request.json();
 
         const keyCode =
-          typeof body.key_code === "string"
-            ? body.key_code.trim()
-            : "";
+          String(body.key_code || "").trim();
 
         const deviceId =
-          typeof body.device_id === "string"
-            ? body.device_id.trim()
-            : "";
-
-        if (!keyCode) {
-          return json({
-            success: false,
-            error: "Key is required."
-          }, 400);
-        }
-
-        if (!deviceId) {
-          return json({
-            success: false,
-            error: "Device ID is required."
-          }, 400);
-        }
-
-        // Find key
-        const key = await env.DB
-          .prepare(`
-            SELECT
-              id,
-              key_code,
-              device_id,
-              status,
-              expires_at,
-              created_at,
-              last_used_at
-            FROM keys
-            WHERE key_code = ?
-            LIMIT 1
-          `)
-          .bind(keyCode)
-          .first();
-
-        if (!key) {
-          return json({
-            success: false,
-            error: "Invalid key."
-          }, 401);
-        }
-
-        // Check status
-        if (key.status !== "active") {
-          return json({
-            success: false,
-            error: "This key is disabled."
-          }, 403);
-        }
-
-        // Check expiry
-        if (key.expires_at) {
-          const expiry =
-            new Date(key.expires_at);
-
-          if (
-            Number.isNaN(expiry.getTime()) ||
-            expiry.getTime() <= Date.now()
-          ) {
-            await env.DB
-              .prepare(`
-                UPDATE keys
-                SET status = 'expired'
-                WHERE id = ?
-              `)
-              .bind(key.id)
-              .run();
-
-            return json({
-              success: false,
-              error: "This key has expired."
-            }, 403);
-          }
-        }
-
-        // Device binding check
-        if (
-          key.device_id &&
-          key.device_id !== deviceId
-        ) {
-          return json({
-            success: false,
-            error: "This key is already activated on another device."
-          }, 403);
-        }
-
-        // First activation = bind device
-        if (!key.device_id) {
-          await env.DB
-            .prepare(`
-              UPDATE keys
-              SET
-                device_id = ?,
-                last_used_at = CURRENT_TIMESTAMP
-              WHERE id = ?
-            `)
-            .bind(deviceId, key.id)
-            .run();
-        } else {
-          await env.DB
-            .prepare(`
-              UPDATE keys
-              SET last_used_at = CURRENT_TIMESTAMP
-              WHERE id = ?
-            `)
-            .bind(key.id)
-            .run();
-        }
-
-        return json({
-          success: true,
-          message: "Key activated successfully.",
-          key: {
-            id: key.id,
-            status: "active",
-            expires_at: key.expires_at,
-            device_bound: true
-          }
-        });
-
-      } catch (error) {
-        return json({
-          success: false,
-          error: error.message
-        }, 500);
-      }
-    }
-
-    // =====================================================
-    // KEY STATUS
-    // =====================================================
-
-    if (
-      url.pathname === "/api/keys/status" &&
-      request.method === "POST"
-    ) {
-      if (!env.DB) {
-        return json({
-          success: false,
-          error: "Database not connected."
-        }, 500);
-      }
-
-      try {
-        const body = await request.json();
-
-        const keyCode =
-          typeof body.key_code === "string"
-            ? body.key_code.trim()
-            : "";
-
-        const deviceId =
-          typeof body.device_id === "string"
-            ? body.device_id.trim()
-            : "";
+          String(body.device_id || "").trim();
 
         if (!keyCode || !deviceId) {
           return json({
             success: false,
-            error: "Key and device ID are required."
+            status: "invalid_request",
+            message: "key_code and device_id are required."
           }, 400);
         }
 
@@ -296,38 +139,26 @@ export default {
         if (!key) {
           return json({
             success: false,
-            valid: false,
-            error: "Invalid key."
-          }, 401);
+            status: "invalid_key",
+            message: "Invalid key."
+          }, 404);
         }
 
         if (key.status !== "active") {
           return json({
             success: false,
-            valid: false,
-            error: "Key is not active.",
-            status: key.status
-          }, 403);
-        }
-
-        if (
-          key.device_id &&
-          key.device_id !== deviceId
-        ) {
-          return json({
-            success: false,
-            valid: false,
-            error: "Device mismatch."
+            status: "disabled",
+            message: "This key is disabled."
           }, 403);
         }
 
         if (key.expires_at) {
-          const expiry =
-            new Date(key.expires_at);
+          const expiresAt =
+            new Date(key.expires_at).getTime();
 
           if (
-            Number.isNaN(expiry.getTime()) ||
-            expiry.getTime() <= Date.now()
+            Number.isFinite(expiresAt) &&
+            expiresAt <= Date.now()
           ) {
             await env.DB
               .prepare(`
@@ -340,40 +171,61 @@ export default {
 
             return json({
               success: false,
-              valid: false,
-              error: "Key expired."
+              status: "expired",
+              message: "This key has expired."
             }, 403);
           }
         }
 
+        // Existing device binding
+        if (
+          key.device_id &&
+          key.device_id !== deviceId
+        ) {
+          return json({
+            success: false,
+            status: "device_mismatch",
+            message: "This key is already bound to another device."
+          }, 403);
+        }
+
+        // First activation / same device
         await env.DB
           .prepare(`
             UPDATE keys
-            SET last_used_at = CURRENT_TIMESTAMP
+            SET
+              device_id = ?,
+              last_used_at = CURRENT_TIMESTAMP
             WHERE id = ?
           `)
-          .bind(key.id)
+          .bind(deviceId, key.id)
           .run();
 
         return json({
           success: true,
-          valid: true,
-          status: "active",
-          expires_at: key.expires_at
+          status: "activated",
+          message: "Key activated successfully.",
+          key: {
+            id: key.id,
+            key_code: key.key_code,
+            status: "active",
+            device_id: deviceId,
+            expires_at: key.expires_at
+          }
         });
 
       } catch (error) {
         return json({
           success: false,
-          valid: false,
+          status: "server_error",
           error: error.message
         }, 500);
       }
     }
 
-    // =====================================================
+    // =========================
     // LIST KEYS
-    // =====================================================
+    // =========================
 
     if (
       url.pathname === "/api/keys" &&
@@ -415,9 +267,137 @@ export default {
       }
     }
 
-    // =====================================================
+    // =========================
+    // RESET KEY DEVICE
+    // =========================
+
+    if (
+      url.pathname === "/api/keys/reset" &&
+      request.method === "POST"
+    ) {
+      if (!env.DB) {
+        return json({
+          success: false,
+          error: "Database not connected."
+        }, 500);
+      }
+
+      try {
+        const body = await request.json();
+
+        const keyCode =
+          String(body.key_code || "").trim();
+
+        if (!keyCode) {
+          return json({
+            success: false,
+            message: "key_code is required."
+          }, 400);
+        }
+
+        const result = await env.DB
+          .prepare(`
+            UPDATE keys
+            SET
+              device_id = NULL,
+              last_used_at = NULL
+            WHERE key_code = ?
+          `)
+          .bind(keyCode)
+          .run();
+
+        if (!result.meta.changes) {
+          return json({
+            success: false,
+            message: "Key not found."
+          }, 404);
+        }
+
+        return json({
+          success: true,
+          status: "reset",
+          message: "Device binding has been reset."
+        });
+
+      } catch (error) {
+        return json({
+          success: false,
+          error: error.message
+        }, 500);
+      }
+    }
+
+    // =========================
+    // ENABLE / DISABLE KEY
+    // =========================
+
+    if (
+      url.pathname.match(/^\/api\/keys\/\d+\/status$/) &&
+      request.method === "PUT"
+    ) {
+      if (!env.DB) {
+        return json({
+          success: false,
+          error: "Database not connected."
+        }, 500);
+      }
+
+      try {
+        const id =
+          url.pathname.split("/")[3];
+
+        const body = await request.json();
+
+        const status =
+          body.status === "active"
+            ? "active"
+            : body.status === "disabled"
+              ? "disabled"
+              : null;
+
+        if (!status) {
+          return json({
+            success: false,
+            message: "status must be active or disabled."
+          }, 400);
+        }
+
+        const result = await env.DB
+          .prepare(`
+            UPDATE keys
+            SET status = ?
+            WHERE id = ?
+          `)
+          .bind(status, id)
+          .run();
+
+        if (!result.meta.changes) {
+          return json({
+            success: false,
+            message: "Key not found."
+          }, 404);
+        }
+
+        return json({
+          success: true,
+          status,
+          message:
+            status === "active"
+              ? "Key enabled."
+              : "Key disabled."
+        });
+
+      } catch (error) {
+        return json({
+          success: false,
+          error: error.message
+        }, 500);
+      }
+    }
+
+    // =========================
     // UNKNOWN API
-    // =====================================================
+    // =========================
 
     if (url.pathname.startsWith("/api/")) {
       return json({
@@ -426,9 +406,9 @@ export default {
       }, 404);
     }
 
-    // =====================================================
-    // STATIC WEBSITE
-    // =====================================================
+    // =========================
+    // STATIC ASSETS
+    // =========================
 
     if (env.ASSETS) {
       return env.ASSETS.fetch(request);
