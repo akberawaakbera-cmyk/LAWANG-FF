@@ -2,14 +2,12 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // CORS
     const corsHeaders = {
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type"
     };
 
-    // OPTIONS
     if (request.method === "OPTIONS") {
       return new Response(null, {
         status: 204,
@@ -17,7 +15,10 @@ export default {
       });
     }
 
+    // =========================
     // API TEST
+    // =========================
+
     if (
       url.pathname === "/api/test" &&
       request.method === "GET"
@@ -29,13 +30,14 @@ export default {
           project: "BUNER-FF",
           timestamp: new Date().toISOString()
         },
-        {
-          headers: corsHeaders
-        }
+        { headers: corsHeaders }
       );
     }
 
-    // HEALTH CHECK
+    // =========================
+    // HEALTH
+    // =========================
+
     if (
       url.pathname === "/api/health" &&
       request.method === "GET"
@@ -46,13 +48,14 @@ export default {
           status: "online",
           project: "BUNER-FF"
         },
-        {
-          headers: corsHeaders
-        }
+        { headers: corsHeaders }
       );
     }
 
+    // =========================
     // DATABASE TEST
+    // =========================
+
     if (
       url.pathname === "/api/db-test" &&
       request.method === "GET"
@@ -82,9 +85,7 @@ export default {
             database: "connected",
             result
           },
-          {
-            headers: corsHeaders
-          }
+          { headers: corsHeaders }
         );
 
       } catch (error) {
@@ -102,7 +103,10 @@ export default {
       }
     }
 
+    // =========================
     // UNKNOWN API
+    // =========================
+
     if (url.pathname.startsWith("/api/")) {
       return Response.json(
         {
@@ -116,14 +120,23 @@ export default {
       );
     }
 
-    // Website
+    // =========================
+    // STATIC WEBSITE
+    // =========================
+
     if (env.ASSETS) {
       return env.ASSETS.fetch(request);
     }
 
-    return new Response("BUNER-FF Worker is running.", {
-      status: 200,
-      headers: corsHeaders
-    });
+    return new Response(
+      "BUNER-FF Worker is running, but Assets are not configured.",
+      {
+        status: 500,
+        headers: {
+          ...corsHeaders,
+          "Content-Type": "text/plain; charset=UTF-8"
+        }
+      }
+    );
   }
 };
