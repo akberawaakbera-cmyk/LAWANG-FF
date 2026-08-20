@@ -1,34 +1,48 @@
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-
     const corsHeaders = {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type"
+      "Access-Control-Allow-Headers": "Content-Type, Authorization"
     };
-
     const json = (data, status = 200) =>
       Response.json(data, {
         status,
         headers: corsHeaders
       });
-
     // =========================
     // CORS
     // =========================
-
     if (request.method === "OPTIONS") {
       return new Response(null, {
         status: 204,
         headers: corsHeaders
       });
     }
-
+    // =========================
+    // ADMIN AUTHENTICATION
+    // =========================
+    function isAdmin(request) {
+      const auth =
+        request.headers.get("Authorization") || "";
+      if (!env.ADMIN_TOKEN) {
+        return false;
+      }
+      return auth === `Bearer ${env.ADMIN_TOKEN}`;
+    }
+    function requireAdmin() {
+      if (!env.ADMIN_TOKEN) {
+        return json({
+          success: false,
+          error: "ADMIN_TOKEN is not configured."
+        }, 500);
+      }
+      return null;
+    }
     // =========================
     // HEALTH
     // =========================
-
     if (
       url.pathname === "/api/health" &&
       request.method === "GET"
@@ -39,11 +53,9 @@ export default {
         project: "BUNER-FF"
       });
     }
-
     // =========================
     // API TEST
     // =========================
-
     if (
       url.pathname === "/api/test" &&
       request.method === "GET"
@@ -55,11 +67,9 @@ export default {
         timestamp: new Date().toISOString()
       });
     }
-
     // =========================
     // DATABASE TEST
     // =========================
-
     if (
       url.pathname === "/api/db-test" &&
       request.method === "GET"
@@ -71,17 +81,14 @@ export default {
           error: "D1 binding DB not found."
         }, 500);
       }
-
       try {
         await env.DB
           .prepare("SELECT 1 AS connected")
           .first();
-
         return json({
           success: true,
           database: "connected"
         });
-
       } catch (error) {
         return json({
           success: false,
@@ -90,11 +97,9 @@ export default {
         }, 500);
       }
     }
-
-    // =========================
-    // ACTIVATE KEY
-    // =========================
-
+    // =====================================================
+    // USER: ACTIVATE KEY
+    // =====================================================
     if (
       url.pathname === "/api/keys/activate" &&
       request.method === "POST"
@@ -105,48 +110,44 @@ export default {
           error: "Database not connected."
         }, 500);
       }
-
       try {
         const body = await request.json();
-
         const keyCode =
           String(
             body.key_code ||
             body.key ||
             ""
           ).trim();
-
         const deviceId =
           String(
             body.device_id ||
             ""
           ).trim();
-
         if (!keyCode || !deviceId) {
           return json({
             success: false,
             status: "invalid_request",
-            error: "key_code and device_id are required."
+            error:
+              "key_code and device_id are required."
           }, 400);
         }
-
-        const key = await env.DB
-          .prepare(`
-            SELECT
-              id,
-              key_code,
-              device_id,
-              status,
-              expires_at,
-              created_at,
-              last_used_at
-            FROM keys
-            WHERE key_code = ?
-            LIMIT 1
-          `)
-          .bind(keyCode)
-          .first();
-
+        const key =
+          await env.DB
+            .prepare(`
+              SELECT
+                id,
+                key_code,
+                device_id,
+                status,
+                expires_at,
+                created_at,
+                last_used_at
+              FROM keys
+              WHERE key_code = ?
+              LIMIT 1
+            `)
+            .bind(keyCode)
+            .first();
         if (!key) {
           return json({
             success: false,
@@ -154,23 +155,19 @@ export default {
             error: "Invalid activation key."
           }, 404);
         }
-
-        // Disabled
-        if (key.status === "disabled") {
+        if (key.status !== "active") {
           return json({
             success: false,
-            status: "disabled",
-            error: "This key is disabled."
+            status: key.status,
+            error:
+              `This key is ${key.status}.`
           }, 403);
         }
-
-        // Expiry
         if (key.expires_at) {
           const expiry =
             new Date(
               key.expires_at
             ).getTime();
-
           if (
             Number.isFinite(expiry) &&
             expiry <= Date.now()
@@ -183,7 +180,6 @@ export default {
               `)
               .bind(key.id)
               .run();
-
             return json({
               success: false,
               status: "expired",
@@ -191,8 +187,6 @@ export default {
             }, 403);
           }
         }
-
-        // Device already bound
         if (
           key.device_id &&
           key.device_id !== deviceId
@@ -204,8 +198,6 @@ export default {
               "This key is already activated on another device."
           }, 403);
         }
-
-        // Activate / refresh binding
         await env.DB
           .prepare(`
             UPDATE keys
@@ -219,11 +211,11 @@ export default {
             key.id
           )
           .run();
-
         return json({
           success: true,
           status: "activated",
-          message: "Key activated successfully.",
+          message:
+            "Key activated successfully.",
           key: {
             id: key.id,
             key_code: key.key_code,
@@ -233,7 +225,6 @@ export default {
           },
           expires_at: key.expires_at
         });
-
       } catch (error) {
         return json({
           success: false,
@@ -242,12 +233,9 @@ export default {
         }, 500);
       }
     }
-
-    // =========================
-    // KEY STATUS
-    // Supports current index.html
-    // =========================
-
+    // =====================================================
+    // USER: KEY STATUS
+    // =====================================================
     if (
       url.pathname === "/api/keys/status" &&
       request.method === "POST"
@@ -258,46 +246,41 @@ export default {
           error: "Database not connected."
         }, 500);
       }
-
       try {
         const body = await request.json();
-
         const keyCode =
           String(
             body.key_code ||
             body.key ||
             ""
           ).trim();
-
         const deviceId =
           String(
             body.device_id ||
             ""
           ).trim();
-
         if (!keyCode || !deviceId) {
           return json({
             success: false,
-            error: "key_code and device_id are required."
+            error:
+              "key_code and device_id are required."
           }, 400);
         }
-
-        const key = await env.DB
-          .prepare(`
-            SELECT
-              id,
-              key_code,
-              device_id,
-              status,
-              expires_at,
-              last_used_at
-            FROM keys
-            WHERE key_code = ?
-            LIMIT 1
-          `)
-          .bind(keyCode)
-          .first();
-
+        const key =
+          await env.DB
+            .prepare(`
+              SELECT
+                id,
+                key_code,
+                device_id,
+                status,
+                expires_at
+              FROM keys
+              WHERE key_code = ?
+              LIMIT 1
+            `)
+            .bind(keyCode)
+            .first();
         if (!key) {
           return json({
             success: false,
@@ -305,7 +288,6 @@ export default {
             error: "Key not found."
           }, 404);
         }
-
         if (
           key.device_id &&
           key.device_id !== deviceId
@@ -313,16 +295,15 @@ export default {
           return json({
             success: false,
             status: "device_mismatch",
-            error: "Key belongs to another device."
+            error:
+              "Key belongs to another device."
           }, 403);
         }
-
         if (key.expires_at) {
           const expiry =
             new Date(
               key.expires_at
             ).getTime();
-
           if (
             Number.isFinite(expiry) &&
             expiry <= Date.now()
@@ -335,7 +316,6 @@ export default {
               `)
               .bind(key.id)
               .run();
-
             return json({
               success: true,
               status: "expired",
@@ -343,7 +323,6 @@ export default {
             });
           }
         }
-
         await env.DB
           .prepare(`
             UPDATE keys
@@ -352,14 +331,12 @@ export default {
           `)
           .bind(key.id)
           .run();
-
         return json({
           success: true,
           status: key.status,
           expires_at: key.expires_at,
           device_id: key.device_id
         });
-
       } catch (error) {
         return json({
           success: false,
@@ -367,256 +344,48 @@ export default {
         }, 500);
       }
     }
-
-    // =========================
-    // ENABLE / DISABLE
-    // Compatible with index.html
-    // =========================
-
+    // =====================================================
+    // ADMIN: LIST KEYS
+    // GET /api/admin/keys
+    // =====================================================
     if (
-      url.pathname === "/api/keys/status" &&
-      request.method === "PUT"
-    ) {
-      if (!env.DB) {
-        return json({
-          success: false,
-          error: "Database not connected."
-        }, 500);
-      }
-
-      try {
-        const body = await request.json();
-
-        const keyCode =
-          String(
-            body.key_code ||
-            body.key ||
-            ""
-          ).trim();
-
-        const deviceId =
-          String(
-            body.device_id ||
-            ""
-          ).trim();
-
-        const status =
-          body.status;
-
-        if (
-          !keyCode ||
-          !deviceId
-        ) {
-          return json({
-            success: false,
-            error:
-              "key_code and device_id are required."
-          }, 400);
-        }
-
-        if (
-          status !== "active" &&
-          status !== "disabled"
-        ) {
-          return json({
-            success: false,
-            error:
-              "status must be active or disabled."
-          }, 400);
-        }
-
-        const key = await env.DB
-          .prepare(`
-            SELECT
-              id,
-              device_id
-            FROM keys
-            WHERE key_code = ?
-            LIMIT 1
-          `)
-          .bind(keyCode)
-          .first();
-
-        if (!key) {
-          return json({
-            success: false,
-            error: "Key not found."
-          }, 404);
-        }
-
-        if (
-          key.device_id &&
-          key.device_id !== deviceId
-        ) {
-          return json({
-            success: false,
-            error:
-              "This key belongs to another device."
-          }, 403);
-        }
-
-        await env.DB
-          .prepare(`
-            UPDATE keys
-            SET
-              status = ?,
-              last_used_at = CURRENT_TIMESTAMP
-            WHERE id = ?
-          `)
-          .bind(
-            status,
-            key.id
-          )
-          .run();
-
-        return json({
-          success: true,
-          status,
-          message:
-            status === "active"
-              ? "Key enabled."
-              : "Key disabled."
-        });
-
-      } catch (error) {
-        return json({
-          success: false,
-          error: error.message
-        }, 500);
-      }
-    }
-
-    // =========================
-    // RESET DEVICE BINDING
-    // =========================
-
-    if (
-      url.pathname === "/api/keys/reset" &&
-      request.method === "POST"
-    ) {
-      if (!env.DB) {
-        return json({
-          success: false,
-          error: "Database not connected."
-        }, 500);
-      }
-
-      try {
-        const body = await request.json();
-
-        const keyCode =
-          String(
-            body.key_code ||
-            body.key ||
-            ""
-          ).trim();
-
-        const deviceId =
-          String(
-            body.device_id ||
-            ""
-          ).trim();
-
-        if (!keyCode) {
-          return json({
-            success: false,
-            error: "key_code is required."
-          }, 400);
-        }
-
-        const key = await env.DB
-          .prepare(`
-            SELECT
-              id,
-              device_id
-            FROM keys
-            WHERE key_code = ?
-            LIMIT 1
-          `)
-          .bind(keyCode)
-          .first();
-
-        if (!key) {
-          return json({
-            success: false,
-            error: "Key not found."
-          }, 404);
-        }
-
-        if (
-          deviceId &&
-          key.device_id &&
-          key.device_id !== deviceId
-        ) {
-          return json({
-            success: false,
-            error:
-              "This key belongs to another device."
-          }, 403);
-        }
-
-        await env.DB
-          .prepare(`
-            UPDATE keys
-            SET
-              device_id = NULL,
-              last_used_at = NULL
-            WHERE id = ?
-          `)
-          .bind(key.id)
-          .run();
-
-        return json({
-          success: true,
-          status: "reset",
-          message:
-            "Device binding has been reset."
-        });
-
-      } catch (error) {
-        return json({
-          success: false,
-          error: error.message
-        }, 500);
-      }
-    }
-
-    // =========================
-    // LIST KEYS
-    // =========================
-
-    if (
-      url.pathname === "/api/keys" &&
+      url.pathname === "/api/admin/keys" &&
       request.method === "GET"
     ) {
+      const configError = requireAdmin();
+      if (configError) return configError;
+      if (!isAdmin(request)) {
+        return json({
+          success: false,
+          error: "Unauthorized."
+        }, 401);
+      }
       if (!env.DB) {
         return json({
           success: false,
           error: "Database not connected."
         }, 500);
       }
-
       try {
-        const result = await env.DB
-          .prepare(`
-            SELECT
-              id,
-              key_code,
-              device_id,
-              status,
-              expires_at,
-              created_at,
-              last_used_at
-            FROM keys
-            ORDER BY id DESC
-          `)
-          .all();
-
+        const result =
+          await env.DB
+            .prepare(`
+              SELECT
+                id,
+                key_code,
+                device_id,
+                status,
+                expires_at,
+                created_at,
+                last_used_at
+              FROM keys
+              ORDER BY id DESC
+            `)
+            .all();
         return json({
           success: true,
           keys: result.results || []
         });
-
       } catch (error) {
         return json({
           success: false,
@@ -624,34 +393,125 @@ export default {
         }, 500);
       }
     }
-
-    // =========================
-    // KEY STATUS BY ID
-    // =========================
-
+    // =====================================================
+    // ADMIN: GENERATE KEY
+    // POST /api/admin/keys/generate
+    // =====================================================
     if (
-      url.pathname.match(
-        /^\/api\/keys\/\d+\/status$/
-      ) &&
-      request.method === "PUT"
+      url.pathname === "/api/admin/keys/generate" &&
+      request.method === "POST"
     ) {
+      const configError = requireAdmin();
+      if (configError) return configError;
+      if (!isAdmin(request)) {
+        return json({
+          success: false,
+          error: "Unauthorized."
+        }, 401);
+      }
       if (!env.DB) {
         return json({
           success: false,
           error: "Database not connected."
         }, 500);
       }
-
+      try {
+        const body =
+          await request.json().catch(() => ({}));
+        const days =
+          Number(body.days || 30);
+        if (
+          !Number.isFinite(days) ||
+          days < 1 ||
+          days > 3650
+        ) {
+          return json({
+            success: false,
+            error:
+              "days must be between 1 and 3650."
+          }, 400);
+        }
+        const bytes =
+          new Uint8Array(12);
+        crypto.getRandomValues(bytes);
+        const randomPart =
+          Array.from(bytes)
+            .map(
+              byte =>
+                byte
+                  .toString(16)
+                  .padStart(2, "0")
+            )
+            .join("")
+            .toUpperCase();
+        const keyCode =
+          `BUNER-${randomPart}`;
+        const expiresAt =
+          new Date(
+            Date.now() +
+            days * 24 * 60 * 60 * 1000
+          ).toISOString();
+        await env.DB
+          .prepare(`
+            INSERT INTO keys
+              (
+                key_code,
+                device_id,
+                status,
+                expires_at
+              )
+            VALUES
+              (?, NULL, 'active', ?)
+          `)
+          .bind(
+            keyCode,
+            expiresAt
+          )
+          .run();
+        return json({
+          success: true,
+          message:
+            "Activation key generated.",
+          key: {
+            key_code: keyCode,
+            status: "active",
+            expires_at: expiresAt
+          }
+        });
+      } catch (error) {
+        return json({
+          success: false,
+          error: error.message
+        }, 500);
+      }
+    }
+    // =====================================================
+    // ADMIN: ENABLE / DISABLE BY ID
+    // PUT /api/admin/keys/:id/status
+    // =====================================================
+    const adminStatusMatch =
+      url.pathname.match(
+        /^\/api\/admin\/keys\/(\d+)\/status$/
+      );
+    if (
+      adminStatusMatch &&
+      request.method === "PUT"
+    ) {
+      const configError = requireAdmin();
+      if (configError) return configError;
+      if (!isAdmin(request)) {
+        return json({
+          success: false,
+          error: "Unauthorized."
+        }, 401);
+      }
       try {
         const id =
-          url.pathname.split("/")[3];
-
+          adminStatusMatch[1];
         const body =
           await request.json();
-
         const status =
           body.status;
-
         if (
           status !== "active" &&
           status !== "disabled"
@@ -662,7 +522,6 @@ export default {
               "status must be active or disabled."
           }, 400);
         }
-
         const result =
           await env.DB
             .prepare(`
@@ -675,7 +534,6 @@ export default {
               id
             )
             .run();
-
         if (
           !result.meta ||
           !result.meta.changes
@@ -685,7 +543,6 @@ export default {
             error: "Key not found."
           }, 404);
         }
-
         return json({
           success: true,
           status,
@@ -694,7 +551,6 @@ export default {
               ? "Key enabled."
               : "Key disabled."
         });
-
       } catch (error) {
         return json({
           success: false,
@@ -702,11 +558,65 @@ export default {
         }, 500);
       }
     }
-
-    // =========================
+    // =====================================================
+    // ADMIN: RESET DEVICE
+    // POST /api/admin/keys/:id/reset
+    // =====================================================
+    const adminResetMatch =
+      url.pathname.match(
+        /^\/api\/admin\/keys\/(\d+)\/reset$/
+      );
+    if (
+      adminResetMatch &&
+      request.method === "POST"
+    ) {
+      const configError = requireAdmin();
+      if (configError) return configError;
+      if (!isAdmin(request)) {
+        return json({
+          success: false,
+          error: "Unauthorized."
+        }, 401);
+      }
+      try {
+        const id =
+          adminResetMatch[1];
+        const result =
+          await env.DB
+            .prepare(`
+              UPDATE keys
+              SET
+                device_id = NULL,
+                last_used_at = NULL
+              WHERE id = ?
+            `)
+            .bind(id)
+            .run();
+        if (
+          !result.meta ||
+          !result.meta.changes
+        ) {
+          return json({
+            success: false,
+            error: "Key not found."
+          }, 404);
+        }
+        return json({
+          success: true,
+          status: "reset",
+          message:
+            "Device binding has been reset."
+        });
+      } catch (error) {
+        return json({
+          success: false,
+          error: error.message
+        }, 500);
+      }
+    }
+    // =====================================================
     // UNKNOWN API
-    // =========================
-
+    // =====================================================
     if (
       url.pathname.startsWith("/api/")
     ) {
@@ -715,15 +625,12 @@ export default {
         error: "API route not found."
       }, 404);
     }
-
-    // =========================
+    // =====================================================
     // STATIC ASSETS
-    // =========================
-
+    // =====================================================
     if (env.ASSETS) {
       return env.ASSETS.fetch(request);
     }
-
     return new Response(
       "BUNER-FF Worker is running, but Assets are not configured.",
       {
