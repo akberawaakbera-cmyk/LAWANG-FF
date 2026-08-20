@@ -2247,174 +2247,122 @@ async function checkConnection() {
 
 async function activateKey() {
 
-  const input =
-    document.getElementById(
-      "activationKey"
-    );
+  const input = document.getElementById("activationKey");
+  const message = document.getElementById("keyMessage");
+  const button = document.getElementById("activateKeyButton");
 
-
-  const message =
-    document.getElementById(
-      "keyMessage"
-    );
-
-
-  const key =
-    input.value.trim();
-
+  const key = input.value.trim().toUpperCase();
 
   if (!key) {
-
-    message.textContent =
-      "Please enter an activation key.";
-
-
-    message.className =
-      "message error";
-
-
+    message.textContent = "Please enter your activation key.";
+    message.className = "message error";
     return;
-
   }
 
+  button.disabled = true;
+  button.textContent = "CHECKING...";
 
-  message.textContent =
-    "Checking key...";
-
-
-  message.className =
-    "message";
-
+  message.textContent = "Checking key...";
+  message.className = "message";
 
   try {
 
-    const response =
-      await fetch(
-        API_BASE +
-        "/api/keys/activate",
-        {
-          method:
-            "POST",
+    const response = await fetch(
+      API_BASE + "/api/keys/activate",
+      {
+        method: "POST",
 
-          headers: {
-            "Content-Type":
-              "application/json"
-          },
+        headers: {
+          "Content-Type": "application/json"
+        },
 
-          body:
-            JSON.stringify({
-              key_code:
-                key,
-              device_id:
-                DEVICE_ID
-            })
-        }
-      );
+        body: JSON.stringify({
+          key_code: key,
+          device_id: DEVICE_ID
+        }),
 
+        cache: "no-store"
+      }
+    );
 
-    const data =
-      await response.json();
+    const data = await response.json().catch(() => ({}));
 
-
-    if (
-      !response.ok ||
-      !data.success
-    ) {
-
+    if (!response.ok || data.success !== true) {
       throw new Error(
         data.error ||
-        "Key activation failed."
+        data.message ||
+        "Invalid or expired activation key."
       );
-
     }
 
+    /* Save successful key */
 
     const keyState = {
-
-      key:
-        data.key?.key_code ||
-        key,
-
-      device_id:
-        DEVICE_ID,
-
-      id:
-        data.key?.id ||
-        null,
-
-      status:
-        data.key?.status ||
-        "active",
-
+      key: data.key?.key_code || key,
+      device_id: DEVICE_ID,
+      id: data.key?.id || null,
+      status: data.key?.status || "active",
       expires_at:
-        data.expires_at ||
         data.key?.expires_at ||
+        data.expires_at ||
         null
-
     };
 
+    saveKeyState(keyState);
+    updateKeyUI(keyState);
 
-    saveKeyState(
-      keyState
-    );
-
-
-    updateKeyUI(
-      keyState
-    );
-
+    /* Success message */
 
     message.textContent =
       "Key activated successfully.";
 
-
     message.className =
       "message success";
 
-
     addActivity(
-      "Activation key activated"
+      "Activation key verified"
     );
 
+    /*
+      IMPORTANT:
+      یہاں Key صحیح ہونے کے بعد
+      Login screen hide اور Main Panel show ہوگا۔
+    */
 
     document
-      .getElementById(
-        "mainApp"
-      )
-      .classList.remove(
-        "hidden"
-      );
-
+      .getElementById("keyGate")
+      .classList.add("hidden");
 
     document
-      .getElementById(
-        "keyGate"
-      )
-      .classList.add(
-        "hidden"
-      );
+      .getElementById("mainApp")
+      .classList.remove("hidden");
 
+    openScreen("homeScreen");
 
-    openScreen(
-      "homeScreen"
-    );
-
+    /* Check Worker/Database */
 
     checkConnection();
 
-  }
+  } catch (error) {
 
-  catch (error) {
+    console.error(
+      "Key activation error:",
+      error
+    );
 
     message.textContent =
-      error.message;
-
+      error.message ||
+      "Key activation failed.";
 
     message.className =
       "message error";
 
-  }
+  } finally {
 
+    button.disabled = false;
+    button.textContent = "ACTIVATE KEY";
+
+  }
 }
 
 
