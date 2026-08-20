@@ -42,13 +42,6 @@ const loginMessage =
    DEVELOPER CONFIG
 ========================================================= */
 
-/*
-   Change this username to your own developer username.
-
-   This is only a frontend/UI restriction.
-   It is NOT a secure authentication system.
-*/
-
 const DEVELOPER_USERNAME =
   "LAWANGIN 444";
 
@@ -135,27 +128,7 @@ function updateProfile(username) {
   if (profileName) {
 
     profileName.textContent =
-      username || "LAWANGIN 444";
-
-  }
-
-
-  /*
-    Do NOT replace the profile logo
-    with the username letter.
-  */
-
-  const avatar =
-    document.querySelector(".avatar");
-
-  if (
-    avatar &&
-    !avatar.querySelector("img") &&
-    username
-  ) {
-
-    avatar.textContent =
-      username.charAt(0).toUpperCase();
+      username || DEVELOPER_USERNAME;
 
   }
 
@@ -185,7 +158,6 @@ function performLogin() {
     usernameInput?.focus();
 
     return;
-
   }
 
 
@@ -199,7 +171,6 @@ function performLogin() {
     keyInput?.focus();
 
     return;
-
   }
 
 
@@ -236,6 +207,8 @@ function performLogin() {
 
 
   updateDeveloperControls();
+
+  loadDeveloperLogo();
 
 }
 
@@ -305,6 +278,8 @@ guestButton?.addEventListener(
 
     updateDeveloperControls();
 
+    loadDeveloperLogo();
+
   }
 );
 
@@ -318,9 +293,7 @@ usernameInput?.addEventListener(
   event => {
 
     if (event.key === "Enter") {
-
       keyInput?.focus();
-
     }
 
   }
@@ -332,9 +305,7 @@ keyInput?.addEventListener(
   event => {
 
     if (event.key === "Enter") {
-
       performLogin();
-
     }
 
   }
@@ -381,6 +352,8 @@ document
       );
 
       updateDeveloperControls();
+
+      loadDeveloperLogo();
 
     }
   );
@@ -676,9 +649,7 @@ document
 
       testInputs.forEach(
         input => {
-
           input.checked = false;
-
         }
       );
 
@@ -699,14 +670,12 @@ document
 
 
       if (povValue) {
-        povValue.textContent =
-          "90°";
+        povValue.textContent = "90°";
       }
 
 
       if (speedValue) {
-        speedValue.textContent =
-          "1.0x";
+        speedValue.textContent = "1.0x";
       }
 
 
@@ -876,7 +845,7 @@ document
 
 
 /* =========================================================
-   DEVELOPER LOGO SYSTEM
+   DEVELOPER CHECK
 ========================================================= */
 
 function isDeveloper() {
@@ -885,6 +854,7 @@ function isDeveloper() {
     localStorage.getItem(
       "lawangenUser"
     );
+
 
   return (
     currentUser ===
@@ -895,235 +865,411 @@ function isDeveloper() {
 
 
 /* =========================================================
-   CREATE LOGO PICKER
+   LOGO ELEMENTS
 ========================================================= */
 
-function createDeveloperLogoPicker() {
+const developerLogoInput =
+  document.getElementById(
+    "developerLogoInput"
+  );
 
-  const profileBox =
-    document.querySelector(
-      ".profile-box"
-    );
+const developerLogoPreview =
+  document.getElementById(
+    "developerLogoPreview"
+  );
 
-  if (!profileBox) return;
+const applyDeveloperLogoButton =
+  document.getElementById(
+    "applyDeveloperLogo"
+  );
 
+const resetDeveloperLogoButton =
+  document.getElementById(
+    "resetDeveloperLogo"
+  );
 
-  /*
-    Don't create it twice.
-  */
-
-  if (
-    document.getElementById(
-      "developerLogoControls"
-    )
-  ) {
-    return;
-  }
-
-
-  const controls =
-    document.createElement("div");
-
-  controls.id =
-    "developerLogoControls";
-
-  controls.style.marginTop =
-    "18px";
-
-
-  const fileInput =
-    document.createElement("input");
-
-  fileInput.type =
-    "file";
-
-  fileInput.id =
-    "developerLogoInput";
-
-  fileInput.accept =
-    "image/png,image/jpeg,image/webp,image/gif";
-
-  fileInput.style.display =
-    "none";
-
-
-  const chooseButton =
-    document.createElement("button");
-
-  chooseButton.type =
-    "button";
-
-  chooseButton.className =
-    "secondary-button";
-
-  chooseButton.textContent =
-    "CHANGE DEVELOPER LOGO";
-
-
-  const resetButton =
-    document.createElement("button");
-
-  resetButton.type =
-    "button";
-
-  resetButton.className =
-    "secondary-button";
-
-  resetButton.textContent =
-    "RESET LOGO";
-
-
-  chooseButton.addEventListener(
-    "click",
-    () => {
-
-      fileInput.click();
-
-    }
+const logoManagerMessage =
+  document.getElementById(
+    "logoManagerMessage"
   );
 
 
-  fileInput.addEventListener(
-    "change",
-    event => {
+/* =========================================================
+   LOGO STORAGE KEY
+========================================================= */
 
-      const file =
-        event.target.files?.[0];
-
-      if (!file) return;
+const LOGO_STORAGE_KEY =
+  "lawangenDeveloperLogo";
 
 
-      /*
-        Limit large files.
-        5 MB maximum.
-      */
+/* =========================================================
+   LOGO MESSAGE
+========================================================= */
 
-      if (
-        file.size >
-        5 * 1024 * 1024
-      ) {
+function showLogoMessage(
+  message,
+  type = ""
+) {
 
-        alert(
-          "Logo must be smaller than 5 MB."
-        );
+  if (!logoManagerMessage) return;
 
-        fileInput.value = "";
+  logoManagerMessage.textContent =
+    message;
 
-        return;
-
-      }
-
-
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-        () => {
-
-          const imageData =
-            reader.result;
-
-
-          if (
-            typeof imageData !==
-            "string"
-          ) {
-            return;
-          }
-
-
-          localStorage.setItem(
-            "lawangenDeveloperLogo",
-            imageData
-          );
-
-
-          applyDeveloperLogo(
-            imageData
-          );
-
-
-          addLog(
-            "Developer logo changed"
-          );
-
-
-          setStatus(
-            "DEVELOPER LOGO UPDATED"
-          );
-
-        };
-
-
-      reader.readAsDataURL(file);
-
-    }
-  );
-
-
-  resetButton.addEventListener(
-    "click",
-    () => {
-
-      localStorage.removeItem(
-        "lawangenDeveloperLogo"
-      );
-
-
-      location.reload();
-
-    }
-  );
-
-
-  controls.appendChild(
-    fileInput
-  );
-
-  controls.appendChild(
-    chooseButton
-  );
-
-  controls.appendChild(
-    resetButton
-  );
-
-
-  profileBox.appendChild(
-    controls
-  );
+  logoManagerMessage.className =
+    `message ${type}`.trim();
 
 }
 
 
 /* =========================================================
-   APPLY LOGO EVERYWHERE
+   APPLY LOGO TO ALL APP LOCATIONS
 ========================================================= */
 
 function applyDeveloperLogo(
   imageData
 ) {
 
-  if (!imageData) return;
+  if (
+    !imageData ||
+    typeof imageData !== "string"
+  ) {
+    return;
+  }
 
 
-  const logos =
-    document.querySelectorAll(
-      "img[src='assets/logo.png'], .profile-logo img"
+  /*
+    IMPORTANT:
+    Use IDs instead of searching for
+    src="assets/logo.png".
+
+    This works even after the first
+    logo has already been changed.
+  */
+
+  const logoIds = [
+    "loginLogo",
+    "topLogo",
+    "homeLogo",
+    "profileLogo",
+    "developerLogoPreview"
+  ];
+
+
+  logoIds.forEach(id => {
+
+    const image =
+      document.getElementById(id);
+
+    if (image) {
+      image.src = imageData;
+    }
+
+  });
+
+}
+
+
+/* =========================================================
+   PREVIEW SELECTED LOGO
+========================================================= */
+
+function previewDeveloperLogo(
+  imageData
+) {
+
+  if (
+    developerLogoPreview &&
+    imageData
+  ) {
+
+    developerLogoPreview.src =
+      imageData;
+
+  }
+
+}
+
+
+/* =========================================================
+   FILE SELECT
+========================================================= */
+
+developerLogoInput?.addEventListener(
+  "change",
+  event => {
+
+    const file =
+      event.target.files?.[0];
+
+
+    if (!file) {
+      return;
+    }
+
+
+    /* ---------- FILE TYPE ---------- */
+
+    const allowedTypes = [
+      "image/png",
+      "image/jpeg",
+      "image/webp",
+      "image/gif"
+    ];
+
+
+    if (
+      !allowedTypes.includes(
+        file.type
+      )
+    ) {
+
+      showLogoMessage(
+        "Please select PNG, JPG, WEBP or GIF.",
+        "error"
+      );
+
+      developerLogoInput.value = "";
+
+      return;
+
+    }
+
+
+    /* ---------- FILE SIZE ---------- */
+
+    if (
+      file.size >
+      5 * 1024 * 1024
+    ) {
+
+      showLogoMessage(
+        "Logo must be smaller than 5 MB.",
+        "error"
+      );
+
+      developerLogoInput.value = "";
+
+      return;
+
+    }
+
+
+    /* ---------- READ IMAGE ---------- */
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload = () => {
+
+      const imageData =
+        reader.result;
+
+
+      if (
+        typeof imageData !==
+        "string"
+      ) {
+
+        showLogoMessage(
+          "Could not read the selected image.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      /*
+        Store temporarily as selected logo.
+
+        It is NOT applied to the whole
+        app until APPLY LOGO is pressed.
+      */
+
+      sessionStorage.setItem(
+        "lawangenPendingLogo",
+        imageData
+      );
+
+
+      previewDeveloperLogo(
+        imageData
+      );
+
+
+      showLogoMessage(
+        "Logo selected. Press APPLY LOGO.",
+        "success"
+      );
+
+    };
+
+
+    reader.onerror = () => {
+
+      showLogoMessage(
+        "Could not read this image.",
+        "error"
+      );
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+  }
+);
+
+
+/* =========================================================
+   APPLY SELECTED LOGO
+========================================================= */
+
+applyDeveloperLogoButton?.addEventListener(
+  "click",
+  () => {
+
+    const pendingLogo =
+      sessionStorage.getItem(
+        "lawangenPendingLogo"
+      );
+
+
+    if (!pendingLogo) {
+
+      showLogoMessage(
+        "First choose a logo from your gallery.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    /*
+      Save permanently in localStorage.
+    */
+
+    try {
+
+      localStorage.setItem(
+        LOGO_STORAGE_KEY,
+        pendingLogo
+      );
+
+    }
+    catch (error) {
+
+      showLogoMessage(
+        "Logo is too large to save on this device.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    /*
+      Apply everywhere immediately.
+    */
+
+    applyDeveloperLogo(
+      pendingLogo
     );
 
 
-  logos.forEach(
-    img => {
+    showLogoMessage(
+      "Logo applied successfully.",
+      "success"
+    );
 
-      img.src =
-        imageData;
 
+    setStatus(
+      "DEVELOPER LOGO UPDATED"
+    );
+
+
+    addLog(
+      "Developer logo applied"
+    );
+
+
+    /*
+      Clear temporary selection.
+    */
+
+    sessionStorage.removeItem(
+      "lawangenPendingLogo"
+    );
+
+
+    /*
+      Reset file input so the same
+      image can be selected again.
+    */
+
+    if (developerLogoInput) {
+      developerLogoInput.value = "";
     }
-  );
 
-}
+  }
+);
+
+
+/* =========================================================
+   RESET LOGO
+========================================================= */
+
+resetDeveloperLogoButton?.addEventListener(
+  "click",
+  () => {
+
+    localStorage.removeItem(
+      LOGO_STORAGE_KEY
+    );
+
+
+    sessionStorage.removeItem(
+      "lawangenPendingLogo"
+    );
+
+
+    const defaultLogo =
+      "assets/logo.png";
+
+
+    applyDeveloperLogo(
+      defaultLogo
+    );
+
+
+    if (developerLogoInput) {
+      developerLogoInput.value = "";
+    }
+
+
+    showLogoMessage(
+      "Default logo restored.",
+      "success"
+    );
+
+
+    setStatus(
+      "DEFAULT LOGO RESTORED"
+    );
+
+
+    addLog(
+      "Developer logo reset"
+    );
+
+  }
+);
 
 
 /* =========================================================
@@ -1134,7 +1280,7 @@ function loadDeveloperLogo() {
 
   const savedLogo =
     localStorage.getItem(
-      "lawangenDeveloperLogo"
+      LOGO_STORAGE_KEY
     );
 
 
@@ -1142,6 +1288,65 @@ function loadDeveloperLogo() {
 
     applyDeveloperLogo(
       savedLogo
+    );
+
+
+    if (developerLogoPreview) {
+
+      developerLogoPreview.src =
+        savedLogo;
+
+    }
+
+    return;
+
+  }
+
+
+  /*
+    No custom logo saved.
+    Use the original logo.
+  */
+
+  applyDeveloperLogo(
+    "assets/logo.png"
+  );
+
+
+  if (developerLogoPreview) {
+
+    developerLogoPreview.src =
+      "assets/logo.png";
+
+  }
+
+}
+
+
+/* =========================================================
+   LOAD PENDING LOGO PREVIEW
+========================================================= */
+
+function loadPendingLogo() {
+
+  const pendingLogo =
+    sessionStorage.getItem(
+      "lawangenPendingLogo"
+    );
+
+
+  if (
+    pendingLogo &&
+    developerLogoPreview
+  ) {
+
+    developerLogoPreview.src =
+      pendingLogo;
+
+
+    showLogoMessage(
+      "Selected logo is waiting for APPLY LOGO.",
+      ""
     );
 
   }
@@ -1155,22 +1360,32 @@ function loadDeveloperLogo() {
 
 function updateDeveloperControls() {
 
-  const controls =
+  const manager =
     document.getElementById(
-      "developerLogoControls"
+      "developerLogoManager"
     );
 
 
+  if (!manager) return;
+
+
+  /*
+    Your HTML already contains the
+    Developer Logo Manager.
+
+    We do NOT create another picker.
+  */
+
   if (isDeveloper()) {
 
-    createDeveloperLogoPicker();
+    manager.style.display =
+      "block";
 
   }
   else {
 
-    if (controls) {
-      controls.remove();
-    }
+    manager.style.display =
+      "none";
 
   }
 
@@ -1190,6 +1405,12 @@ function logout() {
   localStorage.removeItem(
     "lawangenTestConfig"
   );
+
+
+  /*
+    Keep the saved developer logo.
+    Logging out should NOT delete it.
+  */
 
 
   app?.classList.add(
@@ -1418,4 +1639,11 @@ updateActiveCount();
 
 loadDeveloperLogo();
 
+loadPendingLogo();
+
 updateDeveloperControls();
+
+
+/* =========================================================
+   END
+========================================================= */
