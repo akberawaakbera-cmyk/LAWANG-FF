@@ -1,4 +1,4 @@
-const CACHE_NAME = "lawangen-v1";
+const CACHE_NAME = "lawangen-v2";
 
 const FILES_TO_CACHE = [
   "./",
@@ -6,7 +6,10 @@ const FILES_TO_CACHE = [
   "./style.css",
   "./app.js",
   "./manifest.json",
-  "./assets/logo.png"
+
+  "./assets/logo.png",
+  "./assets/icon-192.png",
+  "./assets/icon-512.png"
 ];
 
 self.addEventListener("install", event => {
@@ -20,13 +23,13 @@ self.addEventListener("install", event => {
 
 self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
+    caches.keys().then(keys => {
+      return Promise.all(
         keys
           .filter(key => key !== CACHE_NAME)
           .map(key => caches.delete(key))
-      )
-    )
+      );
+    })
   );
 
   self.clients.claim();
@@ -36,7 +39,11 @@ self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request)
       .then(cachedResponse => {
-        return cachedResponse || fetch(event.request);
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
+        return fetch(event.request);
       })
   );
 });
