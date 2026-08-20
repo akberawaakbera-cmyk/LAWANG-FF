@@ -9,31 +9,48 @@
    GLOBAL
 ========================================================= */
 
-const screens = document.querySelectorAll(".app-screen");
-const navigationButtons = document.querySelectorAll("[data-screen]");
+const screens =
+  document.querySelectorAll(".app-screen");
 
-const loginScreen = document.getElementById("loginScreen");
-const app = document.getElementById("app");
+const navigationButtons =
+  document.querySelectorAll("[data-screen]");
 
-const loginButton = document.getElementById("loginButton");
-const guestButton = document.getElementById("guestButton");
+const loginScreen =
+  document.getElementById("loginScreen");
 
-const usernameInput = document.getElementById("username");
+const app =
+  document.getElementById("app");
 
-/*
-  IMPORTANT:
-  Your current HTML uses id="password".
-  This code supports BOTH:
-  id="key"
-  and
-  id="password"
-*/
+const loginButton =
+  document.getElementById("loginButton");
+
+const guestButton =
+  document.getElementById("guestButton");
+
+const usernameInput =
+  document.getElementById("username");
+
 const keyInput =
   document.getElementById("key") ||
   document.getElementById("password");
 
 const loginMessage =
   document.getElementById("loginMessage");
+
+
+/* =========================================================
+   DEVELOPER CONFIG
+========================================================= */
+
+/*
+   Change this username to your own developer username.
+
+   This is only a frontend/UI restriction.
+   It is NOT a secure authentication system.
+*/
+
+const DEVELOPER_USERNAME =
+  "LAWANGIN 444";
 
 
 /* =========================================================
@@ -71,14 +88,34 @@ function openScreen(screenId) {
 
 
 /* =========================================================
+   STATUS
+========================================================= */
+
+function setStatus(text) {
+
+  const statusText =
+    document.getElementById("statusText");
+
+  if (statusText) {
+    statusText.textContent = text;
+  }
+
+}
+
+
+/* =========================================================
    LOGIN MESSAGE
 ========================================================= */
 
-function showLoginMessage(message, type = "") {
+function showLoginMessage(
+  message,
+  type = ""
+) {
 
   if (!loginMessage) return;
 
-  loginMessage.textContent = message;
+  loginMessage.textContent =
+    message;
 
   loginMessage.className =
     `message ${type}`.trim();
@@ -96,20 +133,29 @@ function updateProfile(username) {
     document.getElementById("profileName");
 
   if (profileName) {
+
     profileName.textContent =
       username || "LAWANGIN 444";
+
   }
 
+
+  /*
+    Do NOT replace the profile logo
+    with the username letter.
+  */
 
   const avatar =
     document.querySelector(".avatar");
 
-  if (avatar && username) {
+  if (
+    avatar &&
+    !avatar.querySelector("img") &&
+    username
+  ) {
 
     avatar.textContent =
-      username
-        .charAt(0)
-        .toUpperCase();
+      username.charAt(0).toUpperCase();
 
   }
 
@@ -129,8 +175,6 @@ function performLogin() {
     keyInput?.value.trim() || "";
 
 
-  /* ---------- VALIDATION ---------- */
-
   if (!username) {
 
     showLoginMessage(
@@ -141,6 +185,7 @@ function performLogin() {
     usernameInput?.focus();
 
     return;
+
   }
 
 
@@ -154,15 +199,9 @@ function performLogin() {
     keyInput?.focus();
 
     return;
+
   }
 
-
-  /*
-    Controlled local UI login.
-
-    No real game authentication.
-    No game injection.
-  */
 
   localStorage.setItem(
     "lawangenUser",
@@ -172,19 +211,19 @@ function performLogin() {
 
   updateProfile(username);
 
+  showLoginMessage("", "");
 
-  showLoginMessage(
-    "",
-    ""
+
+  loginScreen?.classList.add(
+    "hidden"
+  );
+
+  app?.classList.remove(
+    "hidden"
   );
 
 
-  loginScreen?.classList.add("hidden");
-  app?.classList.remove("hidden");
-
-
   openScreen("homeScreen");
-
 
   setStatus(
     "LOGIN SUCCESSFUL"
@@ -194,6 +233,9 @@ function performLogin() {
   addLog(
     "Developer test login successful"
   );
+
+
+  updateDeveloperControls();
 
 }
 
@@ -260,6 +302,9 @@ guestButton?.addEventListener(
       "Guest developer mode started"
     );
 
+
+    updateDeveloperControls();
+
   }
 );
 
@@ -274,9 +319,7 @@ usernameInput?.addEventListener(
 
     if (event.key === "Enter") {
 
-      if (keyInput) {
-        keyInput.focus();
-      }
+      keyInput?.focus();
 
     }
 
@@ -337,6 +380,8 @@ document
         "profileScreen"
       );
 
+      updateDeveloperControls();
+
     }
   );
 
@@ -361,27 +406,6 @@ document
     );
 
   });
-
-
-/* =========================================================
-   STATUS
-========================================================= */
-
-function setStatus(text) {
-
-  const statusText =
-    document.getElementById(
-      "statusText"
-    );
-
-  if (statusText) {
-
-    statusText.textContent =
-      text;
-
-  }
-
-}
 
 
 /* =========================================================
@@ -595,23 +619,17 @@ document
 
         pov:
           povSlider
-            ? Number(
-                povSlider.value
-              )
+            ? Number(povSlider.value)
             : 90,
 
         speed:
           speedSlider
-            ? Number(
-                speedSlider.value
-              )
+            ? Number(speedSlider.value)
             : 1,
 
         runningMultiplier:
           runningSlider
-            ? Number(
-                runningSlider.value
-              )
+            ? Number(runningSlider.value)
             : 1,
 
         savedAt:
@@ -659,8 +677,7 @@ document
       testInputs.forEach(
         input => {
 
-          input.checked =
-            false;
+          input.checked = false;
 
         }
       );
@@ -729,9 +746,7 @@ const logsContainer =
 
 function addLog(text) {
 
-  if (!logsContainer) {
-    return;
-  }
+  if (!logsContainer) return;
 
 
   const empty =
@@ -746,56 +761,41 @@ function addLog(text) {
 
 
   const item =
-    document.createElement(
-      "div"
-    );
+    document.createElement("div");
 
   item.className =
     "log-item";
 
 
   const strong =
-    document.createElement(
-      "strong"
-    );
+    document.createElement("strong");
 
   strong.textContent =
     text;
 
 
   const small =
-    document.createElement(
-      "small"
-    );
+    document.createElement("small");
 
   small.textContent =
     new Date().toLocaleTimeString();
 
 
-  item.appendChild(
-    strong
-  );
-
-  item.appendChild(
-    small
-  );
+  item.appendChild(strong);
+  item.appendChild(small);
 
 
-  logsContainer.prepend(
-    item
-  );
+  logsContainer.prepend(item);
 
 }
 
 
 /* =========================================================
-   TEST TRIGGER EVENTS
+   TEST TRIGGERS
 ========================================================= */
 
 document
-  .querySelectorAll(
-    ".test-trigger"
-  )
+  .querySelectorAll(".test-trigger")
   .forEach(button => {
 
     button.addEventListener(
@@ -825,16 +825,14 @@ document
           "DONE";
 
 
-        button.disabled =
-          true;
+        button.disabled = true;
 
 
         setTimeout(
           () => {
 
             button.textContent =
-              originalText ||
-              "TEST";
+              originalText || "TEST";
 
             button.disabled =
               false;
@@ -854,16 +852,12 @@ document
 ========================================================= */
 
 document
-  .getElementById(
-    "clearLogs"
-  )
+  .getElementById("clearLogs")
   ?.addEventListener(
     "click",
     () => {
 
-      if (!logsContainer) {
-        return;
-      }
+      if (!logsContainer) return;
 
 
       logsContainer.innerHTML = `
@@ -882,6 +876,308 @@ document
 
 
 /* =========================================================
+   DEVELOPER LOGO SYSTEM
+========================================================= */
+
+function isDeveloper() {
+
+  const currentUser =
+    localStorage.getItem(
+      "lawangenUser"
+    );
+
+  return (
+    currentUser ===
+    DEVELOPER_USERNAME
+  );
+
+}
+
+
+/* =========================================================
+   CREATE LOGO PICKER
+========================================================= */
+
+function createDeveloperLogoPicker() {
+
+  const profileBox =
+    document.querySelector(
+      ".profile-box"
+    );
+
+  if (!profileBox) return;
+
+
+  /*
+    Don't create it twice.
+  */
+
+  if (
+    document.getElementById(
+      "developerLogoControls"
+    )
+  ) {
+    return;
+  }
+
+
+  const controls =
+    document.createElement("div");
+
+  controls.id =
+    "developerLogoControls";
+
+  controls.style.marginTop =
+    "18px";
+
+
+  const fileInput =
+    document.createElement("input");
+
+  fileInput.type =
+    "file";
+
+  fileInput.id =
+    "developerLogoInput";
+
+  fileInput.accept =
+    "image/png,image/jpeg,image/webp,image/gif";
+
+  fileInput.style.display =
+    "none";
+
+
+  const chooseButton =
+    document.createElement("button");
+
+  chooseButton.type =
+    "button";
+
+  chooseButton.className =
+    "secondary-button";
+
+  chooseButton.textContent =
+    "CHANGE DEVELOPER LOGO";
+
+
+  const resetButton =
+    document.createElement("button");
+
+  resetButton.type =
+    "button";
+
+  resetButton.className =
+    "secondary-button";
+
+  resetButton.textContent =
+    "RESET LOGO";
+
+
+  chooseButton.addEventListener(
+    "click",
+    () => {
+
+      fileInput.click();
+
+    }
+  );
+
+
+  fileInput.addEventListener(
+    "change",
+    event => {
+
+      const file =
+        event.target.files?.[0];
+
+      if (!file) return;
+
+
+      /*
+        Limit large files.
+        5 MB maximum.
+      */
+
+      if (
+        file.size >
+        5 * 1024 * 1024
+      ) {
+
+        alert(
+          "Logo must be smaller than 5 MB."
+        );
+
+        fileInput.value = "";
+
+        return;
+
+      }
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        () => {
+
+          const imageData =
+            reader.result;
+
+
+          if (
+            typeof imageData !==
+            "string"
+          ) {
+            return;
+          }
+
+
+          localStorage.setItem(
+            "lawangenDeveloperLogo",
+            imageData
+          );
+
+
+          applyDeveloperLogo(
+            imageData
+          );
+
+
+          addLog(
+            "Developer logo changed"
+          );
+
+
+          setStatus(
+            "DEVELOPER LOGO UPDATED"
+          );
+
+        };
+
+
+      reader.readAsDataURL(file);
+
+    }
+  );
+
+
+  resetButton.addEventListener(
+    "click",
+    () => {
+
+      localStorage.removeItem(
+        "lawangenDeveloperLogo"
+      );
+
+
+      location.reload();
+
+    }
+  );
+
+
+  controls.appendChild(
+    fileInput
+  );
+
+  controls.appendChild(
+    chooseButton
+  );
+
+  controls.appendChild(
+    resetButton
+  );
+
+
+  profileBox.appendChild(
+    controls
+  );
+
+}
+
+
+/* =========================================================
+   APPLY LOGO EVERYWHERE
+========================================================= */
+
+function applyDeveloperLogo(
+  imageData
+) {
+
+  if (!imageData) return;
+
+
+  const logos =
+    document.querySelectorAll(
+      "img[src='assets/logo.png'], .profile-logo img"
+    );
+
+
+  logos.forEach(
+    img => {
+
+      img.src =
+        imageData;
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   LOAD SAVED LOGO
+========================================================= */
+
+function loadDeveloperLogo() {
+
+  const savedLogo =
+    localStorage.getItem(
+      "lawangenDeveloperLogo"
+    );
+
+
+  if (savedLogo) {
+
+    applyDeveloperLogo(
+      savedLogo
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   DEVELOPER CONTROLS
+========================================================= */
+
+function updateDeveloperControls() {
+
+  const controls =
+    document.getElementById(
+      "developerLogoControls"
+    );
+
+
+  if (isDeveloper()) {
+
+    createDeveloperLogoPicker();
+
+  }
+  else {
+
+    if (controls) {
+      controls.remove();
+    }
+
+  }
+
+}
+
+
+/* =========================================================
    LOGOUT
 ========================================================= */
 
@@ -890,7 +1186,6 @@ function logout() {
   localStorage.removeItem(
     "lawangenUser"
   );
-
 
   localStorage.removeItem(
     "lawangenTestConfig"
@@ -931,9 +1226,7 @@ function logout() {
 
 
 document
-  .getElementById(
-    "logoutButton"
-  )
+  .getElementById("logoutButton")
   ?.addEventListener(
     "click",
     logout
@@ -941,9 +1234,7 @@ document
 
 
 document
-  .getElementById(
-    "logoutButtonSettings"
-  )
+  .getElementById("logoutButtonSettings")
   ?.addEventListener(
     "click",
     logout
@@ -968,7 +1259,8 @@ function loadConfiguration() {
         ) || "null"
       );
 
-  } catch (error) {
+  }
+  catch (error) {
 
     saved = null;
 
@@ -1123,3 +1415,7 @@ loadConfiguration();
 updateRunningValue();
 
 updateActiveCount();
+
+loadDeveloperLogo();
+
+updateDeveloperControls();
