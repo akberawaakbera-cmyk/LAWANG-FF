@@ -1,6 +1,5 @@
 /* =========================================================
-   LAWANGEN INJECTOR
-   MOBILE APP UI — UPDATED
+   LAWANGEN — CORRECTED MOBILE UI
    UI / TEST SIMULATION ONLY
 ========================================================= */
 
@@ -71,7 +70,7 @@ button {
 
 
 /* =========================================================
-   ONE SCREEN AT A TIME
+   APP SCREENS
 ========================================================= */
 
 .app-screen {
@@ -85,6 +84,7 @@ button {
 
 .app-screen.active {
   display: block !important;
+  animation: screenFade 0.15s ease;
 }
 
 
@@ -132,16 +132,17 @@ button {
     0 0 50px rgba(72, 83, 255, 0.08);
 
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 
 /* =========================================================
-   COLORFUL LOGO
+   LOGO
 ========================================================= */
 
 .brand-logo {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 }
 
 .logo-mark {
@@ -159,20 +160,18 @@ button {
   background:
     linear-gradient(
       135deg,
-      #00d4ff 0%,
+      #00d4ff,
       #6c4cff 45%,
-      #ff3cac 100%
+      #ff3cac
     );
 
-  box-shadow:
-    0 12px 40px rgba(91, 76, 255, 0.35),
-    0 0 35px rgba(0, 212, 255, 0.12);
-
   overflow: hidden;
+
+  box-shadow:
+    0 12px 40px rgba(91, 76, 255, 0.35);
 }
 
-.logo-mark img,
-.logo-mark svg {
+.logo-mark img {
   width: 100%;
   height: 100%;
 
@@ -181,7 +180,7 @@ button {
   object-fit: contain;
 }
 
-.brand-logo h1 {
+.brand-name h1 {
   margin: 0;
 
   font-size: 26px;
@@ -202,7 +201,7 @@ button {
   color: transparent;
 }
 
-.brand-logo span {
+.brand-name span {
   display: block;
 
   margin-top: 5px;
@@ -216,57 +215,30 @@ button {
 
 
 /* =========================================================
-   DEVELOPER INTRO
-========================================================= */
-
-.developer-intro {
-  text-align: center;
-
-  margin: -10px 0 22px;
-}
-
-.developer-intro strong {
-  display: block;
-
-  font-size: 14px;
-
-  color: #8ecbff;
-
-  letter-spacing: 1px;
-}
-
-.developer-intro span {
-  display: block;
-
-  margin-top: 5px;
-
-  color: #687287;
-
-  font-size: 10px;
-}
-
-
-/* =========================================================
-   LOGIN FORM
+   LOGIN TITLE
 ========================================================= */
 
 .login-title {
   text-align: center;
-
   margin-bottom: 22px;
 }
 
 .login-title h2 {
   margin: 0 0 6px;
+  font-size: 18px;
 }
 
 .login-title p {
   margin: 0;
 
   color: #7f8795;
-
   font-size: 13px;
 }
+
+
+/* =========================================================
+   LOGIN INPUTS
+========================================================= */
 
 .login-box label {
   display: block;
@@ -283,7 +255,6 @@ button {
   height: 52px;
 
   margin-bottom: 12px;
-
   padding: 0 15px;
 
   border-radius: 13px;
@@ -377,7 +348,6 @@ button {
 .danger-button:active,
 .guest-button:active {
   transform: scale(0.98);
-
   opacity: 0.82;
 }
 
@@ -409,10 +379,10 @@ button {
 
   border-bottom: 1px solid #171d2a;
 
-  background:
-    rgba(7, 9, 18, 0.94);
+  background: rgba(7, 9, 18, 0.94);
 
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .app-brand {
@@ -441,13 +411,9 @@ button {
     );
 
   overflow: hidden;
-
-  box-shadow:
-    0 5px 20px rgba(82, 71, 255, 0.25);
 }
 
-.small-logo img,
-.small-logo svg {
+.small-logo img {
   width: 100%;
   height: 100%;
 
@@ -458,7 +424,6 @@ button {
   display: block;
 
   letter-spacing: 3px;
-
   font-size: 14px;
 }
 
@@ -517,35 +482,39 @@ button {
   margin-bottom: 14px;
 }
 
-.welcome-card::after {
-  content: "";
-
-  position: absolute;
-
-  width: 130px;
-  height: 130px;
-
-  right: -55px;
-  top: -55px;
-
-  border-radius: 50%;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0, 212, 255, 0.18),
-      rgba(116, 67, 255, 0.15)
-    );
-}
-
 .welcome-card h1 {
   margin: 13px 0 7px;
 }
 
 .welcome-card p {
   margin: 0;
-
   color: #858e9d;
+}
+
+.developer-hero-logo {
+  margin-bottom: 12px;
+}
+
+.developer-logo-mark {
+  width: 62px;
+  height: 62px;
+
+  border-radius: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #00d4ff,
+      #684dff,
+      #ff3cac
+    );
+
+  font-weight: 800;
+  font-size: 20px;
 }
 
 .developer-badge {
@@ -588,7 +557,6 @@ button {
 
 .status-icon {
   color: #39d98a;
-
   font-size: 13px;
 }
 
@@ -652,19 +620,13 @@ button {
     border-color 0.15s ease;
 }
 
-.home-card:hover {
-  border-color: #39476a;
-}
-
 .home-card:active {
   transform: scale(0.98);
-
   opacity: 0.82;
 }
 
 .home-icon {
   font-size: 25px;
-
   margin-bottom: 18px;
 }
 
@@ -697,7 +659,6 @@ button {
 
 .page-header h1 {
   margin: 0;
-
   font-size: 23px;
 }
 
@@ -726,7 +687,7 @@ button {
 
 
 /* =========================================================
-   MENU / SELECTION
+   MENU
 ========================================================= */
 
 .menu-list {
@@ -761,16 +722,6 @@ button {
   color: #fff;
 
   text-align: left;
-
-  transition:
-    transform 0.12s ease,
-    opacity 0.12s ease;
-}
-
-.menu-item:active {
-  transform: scale(0.985);
-
-  opacity: 0.82;
 }
 
 .menu-icon {
@@ -814,13 +765,12 @@ button {
 
 .menu-item b {
   color: #626b79;
-
   font-size: 22px;
 }
 
 
 /* =========================================================
-   CONTROL CARDS
+   CARDS
 ========================================================= */
 
 .control-card,
@@ -874,97 +824,6 @@ button {
   font-size: 10px;
 
   margin-top: 4px;
-
-  line-height: 1.4;
-}
-
-
-/* =========================================================
-   NEW TEST OPTIONS
-========================================================= */
-
-.extra-test-list {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 10px;
-}
-
-.extra-test-card {
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-
-  gap: 13px;
-
-  padding: 15px;
-
-  border-radius: 15px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #121723,
-      #0e131e
-    );
-
-  border: 1px solid #20283a;
-
-  color: #fff;
-
-  text-align: left;
-
-  transition:
-    border-color 0.15s ease,
-    transform 0.12s ease;
-}
-
-.extra-test-card:active {
-  transform: scale(0.985);
-}
-
-.extra-test-icon {
-  width: 45px;
-  height: 45px;
-
-  flex-shrink: 0;
-
-  border-radius: 12px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #202c43,
-      #171d2c
-    );
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 20px;
-}
-
-.extra-test-text {
-  flex: 1;
-}
-
-.extra-test-text strong {
-  display: block;
-
-  font-size: 13px;
-}
-
-.extra-test-text span {
-  display: block;
-
-  margin-top: 4px;
-
-  color: #707988;
-
-  font-size: 10px;
 
   line-height: 1.4;
 }
@@ -1047,64 +906,17 @@ button {
 
 input[type="range"] {
   width: 100%;
-
   accent-color: #5d75ff;
 }
 
 
 /* =========================================================
-   SPEED PRESETS
-========================================================= */
-
-.speed-presets {
-  display: grid;
-
-  grid-template-columns:
-    repeat(5, 1fr);
-
-  gap: 7px;
-
-  margin-top: 13px;
-}
-
-.speed-preset {
-  min-height: 36px;
-
-  border-radius: 9px;
-
-  background: #181f2d;
-
-  border: 1px solid #252f42;
-
-  color: #8da8e8;
-
-  font-size: 10px;
-
-  font-weight: 700;
-}
-
-.speed-preset.active {
-  background:
-    linear-gradient(
-      135deg,
-      #3478f6,
-      #6955ff
-    );
-
-  color: #fff;
-
-  border-color: transparent;
-}
-
-
-/* =========================================================
-   TEST BUTTONS
+   TEST BUTTON
 ========================================================= */
 
 .test-trigger,
 .test-action {
   min-width: 70px;
-
   min-height: 40px;
 
   padding: 0 13px;
@@ -1123,7 +935,6 @@ input[type="range"] {
   border: 1px solid #2c3b5a;
 
   font-size: 11px;
-
   font-weight: 700;
 }
 
@@ -1177,13 +988,7 @@ input[type="range"] {
   justify-content: center;
 
   font-size: 28px;
-
   font-weight: 700;
-
-  color: #fff;
-
-  box-shadow:
-    0 10px 35px rgba(96, 75, 255, 0.25);
 }
 
 .profile-box h2 {
@@ -1192,7 +997,6 @@ input[type="range"] {
 
 .profile-box span {
   color: #707988;
-
   font-size: 12px;
 }
 
@@ -1216,12 +1020,6 @@ input[type="range"] {
 
 .online {
   color: #39d98a;
-}
-
-.developer-name {
-  color: #76a3ff !important;
-
-  font-weight: 700;
 }
 
 
@@ -1285,8 +1083,7 @@ input[type="range"] {
 
   height: 76px;
 
-  padding-bottom:
-    env(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
 
   display: flex;
 
@@ -1301,7 +1098,6 @@ input[type="range"] {
   z-index: 100;
 
   backdrop-filter: blur(18px);
-
   -webkit-backdrop-filter: blur(18px);
 }
 
@@ -1358,17 +1154,10 @@ input[type="range"] {
     padding: 27px 19px;
   }
 
-  .extra-test-card {
-    padding: 13px;
+  .control-row {
+    gap: 10px;
   }
 
-  .speed-presets {
-    gap: 5px;
-  }
-
-  .speed-preset {
-    font-size: 9px;
-  }
 }
 
 
@@ -1390,13 +1179,8 @@ input[type="range"] {
 
 
 /* =========================================================
-   APP TRANSITION
+   TRANSITIONS
 ========================================================= */
-
-.app-screen.active {
-  animation:
-    screenFade 0.15s ease;
-}
 
 @keyframes screenFade {
 
@@ -1411,11 +1195,6 @@ input[type="range"] {
   }
 
 }
-
-
-/* =========================================================
-   GENERAL TOUCH
-========================================================= */
 
 button {
   -webkit-user-select: none;
