@@ -1,12 +1,6 @@
 /* =========================================================
-   BUNER-FF
-   Developer Test Interface
-   UI / CONTROLLED SIMULATION ONLY
-========================================================= */
-
-
-/* =========================================================
-   BUNER-FF API
+   LAWANGEN INJECTOR
+   Developer / Admin Panel
 ========================================================= */
 
 const API_BASE =
@@ -14,14 +8,25 @@ const API_BASE =
 
 
 /* =========================================================
-   GLOBAL ELEMENTS
+   CONFIG
+========================================================= */
+
+const APP_NAME = "LAWANGEN INJECTOR";
+
+const DEVELOPER_USERNAME = "LAWANGIN 444";
+
+const USER_STORAGE_KEY = "lawangenUser";
+const CONFIG_STORAGE_KEY = "lawangenConfig";
+const LOGO_STORAGE_KEY = "lawangenDeveloperLogo";
+const ADMIN_TOKEN_STORAGE_KEY = "lawangenAdminToken";
+
+
+/* =========================================================
+   ELEMENTS
 ========================================================= */
 
 const screens =
   document.querySelectorAll(".app-screen");
-
-const navigationButtons =
-  document.querySelectorAll("[data-screen]");
 
 const loginScreen =
   document.getElementById("loginScreen");
@@ -47,50 +52,32 @@ const loginMessage =
 
 
 /* =========================================================
-   BUNER-FF CONFIG
-========================================================= */
-
-const APP_NAME =
-  "BUNER-FF";
-
-const DEVELOPER_USERNAME =
-  "LAWANGIN 444";
-
-const USER_STORAGE_KEY =
-  "bunerFFUser";
-
-const CONFIG_STORAGE_KEY =
-  "bunerFFTestConfig";
-
-const LOGO_STORAGE_KEY =
-  "bunerFFDeveloperLogo";
-
-
-/* =========================================================
    SCREEN NAVIGATION
 ========================================================= */
 
 function openScreen(screenId) {
 
-  screens.forEach(screen => {
+  document
+    .querySelectorAll(".app-screen")
+    .forEach(screen => {
 
-    screen.classList.toggle(
-      "active",
-      screen.id === screenId
-    );
+      screen.classList.toggle(
+        "active",
+        screen.id === screenId
+      );
 
-  });
+    });
 
+  document
+    .querySelectorAll("[data-screen]")
+    .forEach(button => {
 
-  navigationButtons.forEach(button => {
+      button.classList.toggle(
+        "active",
+        button.dataset.screen === screenId
+      );
 
-    button.classList.toggle(
-      "active",
-      button.dataset.screen === screenId
-    );
-
-  });
-
+    });
 
   window.scrollTo({
     top: 0,
@@ -106,11 +93,11 @@ function openScreen(screenId) {
 
 function setStatus(text) {
 
-  const statusText =
+  const element =
     document.getElementById("statusText");
 
-  if (statusText) {
-    statusText.textContent = text;
+  if (element) {
+    element.textContent = text;
   }
 
 }
@@ -143,9 +130,7 @@ function showLoginMessage(
 function updateProfile(username) {
 
   const profileName =
-    document.getElementById(
-      "profileName"
-    );
+    document.getElementById("profileName");
 
   if (profileName) {
 
@@ -158,7 +143,48 @@ function updateProfile(username) {
 
 
 /* =========================================================
-   API HEALTH CHECK
+   API REQUEST HELPER
+========================================================= */
+
+async function apiRequest(
+  path,
+  options = {}
+) {
+
+  const response =
+    await fetch(
+      `${API_BASE}${path}`,
+      {
+        cache: "no-store",
+        ...options
+      }
+    );
+
+  let data = {};
+
+  try {
+    data = await response.json();
+  }
+  catch {
+    data = {};
+  }
+
+  if (!response.ok) {
+
+    throw new Error(
+      data.error ||
+      `HTTP ${response.status}`
+    );
+
+  }
+
+  return data;
+
+}
+
+
+/* =========================================================
+   API HEALTH
 ========================================================= */
 
 async function checkAPI() {
@@ -166,65 +192,84 @@ async function checkAPI() {
   try {
 
     setStatus(
-      "CONNECTING TO BUNER-FF API..."
+      "CONNECTING TO LAWANGEN API..."
     );
 
-
-    const response =
-      await fetch(API_BASE, {
-        method: "GET",
-        cache: "no-store"
-      });
-
-
-    if (!response.ok) {
-      throw new Error(
-        `HTTP ${response.status}`
-      );
-    }
-
-
     const data =
-      await response.json();
+      await apiRequest(
+        "/api/health"
+      );
 
-
-    if (
-      data &&
-      data.success === true
-    ) {
+    if (data.success) {
 
       setStatus(
-        "BUNER-FF API ONLINE"
+        "LAWANGEN API ONLINE"
       );
 
       return true;
 
     }
 
-
-    setStatus(
-      "BUNER-FF API ONLINE"
-    );
-
-    return true;
-
   }
   catch (error) {
 
     console.error(
-      "BUNER-FF API error:",
+      "API error:",
       error
     );
-
 
     setStatus(
       "API CONNECTION ERROR"
     );
 
+  }
 
-    return false;
+  return false;
+
+}
+
+
+/* =========================================================
+   DATABASE HEALTH
+========================================================= */
+
+async function checkDatabase() {
+
+  try {
+
+    const data =
+      await apiRequest(
+        "/api/db-test"
+      );
+
+    if (
+      data.success &&
+      data.database === "connected"
+    ) {
+
+      setStatus(
+        "D1 DATABASE CONNECTED"
+      );
+
+      return true;
+
+    }
 
   }
+  catch (error) {
+
+    console.error(
+      "D1 error:",
+      error
+    );
+
+    setStatus(
+      "D1 DATABASE ERROR"
+    );
+
+  }
+
+  return false;
 
 }
 
@@ -233,7 +278,7 @@ async function checkAPI() {
    LOGIN
 ========================================================= */
 
-function performLogin() {
+async function performLogin() {
 
   const username =
     usernameInput?.value.trim() || "";
@@ -256,19 +301,10 @@ function performLogin() {
   }
 
 
-  /*
-    IMPORTANT:
-    Key validation is intentionally
-    NOT connected yet.
-
-    We will add the real key system
-    later after the API is stable.
-  */
-
   if (!key) {
 
     showLoginMessage(
-      "Please enter your test key.",
+      "Please enter your key.",
       "error"
     );
 
@@ -279,6 +315,12 @@ function performLogin() {
   }
 
 
+  /*
+    Developer access is local UI access.
+    Real activation-key validation should be
+    handled by the Worker API.
+  */
+
   localStorage.setItem(
     USER_STORAGE_KEY,
     username
@@ -286,12 +328,6 @@ function performLogin() {
 
 
   updateProfile(username);
-
-
-  showLoginMessage(
-    "",
-    ""
-  );
 
 
   loginScreen?.classList.add(
@@ -309,27 +345,23 @@ function performLogin() {
 
 
   setStatus(
-    "BUNER-FF APP READY"
+    "LAWANGEN APP READY"
   );
 
 
   addLog(
-    "BUNER-FF developer test login"
+    "Developer login completed"
   );
 
 
   updateDeveloperControls();
-
   loadDeveloperLogo();
 
-  checkAPI();
+  await checkAPI();
+  await checkDatabase();
 
 }
 
-
-/* =========================================================
-   LOGIN BUTTON
-========================================================= */
 
 loginButton?.addEventListener(
   "click",
@@ -338,7 +370,7 @@ loginButton?.addEventListener(
 
 
 /* =========================================================
-   GUEST MODE
+   GUEST
 ========================================================= */
 
 guestButton?.addEventListener(
@@ -348,23 +380,14 @@ guestButton?.addEventListener(
     const guestName =
       "Guest Developer";
 
-
     localStorage.setItem(
       USER_STORAGE_KEY,
       guestName
     );
 
-
     updateProfile(
       guestName
     );
-
-
-    showLoginMessage(
-      "",
-      ""
-    );
-
 
     loginScreen?.classList.add(
       "hidden"
@@ -374,26 +397,20 @@ guestButton?.addEventListener(
       "hidden"
     );
 
-
     openScreen(
       "homeScreen"
     );
 
-
     setStatus(
-      "BUNER-FF GUEST MODE"
+      "LAWANGEN GUEST MODE"
     );
-
 
     addLog(
-      "BUNER-FF guest mode started"
+      "Guest mode started"
     );
 
-
     updateDeveloperControls();
-
     loadDeveloperLogo();
-
     checkAPI();
 
   }
@@ -468,7 +485,6 @@ document
       );
 
       updateDeveloperControls();
-
       loadDeveloperLogo();
 
     }
@@ -476,29 +492,1046 @@ document
 
 
 /* =========================================================
-   BACK BUTTONS
+   DEVELOPER CHECK
+========================================================= */
+
+function isDeveloper() {
+
+  const username =
+    localStorage.getItem(
+      USER_STORAGE_KEY
+    );
+
+  return (
+    username ===
+    DEVELOPER_USERNAME
+  );
+
+}
+
+
+function updateDeveloperControls() {
+
+  document
+    .querySelectorAll(".developer-only")
+    .forEach(element => {
+
+      element.style.display =
+        isDeveloper()
+          ? ""
+          : "none";
+
+    });
+
+}
+
+
+/* =========================================================
+   ADMIN TOKEN
+========================================================= */
+
+const adminTokenInput =
+  document.getElementById(
+    "adminToken"
+  );
+
+
+function getAdminToken() {
+
+  const current =
+    adminTokenInput?.value.trim();
+
+  if (current) {
+
+    localStorage.setItem(
+      ADMIN_TOKEN_STORAGE_KEY,
+      current
+    );
+
+    return current;
+
+  }
+
+  return localStorage.getItem(
+    ADMIN_TOKEN_STORAGE_KEY
+  ) || "";
+
+}
+
+
+function clearAdminToken() {
+
+  localStorage.removeItem(
+    ADMIN_TOKEN_STORAGE_KEY
+  );
+
+  if (adminTokenInput) {
+    adminTokenInput.value = "";
+  }
+
+}
+
+
+/* =========================================================
+   KEY GENERATION ELEMENTS
+========================================================= */
+
+const generateKeyButton =
+  document.getElementById(
+    "generateKey"
+  );
+
+const keyDaysInput =
+  document.getElementById(
+    "keyDays"
+  );
+
+const generatedKeyOutput =
+  document.getElementById(
+    "generatedKey"
+  );
+
+const keyMessage =
+  document.getElementById(
+    "keyMessage"
+  );
+
+
+function showKeyMessage(
+  message,
+  type = ""
+) {
+
+  if (!keyMessage) return;
+
+  keyMessage.textContent =
+    message;
+
+  keyMessage.className =
+    `message ${type}`.trim();
+
+}
+
+
+/* =========================================================
+   GENERATE KEY
+========================================================= */
+
+async function generateAdminKey() {
+
+  const token =
+    getAdminToken();
+
+  const days =
+    Number(
+      keyDaysInput?.value || 30
+    );
+
+
+  if (!token) {
+
+    showKeyMessage(
+      "Admin Token enter کریں۔",
+      "error"
+    );
+
+    adminTokenInput?.focus();
+
+    return;
+
+  }
+
+
+  if (
+    !Number.isFinite(days) ||
+    days < 1 ||
+    days > 3650
+  ) {
+
+    showKeyMessage(
+      "Days 1 سے 3650 کے درمیان رکھیں۔",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if (generateKeyButton) {
+
+    generateKeyButton.disabled =
+      true;
+
+    generateKeyButton.textContent =
+      "GENERATING...";
+
+  }
+
+
+  showKeyMessage(
+    "Key generate ہو رہی ہے...",
+    ""
+  );
+
+
+  try {
+
+    const data =
+      await apiRequest(
+        "/api/admin/keys/generate",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json",
+
+            "Authorization":
+              `Bearer ${token}`
+          },
+
+          body:
+            JSON.stringify({
+              days
+            })
+        }
+      );
+
+
+    const keyCode =
+      data.key?.key_code;
+
+
+    if (!keyCode) {
+
+      throw new Error(
+        "Worker نے key واپس نہیں کی۔"
+      );
+
+    }
+
+
+    if (generatedKeyOutput) {
+
+      generatedKeyOutput.value =
+        keyCode;
+
+    }
+
+
+    showKeyMessage(
+      "Activation key generated successfully.",
+      "success"
+    );
+
+
+    addLog(
+      "Activation key generated"
+    );
+
+
+    setStatus(
+      "KEY GENERATED"
+    );
+
+
+    loadAdminKeys();
+
+  }
+  catch (error) {
+
+    console.error(
+      "Generate key error:",
+      error
+    );
+
+
+    showKeyMessage(
+      error.message ||
+      "Key generation failed.",
+      "error"
+    );
+
+
+    setStatus(
+      "KEY GENERATION ERROR"
+    );
+
+  }
+  finally {
+
+    if (generateKeyButton) {
+
+      generateKeyButton.disabled =
+        false;
+
+      generateKeyButton.textContent =
+        "GENERATE KEY";
+
+    }
+
+  }
+
+}
+
+
+generateKeyButton?.addEventListener(
+  "click",
+  generateAdminKey
+);
+
+
+/* =========================================================
+   COPY GENERATED KEY
 ========================================================= */
 
 document
-  .querySelectorAll(".back-button")
-  .forEach(button => {
+  .getElementById("copyGeneratedKey")
+  ?.addEventListener(
+    "click",
+    async () => {
 
-    button.addEventListener(
-      "click",
-      () => {
+      const key =
+        generatedKeyOutput?.value.trim();
 
-        openScreen(
-          "selectionScreen"
+      if (!key) {
+
+        showKeyMessage(
+          "پہلے key generate کریں۔",
+          "error"
+        );
+
+        return;
+
+      }
+
+      try {
+
+        await navigator.clipboard.writeText(
+          key
+        );
+
+        showKeyMessage(
+          "Key copied.",
+          "success"
         );
 
       }
+      catch {
+
+        showKeyMessage(
+          "Key copy نہیں ہو سکی۔",
+          "error"
+        );
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   ADMIN KEY LIST
+========================================================= */
+
+const keysContainer =
+  document.getElementById(
+    "keysContainer"
+  );
+
+
+async function loadAdminKeys() {
+
+  const token =
+    getAdminToken();
+
+  if (!token) return;
+
+
+  try {
+
+    const data =
+      await apiRequest(
+        "/api/admin/keys",
+        {
+          method: "GET",
+
+          headers: {
+            "Authorization":
+              `Bearer ${token}`
+          }
+        }
+      );
+
+
+    renderAdminKeys(
+      data.keys || []
+    );
+
+
+  }
+  catch (error) {
+
+    console.error(
+      "Load keys error:",
+      error
+    );
+
+    if (keysContainer) {
+
+      keysContainer.innerHTML = `
+        <div class="empty-log">
+          ${escapeHTML(
+            error.message
+          )}
+        </div>
+      `;
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER KEYS
+========================================================= */
+
+function renderAdminKeys(keys) {
+
+  if (!keysContainer) return;
+
+
+  if (!keys.length) {
+
+    keysContainer.innerHTML = `
+      <div class="empty-log">
+        No activation keys yet.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  keysContainer.innerHTML = "";
+
+
+  keys.forEach(key => {
+
+    const item =
+      document.createElement(
+        "div"
+      );
+
+    item.className =
+      "key-item";
+
+
+    item.innerHTML = `
+      <strong>
+        ${escapeHTML(
+          key.key_code || ""
+        )}
+      </strong>
+
+      <small>
+        Status:
+        ${escapeHTML(
+          key.status || ""
+        )}
+      </small>
+
+      <small>
+        Expires:
+        ${escapeHTML(
+          key.expires_at || "Never"
+        )}
+      </small>
+
+      <div class="key-actions">
+
+        <button
+          type="button"
+          data-key-status="${key.id}"
+          data-status="${
+            key.status === "active"
+              ? "disabled"
+              : "active"
+          }">
+
+          ${
+            key.status === "active"
+              ? "DISABLE"
+              : "ENABLE"
+          }
+
+        </button>
+
+        <button
+          type="button"
+          data-key-reset="${key.id}">
+
+          RESET DEVICE
+
+        </button>
+
+      </div>
+    `;
+
+
+    keysContainer.appendChild(
+      item
     );
 
   });
 
+}
+
 
 /* =========================================================
-   POV / FOV
+   KEY ACTIONS
+========================================================= */
+
+document.addEventListener(
+  "click",
+  async event => {
+
+    const statusButton =
+      event.target.closest(
+        "[data-key-status]"
+      );
+
+    const resetButton =
+      event.target.closest(
+        "[data-key-reset]"
+      );
+
+
+    if (statusButton) {
+
+      await changeKeyStatus(
+        statusButton.dataset.keyStatus,
+        statusButton.dataset.status
+      );
+
+    }
+
+
+    if (resetButton) {
+
+      await resetKeyDevice(
+        resetButton.dataset.keyReset
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   CHANGE KEY STATUS
+========================================================= */
+
+async function changeKeyStatus(
+  id,
+  status
+) {
+
+  const token =
+    getAdminToken();
+
+  if (!token) return;
+
+
+  try {
+
+    await apiRequest(
+      `/api/admin/keys/${id}/status`,
+      {
+        method: "PUT",
+
+        headers: {
+          "Content-Type":
+            "application/json",
+
+          "Authorization":
+            `Bearer ${token}`
+        },
+
+        body:
+          JSON.stringify({
+            status
+          })
+      }
+    );
+
+
+    addLog(
+      `Key ${id}: ${status.toUpperCase()}`
+    );
+
+
+    loadAdminKeys();
+
+
+  }
+  catch (error) {
+
+    showKeyMessage(
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   RESET DEVICE
+========================================================= */
+
+async function resetKeyDevice(id) {
+
+  const token =
+    getAdminToken();
+
+  if (!token) return;
+
+
+  try {
+
+    await apiRequest(
+      `/api/admin/keys/${id}/reset`,
+      {
+        method: "POST",
+
+        headers: {
+          "Authorization":
+            `Bearer ${token}`
+        }
+      }
+    );
+
+
+    addLog(
+      `Device binding reset for key ${id}`
+    );
+
+
+    loadAdminKeys();
+
+
+  }
+  catch (error) {
+
+    showKeyMessage(
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   LOGO MANAGER
+========================================================= */
+
+const developerLogoInput =
+  document.getElementById(
+    "developerLogoInput"
+  );
+
+const developerLogoPreview =
+  document.getElementById(
+    "developerLogoPreview"
+  );
+
+const applyDeveloperLogoButton =
+  document.getElementById(
+    "applyDeveloperLogo"
+  );
+
+const resetDeveloperLogoButton =
+  document.getElementById(
+    "resetDeveloperLogo"
+  );
+
+const logoManagerMessage =
+  document.getElementById(
+    "logoManagerMessage"
+  );
+
+
+function showLogoMessage(
+  message,
+  type = ""
+) {
+
+  if (!logoManagerMessage) return;
+
+  logoManagerMessage.textContent =
+    message;
+
+  logoManagerMessage.className =
+    `message ${type}`.trim();
+
+}
+
+
+/* =========================================================
+   APPLY LOGO TO UI
+========================================================= */
+
+function applyDeveloperLogo(
+  imageData
+) {
+
+  if (
+    !imageData ||
+    typeof imageData !== "string"
+  ) return;
+
+
+  document
+    .querySelectorAll(
+      ".logo-mark img, .small-logo img, img[data-app-logo]"
+    )
+    .forEach(image => {
+
+      image.src =
+        imageData;
+
+    });
+
+
+  const ids = [
+    "loginLogo",
+    "topLogo",
+    "homeLogo",
+    "profileLogo",
+    "developerLogoPreview"
+  ];
+
+
+  ids.forEach(id => {
+
+    const image =
+      document.getElementById(id);
+
+    if (image) {
+      image.src =
+        imageData;
+    }
+
+  });
+
+}
+
+
+/* =========================================================
+   SELECT LOGO
+========================================================= */
+
+developerLogoInput?.addEventListener(
+  "change",
+  event => {
+
+    const file =
+      event.target.files?.[0];
+
+    if (!file) return;
+
+
+    const allowed = [
+      "image/png",
+      "image/jpeg",
+      "image/webp",
+      "image/gif"
+    ];
+
+
+    if (!allowed.includes(file.type)) {
+
+      showLogoMessage(
+        "PNG, JPG, WEBP یا GIF منتخب کریں۔",
+        "error"
+      );
+
+      developerLogoInput.value =
+        "";
+
+      return;
+
+    }
+
+
+    if (
+      file.size >
+      5 * 1024 * 1024
+    ) {
+
+      showLogoMessage(
+        "Logo 5MB سے کم ہونا چاہیے۔",
+        "error"
+      );
+
+      developerLogoInput.value =
+        "";
+
+      return;
+
+    }
+
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload = () => {
+
+      const imageData =
+        reader.result;
+
+
+      sessionStorage.setItem(
+        "lawangenPendingLogo",
+        imageData
+      );
+
+
+      if (developerLogoPreview) {
+
+        developerLogoPreview.src =
+          imageData;
+
+      }
+
+
+      showLogoMessage(
+        "Logo selected. اب APPLY LOGO دبائیں۔",
+        "success"
+      );
+
+    };
+
+
+    reader.onerror = () => {
+
+      showLogoMessage(
+        "Image read نہیں ہو سکی۔",
+        "error"
+      );
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+  }
+);
+
+
+/* =========================================================
+   APPLY SELECTED LOGO
+========================================================= */
+
+applyDeveloperLogoButton?.addEventListener(
+  "click",
+  () => {
+
+    const pending =
+      sessionStorage.getItem(
+        "lawangenPendingLogo"
+      );
+
+
+    if (!pending) {
+
+      showLogoMessage(
+        "پہلے gallery سے logo select کریں۔",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    try {
+
+      localStorage.setItem(
+        LOGO_STORAGE_KEY,
+        pending
+      );
+
+    }
+    catch {
+
+      showLogoMessage(
+        "Logo بہت بڑا ہے، اسے save نہیں کیا جا سکتا۔",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    applyDeveloperLogo(
+      pending
+    );
+
+
+    sessionStorage.removeItem(
+      "lawangenPendingLogo"
+    );
+
+
+    showLogoMessage(
+      "LAWANGEN logo successfully applied.",
+      "success"
+    );
+
+
+    setStatus(
+      "LOGO UPDATED"
+    );
+
+
+    addLog(
+      "Developer logo updated"
+    );
+
+
+    if (developerLogoInput) {
+      developerLogoInput.value =
+        "";
+    }
+
+  }
+);
+
+
+/* =========================================================
+   RESET LOGO
+========================================================= */
+
+resetDeveloperLogoButton?.addEventListener(
+  "click",
+  () => {
+
+    localStorage.removeItem(
+      LOGO_STORAGE_KEY
+    );
+
+    sessionStorage.removeItem(
+      "lawangenPendingLogo"
+    );
+
+
+    const defaultLogo =
+      "./assets/logo.png";
+
+
+    applyDeveloperLogo(
+      defaultLogo
+    );
+
+
+    if (developerLogoPreview) {
+
+      developerLogoPreview.src =
+        defaultLogo;
+
+    }
+
+
+    showLogoMessage(
+      "Default logo restored.",
+      "success"
+    );
+
+
+    setStatus(
+      "DEFAULT LOGO RESTORED"
+    );
+
+
+    addLog(
+      "Developer logo reset"
+    );
+
+  }
+);
+
+
+/* =========================================================
+   LOAD LOGO
+========================================================= */
+
+function loadDeveloperLogo() {
+
+  const saved =
+    localStorage.getItem(
+      LOGO_STORAGE_KEY
+    );
+
+
+  const logo =
+    saved ||
+    "./assets/logo.png";
+
+
+  applyDeveloperLogo(
+    logo
+  );
+
+
+  if (developerLogoPreview) {
+
+    developerLogoPreview.src =
+      logo;
+
+  }
+
+}
+
+
+/* =========================================================
+   LOAD PENDING LOGO
+========================================================= */
+
+function loadPendingLogo() {
+
+  const pending =
+    sessionStorage.getItem(
+      "lawangenPendingLogo"
+    );
+
+
+  if (
+    pending &&
+    developerLogoPreview
+  ) {
+
+    developerLogoPreview.src =
+      pending;
+
+  }
+
+}
+
+
+/* =========================================================
+   CONFIGURATION
 ========================================================= */
 
 const povSlider =
@@ -509,6 +1542,16 @@ const povSlider =
 const povValue =
   document.getElementById(
     "povValue"
+  );
+
+const speedSlider =
+  document.getElementById(
+    "speedSlider"
+  );
+
+const speedValue =
+  document.getElementById(
+    "speedValue"
   );
 
 
@@ -525,21 +1568,6 @@ povSlider?.addEventListener(
 
   }
 );
-
-
-/* =========================================================
-   SPEED
-========================================================= */
-
-const speedSlider =
-  document.getElementById(
-    "speedSlider"
-  );
-
-const speedValue =
-  document.getElementById(
-    "speedValue"
-  );
 
 
 speedSlider?.addEventListener(
@@ -560,7 +1588,7 @@ speedSlider?.addEventListener(
 
 
 /* =========================================================
-   TEST INPUTS
+   TEST SWITCHES
 ========================================================= */
 
 const testInputs =
@@ -580,24 +1608,20 @@ function getActiveTests() {
 
 function updateActiveCount() {
 
-  const activeCount =
+  const element =
     document.getElementById(
       "activeCount"
     );
 
-  if (activeCount) {
+  if (element) {
 
-    activeCount.textContent =
+    element.textContent =
       `${getActiveTests()} Active`;
 
   }
 
 }
 
-
-/* =========================================================
-   TEST SWITCH EVENTS
-========================================================= */
 
 testInputs.forEach(
   input => {
@@ -608,11 +1632,9 @@ testInputs.forEach(
 
         updateActiveCount();
 
-
         const name =
           input.dataset.name ||
           "Test option";
-
 
         addLog(
           `${name}: ${
@@ -621,7 +1643,6 @@ testInputs.forEach(
               : "DISABLED"
           }`
         );
-
 
         setStatus(
           input.checked
@@ -637,7 +1658,7 @@ testInputs.forEach(
 
 
 /* =========================================================
-   APPLY CONFIGURATION
+   SAVE CONFIG
 ========================================================= */
 
 document
@@ -658,18 +1679,22 @@ document
         );
 
 
-      const configuration = {
+      const config = {
 
         activeTests,
 
         pov:
           povSlider
-            ? Number(povSlider.value)
+            ? Number(
+                povSlider.value
+              )
             : 90,
 
         speed:
           speedSlider
-            ? Number(speedSlider.value)
+            ? Number(
+                speedSlider.value
+              )
             : 1,
 
         savedAt:
@@ -680,9 +1705,7 @@ document
 
       localStorage.setItem(
         CONFIG_STORAGE_KEY,
-        JSON.stringify(
-          configuration
-        )
+        JSON.stringify(config)
       );
 
 
@@ -692,12 +1715,7 @@ document
 
 
       setStatus(
-        "TEST CONFIG READY"
-      );
-
-
-      openScreen(
-        "logsScreen"
+        "CONFIGURATION SAVED"
       );
 
     }
@@ -716,28 +1734,33 @@ document
 
       testInputs.forEach(
         input => {
-          input.checked = false;
+          input.checked =
+            false;
         }
       );
 
 
       if (povSlider) {
-        povSlider.value = 90;
+        povSlider.value =
+          90;
       }
 
 
       if (speedSlider) {
-        speedSlider.value = 1;
+        speedSlider.value =
+          1;
       }
 
 
       if (povValue) {
-        povValue.textContent = "90°";
+        povValue.textContent =
+          "90°";
       }
 
 
       if (speedValue) {
-        speedValue.textContent = "1.0x";
+        speedValue.textContent =
+          "1.0x";
       }
 
 
@@ -755,7 +1778,7 @@ document
 
 
       addLog(
-        "BUNER-FF test configuration reset"
+        "Developer configuration reset"
       );
 
     }
@@ -792,6 +1815,7 @@ function addLog(text) {
     document.createElement(
       "div"
     );
+
 
   item.className =
     "log-item";
@@ -832,64 +1856,6 @@ function addLog(text) {
 
 
 /* =========================================================
-   TEST TRIGGERS
-========================================================= */
-
-document
-  .querySelectorAll(".test-trigger")
-  .forEach(button => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        const eventName =
-          button.dataset.event ||
-          "TEST_EVENT";
-
-
-        addLog(
-          `BUNER-FF Simulation: ${eventName}`
-        );
-
-
-        setStatus(
-          "SIMULATION EVENT GENERATED"
-        );
-
-
-        const originalText =
-          button.textContent;
-
-
-        button.textContent =
-          "DONE";
-
-
-        button.disabled =
-          true;
-
-
-        setTimeout(
-          () => {
-
-            button.textContent =
-              originalText || "TEST";
-
-            button.disabled =
-              false;
-
-          },
-          900
-        );
-
-      }
-    );
-
-  });
-
-
-/* =========================================================
    CLEAR LOGS
 ========================================================= */
 
@@ -901,13 +1867,11 @@ document
 
       if (!logsContainer) return;
 
-
       logsContainer.innerHTML = `
         <div class="empty-log">
-          No test activity yet.
+          No activity yet.
         </div>
       `;
-
 
       setStatus(
         "LOGS CLEARED"
@@ -915,448 +1879,6 @@ document
 
     }
   );
-
-
-/* =========================================================
-   DEVELOPER CHECK
-========================================================= */
-
-function isDeveloper() {
-
-  const currentUser =
-    localStorage.getItem(
-      USER_STORAGE_KEY
-    );
-
-
-  return (
-    currentUser ===
-    DEVELOPER_USERNAME
-  );
-
-}
-
-
-/* =========================================================
-   LOGO ELEMENTS
-========================================================= */
-
-const developerLogoInput =
-  document.getElementById(
-    "developerLogoInput"
-  );
-
-const developerLogoPreview =
-  document.getElementById(
-    "developerLogoPreview"
-  );
-
-const applyDeveloperLogoButton =
-  document.getElementById(
-    "applyDeveloperLogo"
-  );
-
-const resetDeveloperLogoButton =
-  document.getElementById(
-    "resetDeveloperLogo"
-  );
-
-const logoManagerMessage =
-  document.getElementById(
-    "logoManagerMessage"
-  );
-
-
-/* =========================================================
-   LOGO MESSAGE
-========================================================= */
-
-function showLogoMessage(
-  message,
-  type = ""
-) {
-
-  if (!logoManagerMessage) return;
-
-  logoManagerMessage.textContent =
-    message;
-
-  logoManagerMessage.className =
-    `message ${type}`.trim();
-
-}
-
-
-/* =========================================================
-   APPLY LOGO
-========================================================= */
-
-function applyDeveloperLogo(
-  imageData
-) {
-
-  if (
-    !imageData ||
-    typeof imageData !== "string"
-  ) {
-    return;
-  }
-
-
-  const logoIds = [
-    "loginLogo",
-    "topLogo",
-    "homeLogo",
-    "profileLogo",
-    "developerLogoPreview"
-  ];
-
-
-  logoIds.forEach(id => {
-
-    const image =
-      document.getElementById(id);
-
-    if (image) {
-      image.src = imageData;
-    }
-
-  });
-
-}
-
-
-/* =========================================================
-   FILE SELECT
-========================================================= */
-
-developerLogoInput?.addEventListener(
-  "change",
-  event => {
-
-    const file =
-      event.target.files?.[0];
-
-
-    if (!file) return;
-
-
-    const allowedTypes = [
-      "image/png",
-      "image/jpeg",
-      "image/webp",
-      "image/gif"
-    ];
-
-
-    if (
-      !allowedTypes.includes(
-        file.type
-      )
-    ) {
-
-      showLogoMessage(
-        "Please select PNG, JPG, WEBP or GIF.",
-        "error"
-      );
-
-      developerLogoInput.value = "";
-
-      return;
-
-    }
-
-
-    if (
-      file.size >
-      5 * 1024 * 1024
-    ) {
-
-      showLogoMessage(
-        "Logo must be smaller than 5 MB.",
-        "error"
-      );
-
-      developerLogoInput.value = "";
-
-      return;
-
-    }
-
-
-    const reader =
-      new FileReader();
-
-
-    reader.onload = () => {
-
-      const imageData =
-        reader.result;
-
-
-      if (
-        typeof imageData !==
-        "string"
-      ) {
-        return;
-      }
-
-
-      sessionStorage.setItem(
-        "bunerFFPendingLogo",
-        imageData
-      );
-
-
-      if (developerLogoPreview) {
-
-        developerLogoPreview.src =
-          imageData;
-
-      }
-
-
-      showLogoMessage(
-        "Logo selected. Press APPLY LOGO.",
-        "success"
-      );
-
-    };
-
-
-    reader.onerror = () => {
-
-      showLogoMessage(
-        "Could not read this image.",
-        "error"
-      );
-
-    };
-
-
-    reader.readAsDataURL(file);
-
-  }
-);
-
-
-/* =========================================================
-   APPLY SELECTED LOGO
-========================================================= */
-
-applyDeveloperLogoButton?.addEventListener(
-  "click",
-  () => {
-
-    const pendingLogo =
-      sessionStorage.getItem(
-        "bunerFFPendingLogo"
-      );
-
-
-    if (!pendingLogo) {
-
-      showLogoMessage(
-        "First choose a logo.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    try {
-
-      localStorage.setItem(
-        LOGO_STORAGE_KEY,
-        pendingLogo
-      );
-
-    }
-    catch (error) {
-
-      showLogoMessage(
-        "Logo is too large to save.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    applyDeveloperLogo(
-      pendingLogo
-    );
-
-
-    sessionStorage.removeItem(
-      "bunerFFPendingLogo"
-    );
-
-
-    showLogoMessage(
-      "BUNER-FF logo applied successfully.",
-      "success"
-    );
-
-
-    setStatus(
-      "DEVELOPER LOGO UPDATED"
-    );
-
-
-    addLog(
-      "BUNER-FF developer logo updated"
-    );
-
-
-    if (developerLogoInput) {
-      developerLogoInput.value = "";
-    }
-
-  }
-);
-
-
-/* =========================================================
-   RESET LOGO
-========================================================= */
-
-resetDeveloperLogoButton?.addEventListener(
-  "click",
-  () => {
-
-    localStorage.removeItem(
-      LOGO_STORAGE_KEY
-    );
-
-
-    sessionStorage.removeItem(
-      "bunerFFPendingLogo"
-    );
-
-
-    applyDeveloperLogo(
-      "./assets/logo.png"
-    );
-
-
-    if (developerLogoInput) {
-      developerLogoInput.value = "";
-    }
-
-
-    showLogoMessage(
-      "Default logo restored.",
-      "success"
-    );
-
-
-    setStatus(
-      "DEFAULT LOGO RESTORED"
-    );
-
-
-    addLog(
-      "BUNER-FF logo reset"
-    );
-
-  }
-);
-
-
-/* =========================================================
-   LOAD LOGO
-========================================================= */
-
-function loadDeveloperLogo() {
-
-  const savedLogo =
-    localStorage.getItem(
-      LOGO_STORAGE_KEY
-    );
-
-
-  if (savedLogo) {
-
-    applyDeveloperLogo(
-      savedLogo
-    );
-
-
-    if (developerLogoPreview) {
-      developerLogoPreview.src =
-        savedLogo;
-    }
-
-    return;
-
-  }
-
-
-  applyDeveloperLogo(
-    "./assets/logo.png"
-  );
-
-
-  if (developerLogoPreview) {
-
-    developerLogoPreview.src =
-      "./assets/logo.png";
-
-  }
-
-}
-
-
-/* =========================================================
-   LOAD PENDING LOGO
-========================================================= */
-
-function loadPendingLogo() {
-
-  const pendingLogo =
-    sessionStorage.getItem(
-      "bunerFFPendingLogo"
-    );
-
-
-  if (
-    pendingLogo &&
-    developerLogoPreview
-  ) {
-
-    developerLogoPreview.src =
-      pendingLogo;
-
-  }
-
-}
-
-
-/* =========================================================
-   DEVELOPER CONTROLS
-========================================================= */
-
-function updateDeveloperControls() {
-
-  const manager =
-    document.getElementById(
-      "developerLogoManager"
-    );
-
-
-  if (!manager) return;
-
-
-  manager.style.display =
-    isDeveloper()
-      ? "block"
-      : "none";
-
-}
 
 
 /* =========================================================
@@ -1378,19 +1900,20 @@ function logout() {
     "hidden"
   );
 
-
   loginScreen?.classList.remove(
     "hidden"
   );
 
 
   if (usernameInput) {
-    usernameInput.value = "";
+    usernameInput.value =
+      "";
   }
 
 
   if (keyInput) {
-    keyInput.value = "";
+    keyInput.value =
+      "";
   }
 
 
@@ -1424,7 +1947,7 @@ document
 
 
 /* =========================================================
-   LOAD CONFIGURATION
+   LOAD CONFIG
 ========================================================= */
 
 function loadConfiguration() {
@@ -1442,7 +1965,7 @@ function loadConfiguration() {
       );
 
   }
-  catch (error) {
+  catch {
 
     saved = null;
 
@@ -1460,12 +1983,12 @@ function loadConfiguration() {
 
   if (
     povSlider &&
-    typeof saved.pov === "number"
+    typeof saved.pov ===
+      "number"
   ) {
 
     povSlider.value =
       saved.pov;
-
 
     if (povValue) {
 
@@ -1479,12 +2002,12 @@ function loadConfiguration() {
 
   if (
     speedSlider &&
-    typeof saved.speed === "number"
+    typeof saved.speed ===
+      "number"
   ) {
 
     speedSlider.value =
       saved.speed;
-
 
     if (speedValue) {
 
@@ -1507,13 +2030,9 @@ function loadConfiguration() {
     testInputs.forEach(
       input => {
 
-        const name =
-          input.dataset.name;
-
-
         input.checked =
           saved.activeTests.includes(
-            name
+            input.dataset.name
           );
 
       }
@@ -1528,7 +2047,38 @@ function loadConfiguration() {
 
 
 /* =========================================================
-   SAVED LOGIN
+   HTML ESCAPE
+========================================================= */
+
+function escapeHTML(value) {
+
+  return String(value ?? "")
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+/* =========================================================
+   SAVED USER
 ========================================================= */
 
 const savedUser =
@@ -1543,21 +2093,17 @@ if (savedUser) {
     savedUser
   );
 
-
   loginScreen?.classList.add(
     "hidden"
   );
-
 
   app?.classList.remove(
     "hidden"
   );
 
-
   openScreen(
     "homeScreen"
   );
-
 
   checkAPI();
 
@@ -1580,5 +2126,5 @@ updateDeveloperControls();
 
 
 /* =========================================================
-   END — BUNER-FF
+   END — LAWANGEN INJECTOR
 ========================================================= */
