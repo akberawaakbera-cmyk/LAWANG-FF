@@ -170,11 +170,11 @@
     </button>
 
     <button
-      id="devPreviewButton"
-      class="secondary-button"
-      type="button">
-      DEVELOPER PREVIEW
-    </button>
+  id="devPreviewButton"
+  class="secondary-button"
+  type="button">
+  DEVELOPER PREVIEW
+</button>
 
     <p id="keyMessage" class="message"></p>
 
@@ -1092,7 +1092,7 @@ const API_BASE =
   This allows the developer to inspect the UI.
   It does NOT create, activate, or modify backend keys.
 */
-const DEV_PREVIEW_MODE = true;
+
 
 
 /* =====================================================
@@ -3613,40 +3613,27 @@ window.addEventListener(
 
     await loadDeveloperLogo();
 
+    // Always require the Key Gate first.
+    document
+      .getElementById("keyGate")
+      .classList.remove("hidden");
 
-    /*
-      Developer Preview does not modify
-      backend key validation.
-    */
+    document
+      .getElementById("mainApp")
+      .classList.add("hidden");
 
-    if (DEV_PREVIEW_MODE) {
+    // Verify previously activated key with Worker.
+    const storedKey = getKeyState();
 
-      document
-        .getElementById(
-          "keyGate"
-        )
-        .classList.remove(
-          "hidden"
-        );
-
-
-      document
-        .getElementById(
-          "mainApp"
-        )
-        .classList.add(
-          "hidden"
-        );
-
+    if (storedKey) {
+      await refreshKey();
     }
 
-
+    // Public connection check.
     checkConnection();
 
   }
 );
-
-</script>
 
 
 <!-- =====================================================
