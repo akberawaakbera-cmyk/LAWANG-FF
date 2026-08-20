@@ -2928,13 +2928,19 @@ async function loadAdminKeys() {
 
 async function generateKey() {
 
-  const days =
-    Number(
-      document.getElementById(
-        "keyDays"
-      ).value
-    );
+  const daysInput =
+    document.getElementById("keyDays");
 
+  const result =
+    document.getElementById("generatedKeyResult");
+
+  const button =
+    document.getElementById("generateKeyButton");
+
+  const days =
+    Number(daysInput?.value || 30);
+
+  /* ---------- VALIDATION ---------- */
 
   if (
     !Number.isFinite(days) ||
@@ -2947,65 +2953,268 @@ async function generateKey() {
       "error"
     );
 
+    return;
+  }
+
+  /* ---------- ADMIN TOKEN ---------- */
+
+  const token =
+    getAdminToken();
+
+  if (!token) {
+
+    showAdminMessage(
+      "ADMIN_TOKEN is missing. Save your Worker ADMIN_TOKEN first.",
+      "error"
+    );
 
     return;
+  }
+
+  /* ---------- LOADING ---------- */
+
+  if (button) {
+
+    button.disabled = true;
+
+    button.dataset.originalText =
+      button.textContent;
+
+    button.textContent =
+      "GENERATING...";
 
   }
 
+  if (result) {
+
+    result.classList.add("hidden");
+
+    result.textContent = "";
+
+  }
+
+  showAdminMessage(
+    "Connecting to Worker and generating key...",
+    ""
+  );
 
   try {
 
-    showAdminMessage(
-      "Generating key...",
-      ""
+    console.log(
+      "[LAWANGEN] Generate Key Request",
+      {
+        endpoint:
+          API_BASE +
+          "/api/admin/keys/generate",
+
+        days,
+
+        hasAdminToken:
+          Boolean(token)
+      }
     );
 
+    /* ---------- REQUEST ---------- */
 
-    const data =
-      await adminRequest(
+    const response =
+      await fetch(
+        API_BASE +
         "/api/admin/keys/generate",
         {
-          method:
-            "POST",
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json",
+
+            "Authorization":
+              `Bearer ${token}`
+          },
 
           body:
             JSON.stringify({
               days
-            })
+            }),
+
+          cache:
+            "no-store"
         }
       );
 
 
-    const generated =
-      data.key?.key_code;
+    /* ---------- RAW RESPONSE ---------- */
+
+    const rawText =
+      await response.text();
+
+    console.log(
+      "[LAWANGEN] Worker HTTP Status:",
+      response.status
+    );
+
+    console.log(
+      "[LAWANGEN] Worker Raw Response:",
+      rawText
+    );
 
 
-    if (!generated) {
+    /* ---------- PARSE RESPONSE ---------- */
+
+    let data = {};
+
+    try {
+
+      data =
+        rawText
+          ? JSON.parse(rawText)
+          : {};
+
+    } catch {
 
       throw new Error(
-        "Worker did not return a generated key."
+        `Worker returned non-JSON response. HTTP ${response.status}. Response: ${rawText.slice(0, 300)}`
       );
 
     }
 
 
-    const result =
-      document.getElementById(
-        "generatedKeyResult"
-      );
-
-
-    result.textContent =
-      generated;
-
-
-    result.classList.remove(
-      "hidden"
+    console.log(
+      "[LAWANGEN] Worker JSON:",
+      data
     );
 
 
+    /* ---------- HTTP ERROR ---------- */
+
+    if (!response.ok) {
+
+      const serverError =
+        data.error ||
+        data.message ||
+        `HTTP ${response.status}`;
+
+      throw new Error(
+        `Generate Key failed: ${serverError}`
+      );
+
+    }
+
+
+    /* ---------- API ERROR ---------- */
+
+    if (
+      data.success !== true
+    ) {
+
+      throw new Error(
+        data.error ||
+        data.message ||
+        "Worker returned success=false."
+      );
+
+    }
+
+
+    /* ---------- KEY CHECK ---------- */
+
+    const generated =
+      data.key?.key_code;
+
+    if (!generated) {
+
+      console.error(
+        "[LAWANGEN] Missing key in response:",
+        data
+      );
+
+      throw new Error(
+        "Worker responded successfully, but no key_code was returned."
+      );
+
+    }
+
+
+    /* ---------- SHOW GENERATED KEY ---------- */
+
+    if (result) {
+
+      result.innerHTML = "";
+
+      const keyText =
+        document.createElement("strong");
+
+      keyText.textContent =
+        generated;
+
+      const copyButton =
+        document.createElement("button");
+
+      copyButton.type =
+        "button";
+
+      copyButton.className =
+        "secondary-button";
+
+      copyButton.textContent =
+        "COPY KEY";
+
+      copyButton.style.marginTop =
+        "10px";
+
+      copyButton.addEventListener(
+        "click",
+        async () => {
+
+          try {
+
+            await navigator.clipboard.writeText(
+              generated
+            );
+
+            copyButton.textContent =
+              "COPIED ✓";
+
+            setTimeout(
+              () => {
+                copyButton.textContent =
+                  "COPY KEY";
+              },
+              1500
+            );
+
+          } catch {
+
+            copyButton.textContent =
+              "COPY FAILED";
+
+          }
+
+        }
+      );
+
+      result.appendChild(
+        keyText
+      );
+
+      result.appendChild(
+        copyButton
+      );
+
+      result.classList.remove(
+        "hidden"
+      );
+
+    }
+
+
+    /* ---------- SUCCESS ---------- */
+
     showAdminMessage(
-      "Activation key generated successfully.",
+      `Activation key generated successfully. Expires: ${
+        data.key?.expires_at ||
+        data.expires_at ||
+        "No expiry"
+      }`,
       "success"
     );
 
@@ -3015,16 +3224,38 @@ async function generateKey() {
     );
 
 
+    /* ---------- REFRESH KEY LIST ---------- */
+
     await loadAdminKeys();
 
-  }
 
-  catch (error) {
+  } catch (error) {
+
+    console.error(
+      "[LAWANGEN] Generate Key Error:",
+      error
+    );
+
+
+    /* ---------- DETAILED ERROR ---------- */
 
     showAdminMessage(
-      error.message,
+      `ERROR: ${error.message}`,
       "error"
     );
+
+  } finally {
+
+    if (button) {
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        button.dataset.originalText ||
+        "GENERATE KEY";
+
+    }
 
   }
 
