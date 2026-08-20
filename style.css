@@ -14,10 +14,16 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100%;
+
   background: #070912;
   color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    "Segoe UI", sans-serif;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Segoe UI",
+    sans-serif;
 }
 
 body {
@@ -49,6 +55,7 @@ button {
 .app {
   width: 100%;
   min-height: 100vh;
+
   padding-bottom: 90px;
 
   background:
@@ -85,6 +92,7 @@ button {
 
 .app-screen.active {
   display: block !important;
+
   animation: screenFade 0.15s ease;
 }
 
@@ -533,6 +541,7 @@ button {
 .developer-logo-mark img {
   width: 100%;
   height: 100%;
+
   object-fit: contain;
 }
 
@@ -1015,6 +1024,7 @@ input[type="range"] {
 .avatar img {
   width: 100%;
   height: 100%;
+
   object-fit: cover;
 }
 
@@ -1098,19 +1108,46 @@ input[type="range"] {
 
 
 /* =========================================================
-   DEVELOPER LOGO EDITOR
-   UI ONLY
+   DEVELOPER LOGO MANAGER
 ========================================================= */
 
+/*
+   IMPORTANT:
+   The old CSS used:
+
+   .developer-only {
+     display: none;
+   }
+
+   That was hiding the logo manager.
+
+   The new rule below makes the logo manager visible.
+*/
+
 .developer-only {
-  display: none;
+  display: block !important;
+
+  visibility: visible !important;
+
+  opacity: 1 !important;
 }
 
-.developer-mode .developer-only {
-  display: block;
-}
 
-.logo-editor-card {
+/* =========================================================
+   DEVELOPER LOGO CARD
+========================================================= */
+
+#developerLogoManager {
+  width: 100%;
+
+  display: block !important;
+
+  padding: 16px;
+
+  margin-bottom: 13px;
+
+  border-radius: 18px;
+
   background:
     linear-gradient(
       145deg,
@@ -1120,101 +1157,92 @@ input[type="range"] {
 
   border: 1px solid #303a55;
 
-  border-radius: 18px;
-
-  padding: 17px;
-
-  margin-bottom: 13px;
-
   box-shadow:
     0 12px 35px rgba(0, 0, 0, 0.22);
 }
 
-.logo-editor-header {
+
+/* =========================================================
+   LOGO MANAGER
+========================================================= */
+
+#developerLogoManager .logo-manager {
+  width: 100%;
+
   display: flex;
+
+  flex-direction: column;
+
   align-items: center;
 
-  gap: 12px;
+  gap: 10px;
 
-  margin-bottom: 15px;
+  margin-top: 10px;
 }
 
-.logo-editor-icon {
-  width: 43px;
-  height: 43px;
 
-  border-radius: 12px;
+/* =========================================================
+   LOGO PREVIEW
+========================================================= */
+
+#developerLogoManager .logo-preview {
+  width: 110px;
+  height: 110px;
+
+  margin: 5px auto 15px;
 
   display: flex;
-  align-items: center;
-  justify-content: center;
 
-  background:
-    linear-gradient(
-      135deg,
-      #3478f6,
-      #7358ff
-    );
-
-  font-size: 20px;
-}
-
-.logo-editor-header strong {
-  display: block;
-  font-size: 14px;
-}
-
-.logo-editor-header span {
-  display: block;
-
-  color: #737c8b;
-
-  font-size: 10px;
-
-  margin-top: 3px;
-}
-
-.logo-preview {
-  width: 100px;
-  height: 100px;
-
-  margin: 5px auto 17px;
-
-  border-radius: 24px;
-
-  display: flex;
   align-items: center;
   justify-content: center;
 
   overflow: hidden;
 
-  background: #080b13;
+  border-radius: 24px;
 
-  border: 1px solid #30384c;
+  background:
+    radial-gradient(
+      circle at center,
+      #1a2438,
+      #080b13 72%
+    );
+
+  border: 1px solid #35415b;
 
   box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.4),
     inset 0 0 25px rgba(0, 0, 0, 0.35);
 }
 
-.logo-preview img {
+#developerLogoManager .logo-preview img {
   width: 100%;
   height: 100%;
+
+  display: block;
 
   object-fit: contain;
 }
 
-.logo-editor-buttons {
-  display: grid;
 
-  grid-template-columns: 1fr 1fr;
+/* =========================================================
+   CHOOSE LOGO
+========================================================= */
 
-  gap: 9px;
-}
+#developerLogoManager .logo-file-button {
+  width: 100%;
 
-.logo-editor-button {
-  min-height: 45px;
+  min-height: 50px;
 
-  border-radius: 11px;
+  margin-top: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  cursor: pointer;
 
   background:
     linear-gradient(
@@ -1230,9 +1258,28 @@ input[type="range"] {
   font-size: 11px;
 
   font-weight: 700;
+
+  text-align: center;
+
+  transition:
+    transform 0.12s ease,
+    opacity 0.12s ease;
 }
 
-.logo-editor-button.primary {
+
+/* =========================================================
+   APPLY LOGO
+========================================================= */
+
+#developerLogoManager #applyDeveloperLogo {
+  width: 100%;
+
+  min-height: 50px;
+
+  margin-top: 0;
+
+  border-radius: 12px;
+
   background:
     linear-gradient(
       135deg,
@@ -1242,19 +1289,77 @@ input[type="range"] {
 
   color: #fff;
 
-  border-color: transparent;
+  border: 0;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 9px 25px rgba(76, 91, 255, 0.25);
 }
 
-.logo-editor-button.danger {
+
+/* =========================================================
+   RESET LOGO
+========================================================= */
+
+#developerLogoManager #resetDeveloperLogo {
+  width: 100%;
+
+  min-height: 50px;
+
+  margin-top: 0;
+
+  border-radius: 12px;
+
   background: #29151c;
 
   color: #ff7183;
 
-  border-color: #48202a;
+  border: 1px solid #48202a;
+
+  font-size: 11px;
+
+  font-weight: 700;
 }
 
-.logo-editor-button:active {
-  transform: scale(0.97);
+
+/* =========================================================
+   LOGO MESSAGE
+========================================================= */
+
+#developerLogoManager #logoManagerMessage {
+  width: 100%;
+
+  min-height: 18px;
+
+  margin: 2px 0 0;
+
+  text-align: center;
+
+  color: #737c8b;
+
+  font-size: 11px;
+}
+
+#developerLogoManager #logoManagerMessage.success {
+  color: #39d98a;
+}
+
+#developerLogoManager #logoManagerMessage.error {
+  color: #ff7183;
+}
+
+
+/* =========================================================
+   LOGO BUTTON PRESS
+========================================================= */
+
+#developerLogoManager button:active,
+#developerLogoManager .logo-file-button:active {
+  transform: scale(0.98);
+
   opacity: 0.82;
 }
 
@@ -1263,6 +1368,7 @@ input[type="range"] {
    HIDDEN FILE INPUT
 ========================================================= */
 
+#developerLogoInput,
 .logo-file-input {
   display: none !important;
 }
@@ -1274,6 +1380,7 @@ input[type="range"] {
 
 .developer-only-badge {
   display: inline-flex;
+
   align-items: center;
 
   gap: 6px;
@@ -1297,11 +1404,12 @@ input[type="range"] {
 
 
 /* =========================================================
-   DEVELOPER LOCKED NOTICE
+   DEVELOPER LOCK
 ========================================================= */
 
 .developer-lock {
   display: flex;
+
   align-items: center;
 
   gap: 9px;
@@ -1379,6 +1487,7 @@ input[type="range"] {
 
 .logo-modal-title {
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
@@ -1405,6 +1514,7 @@ input[type="range"] {
 
 .logo-modal-actions {
   display: flex;
+
   flex-direction: column;
 
   gap: 9px;
@@ -1412,6 +1522,7 @@ input[type="range"] {
 
 .logo-modal-actions button {
   width: 100%;
+
   min-height: 48px;
 
   border-radius: 12px;
@@ -1579,8 +1690,13 @@ input[type="range"] {
     gap: 10px;
   }
 
-  .logo-editor-buttons {
-    grid-template-columns: 1fr;
+  #developerLogoManager {
+    padding: 15px;
+  }
+
+  #developerLogoManager .logo-preview {
+    width: 100px;
+    height: 100px;
   }
 
 }
@@ -1634,6 +1750,11 @@ input[type="range"] {
   }
 
 }
+
+
+/* =========================================================
+   BUTTON RESET
+========================================================= */
 
 button {
   -webkit-user-select: none;
