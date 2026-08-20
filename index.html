@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-  <meta name="theme-color" content="#080a0f">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="BUNER-FF">
+<meta name="theme-color" content="#080a0f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="LAWANGEN">
 
-  <title>BUNER-FF — Developer Panel</title>
+<title>LAWANGEN — INJECTOR</title>
 
-  <link rel="stylesheet" href="./style.css">
-  <link rel="manifest" href="./manifest.json">
-  <link rel="apple-touch-icon" href="./assets/logo.png">
+<link rel="stylesheet" href="./style.css">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./assets/logo.png">
 </head>
 
 <body>
@@ -21,55 +21,57 @@
 <div id="app" class="app">
 
 <!-- =====================================================
-     KEY GATE
+     KEY LOGIN
 ===================================================== -->
 
 <main id="keyGate" class="login-screen">
 
-  <section class="login-box">
+<section class="login-box">
 
-    <div class="brand-logo">
+<div class="brand-logo">
 
-      <div class="logo-mark">
-        <img id="loginLogo" src="./assets/logo.png" alt="BUNER-FF">
-      </div>
+<div class="logo-mark">
+<img id="loginLogo" src="./assets/logo.png" alt="LAWANGEN">
+</div>
 
-      <div class="brand-name">
-        <h1>BUNER-FF</h1>
-        <span>SECURE DEVELOPER PANEL</span>
-      </div>
+<div class="brand-name">
+<h1>LAWANGEN</h1>
+<span>INJECTOR</span>
+</div>
 
-    </div>
+</div>
 
-    <div class="login-title">
-      <h2>Key Activation</h2>
-      <p>Enter your device activation key</p>
-    </div>
+<div class="login-title">
+<h2>Enter Your Key</h2>
+<p>Enter your device activation key</p>
+</div>
 
-    <label for="activationKey">Activation Key</label>
+<label for="activationKey">Activation Key</label>
 
-    <input
-      id="activationKey"
-      type="text"
-      autocomplete="off"
-      autocapitalize="characters"
-      placeholder="BUNER-XXXXXXXXXXXXXXXXXXXXXXXX">
+<input
+id="activationKey"
+type="text"
+autocomplete="off"
+autocapitalize="characters"
+placeholder="LAWANGEN-XXXXXXXXXXXXXXXXXXXXXXXX">
 
-    <button id="activateKeyButton" class="primary-button" type="button">
-      ACTIVATE KEY
-    </button>
+<button
+id="activateKeyButton"
+class="primary-button"
+type="button">
+ACTIVATE KEY
+</button>
 
-    <button id="refreshKeyButton" class="secondary-button" type="button">
-      CHECK KEY STATUS
-    </button>
+<button
+id="refreshKeyButton"
+class="secondary-button"
+type="button">
+CHECK KEY STATUS
+</button>
 
-    <button id="devPreviewButton" class="secondary-button" type="button">
-      DEV PREVIEW — OPEN PANEL
-    </button>
+<p id="keyMessage" class="message"></p>
 
-    <p id="keyMessage" class="message"></p>
-
-  </section>
+</section>
 
 </main>
 
@@ -82,22 +84,26 @@
 
 <header class="top-bar">
 
-  <div class="app-brand">
+<div class="app-brand">
 
-    <div class="small-logo">
-      <img id="topLogo" src="./assets/logo.png" alt="BUNER-FF">
-    </div>
+<div class="small-logo">
+<img id="headerLogo" src="./assets/logo.png" alt="LAWANGEN">
+</div>
 
-    <div>
-      <strong>BUNER-FF</strong>
-      <small>DEVELOPER PANEL</small>
-    </div>
+<div>
+<strong>LAWANGEN</strong>
+<small>INJECTOR</small>
+</div>
 
-  </div>
+</div>
 
-  <button id="profileButton" class="round-button" type="button">
-    👤
-  </button>
+<button
+id="profileButton"
+class="round-button"
+type="button"
+aria-label="Profile">
+<img id="profileLogo" src="./assets/logo.png" alt="Profile">
+</button>
 
 </header>
 
@@ -110,51 +116,53 @@
 
 <section class="welcome-card">
 
-  <div class="developer-hero-logo">
-    <div class="developer-logo-mark">
-      <img id="homeLogo" src="./assets/logo.png" alt="BUNER-FF">
-    </div>
-  </div>
+<div class="developer-hero-logo">
 
-  <span class="developer-badge">
-    SECURE TEST ENVIRONMENT
-  </span>
+<div class="developer-logo-mark">
+<img id="homeLogo" src="./assets/logo.png" alt="LAWANGEN">
+</div>
 
-  <h1>BUNER-FF</h1>
+</div>
 
-  <p>Developer and controlled test panel</p>
+<span class="developer-badge">
+DEVELOPER TEST ENVIRONMENT
+</span>
+
+<h1>LAWANGEN</h1>
+
+<p>INJECTOR</p>
 
 </section>
 
 
 <section class="status-card">
 
-  <div class="status-icon">●</div>
+<div class="status-icon">●</div>
 
-  <div>
-    <strong>System Status</strong>
-    <span id="statusText">Checking...</span>
-  </div>
+<div>
+<strong>System Status</strong>
+<span id="statusText">Checking...</span>
+</div>
 
 </section>
 
 
 <section class="info-card">
 
-  <div>
-    <span>Worker</span>
-    <strong id="workerHomeStatus">Checking...</strong>
-  </div>
+<div>
+<span>Worker</span>
+<strong id="workerHomeStatus">Checking...</strong>
+</div>
 
-  <div>
-    <span>Database</span>
-    <strong id="databaseStatus">Checking...</strong>
-  </div>
+<div>
+<span>Database</span>
+<strong id="databaseStatus">Checking...</strong>
+</div>
 
-  <div>
-    <span>Key</span>
-    <strong id="keyHomeStatus">Not Activated</strong>
-  </div>
+<div>
+<span>Key</span>
+<strong id="keyHomeStatus">Not Activated</strong>
+</div>
 
 </section>
 
@@ -163,41 +171,41 @@
 
 <div class="home-grid">
 
-  <button class="home-card" data-screen="keyScreen" type="button">
-    <div class="home-icon">🔑</div>
-    <strong>Key</strong>
-    <span>Activation & status</span>
-  </button>
+<button class="home-card" data-screen="keyScreen" type="button">
+<div class="home-icon">🔑</div>
+<strong>Key</strong>
+<span>Activation & status</span>
+</button>
 
-  <button class="home-card" data-screen="adminScreen" type="button">
-    <div class="home-icon">🛠️</div>
-    <strong>Admin</strong>
-    <span>Key management</span>
-  </button>
+<button class="home-card" data-screen="adminScreen" type="button">
+<div class="home-icon">🛠️</div>
+<strong>Admin</strong>
+<span>Key management</span>
+</button>
 
-  <button class="home-card" data-screen="activitiesScreen" type="button">
-    <div class="home-icon">📋</div>
-    <strong>Activities</strong>
-    <span>System activity</span>
-  </button>
+<button class="home-card" data-screen="developerScreen" type="button">
+<div class="home-icon">🧪</div>
+<strong>Developer</strong>
+<span>Logo & controlled tests</span>
+</button>
 
-  <button class="home-card" data-screen="integrityScreen" type="button">
-    <div class="home-icon">🛡️</div>
-    <strong>Tests</strong>
-    <span>Controlled test events</span>
-  </button>
+<button class="home-card" data-screen="activitiesScreen" type="button">
+<div class="home-icon">📋</div>
+<strong>Activities</strong>
+<span>System activity</span>
+</button>
 
-  <button class="home-card" data-screen="apiScreen" type="button">
-    <div class="home-icon">🌐</div>
-    <strong>API</strong>
-    <span>Worker & database</span>
-  </button>
+<button class="home-card" data-screen="apiScreen" type="button">
+<div class="home-icon">🌐</div>
+<strong>API</strong>
+<span>Worker & database</span>
+</button>
 
-  <button class="home-card" data-screen="settingsScreen" type="button">
-    <div class="home-icon">⚙️</div>
-    <strong>Settings</strong>
-    <span>Application settings</span>
-  </button>
+<button class="home-card" data-screen="settingsScreen" type="button">
+<div class="home-icon">⚙️</div>
+<strong>Settings</strong>
+<span>Application settings</span>
+</button>
 
 </div>
 
@@ -212,40 +220,39 @@
 
 <div class="page-header">
 
-  <button class="back-button" data-screen="homeScreen" type="button">
-    ‹
-  </button>
+<button class="back-button" data-screen="homeScreen" type="button">‹</button>
 
-  <div>
-    <h1>Key Management</h1>
-    <p>Device activation and key status</p>
-  </div>
+<div>
+<h1>Key Management</h1>
+<p>Device activation and key status</p>
+</div>
 
 </div>
 
-
 <section class="info-card">
 
-  <div>
-    <span>Device ID</span>
-    <strong id="deviceIdText">Generating...</strong>
-  </div>
+<div>
+<span>Device ID</span>
+<strong id="deviceIdText">Generating...</strong>
+</div>
 
-  <div>
-    <span>Key Status</span>
-    <strong id="keyStatusText">Not Activated</strong>
-  </div>
+<div>
+<span>Key Status</span>
+<strong id="keyStatusText">Not Activated</strong>
+</div>
 
-  <div>
-    <span>Expiry</span>
-    <strong id="keyExpiryText">—</strong>
-  </div>
+<div>
+<span>Expiry</span>
+<strong id="keyExpiryText">—</strong>
+</div>
 
 </section>
 
-
-<button id="keyRefreshButton" class="secondary-button" type="button">
-  REFRESH STATUS
+<button
+id="keyRefreshButton"
+class="secondary-button"
+type="button">
+REFRESH STATUS
 </button>
 
 <p id="keyControlMessage" class="message"></p>
@@ -261,70 +268,284 @@
 
 <div class="page-header">
 
-  <button class="back-button" data-screen="homeScreen" type="button">
-    ‹
-  </button>
+<button class="back-button" data-screen="homeScreen" type="button">‹</button>
 
-  <div>
-    <h1>Admin Panel</h1>
-    <p>Secure key administration</p>
-  </div>
+<div>
+<h1>Admin Panel</h1>
+<p>Secure key administration</p>
+</div>
+
+</div>
+
+<section class="control-card">
+
+<label for="adminToken">Admin Token</label>
+
+<input
+id="adminToken"
+type="password"
+autocomplete="off"
+placeholder="Enter ADMIN_TOKEN">
+
+<button
+id="saveAdminToken"
+class="secondary-button"
+type="button">
+SAVE ADMIN TOKEN
+</button>
+
+</section>
+
+
+<section class="control-card">
+
+<h3>Generate Activation Key</h3>
+
+<label for="keyDays">Validity in days</label>
+
+<input
+id="keyDays"
+type="number"
+min="1"
+max="3650"
+value="30">
+
+<button
+id="generateKeyButton"
+class="primary-button"
+type="button">
+GENERATE KEY
+</button>
+
+<p id="adminMessage" class="message"></p>
+
+</section>
+
+
+<section class="control-card">
+
+<h3>Activation Keys</h3>
+
+<button
+id="loadAdminKeys"
+class="secondary-button"
+type="button">
+REFRESH KEYS
+</button>
+
+<div id="adminKeysContainer">
+<div class="empty-log">No keys loaded.</div>
+</div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     DEVELOPER
+===================================================== -->
+
+<main id="developerScreen" class="app-screen">
+
+<div class="page-header">
+
+<button class="back-button" data-screen="homeScreen" type="button">‹</button>
+
+<div>
+<h1>Developer Panel</h1>
+<p>Logo and controlled test environment</p>
+</div>
 
 </div>
 
 
+<!-- LOGO MANAGER -->
+
 <section class="control-card">
 
-  <label for="adminToken">Admin Token</label>
+<h3>Application Logo</h3>
 
-  <input
-    id="adminToken"
-    type="password"
-    autocomplete="off"
-    placeholder="Enter ADMIN_TOKEN">
+<p>Select a logo from your gallery and save it to this device.</p>
 
-  <button id="saveAdminToken" class="secondary-button" type="button">
-    SAVE ADMIN TOKEN
-  </button>
+<div class="logo-manager">
+
+<div class="logo-preview">
+<img
+id="developerLogoPreview"
+src="./assets/logo.png"
+alt="Logo Preview">
+</div>
+
+<input
+id="developerLogoInput"
+class="logo-file-input"
+type="file"
+accept="image/png,image/jpeg,image/webp">
+
+<label
+for="developerLogoInput"
+class="logo-file-button">
+SELECT IMAGE FROM GALLERY
+</label>
+
+<button
+id="applyDeveloperLogo"
+class="primary-button"
+type="button">
+APPLY & SAVE LOGO
+</button>
+
+<button
+id="resetDeveloperLogo"
+class="danger-button"
+type="button">
+RESET DEFAULT LOGO
+</button>
+
+<p id="logoManagerMessage" class="message"></p>
+
+</div>
 
 </section>
 
 
+<!-- CONTROLLED TESTS -->
+
 <section class="control-card">
 
-  <h3>Generate Activation Key</h3>
+<h3>Developer Controlled Tests</h3>
 
-  <label for="keyDays">Validity in days</label>
+<div class="control-row">
+<div>
+<strong>Headshot Test</strong>
+<span>Controlled detection event</span>
+</div>
+<label class="switch">
+<input type="checkbox" data-test data-name="Headshot Test">
+<span></span>
+</label>
+</div>
 
-  <input
-    id="keyDays"
-    type="number"
-    min="1"
-    max="3650"
-    value="30">
 
-  <button id="generateKeyButton" class="primary-button" type="button">
-    GENERATE KEY
-  </button>
+<div class="control-row">
+<div>
+<strong>Auto Headshot Test</strong>
+<span>Controlled automated test</span>
+</div>
+<label class="switch">
+<input type="checkbox" data-test data-name="Auto Headshot Test">
+<span></span>
+</label>
+</div>
 
-  <p id="adminMessage" class="message"></p>
+
+<div class="control-row">
+<div>
+<strong>Silent Headshot Test</strong>
+<span>Controlled event simulation</span>
+</div>
+<label class="switch">
+<input type="checkbox" data-test data-name="Silent Headshot Test">
+<span></span>
+</label>
+</div>
+
+
+<div class="control-row">
+<div>
+<strong>SP Line Test</strong>
+<span>Controlled visual-line test</span>
+</div>
+<label class="switch">
+<input type="checkbox" data-test data-name="SP Line Test">
+<span></span>
+</label>
+</div>
+
+
+<div class="control-row">
+<div>
+<strong>SP Health Test</strong>
+<span>Controlled health-display test</span>
+</div>
+<label class="switch">
+<input type="checkbox" data-test data-name="SP Health Test">
+<span></span>
+</label>
+</div>
+
+
+<div class="control-row">
+<div>
+<strong>Help Box Test</strong>
+<span>Controlled interface test</span>
+</div>
+<label class="switch">
+<input type="checkbox" data-test data-name="Help Box Test">
+<span></span>
+</label>
+</div>
+
+
+<div class="control-row">
+<div>
+<strong>Enemy Detection Test</strong>
+<span>Controlled detection simulation</span>
+</div>
+<label class="switch">
+<input type="checkbox" data-test data-name="Enemy Detection Test">
+<span></span>
+</label>
+</div>
+
+
+<div class="control-row">
+<div>
+<strong>Visual Detection Test</strong>
+<span>Controlled visual test</span>
+</div>
+<label class="switch">
+<input type="checkbox" data-test data-name="Visual Detection Test">
+<span></span>
+</label>
+</div>
+
+
+<div class="control-row">
+<div>
+<strong>Aim Anomaly Test</strong>
+<span>Controlled integrity test</span>
+</div>
+<label class="switch">
+<input type="checkbox" data-test data-name="Aim Anomaly Test">
+<span></span>
+</label>
+</div>
+
+
+<div class="control-row">
+<div>
+<strong>Speed Anomaly Test</strong>
+<span>Controlled movement test</span>
+</div>
+<label class="switch">
+<input type="checkbox" data-test data-name="Speed Anomaly Test">
+<span></span>
+</label>
+</div>
 
 </section>
 
 
-<section class="control-card">
+<button
+id="runDeveloperTest"
+class="primary-button"
+type="button">
+RUN CONTROLLED TEST
+</button>
 
-  <h3>Activation Keys</h3>
-
-  <button id="loadAdminKeys" class="secondary-button" type="button">
-    REFRESH KEYS
-  </button>
-
-  <div id="adminKeysContainer">
-    <div class="empty-log">No keys loaded.</div>
-  </div>
-
-</section>
+<p id="developerTestMessage" class="message"></p>
 
 </main>
 
@@ -337,196 +558,29 @@
 
 <div class="page-header">
 
-  <button class="back-button" data-screen="homeScreen" type="button">
-    ‹
-  </button>
+<button class="back-button" data-screen="homeScreen" type="button">‹</button>
 
-  <div>
-    <h1>Activities</h1>
-    <p>System activity</p>
-  </div>
-
+<div>
+<h1>Activities</h1>
+<p>System activity</p>
 </div>
 
+</div>
 
 <section id="activitiesContainer">
 
-  <div class="empty-log">
-    No activity yet.
-  </div>
-
-</section>
-
-
-<button id="clearActivities" class="secondary-button" type="button">
-  CLEAR ACTIVITIES
-</button>
-
-</main>
-
-
-<!-- =====================================================
-     CONTROLLED DEVELOPER TESTS
-===================================================== -->
-
-<main id="integrityScreen" class="app-screen">
-
-<div class="page-header">
-
-  <button class="back-button" data-screen="homeScreen" type="button">
-    ‹
-  </button>
-
-  <div>
-    <h1>Controlled Tests</h1>
-    <p>Developer test environment</p>
-  </div>
-
+<div class="empty-log">
+No activity yet.
 </div>
 
-
-<section class="control-card">
-
-  <h3>Developer Test Features</h3>
-
-
-  <div class="control-row">
-    <div>
-      <strong>Headshot Test</strong>
-      <span>Controlled headshot detection test</span>
-    </div>
-
-    <label class="switch">
-      <input type="checkbox" data-test data-name="Headshot Test">
-      <span></span>
-    </label>
-  </div>
-
-
-  <div class="control-row">
-    <div>
-      <strong>Auto Headshot Test</strong>
-      <span>Controlled automated detection test</span>
-    </div>
-
-    <label class="switch">
-      <input type="checkbox" data-test data-name="Auto Headshot Test">
-      <span></span>
-    </label>
-  </div>
-
-
-  <div class="control-row">
-    <div>
-      <strong>Silent Headshot Test</strong>
-      <span>Controlled silent-event simulation</span>
-    </div>
-
-    <label class="switch">
-      <input type="checkbox" data-test data-name="Silent Headshot Test">
-      <span></span>
-    </label>
-  </div>
-
-
-  <div class="control-row">
-    <div>
-      <strong>SP Line Test</strong>
-      <span>Controlled visual-line test</span>
-    </div>
-
-    <label class="switch">
-      <input type="checkbox" data-test data-name="SP Line Test">
-      <span></span>
-    </label>
-  </div>
-
-
-  <div class="control-row">
-    <div>
-      <strong>SP Health Test</strong>
-      <span>Controlled health-display test</span>
-    </div>
-
-    <label class="switch">
-      <input type="checkbox" data-test data-name="SP Health Test">
-      <span></span>
-    </label>
-  </div>
-
-
-  <div class="control-row">
-    <div>
-      <strong>Help Box Test</strong>
-      <span>Controlled help-interface test</span>
-    </div>
-
-    <label class="switch">
-      <input type="checkbox" data-test data-name="Help Box Test">
-      <span></span>
-    </label>
-  </div>
-
-
-  <div class="control-row">
-    <div>
-      <strong>Enemy Detection Test</strong>
-      <span>Controlled detection simulation</span>
-    </div>
-
-    <label class="switch">
-      <input type="checkbox" data-test data-name="Enemy Detection Test">
-      <span></span>
-    </label>
-  </div>
-
-
-  <div class="control-row">
-    <div>
-      <strong>Visual Detection Test</strong>
-      <span>Controlled visual event</span>
-    </div>
-
-    <label class="switch">
-      <input type="checkbox" data-test data-name="Visual Detection Test">
-      <span></span>
-    </label>
-  </div>
-
-
-  <div class="control-row">
-    <div>
-      <strong>Aim Anomaly Test</strong>
-      <span>Controlled integrity test</span>
-    </div>
-
-    <label class="switch">
-      <input type="checkbox" data-test data-name="Aim Anomaly Test">
-      <span></span>
-    </label>
-  </div>
-
-
-  <div class="control-row">
-    <div>
-      <strong>Speed Anomaly Test</strong>
-      <span>Controlled movement test</span>
-    </div>
-
-    <label class="switch">
-      <input type="checkbox" data-test data-name="Speed Anomaly Test">
-      <span></span>
-    </label>
-  </div>
-
 </section>
 
-
-<button id="runAntiCheatTest" class="primary-button" type="button">
-  RUN CONTROLLED TEST
+<button
+id="clearActivities"
+class="secondary-button"
+type="button">
+CLEAR ACTIVITIES
 </button>
-
-<p id="antiCheatMessage" class="message"></p>
 
 </main>
 
@@ -539,68 +593,68 @@
 
 <div class="page-header">
 
-  <button class="back-button" data-screen="homeScreen" type="button">
-    ‹
-  </button>
+<button class="back-button" data-screen="homeScreen" type="button">‹</button>
 
-  <div>
-    <h1>API</h1>
-    <p>Worker and database connection</p>
-  </div>
+<div>
+<h1>API</h1>
+<p>Worker and database connection</p>
+</div>
+
+</div>
+
+<section class="control-card">
+
+<div class="control-row">
+
+<div>
+<strong>Worker</strong>
+<span id="workerStatus">Checking...</span>
+</div>
+
+<span id="workerIndicator">●</span>
 
 </div>
 
 
-<section class="control-card">
+<div class="control-row">
 
-  <div class="control-row">
+<div>
+<strong>Database</strong>
+<span id="dbStatus">Checking...</span>
+</div>
 
-    <div>
-      <strong>Worker</strong>
-      <span id="workerStatus">Checking...</span>
-    </div>
+<span id="dbIndicator">●</span>
 
-    <span id="workerIndicator">●</span>
-
-  </div>
-
-
-  <div class="control-row">
-
-    <div>
-      <strong>Database</strong>
-      <span id="dbStatus">Checking...</span>
-    </div>
-
-    <span id="dbIndicator">●</span>
-
-  </div>
+</div>
 
 </section>
 
 
 <section class="info-card">
 
-  <div>
-    <span>Worker</span>
-    <strong>BUNER-FF</strong>
-  </div>
+<div>
+<span>Worker</span>
+<strong>LAWANGEN</strong>
+</div>
 
-  <div>
-    <span>API</span>
-    <strong>/api/test</strong>
-  </div>
+<div>
+<span>API</span>
+<strong>/api/test</strong>
+</div>
 
-  <div>
-    <span>Database</span>
-    <strong>/api/db-test</strong>
-  </div>
+<div>
+<span>Database</span>
+<strong>/api/db-test</strong>
+</div>
 
 </section>
 
 
-<button id="testApiButton" class="primary-button" type="button">
-  CHECK CONNECTION
+<button
+id="testApiButton"
+class="primary-button"
+type="button">
+CHECK CONNECTION
 </button>
 
 <p id="apiMessage" class="message"></p>
@@ -609,135 +663,68 @@
 
 
 <!-- =====================================================
-     SETTINGS + DEVELOPER LOGO MANAGER
+     SETTINGS
 ===================================================== -->
 
 <main id="settingsScreen" class="app-screen">
 
 <div class="page-header">
 
-  <button class="back-button" data-screen="homeScreen" type="button">
-    ‹
-  </button>
+<button class="back-button" data-screen="homeScreen" type="button">‹</button>
 
-  <div>
-    <h1>Settings</h1>
-    <p>Application settings</p>
-  </div>
+<div>
+<h1>Settings</h1>
+<p>Application settings</p>
+</div>
+
+</div>
+
+<section class="control-card">
+
+<div class="control-row">
+
+<div>
+<strong>Developer Mode</strong>
+<span>Developer testing environment</span>
+</div>
+
+<label class="switch">
+<input id="developerModeSwitch" type="checkbox" checked>
+<span></span>
+</label>
 
 </div>
 
 
-<!-- DEVELOPER LOGO -->
+<div class="control-row">
 
-<section id="developerLogoManager" class="developer-only">
+<div>
+<strong>Activity Logging</strong>
+<span>Record local activity</span>
+</div>
 
-  <div class="page-header">
-    <div>
-      <h3>Developer Logo</h3>
-      <p>Change the application logo</p>
-    </div>
-  </div>
+<label class="switch">
+<input id="loggingSwitch" type="checkbox" checked>
+<span></span>
+</label>
 
-
-  <div class="logo-manager">
-
-    <div class="logo-preview">
-
-      <img
-        id="developerLogoPreview"
-        src="./assets/logo.png"
-        alt="Logo Preview">
-
-    </div>
-
-
-    <input
-      id="developerLogoInput"
-      class="logo-file-input"
-      type="file"
-      accept="image/png,image/jpeg,image/webp">
-
-
-    <label
-      for="developerLogoInput"
-      class="logo-file-button">
-
-      SELECT IMAGE FROM GALLERY
-
-    </label>
-
-
-    <button
-      id="applyDeveloperLogo"
-      class="primary-button"
-      type="button">
-
-      APPLY LOGO
-
-    </button>
-
-
-    <button
-      id="resetDeveloperLogo"
-      class="danger-button"
-      type="button">
-
-      RESET LOGO
-
-    </button>
-
-
-    <p id="logoManagerMessage" class="message"></p>
-
-  </div>
+</div>
 
 </section>
 
 
 <section class="control-card">
 
-  <div class="control-row">
+<h3>Device</h3>
 
-    <div>
-      <strong>Developer Mode</strong>
-      <span>Developer testing environment</span>
-    </div>
+<p id="settingsDeviceId">—</p>
 
-    <label class="switch">
-      <input id="developerModeSwitch" type="checkbox" checked>
-      <span></span>
-    </label>
-
-  </div>
-
-
-  <div class="control-row">
-
-    <div>
-      <strong>Activity Logging</strong>
-      <span>Record local activity</span>
-    </div>
-
-    <label class="switch">
-      <input id="loggingSwitch" type="checkbox" checked>
-      <span></span>
-    </label>
-
-  </div>
-
-</section>
-
-
-<section class="control-card">
-
-  <h3>Device</h3>
-
-  <p id="settingsDeviceId">—</p>
-
-  <button id="clearLocalKey" class="danger-button" type="button">
-    CLEAR LOCAL KEY
-  </button>
+<button
+id="clearLocalKey"
+class="danger-button"
+type="button">
+CLEAR LOCAL KEY
+</button>
 
 </section>
 
@@ -751,23 +738,28 @@
 <nav class="bottom-navigation">
 
 <button class="nav-button active" data-screen="homeScreen" type="button">
-  <span>⌂</span>
-  <small>Home</small>
+<span>⌂</span>
+<small>Home</small>
 </button>
 
 <button class="nav-button" data-screen="keyScreen" type="button">
-  <span>🔑</span>
-  <small>Key</small>
+<span>🔑</span>
+<small>Key</small>
 </button>
 
 <button class="nav-button" data-screen="adminScreen" type="button">
-  <span>🛠️</span>
-  <small>Admin</small>
+<span>🛠️</span>
+<small>Admin</small>
+</button>
+
+<button class="nav-button" data-screen="developerScreen" type="button">
+<span>🧪</span>
+<small>Dev</small>
 </button>
 
 <button class="nav-button" data-screen="settingsScreen" type="button">
-  <span>⚙</span>
-  <small>Settings</small>
+<span>⚙</span>
+<small>Settings</small>
 </button>
 
 </nav>
@@ -776,26 +768,23 @@
 </div>
 
 
-<!-- =====================================================
-     MAIN JAVASCRIPT
-===================================================== -->
-
 <script>
-
-"use strict";
-
 
 /* =====================================================
    CONFIG
 ===================================================== */
 
+/*
+   IMPORTANT:
+   This must match your deployed Worker.
+*/
+
 const API_BASE =
   "https://buner-ff.akberawaakbera.workers.dev";
 
-const DEV_PREVIEW_MODE = true;
 
-const LOGO_STORAGE_KEY =
-  "bunerFFDeveloperLogo";
+const DEFAULT_LOGO =
+  "./assets/logo.png";
 
 
 /* =====================================================
@@ -805,13 +794,13 @@ const LOGO_STORAGE_KEY =
 function getDeviceId() {
 
   let id =
-    localStorage.getItem("bunerFFDeviceId");
+    localStorage.getItem("lawangenDeviceId");
 
   if (!id) {
 
     if (
       window.crypto &&
-      typeof crypto.randomUUID === "function"
+      crypto.randomUUID
     ) {
 
       id =
@@ -835,17 +824,16 @@ function getDeviceId() {
     }
 
     localStorage.setItem(
-      "bunerFFDeviceId",
+      "lawangenDeviceId",
       id
     );
-
   }
 
   return id;
 }
 
-const DEVICE_ID = getDeviceId();
-
+const DEVICE_ID =
+  getDeviceId();
 
 document.getElementById(
   "deviceIdText"
@@ -865,7 +853,9 @@ function getKeyState() {
   try {
 
     return JSON.parse(
-      localStorage.getItem("bunerFFKey") || "null"
+      localStorage.getItem(
+        "lawangenKey"
+      ) || "null"
     );
 
   } catch {
@@ -880,7 +870,7 @@ function getKeyState() {
 function saveKeyState(data) {
 
   localStorage.setItem(
-    "bunerFFKey",
+    "lawangenKey",
     JSON.stringify(data)
   );
 
@@ -890,7 +880,7 @@ function saveKeyState(data) {
 function clearKeyState() {
 
   localStorage.removeItem(
-    "bunerFFKey"
+    "lawangenKey"
   );
 
 }
@@ -903,7 +893,7 @@ function clearKeyState() {
 function getAdminToken() {
 
   return localStorage.getItem(
-    "bunerFFAdminToken"
+    "lawangenAdminToken"
   ) || "";
 
 }
@@ -912,7 +902,9 @@ function getAdminToken() {
 function saveAdminToken() {
 
   const input =
-    document.getElementById("adminToken");
+    document.getElementById(
+      "adminToken"
+    );
 
   const token =
     input.value.trim();
@@ -929,7 +921,7 @@ function saveAdminToken() {
   }
 
   localStorage.setItem(
-    "bunerFFAdminToken",
+    "lawangenAdminToken",
     token
   );
 
@@ -965,11 +957,100 @@ function showAdminMessage(
 ) {
 
   const element =
-    document.getElementById("adminMessage");
+    document.getElementById(
+      "adminMessage"
+    );
 
-  element.textContent = text;
+  element.textContent =
+    text;
+
   element.className =
     "message " + type;
+
+}
+
+
+/* =====================================================
+   KEY UI
+===================================================== */
+
+function updateKeyUI(data = null) {
+
+  const key =
+    data || getKeyState();
+
+  const status =
+    document.getElementById(
+      "keyStatusText"
+    );
+
+  const expiry =
+    document.getElementById(
+      "keyExpiryText"
+    );
+
+  const home =
+    document.getElementById(
+      "keyHomeStatus"
+    );
+
+
+  if (!key) {
+
+    status.textContent =
+      "Not Activated";
+
+    expiry.textContent =
+      "—";
+
+    home.textContent =
+      "Not Activated";
+
+    return false;
+
+  }
+
+
+  const keyStatus =
+    key.status || "active";
+
+  const expires =
+    key.expires_at || null;
+
+
+  if (
+    expires &&
+    Number.isFinite(
+      new Date(expires).getTime()
+    ) &&
+    Date.now() >=
+    new Date(expires).getTime()
+  ) {
+
+    status.textContent =
+      "EXPIRED";
+
+    expiry.textContent =
+      expires;
+
+    home.textContent =
+      "EXPIRED";
+
+    return false;
+
+  }
+
+
+  status.textContent =
+    keyStatus.toUpperCase();
+
+  expiry.textContent =
+    expires || "No expiry";
+
+  home.textContent =
+    keyStatus.toUpperCase();
+
+  return keyStatus === "active";
 
 }
 
@@ -994,9 +1075,7 @@ function addActivity(text) {
   if (
     logging &&
     !logging.checked
-  ) {
-    return;
-  }
+  ) return;
 
 
   const empty =
@@ -1004,9 +1083,8 @@ function addActivity(text) {
       ".empty-log"
     );
 
-  if (empty) {
+  if (empty)
     empty.remove();
-  }
 
 
   const item =
@@ -1080,7 +1158,10 @@ function openScreen(id) {
   );
 
 
-  window.scrollTo(0, 0);
+  window.scrollTo(
+    0,
+    0
+  );
 
 }
 
@@ -1095,9 +1176,8 @@ navigationButtons.forEach(
         const id =
           button.dataset.screen;
 
-        if (id) {
+        if (id)
           openScreen(id);
-        }
 
       }
     );
@@ -1110,30 +1190,245 @@ document
   .getElementById("profileButton")
   .addEventListener(
     "click",
-    () => openScreen("settingsScreen")
+    () =>
+      openScreen("settingsScreen")
   );
 
 
 /* =====================================================
-   LOGO MANAGER
+   INDEXEDDB LOGO STORAGE
 ===================================================== */
 
-const logoInput =
-  document.getElementById(
-    "developerLogoInput"
+const LOGO_DB_NAME =
+  "LAWANGENLogoDB";
+
+const LOGO_STORE =
+  "settings";
+
+const LOGO_KEY =
+  "applicationLogo";
+
+
+function openLogoDB() {
+
+  return new Promise(
+    (resolve, reject) => {
+
+      const request =
+        indexedDB.open(
+          LOGO_DB_NAME,
+          1
+        );
+
+
+      request.onupgradeneeded =
+        event => {
+
+          const db =
+            event.target.result;
+
+          if (
+            !db.objectStoreNames.contains(
+              LOGO_STORE
+            )
+          ) {
+
+            db.createObjectStore(
+              LOGO_STORE
+            );
+
+          }
+
+        };
+
+
+      request.onsuccess =
+        () =>
+          resolve(
+            request.result
+          );
+
+
+      request.onerror =
+        () =>
+          reject(
+            request.error
+          );
+
+    }
   );
 
+}
 
-const logoPreview =
-  document.getElementById(
-    "developerLogoPreview"
+
+async function saveLogoToDB(
+  logoData
+) {
+
+  const db =
+    await openLogoDB();
+
+  return new Promise(
+    (resolve, reject) => {
+
+      const transaction =
+        db.transaction(
+          LOGO_STORE,
+          "readwrite"
+        );
+
+      transaction
+        .objectStore(LOGO_STORE)
+        .put(
+          logoData,
+          LOGO_KEY
+        );
+
+      transaction.oncomplete =
+        () => {
+
+          db.close();
+          resolve();
+
+        };
+
+      transaction.onerror =
+        () => {
+
+          db.close();
+          reject(
+            transaction.error
+          );
+
+        };
+
+    }
   );
 
+}
 
-const logoMessage =
-  document.getElementById(
-    "logoManagerMessage"
+
+async function loadLogoFromDB() {
+
+  const db =
+    await openLogoDB();
+
+  return new Promise(
+    (resolve, reject) => {
+
+      const transaction =
+        db.transaction(
+          LOGO_STORE,
+          "readonly"
+        );
+
+      const request =
+        transaction
+          .objectStore(LOGO_STORE)
+          .get(LOGO_KEY);
+
+
+      request.onsuccess =
+        () => {
+
+          db.close();
+
+          resolve(
+            request.result || null
+          );
+
+        };
+
+
+      request.onerror =
+        () => {
+
+          db.close();
+
+          reject(
+            request.error
+          );
+
+        };
+
+    }
   );
+
+}
+
+
+async function deleteLogoFromDB() {
+
+  const db =
+    await openLogoDB();
+
+  return new Promise(
+    (resolve, reject) => {
+
+      const transaction =
+        db.transaction(
+          LOGO_STORE,
+          "readwrite"
+        );
+
+      transaction
+        .objectStore(LOGO_STORE)
+        .delete(LOGO_KEY);
+
+      transaction.oncomplete =
+        () => {
+
+          db.close();
+          resolve();
+
+        };
+
+      transaction.onerror =
+        () => {
+
+          db.close();
+          reject(
+            transaction.error
+          );
+
+        };
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   APPLY LOGO
+===================================================== */
+
+function applyLogoToApplication(
+  logoData
+) {
+
+  const selectors = [
+    "#loginLogo",
+    "#headerLogo",
+    "#homeLogo",
+    "#developerLogoPreview",
+    "#profileLogo"
+  ];
+
+  document
+    .querySelectorAll(
+      selectors.join(",")
+    )
+    .forEach(
+      image => {
+
+        image.src =
+          logoData;
+
+      }
+    );
+
+}
 
 
 function showLogoMessage(
@@ -1141,123 +1436,50 @@ function showLogoMessage(
   type = ""
 ) {
 
-  logoMessage.textContent =
+  const element =
+    document.getElementById(
+      "logoManagerMessage"
+    );
+
+  element.textContent =
     text;
 
-  logoMessage.className =
+  element.className =
     "message " + type;
 
 }
 
 
-function applyLogoToApplication(
-  logoData
-) {
-
-  document
-    .querySelectorAll(
-      ".logo-mark img, " +
-      ".small-logo img, " +
-      ".developer-logo-mark img, " +
-      "#developerLogoPreview"
-    )
-    .forEach(
-      image => {
-        image.src = logoData;
-      }
-    );
-
-}
-
-
-function loadDeveloperLogo() {
-
-  const savedLogo =
-    localStorage.getItem(
-      LOGO_STORAGE_KEY
-    );
-
-  if (!savedLogo) {
-    return;
-  }
-
-  applyLogoToApplication(
-    savedLogo
-  );
-
-  logoPreview.src =
-    savedLogo;
-
-}
-
-
-logoInput.addEventListener(
-  "change",
-  event => {
-
-    const file =
-      event.target.files?.[0];
-
-    if (!file) {
-      return;
-    }
-
-
-    if (!file.type.startsWith("image/")) {
-
-      showLogoMessage(
-        "Please select an image file.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    const reader =
-      new FileReader();
-
-
-    reader.onload =
-      () => {
-
-        logoPreview.src =
-          reader.result;
-
-        logoPreview.dataset.pendingLogo =
-          reader.result;
-
-        showLogoMessage(
-          "Image selected. Press APPLY LOGO.",
-          ""
-        );
-
-      };
-
-
-    reader.readAsDataURL(file);
-
-  }
-);
+let pendingLogo = null;
 
 
 document
   .getElementById(
-    "applyDeveloperLogo"
+    "developerLogoInput"
   )
   .addEventListener(
-    "click",
-    () => {
+    "change",
+    event => {
 
-      const logo =
-        logoPreview.dataset.pendingLogo;
+      const file =
+        event.target.files?.[0];
+
+      if (!file)
+        return;
 
 
-      if (!logo) {
+      if (
+        ![
+          "image/png",
+          "image/jpeg",
+          "image/webp"
+        ].includes(
+          file.type
+        )
+      ) {
 
         showLogoMessage(
-          "Select an image first.",
+          "Please select PNG, JPG or WEBP.",
           "error"
         );
 
@@ -1266,26 +1488,120 @@ document
       }
 
 
-      localStorage.setItem(
-        LOGO_STORAGE_KEY,
-        logo
-      );
+      /*
+        Limit very large images.
+        This avoids mobile browser storage problems.
+      */
+
+      if (
+        file.size >
+        8 * 1024 * 1024
+      ) {
+
+        showLogoMessage(
+          "Image is too large. Use an image under 8 MB.",
+          "error"
+        );
+
+        return;
+
+      }
 
 
-      applyLogoToApplication(
-        logo
-      );
+      const reader =
+        new FileReader();
 
 
-      showLogoMessage(
-        "Developer logo applied successfully.",
-        "success"
-      );
+      reader.onload =
+        () => {
+
+          pendingLogo =
+            reader.result;
+
+          document
+            .getElementById(
+              "developerLogoPreview"
+            )
+            .src =
+            pendingLogo;
 
 
-      addActivity(
-        "Developer application logo changed"
-      );
+          showLogoMessage(
+            "Image selected. Now press APPLY & SAVE LOGO.",
+            ""
+          );
+
+        };
+
+
+      reader.readAsDataURL(file);
+
+    }
+  );
+
+
+document
+  .getElementById(
+    "applyDeveloperLogo"
+  )
+  .addEventListener(
+    "click",
+    async () => {
+
+      if (!pendingLogo) {
+
+        showLogoMessage(
+          "First select an image from the gallery.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        await saveLogoToDB(
+          pendingLogo
+        );
+
+        applyLogoToApplication(
+          pendingLogo
+        );
+
+        showLogoMessage(
+          "Logo applied and saved successfully.",
+          "success"
+        );
+
+        addActivity(
+          "Application logo changed"
+        );
+
+        pendingLogo = null;
+
+        document
+          .getElementById(
+            "developerLogoInput"
+          )
+          .value = "";
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "LOGO SAVE ERROR:",
+          error
+        );
+
+        showLogoMessage(
+          "Logo could not be saved on this device.",
+          "error"
+        );
+
+      }
 
     }
   );
@@ -1297,139 +1613,73 @@ document
   )
   .addEventListener(
     "click",
-    () => {
+    async () => {
 
-      localStorage.removeItem(
-        LOGO_STORAGE_KEY
-      );
+      try {
 
+        await deleteLogoFromDB();
 
-      const defaultLogo =
-        "./assets/logo.png";
-
-
-      document
-        .querySelectorAll(
-          ".logo-mark img, " +
-          ".small-logo img, " +
-          ".developer-logo-mark img, " +
-          "#developerLogoPreview"
-        )
-        .forEach(
-          image => {
-            image.src =
-              defaultLogo;
-          }
+        applyLogoToApplication(
+          DEFAULT_LOGO
         );
 
+        pendingLogo = null;
 
-      delete logoPreview.dataset.pendingLogo;
+        document
+          .getElementById(
+            "developerLogoInput"
+          )
+          .value = "";
 
+        showLogoMessage(
+          "Default logo restored.",
+          "success"
+        );
 
-      showLogoMessage(
-        "Default logo restored.",
-        "success"
-      );
+        addActivity(
+          "Application logo reset"
+        );
 
+      }
 
-      addActivity(
-        "Developer logo reset"
-      );
+      catch (error) {
+
+        showLogoMessage(
+          "Could not reset logo.",
+          "error"
+        );
+
+      }
 
     }
   );
 
 
-/* =====================================================
-   KEY UI
-===================================================== */
+async function loadSavedLogo() {
 
-function updateKeyUI(
-  data = null
-) {
+  try {
 
-  const key =
-    data || getKeyState();
+    const savedLogo =
+      await loadLogoFromDB();
 
+    if (savedLogo) {
 
-  const status =
-    document.getElementById(
-      "keyStatusText"
-    );
+      applyLogoToApplication(
+        savedLogo
+      );
 
-
-  const expiry =
-    document.getElementById(
-      "keyExpiryText"
-    );
-
-
-  const home =
-    document.getElementById(
-      "keyHomeStatus"
-    );
-
-
-  if (!key) {
-
-    status.textContent =
-      "Not Activated";
-
-    expiry.textContent =
-      "—";
-
-    home.textContent =
-      "Not Activated";
-
-    return false;
+    }
 
   }
 
+  catch (error) {
 
-  const keyStatus =
-    key.status || "active";
-
-
-  const expires =
-    key.expires_at || null;
-
-
-  if (
-    expires &&
-    Number.isFinite(
-      new Date(expires).getTime()
-    ) &&
-    Date.now() >=
-    new Date(expires).getTime()
-  ) {
-
-    status.textContent =
-      "EXPIRED";
-
-    expiry.textContent =
-      expires;
-
-    home.textContent =
-      "EXPIRED";
-
-    return false;
+    console.error(
+      "LOGO LOAD ERROR:",
+      error
+    );
 
   }
-
-
-  status.textContent =
-    keyStatus.toUpperCase();
-
-
-  expiry.textContent =
-    expires || "No expiry";
-
-
-  home.textContent =
-    keyStatus.toUpperCase();
-
-
-  return keyStatus === "active";
 
 }
 
@@ -1445,24 +1695,20 @@ async function checkConnection() {
       "statusText"
     );
 
-
   const worker =
     document.getElementById(
       "workerStatus"
     );
-
 
   const workerHome =
     document.getElementById(
       "workerHomeStatus"
     );
 
-
   const db =
     document.getElementById(
       "dbStatus"
     );
-
 
   const databaseHome =
     document.getElementById(
@@ -1470,45 +1716,32 @@ async function checkConnection() {
     );
 
 
-  const workerIndicator =
-    document.getElementById(
-      "workerIndicator"
-    );
-
-
-  const dbIndicator =
-    document.getElementById(
-      "dbIndicator"
-    );
-
-
   try {
 
     const response =
       await fetch(
-        API_BASE + "/api/test",
+        API_BASE +
+        "/api/test",
         {
           cache: "no-store"
         }
       );
 
 
-    if (!response.ok) {
+    if (!response.ok)
       throw new Error(
         "Worker unavailable"
       );
-    }
 
 
     const data =
       await response.json();
 
 
-    if (!data.success) {
+    if (!data.success)
       throw new Error(
         "API error"
       );
-    }
 
 
     worker.textContent =
@@ -1518,13 +1751,10 @@ async function checkConnection() {
       "Online";
 
 
-    workerIndicator.textContent =
-      "●";
-
-
     const dbResponse =
       await fetch(
-        API_BASE + "/api/db-test",
+        API_BASE +
+        "/api/db-test",
         {
           cache: "no-store"
         }
@@ -1532,9 +1762,7 @@ async function checkConnection() {
 
 
     const dbData =
-      await dbResponse
-        .json()
-        .catch(() => ({}));
+      await dbResponse.json();
 
 
     if (
@@ -1549,9 +1777,6 @@ async function checkConnection() {
       databaseHome.textContent =
         "Connected";
 
-      dbIndicator.textContent =
-        "●";
-
       status.textContent =
         "SYSTEM ONLINE";
 
@@ -1563,18 +1788,11 @@ async function checkConnection() {
       databaseHome.textContent =
         "Not Connected";
 
-      dbIndicator.textContent =
-        "●";
-
       status.textContent =
         "DATABASE ERROR";
 
     }
 
-
-    addActivity(
-      "Worker and database checked"
-    );
 
   }
 
@@ -1592,12 +1810,6 @@ async function checkConnection() {
     databaseHome.textContent =
       "Error";
 
-    workerIndicator.textContent =
-      "●";
-
-    dbIndicator.textContent =
-      "●";
-
     status.textContent =
       "CONNECTION ERROR";
 
@@ -1606,48 +1818,6 @@ async function checkConnection() {
   }
 
 }
-
-
-/* =====================================================
-   DEV PREVIEW
-===================================================== */
-
-function openDeveloperPreview() {
-
-  if (!DEV_PREVIEW_MODE) {
-    return;
-  }
-
-
-  document
-    .getElementById("keyGate")
-    .classList.add("hidden");
-
-
-  document
-    .getElementById("mainApp")
-    .classList.remove("hidden");
-
-
-  openScreen("homeScreen");
-
-
-  addActivity(
-    "Developer Preview Mode opened"
-  );
-
-
-  checkConnection();
-
-}
-
-
-document
-  .getElementById("devPreviewButton")
-  .addEventListener(
-    "click",
-    openDeveloperPreview
-  );
 
 
 /* =====================================================
@@ -1660,7 +1830,6 @@ async function activateKey() {
     document.getElementById(
       "activationKey"
     );
-
 
   const message =
     document.getElementById(
@@ -1675,7 +1844,7 @@ async function activateKey() {
   if (!key) {
 
     message.textContent =
-      "Please enter an activation key.";
+      "Please enter your activation key.";
 
     message.className =
       "message error";
@@ -1716,9 +1885,7 @@ async function activateKey() {
 
 
     const data =
-      await response
-        .json()
-        .catch(() => ({}));
+      await response.json();
 
 
     if (
@@ -1740,14 +1907,15 @@ async function activateKey() {
         data.key?.key_code ||
         key,
 
-      device_id:
-        DEVICE_ID,
-
       id:
         data.key?.id ||
         null,
 
+      device_id:
+        DEVICE_ID,
+
       status:
+        data.key?.status ||
         data.status ||
         "active",
 
@@ -1759,9 +1927,13 @@ async function activateKey() {
     };
 
 
-    saveKeyState(keyState);
+    saveKeyState(
+      keyState
+    );
 
-    updateKeyUI(keyState);
+    updateKeyUI(
+      keyState
+    );
 
 
     message.textContent =
@@ -1777,13 +1949,26 @@ async function activateKey() {
 
 
     document
-      .getElementById("mainApp")
-      .classList.remove("hidden");
+      .getElementById(
+        "keyGate"
+      )
+      .classList.add(
+        "hidden"
+      );
 
 
     document
-      .getElementById("keyGate")
-      .classList.add("hidden");
+      .getElementById(
+        "mainApp"
+      )
+      .classList.remove(
+        "hidden"
+      );
+
+
+    openScreen(
+      "homeScreen"
+    );
 
 
     checkConnection();
@@ -1849,9 +2034,7 @@ async function refreshKey() {
 
 
     const data =
-      await response
-        .json()
-        .catch(() => ({}));
+      await response.json();
 
 
     if (
@@ -1863,16 +2046,21 @@ async function refreshKey() {
 
       updateKeyUI();
 
+      document
+        .getElementById(
+          "mainApp"
+        )
+        .classList.add(
+          "hidden"
+        );
 
       document
-        .getElementById("mainApp")
-        .classList.add("hidden");
-
-
-      document
-        .getElementById("keyGate")
-        .classList.remove("hidden");
-
+        .getElementById(
+          "keyGate"
+        )
+        .classList.remove(
+          "hidden"
+        );
 
       return;
 
@@ -1895,30 +2083,37 @@ async function refreshKey() {
     };
 
 
-    saveKeyState(updated);
+    saveKeyState(
+      updated
+    );
 
-    updateKeyUI(updated);
+    updateKeyUI(
+      updated
+    );
 
 
     if (
-      data.status !== "active"
+      data.status !==
+      "active"
     ) {
 
       document
-        .getElementById("mainApp")
-        .classList.add("hidden");
-
+        .getElementById(
+          "mainApp"
+        )
+        .classList.add(
+          "hidden"
+        );
 
       document
-        .getElementById("keyGate")
-        .classList.remove("hidden");
+        .getElementById(
+          "keyGate"
+        )
+        .classList.remove(
+          "hidden"
+        );
 
     }
-
-
-    addActivity(
-      "Key status refreshed"
-    );
 
   }
 
@@ -1982,7 +2177,9 @@ async function adminRequest(
   const data =
     await response
       .json()
-      .catch(() => ({}));
+      .catch(
+        () => ({})
+      );
 
 
   if (!response.ok) {
@@ -2001,7 +2198,7 @@ async function adminRequest(
 
 
 /* =====================================================
-   ADMIN — LIST KEYS
+   ADMIN — LOAD KEYS
 ===================================================== */
 
 async function loadAdminKeys() {
@@ -2048,35 +2245,45 @@ async function loadAdminKeys() {
       key => {
 
         const card =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
         card.className =
           "log-item";
 
 
         const title =
-          document.createElement("strong");
+          document.createElement(
+            "strong"
+          );
 
         title.textContent =
           key.key_code;
 
 
         const details =
-          document.createElement("small");
+          document.createElement(
+            "small"
+          );
 
         details.textContent =
           `ID: ${key.id} • Status: ${key.status} • Device: ${key.device_id || "Not bound"}`;
 
 
         const expiry =
-          document.createElement("small");
+          document.createElement(
+            "small"
+          );
 
         expiry.textContent =
           `Expiry: ${key.expires_at || "No expiry"}`;
 
 
         const enable =
-          document.createElement("button");
+          document.createElement(
+            "button"
+          );
 
         enable.className =
           "secondary-button";
@@ -2093,7 +2300,9 @@ async function loadAdminKeys() {
 
 
         const disable =
-          document.createElement("button");
+          document.createElement(
+            "button"
+          );
 
         disable.className =
           "danger-button";
@@ -2110,7 +2319,9 @@ async function loadAdminKeys() {
 
 
         const reset =
-          document.createElement("button");
+          document.createElement(
+            "button"
+          );
 
         reset.className =
           "secondary-button";
@@ -2132,15 +2343,9 @@ async function loadAdminKeys() {
         card.appendChild(disable);
         card.appendChild(reset);
 
-
         container.appendChild(card);
 
       }
-    );
-
-
-    addActivity(
-      "Admin key list refreshed"
     );
 
   }
@@ -2149,7 +2354,6 @@ async function loadAdminKeys() {
 
     container.innerHTML =
       `<div class="empty-log">${error.message}</div>`;
-
 
     showAdminMessage(
       error.message,
@@ -2191,12 +2395,6 @@ async function generateKey() {
   }
 
 
-  showAdminMessage(
-    "Generating key...",
-    ""
-  );
-
-
   try {
 
     const data =
@@ -2215,18 +2413,7 @@ async function generateKey() {
 
     const generated =
       data.key?.key_code ||
-      data.key_code ||
-      data.key ||
-      "";
-
-
-    if (!generated) {
-
-      throw new Error(
-        "Server returned success but no key was returned."
-      );
-
-    }
+      "Generated";
 
 
     showAdminMessage(
@@ -2251,18 +2438,13 @@ async function generateKey() {
       "error"
     );
 
-    console.error(
-      "KEY GENERATION ERROR:",
-      error
-    );
-
   }
 
 }
 
 
 /* =====================================================
-   ADMIN — CHANGE STATUS
+   ADMIN — STATUS
 ===================================================== */
 
 async function adminChangeStatus(
@@ -2291,11 +2473,6 @@ async function adminChangeStatus(
     );
 
 
-    addActivity(
-      `Admin changed key ${id} to ${status}`
-    );
-
-
     await loadAdminKeys();
 
   }
@@ -2316,7 +2493,9 @@ async function adminChangeStatus(
    ADMIN — RESET DEVICE
 ===================================================== */
 
-async function adminResetDevice(id) {
+async function adminResetDevice(
+  id
+) {
 
   try {
 
@@ -2331,11 +2510,6 @@ async function adminResetDevice(id) {
     showAdminMessage(
       "Device binding reset.",
       "success"
-    );
-
-
-    addActivity(
-      `Admin reset device for key ${id}`
     );
 
 
@@ -2356,11 +2530,13 @@ async function adminResetDevice(id) {
 
 
 /* =====================================================
-   CONTROLLED TEST EVENTS
+   CONTROLLED DEVELOPER TESTS
 ===================================================== */
 
 document
-  .querySelectorAll("input[data-test]")
+  .querySelectorAll(
+    "input[data-test]"
+  )
   .forEach(
     input => {
 
@@ -2391,16 +2567,19 @@ document
 
 
 document
-  .getElementById("runAntiCheatTest")
+  .getElementById(
+    "runDeveloperTest"
+  )
   .addEventListener(
     "click",
     () => {
 
       const enabled =
         [
-          ...document.querySelectorAll(
-            "input[data-test]:checked"
-          )
+          ...document
+            .querySelectorAll(
+              "input[data-test]:checked"
+            )
         ]
         .map(
           input =>
@@ -2410,14 +2589,14 @@ document
 
       const message =
         document.getElementById(
-          "antiCheatMessage"
+          "developerTestMessage"
         );
 
 
       if (!enabled.length) {
 
         message.textContent =
-          "Enable at least one test first.";
+          "Enable at least one developer test first.";
 
         message.className =
           "message error";
@@ -2450,11 +2629,13 @@ document
 
 
 /* =====================================================
-   BUTTON EVENTS
+   BUTTONS
 ===================================================== */
 
 document
-  .getElementById("activateKeyButton")
+  .getElementById(
+    "activateKeyButton"
+  )
   .addEventListener(
     "click",
     activateKey
@@ -2462,7 +2643,9 @@ document
 
 
 document
-  .getElementById("refreshKeyButton")
+  .getElementById(
+    "refreshKeyButton"
+  )
   .addEventListener(
     "click",
     refreshKey
@@ -2470,7 +2653,9 @@ document
 
 
 document
-  .getElementById("keyRefreshButton")
+  .getElementById(
+    "keyRefreshButton"
+  )
   .addEventListener(
     "click",
     refreshKey
@@ -2478,7 +2663,9 @@ document
 
 
 document
-  .getElementById("saveAdminToken")
+  .getElementById(
+    "saveAdminToken"
+  )
   .addEventListener(
     "click",
     saveAdminToken
@@ -2486,7 +2673,9 @@ document
 
 
 document
-  .getElementById("generateKeyButton")
+  .getElementById(
+    "generateKeyButton"
+  )
   .addEventListener(
     "click",
     generateKey
@@ -2494,7 +2683,9 @@ document
 
 
 document
-  .getElementById("loadAdminKeys")
+  .getElementById(
+    "loadAdminKeys"
+  )
   .addEventListener(
     "click",
     loadAdminKeys
@@ -2502,19 +2693,19 @@ document
 
 
 document
-  .getElementById("testApiButton")
+  .getElementById(
+    "testApiButton"
+  )
   .addEventListener(
     "click",
     checkConnection
   );
 
 
-/* =====================================================
-   CLEAR ACTIVITIES
-===================================================== */
-
 document
-  .getElementById("clearActivities")
+  .getElementById(
+    "clearActivities"
+  )
   .addEventListener(
     "click",
     () => {
@@ -2526,12 +2717,10 @@ document
   );
 
 
-/* =====================================================
-   CLEAR LOCAL KEY
-===================================================== */
-
 document
-  .getElementById("clearLocalKey")
+  .getElementById(
+    "clearLocalKey"
+  )
   .addEventListener(
     "click",
     () => {
@@ -2542,55 +2731,21 @@ document
 
 
       document
-        .getElementById("mainApp")
-        .classList.add("hidden");
-
-
-      document
-        .getElementById("keyGate")
-        .classList.remove("hidden");
-
-
-      addActivity(
-        "Local activation key cleared"
-      );
-
-    }
-  );
-
-
-/* =====================================================
-   DEVELOPER MODE
-===================================================== */
-
-document
-  .getElementById("developerModeSwitch")
-  .addEventListener(
-    "change",
-    event => {
-
-      const enabled =
-        event.target.checked;
+        .getElementById(
+          "mainApp"
+        )
+        .classList.add(
+          "hidden"
+        );
 
 
       document
         .getElementById(
-          "developerLogoManager"
+          "keyGate"
         )
-        .classList.toggle(
-          "hidden",
-          !enabled
+        .classList.remove(
+          "hidden"
         );
-
-
-      addActivity(
-        "Developer Mode: " +
-        (
-          enabled
-            ? "ON"
-            : "OFF"
-        )
-      );
 
     }
   );
@@ -2606,53 +2761,35 @@ window.addEventListener(
 
     loadAdminToken();
 
-    loadDeveloperLogo();
-
     updateKeyUI();
 
+    await loadSavedLogo();
 
-    if (DEV_PREVIEW_MODE) {
-
-      document
-        .getElementById("keyGate")
-        .classList.add("hidden");
+    const stored =
+      getKeyState();
 
 
-      document
-        .getElementById("mainApp")
-        .classList.remove("hidden");
+    if (stored) {
 
+      await refreshKey();
 
-      openScreen("homeScreen");
+      if (updateKeyUI()) {
 
+        document
+          .getElementById(
+            "mainApp"
+          )
+          .classList.remove(
+            "hidden"
+          );
 
-      addActivity(
-        "Developer Preview Mode enabled"
-      );
-
-    } else {
-
-      const stored =
-        getKeyState();
-
-
-      if (stored) {
-
-        await refreshKey();
-
-
-        if (updateKeyUI()) {
-
-          document
-            .getElementById("mainApp")
-            .classList.remove("hidden");
-
-
-          document
-            .getElementById("keyGate")
-            .classList.add("hidden");
-
-        }
+        document
+          .getElementById(
+            "keyGate"
+          )
+          .classList.add(
+            "hidden"
+          );
 
       }
 
@@ -2680,7 +2817,9 @@ if ("serviceWorker" in navigator) {
     () => {
 
       navigator.serviceWorker
-        .register("./service-worker.js")
+        .register(
+          "./service-worker.js"
+        )
         .catch(
           error =>
             console.error(
