@@ -8,10 +8,15 @@
     content="width=device-width,initial-scale=1,viewport-fit=cover">
 
   <meta name="theme-color" content="#080a0f">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes">
+
   <meta
     name="apple-mobile-web-app-status-bar-style"
     content="black">
+
   <meta
     name="apple-mobile-web-app-title"
     content="LAWANGEN">
@@ -108,6 +113,16 @@
       background: rgba(255,255,255,.05);
       margin-top: 10px;
     }
+
+    .connection-dot {
+      display: inline-block;
+      margin-left: 6px;
+    }
+
+    button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 
@@ -153,6 +168,7 @@
       type="text"
       autocomplete="off"
       autocapitalize="characters"
+      spellcheck="false"
       placeholder="LAWANGEN-XXXXXXXXXXXXXXXX">
 
     <button
@@ -168,8 +184,6 @@
       type="button">
       CHECK KEY STATUS
     </button>
-
-  
 
     <p id="keyMessage" class="message"></p>
 
@@ -216,9 +230,7 @@
      HOME
 ===================================================== -->
 
-<main
-  id="homeScreen"
-  class="app-screen active">
+<main id="homeScreen" class="app-screen active">
 
 <section class="welcome-card">
 
@@ -531,9 +543,7 @@
      ACTIVITIES
 ===================================================== -->
 
-<main
-  id="activitiesScreen"
-  class="app-screen">
+<main id="activitiesScreen" class="app-screen">
 
 <div class="page-header">
 
@@ -612,10 +622,7 @@
     </div>
 
     <label class="switch">
-      <input
-        type="checkbox"
-        data-test
-        data-name="Headshot Test">
+      <input type="checkbox" data-test data-name="Headshot Test">
       <span></span>
     </label>
   </div>
@@ -628,10 +635,7 @@
     </div>
 
     <label class="switch">
-      <input
-        type="checkbox"
-        data-test
-        data-name="Auto Headshot Test">
+      <input type="checkbox" data-test data-name="Auto Headshot Test">
       <span></span>
     </label>
   </div>
@@ -644,10 +648,7 @@
     </div>
 
     <label class="switch">
-      <input
-        type="checkbox"
-        data-test
-        data-name="Silent Headshot Test">
+      <input type="checkbox" data-test data-name="Silent Headshot Test">
       <span></span>
     </label>
   </div>
@@ -660,10 +661,7 @@
     </div>
 
     <label class="switch">
-      <input
-        type="checkbox"
-        data-test
-        data-name="SP Line Test">
+      <input type="checkbox" data-test data-name="SP Line Test">
       <span></span>
     </label>
   </div>
@@ -676,10 +674,7 @@
     </div>
 
     <label class="switch">
-      <input
-        type="checkbox"
-        data-test
-        data-name="SP Health Test">
+      <input type="checkbox" data-test data-name="SP Health Test">
       <span></span>
     </label>
   </div>
@@ -692,10 +687,7 @@
     </div>
 
     <label class="switch">
-      <input
-        type="checkbox"
-        data-test
-        data-name="Help Box Test">
+      <input type="checkbox" data-test data-name="Help Box Test">
       <span></span>
     </label>
   </div>
@@ -708,10 +700,7 @@
     </div>
 
     <label class="switch">
-      <input
-        type="checkbox"
-        data-test
-        data-name="Enemy Detection Test">
+      <input type="checkbox" data-test data-name="Enemy Detection Test">
       <span></span>
     </label>
   </div>
@@ -724,10 +713,7 @@
     </div>
 
     <label class="switch">
-      <input
-        type="checkbox"
-        data-test
-        data-name="Visual Detection Test">
+      <input type="checkbox" data-test data-name="Visual Detection Test">
       <span></span>
     </label>
   </div>
@@ -740,10 +726,7 @@
     </div>
 
     <label class="switch">
-      <input
-        type="checkbox"
-        data-test
-        data-name="Aim Anomaly Test">
+      <input type="checkbox" data-test data-name="Aim Anomaly Test">
       <span></span>
     </label>
   </div>
@@ -756,10 +739,7 @@
     </div>
 
     <label class="switch">
-      <input
-        type="checkbox"
-        data-test
-        data-name="Speed Anomaly Test">
+      <input type="checkbox" data-test data-name="Speed Anomaly Test">
       <span></span>
     </label>
   </div>
@@ -774,10 +754,7 @@
   RUN CONTROLLED TEST
 </button>
 
-<p
-  id="testsMessage"
-  class="message">
-</p>
+<p id="testsMessage" class="message"></p>
 
 </main>
 
@@ -811,9 +788,7 @@
 
     <div>
       <strong>Worker</strong>
-      <span id="workerStatus">
-        Checking...
-      </span>
+      <span id="workerStatus">Checking...</span>
     </div>
 
     <span id="workerIndicator">●</span>
@@ -825,9 +800,7 @@
 
     <div>
       <strong>Database</strong>
-      <span id="dbStatus">
-        Checking...
-      </span>
+      <span id="dbStatus">Checking...</span>
     </div>
 
     <span id="dbIndicator">●</span>
@@ -870,12 +843,10 @@
 
 
 <!-- =====================================================
-     SETTINGS + LOGO MANAGER
+     SETTINGS
 ===================================================== -->
 
-<main
-  id="settingsScreen"
-  class="app-screen">
+<main id="settingsScreen" class="app-screen">
 
 <div class="page-header">
 
@@ -897,12 +868,12 @@
 <section class="control-card developer-only">
 
   <div class="page-header">
+
     <div>
       <h3>Developer Logo</h3>
-      <p>
-        Change the application profile/logo
-      </p>
+      <p>Change the application profile/logo</p>
     </div>
+
   </div>
 
 
@@ -948,10 +919,7 @@
     </button>
 
 
-    <p
-      id="logoManagerMessage"
-      class="message">
-    </p>
+    <p id="logoManagerMessage" class="message"></p>
 
   </div>
 
@@ -964,9 +932,7 @@
 
     <div>
       <strong>Developer Mode</strong>
-      <span>
-        Developer testing environment
-      </span>
+      <span>Developer testing environment</span>
     </div>
 
     <label class="switch">
@@ -984,9 +950,7 @@
 
     <div>
       <strong>Activity Logging</strong>
-      <span>
-        Record local activity
-      </span>
+      <span>Record local activity</span>
     </div>
 
     <label class="switch">
@@ -1026,40 +990,37 @@
 
 <nav class="bottom-navigation">
 
-<button
-  class="nav-button active"
-  data-screen="homeScreen"
-  type="button">
-  <span>⌂</span>
-  <small>Home</small>
-</button>
+  <button
+    class="nav-button active"
+    data-screen="homeScreen"
+    type="button">
+    <span>⌂</span>
+    <small>Home</small>
+  </button>
 
+  <button
+    class="nav-button"
+    data-screen="keyScreen"
+    type="button">
+    <span>🔑</span>
+    <small>Key</small>
+  </button>
 
-<button
-  class="nav-button"
-  data-screen="keyScreen"
-  type="button">
-  <span>🔑</span>
-  <small>Key</small>
-</button>
+  <button
+    class="nav-button"
+    data-screen="adminScreen"
+    type="button">
+    <span>🛠️</span>
+    <small>Admin</small>
+  </button>
 
-
-<button
-  class="nav-button"
-  data-screen="adminScreen"
-  type="button">
-  <span>🛠️</span>
-  <small>Admin</small>
-</button>
-
-
-<button
-  class="nav-button"
-  data-screen="settingsScreen"
-  type="button">
-  <span>⚙</span>
-  <small>Settings</small>
-</button>
+  <button
+    class="nav-button"
+    data-screen="settingsScreen"
+    type="button">
+    <span>⚙</span>
+    <small>Settings</small>
+  </button>
 
 </nav>
 
@@ -1068,7 +1029,7 @@
 
 
 <!-- =====================================================
-     MAIN JAVASCRIPT
+     JAVASCRIPT
 ===================================================== -->
 
 <script>
@@ -1081,15 +1042,6 @@ const API_BASE =
   "https://buner-ff.akberawaakbera.workers.dev";
 
 
-/*
-  Developer preview only.
-
-  This allows the developer to inspect the UI.
-  It does NOT create, activate, or modify backend keys.
-*/
-
-
-
 /* =====================================================
    DEVICE ID
 ===================================================== */
@@ -1097,20 +1049,18 @@ const API_BASE =
 function getDeviceId() {
 
   let id =
-    localStorage.getItem(
-      "lawangenDeviceId"
-    );
+    localStorage.getItem("lawangenDeviceId");
 
   if (!id) {
 
     if (
       window.crypto &&
-      crypto.randomUUID
+      typeof window.crypto.randomUUID === "function"
     ) {
 
       id =
         "DEV-" +
-        crypto.randomUUID()
+        window.crypto.randomUUID()
           .replaceAll("-", "")
           .slice(0, 16)
           .toUpperCase();
@@ -1138,20 +1088,17 @@ function getDeviceId() {
 }
 
 
-const DEVICE_ID =
-  getDeviceId();
+const DEVICE_ID = getDeviceId();
 
 
 document.getElementById(
   "deviceIdText"
-).textContent =
-  DEVICE_ID;
+).textContent = DEVICE_ID;
 
 
 document.getElementById(
   "settingsDeviceId"
-).textContent =
-  DEVICE_ID;
+).textContent = DEVICE_ID;
 
 
 /* =====================================================
@@ -1163,9 +1110,7 @@ function getKeyState() {
   try {
 
     return JSON.parse(
-      localStorage.getItem(
-        "lawangenKey"
-      ) || "null"
+      localStorage.getItem("lawangenKey") || "null"
     );
 
   } catch {
@@ -1173,6 +1118,7 @@ function getKeyState() {
     return null;
 
   }
+
 }
 
 
@@ -1208,16 +1154,25 @@ function getAdminToken() {
 }
 
 
+function loadAdminToken() {
+
+  const input =
+    document.getElementById("adminToken");
+
+  if (input) {
+    input.value = getAdminToken();
+  }
+
+}
+
+
 function saveAdminToken() {
 
   const input =
-    document.getElementById(
-      "adminToken"
-    );
+    document.getElementById("adminToken");
 
   const token =
     input.value.trim();
-
 
   if (!token) {
 
@@ -1227,35 +1182,21 @@ function saveAdminToken() {
     );
 
     return;
-
   }
-
 
   localStorage.setItem(
     "lawangenAdminToken",
     token
   );
 
-
   showAdminMessage(
     "Admin token saved locally.",
     "success"
   );
 
-
   addActivity(
     "Admin token configured"
   );
-
-}
-
-
-function loadAdminToken() {
-
-  document.getElementById(
-    "adminToken"
-  ).value =
-    getAdminToken();
 
 }
 
@@ -1270,32 +1211,39 @@ function showAdminMessage(
 ) {
 
   const element =
-    document.getElementById(
-      "adminMessage"
-    );
+    document.getElementById("adminMessage");
 
-  element.textContent =
-    text;
+  if (!element) return;
 
-  element.className =
-    "message " + type;
+  element.textContent = text;
+  element.className = "message " + type;
+
+}
+
+
+function showLogoMessage(
+  text,
+  type = ""
+) {
+
+  const element =
+    document.getElementById("logoManagerMessage");
+
+  if (!element) return;
+
+  element.textContent = text;
+  element.className = "message " + type;
 
 }
 
 
 /* =====================================================
-   LOGO MANAGER
-   IndexedDB = persistent browser storage
+   LOGO DATABASE
 ===================================================== */
 
-const LOGO_DB_NAME =
-  "LAWANGEN_Logo_DB";
-
-const LOGO_STORE =
-  "logos";
-
-const LOGO_KEY =
-  "applicationLogo";
+const LOGO_DB_NAME = "LAWANGEN_Logo_DB";
+const LOGO_STORE = "logos";
+const LOGO_KEY = "applicationLogo";
 
 
 function openLogoDatabase() {
@@ -1309,39 +1257,30 @@ function openLogoDatabase() {
           1
         );
 
+      request.onupgradeneeded = () => {
 
-      request.onupgradeneeded =
-        () => {
+        const db =
+          request.result;
 
-          const db =
-            request.result;
+        if (
+          !db.objectStoreNames.contains(
+            LOGO_STORE
+          )
+        ) {
 
-          if (
-            !db.objectStoreNames
-              .contains(LOGO_STORE)
-          ) {
-
-            db.createObjectStore(
-              LOGO_STORE
-            );
-
-          }
-
-        };
-
-
-      request.onsuccess =
-        () =>
-          resolve(
-            request.result
+          db.createObjectStore(
+            LOGO_STORE
           );
 
+        }
 
-      request.onerror =
-        () =>
-          reject(
-            request.error
-          );
+      };
+
+      request.onsuccess = () =>
+        resolve(request.result);
+
+      request.onerror = () =>
+        reject(request.error);
 
     }
   );
@@ -1349,13 +1288,10 @@ function openLogoDatabase() {
 }
 
 
-async function saveLogo(
-  data
-) {
+async function saveLogo(data) {
 
   const db =
     await openLogoDatabase();
-
 
   return new Promise(
     (resolve, reject) => {
@@ -1366,7 +1302,6 @@ async function saveLogo(
           "readwrite"
         );
 
-
       transaction.objectStore(
         LOGO_STORE
       ).put(
@@ -1374,27 +1309,15 @@ async function saveLogo(
         LOGO_KEY
       );
 
+      transaction.oncomplete = () => {
+        db.close();
+        resolve();
+      };
 
-      transaction.oncomplete =
-        () => {
-
-          db.close();
-
-          resolve();
-
-        };
-
-
-      transaction.onerror =
-        () => {
-
-          db.close();
-
-          reject(
-            transaction.error
-          );
-
-        };
+      transaction.onerror = () => {
+        db.close();
+        reject(transaction.error);
+      };
 
     }
   );
@@ -1408,7 +1331,6 @@ async function loadSavedLogo() {
 
     const db =
       await openLogoDatabase();
-
 
     return new Promise(
       (resolve, reject) => {
@@ -1426,29 +1348,25 @@ async function loadSavedLogo() {
               LOGO_KEY
             );
 
+        request.onsuccess = () => {
 
-        request.onsuccess =
-          () => {
+          db.close();
 
-            db.close();
+          resolve(
+            request.result || null
+          );
 
-            resolve(
-              request.result || null
-            );
+        };
 
-          };
+        request.onerror = () => {
 
+          db.close();
 
-        request.onerror =
-          () => {
+          reject(
+            request.error
+          );
 
-            db.close();
-
-            reject(
-              request.error
-            );
-
-          };
+        };
 
       }
     );
@@ -1469,7 +1387,6 @@ async function deleteSavedLogo() {
     const db =
       await openLogoDatabase();
 
-
     return new Promise(
       (resolve, reject) => {
 
@@ -1486,27 +1403,19 @@ async function deleteSavedLogo() {
               LOGO_KEY
             );
 
+        request.onsuccess = () => {
 
-        request.onsuccess =
-          () => {
+          db.close();
+          resolve();
 
-            db.close();
+        };
 
-            resolve();
+        request.onerror = () => {
 
-          };
+          db.close();
+          reject(request.error);
 
-
-        request.onerror =
-          () => {
-
-            db.close();
-
-            reject(
-              request.error
-            );
-
-          };
+        };
 
       }
     );
@@ -1520,23 +1429,15 @@ async function deleteSavedLogo() {
 }
 
 
-function applyLogoToApplication(
-  logo
-) {
+function applyLogoToApplication(logo) {
 
   document
     .querySelectorAll(
-      ".logo-mark img, " +
-      ".small-logo img, " +
-      ".developer-logo-mark img, " +
-      "#developerLogoPreview"
+      "#gateLogo, #topLogo, #homeLogo, #developerLogoPreview"
     )
     .forEach(
       image => {
-
-        image.src =
-          logo;
-
+        image.src = logo;
       }
     );
 
@@ -1548,58 +1449,29 @@ async function loadDeveloperLogo() {
   const saved =
     await loadSavedLogo();
 
-
   if (!saved) return;
 
+  applyLogoToApplication(saved);
 
-  applyLogoToApplication(
-    saved
+}
+
+
+const logoInput =
+  document.getElementById(
+    "developerLogoInput"
   );
 
 
-  document
-    .getElementById(
-      "developerLogoPreview"
-    )
-    .src =
-    saved;
+if (logoInput) {
 
-}
-
-
-function showLogoMessage(
-  text,
-  type = ""
-) {
-
-  const element =
-    document.getElementById(
-      "logoManagerMessage"
-    );
-
-  element.textContent =
-    text;
-
-  element.className =
-    "message " + type;
-
-}
-
-
-document
-  .getElementById(
-    "developerLogoInput"
-  )
-  .addEventListener(
+  logoInput.addEventListener(
     "change",
     event => {
 
       const file =
         event.target.files?.[0];
 
-
       if (!file) return;
-
 
       if (
         ![
@@ -1618,42 +1490,35 @@ document
 
       }
 
-
       const reader =
         new FileReader();
 
+      reader.onload = () => {
 
-      reader.onload =
-        () => {
-
-          const preview =
-            document.getElementById(
-              "developerLogoPreview"
-            );
-
-
-          preview.src =
-            reader.result;
-
-
-          preview.dataset.pendingLogo =
-            reader.result;
-
-
-          showLogoMessage(
-            "Image selected. Press APPLY LOGO.",
-            ""
+        const preview =
+          document.getElementById(
+            "developerLogoPreview"
           );
 
-        };
+        preview.src =
+          reader.result;
 
+        preview.dataset.pendingLogo =
+          reader.result;
 
-      reader.readAsDataURL(
-        file
-      );
+        showLogoMessage(
+          "Image selected. Press APPLY LOGO.",
+          ""
+        );
+
+      };
+
+      reader.readAsDataURL(file);
 
     }
   );
+
+}
 
 
 document
@@ -1669,10 +1534,8 @@ document
           "developerLogoPreview"
         );
 
-
       const logo =
         preview.dataset.pendingLogo;
-
 
       if (!logo) {
 
@@ -1685,27 +1548,18 @@ document
 
       }
 
-
       try {
 
-        await saveLogo(
-          logo
-        );
+        await saveLogo(logo);
 
-
-        applyLogoToApplication(
-          logo
-        );
-
+        applyLogoToApplication(logo);
 
         delete preview.dataset.pendingLogo;
-
 
         showLogoMessage(
           "Logo saved successfully.",
           "success"
         );
-
 
         addActivity(
           "Developer application logo changed"
@@ -1717,7 +1571,6 @@ document
           "Logo save error:",
           error
         );
-
 
         showLogoMessage(
           "Logo could not be saved.",
@@ -1740,34 +1593,27 @@ document
 
       await deleteSavedLogo();
 
-
       const defaultLogo =
         "./assets/logo.png";
-
 
       applyLogoToApplication(
         defaultLogo
       );
-
 
       const preview =
         document.getElementById(
           "developerLogoPreview"
         );
 
-
       preview.src =
         defaultLogo;
 
-
       delete preview.dataset.pendingLogo;
-
 
       showLogoMessage(
         "Default logo restored.",
         "success"
       );
-
 
       addActivity(
         "Developer logo reset"
@@ -1781,31 +1627,25 @@ document
    KEY UI
 ===================================================== */
 
-function updateKeyUI(
-  data = null
-) {
+function updateKeyUI(data = null) {
 
   const key =
     data || getKeyState();
-
 
   const status =
     document.getElementById(
       "keyStatusText"
     );
 
-
   const expiry =
     document.getElementById(
       "keyExpiryText"
     );
 
-
   const home =
     document.getElementById(
       "keyHomeStatus"
     );
-
 
   if (!key) {
 
@@ -1822,14 +1662,11 @@ function updateKeyUI(
 
   }
 
-
   const keyStatus =
     key.status || "active";
 
-
   const expires =
     key.expires_at || null;
-
 
   if (
     expires &&
@@ -1853,18 +1690,14 @@ function updateKeyUI(
 
   }
 
-
   status.textContent =
     keyStatus.toUpperCase();
-
 
   expiry.textContent =
     expires || "No expiry";
 
-
   home.textContent =
     keyStatus.toUpperCase();
-
 
   return keyStatus === "active";
 
@@ -1881,77 +1714,51 @@ const activitiesContainer =
   );
 
 
-function addActivity(
-  text
-) {
+function addActivity(text) {
 
   const logging =
     document.getElementById(
       "loggingSwitch"
     );
 
-
   if (
     logging &&
     !logging.checked
   ) return;
 
+  if (!activitiesContainer) return;
 
   const empty =
     activitiesContainer.querySelector(
       ".empty-log"
     );
 
-
   if (empty) {
     empty.remove();
   }
 
-
   const item =
-    document.createElement(
-      "div"
-    );
-
+    document.createElement("div");
 
   item.className =
     "log-item";
 
-
   const strong =
-    document.createElement(
-      "strong"
-    );
-
+    document.createElement("strong");
 
   strong.textContent =
     text;
 
-
   const small =
-    document.createElement(
-      "small"
-    );
-
+    document.createElement("small");
 
   small.textContent =
-    new Date()
-      .toLocaleString();
+    new Date().toLocaleString();
 
+  item.appendChild(strong);
+  item.appendChild(small);
 
-  item.appendChild(
-    strong
-  );
-
-
-  item.appendChild(
-    small
-  );
-
-
-  activitiesContainer.prepend(
-    item
-  );
+  activitiesContainer.prepend(item);
 
 }
 
@@ -1972,9 +1779,7 @@ const navigationButtons =
   );
 
 
-function openScreen(
-  id
-) {
+function openScreen(id) {
 
   screens.forEach(
     screen => {
@@ -1987,7 +1792,6 @@ function openScreen(
     }
   );
 
-
   navigationButtons.forEach(
     button => {
 
@@ -1998,7 +1802,6 @@ function openScreen(
 
     }
   );
-
 
   window.scrollTo(
     0,
@@ -2018,7 +1821,6 @@ navigationButtons.forEach(
         const id =
           button.dataset.screen;
 
-
         if (id) {
           openScreen(id);
         }
@@ -2036,16 +1838,10 @@ document
   )
   .addEventListener(
     "click",
-    () =>
-      openScreen(
-        "settingsScreen"
-      )
+    () => openScreen(
+      "settingsScreen"
+    )
   );
-
-
-/* =====================================================
-   DEVELOPER PREVIEW
-===================================================== */
 
 
 /* =====================================================
@@ -2059,55 +1855,45 @@ async function checkConnection() {
       "statusText"
     );
 
-
   const worker =
     document.getElementById(
       "workerStatus"
     );
-
 
   const workerHome =
     document.getElementById(
       "workerHomeStatus"
     );
 
-
   const db =
     document.getElementById(
       "dbStatus"
     );
-
 
   const databaseHome =
     document.getElementById(
       "databaseStatus"
     );
 
-
   const workerIndicator =
     document.getElementById(
       "workerIndicator"
     );
-
 
   const dbIndicator =
     document.getElementById(
       "dbIndicator"
     );
 
-
   try {
 
     const response =
       await fetch(
-        API_BASE +
-        "/api/test",
+        API_BASE + "/api/test",
         {
-          cache:
-            "no-store"
+          cache: "no-store"
         }
       );
-
 
     if (!response.ok) {
       throw new Error(
@@ -2115,10 +1901,8 @@ async function checkConnection() {
       );
     }
 
-
     const data =
       await response.json();
-
 
     if (!data.success) {
       throw new Error(
@@ -2126,52 +1910,40 @@ async function checkConnection() {
       );
     }
 
-
     worker.textContent =
       "Online";
-
 
     workerHome.textContent =
       "Online";
 
-
     workerIndicator.textContent =
       "●";
 
-
     const dbResponse =
       await fetch(
-        API_BASE +
-        "/api/db-test",
+        API_BASE + "/api/db-test",
         {
-          cache:
-            "no-store"
+          cache: "no-store"
         }
       );
-
 
     const dbData =
       await dbResponse.json();
 
-
     if (
       dbResponse.ok &&
       dbData.success &&
-      dbData.database ===
-        "connected"
+      dbData.database === "connected"
     ) {
 
       db.textContent =
         "Connected";
 
-
       databaseHome.textContent =
         "Connected";
 
-
       dbIndicator.textContent =
         "●";
-
 
       status.textContent =
         "SYSTEM ONLINE";
@@ -2181,137 +1953,176 @@ async function checkConnection() {
       db.textContent =
         "Not Connected";
 
-
       databaseHome.textContent =
         "Not Connected";
 
-
       dbIndicator.textContent =
         "●";
-
 
       status.textContent =
         "DATABASE ERROR";
 
     }
 
-
     addActivity(
       "Worker and database checked"
     );
 
-  }
-
-  catch (error) {
+  } catch (error) {
 
     worker.textContent =
       "Offline";
 
-
     workerHome.textContent =
       "Offline";
-
 
     db.textContent =
       "Error";
 
-
     databaseHome.textContent =
       "Error";
-
 
     status.textContent =
       "CONNECTION ERROR";
 
-
     workerIndicator.textContent =
       "●";
-
 
     dbIndicator.textContent =
       "●";
 
-
     console.error(
+      "Connection error:",
       error
     );
 
   }
 
 }
-
-
 /* =====================================================
    ACTIVATE KEY
 ===================================================== */
 
 async function activateKey() {
 
-  const input = document.getElementById("activationKey");
-  const message = document.getElementById("keyMessage");
-  const button = document.getElementById("activateKeyButton");
+  const input =
+    document.getElementById(
+      "activationKey"
+    );
 
-  const key = input.value.trim().toUpperCase();
+  const message =
+    document.getElementById(
+      "keyMessage"
+    );
+
+  const button =
+    document.getElementById(
+      "activateKeyButton"
+    );
+
+  const key =
+    input.value
+      .trim()
+      .toUpperCase();
 
   if (!key) {
-    message.textContent = "Please enter your activation key.";
-    message.className = "message error";
+
+    message.textContent =
+      "Please enter your activation key.";
+
+    message.className =
+      "message error";
+
     return;
+
   }
 
-  button.disabled = true;
-  button.textContent = "CHECKING...";
+  button.disabled =
+    true;
 
-  message.textContent = "Checking key...";
-  message.className = "message";
+  button.textContent =
+    "CHECKING...";
+
+  message.textContent =
+    "Checking key...";
+
+  message.className =
+    "message";
 
   try {
 
-    const response = await fetch(
-      API_BASE + "/api/keys/activate",
-      {
-        method: "POST",
+    const response =
+      await fetch(
+        API_BASE +
+        "/api/keys/activate",
+        {
+          method: "POST",
 
-        headers: {
-          "Content-Type": "application/json"
-        },
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
 
-        body: JSON.stringify({
-          key_code: key,
-          device_id: DEVICE_ID
-        }),
+          body: JSON.stringify({
+            key_code: key,
+            device_id: DEVICE_ID
+          }),
 
-        cache: "no-store"
-      }
-    );
+          cache: "no-store"
+        }
+      );
 
-    const data = await response.json().catch(() => ({}));
+    const data =
+      await response
+        .json()
+        .catch(
+          () => ({})
+        );
 
-    if (!response.ok || data.success !== true) {
+    if (
+      !response.ok ||
+      data.success !== true
+    ) {
+
       throw new Error(
         data.error ||
         data.message ||
         "Invalid or expired activation key."
       );
+
     }
 
-    /* Save successful key */
-
     const keyState = {
-      key: data.key?.key_code || key,
-      device_id: DEVICE_ID,
-      id: data.key?.id || null,
-      status: data.key?.status || "active",
+
+      key:
+        data.key?.key_code ||
+        key,
+
+      device_id:
+        DEVICE_ID,
+
+      id:
+        data.key?.id ||
+        null,
+
+      status:
+        data.key?.status ||
+        "active",
+
       expires_at:
         data.key?.expires_at ||
         data.expires_at ||
         null
+
     };
 
-    saveKeyState(keyState);
-    updateKeyUI(keyState);
+    saveKeyState(
+      keyState
+    );
 
-    /* Success message */
+    updateKeyUI(
+      keyState
+    );
 
     message.textContent =
       "Key activated successfully.";
@@ -2323,25 +2134,27 @@ async function activateKey() {
       "Activation key verified"
     );
 
-    /*
-      IMPORTANT:
-      یہاں Key صحیح ہونے کے بعد
-      Login screen hide اور Main Panel show ہوگا۔
-    */
+    document
+      .getElementById(
+        "keyGate"
+      )
+      .classList.add(
+        "hidden"
+      );
 
     document
-      .getElementById("keyGate")
-      .classList.add("hidden");
+      .getElementById(
+        "mainApp"
+      )
+      .classList.remove(
+        "hidden"
+      );
 
-    document
-      .getElementById("mainApp")
-      .classList.remove("hidden");
+    openScreen(
+      "homeScreen"
+    );
 
-    openScreen("homeScreen");
-
-    /* Check Worker/Database */
-
-    checkConnection();
+    await checkConnection();
 
   } catch (error) {
 
@@ -2359,10 +2172,14 @@ async function activateKey() {
 
   } finally {
 
-    button.disabled = false;
-    button.textContent = "ACTIVATE KEY";
+    button.disabled =
+      false;
+
+    button.textContent =
+      "ACTIVATE KEY";
 
   }
+
 }
 
 
@@ -2375,7 +2192,6 @@ async function refreshKey() {
   const stored =
     getKeyState();
 
-
   if (!stored) {
 
     updateKeyUI();
@@ -2384,7 +2200,6 @@ async function refreshKey() {
 
   }
 
-
   try {
 
     const response =
@@ -2392,31 +2207,34 @@ async function refreshKey() {
         API_BASE +
         "/api/keys/status",
         {
-          method:
-            "POST",
+          method: "POST",
 
           headers: {
             "Content-Type":
               "application/json"
           },
 
-          body:
-            JSON.stringify({
+          body: JSON.stringify({
 
-              key_code:
-                stored.key,
+            key_code:
+              stored.key,
 
-              device_id:
-                DEVICE_ID
+            device_id:
+              DEVICE_ID
 
-            })
+          }),
+
+          cache:
+            "no-store"
         }
       );
 
-
     const data =
-      await response.json();
-
+      await response
+        .json()
+        .catch(
+          () => ({})
+        );
 
     if (
       !response.ok ||
@@ -2424,9 +2242,7 @@ async function refreshKey() {
     ) {
 
       clearKeyState();
-
       updateKeyUI();
-
 
       document
         .getElementById(
@@ -2436,7 +2252,6 @@ async function refreshKey() {
           "hidden"
         );
 
-
       document
         .getElementById(
           "keyGate"
@@ -2445,11 +2260,9 @@ async function refreshKey() {
           "hidden"
         );
 
-
       return;
 
     }
-
 
     const updated = {
 
@@ -2466,21 +2279,16 @@ async function refreshKey() {
 
     };
 
-
     saveKeyState(
       updated
     );
 
+    const active =
+      updateKeyUI(
+        updated
+      );
 
-    updateKeyUI(
-      updated
-    );
-
-
-    if (
-      data.status !==
-      "active"
-    ) {
+    if (!active) {
 
       document
         .getElementById(
@@ -2489,7 +2297,6 @@ async function refreshKey() {
         .classList.add(
           "hidden"
         );
-
 
       document
         .getElementById(
@@ -2501,14 +2308,11 @@ async function refreshKey() {
 
     }
 
-
     addActivity(
       "Key status refreshed"
     );
 
-  }
-
-  catch (error) {
+  } catch (error) {
 
     console.error(
       "KEY STATUS ERROR:",
@@ -2532,15 +2336,13 @@ async function adminRequest(
   const token =
     getAdminToken();
 
-
   if (!token) {
 
     throw new Error(
-      "ADMIN_TOKEN is not configured in Worker secrets."
+      "ADMIN_TOKEN is not configured."
     );
 
   }
-
 
   const headers = {
 
@@ -2554,17 +2356,14 @@ async function adminRequest(
 
   };
 
-
   const response =
     await fetch(
-      API_BASE +
-      path,
+      API_BASE + path,
       {
         ...options,
         headers
       }
     );
-
 
   const data =
     await response
@@ -2573,16 +2372,15 @@ async function adminRequest(
         () => ({})
       );
 
-
   if (!response.ok) {
 
     throw new Error(
       data.error ||
+      data.message ||
       `Request failed (${response.status})`
     );
 
   }
-
 
   return data;
 
@@ -2600,10 +2398,8 @@ async function loadAdminKeys() {
       "adminKeysContainer"
     );
 
-
   container.innerHTML =
     `<div class="empty-log">Loading...</div>`;
-
 
   try {
 
@@ -2611,30 +2407,24 @@ async function loadAdminKeys() {
       await adminRequest(
         "/api/admin/keys",
         {
-          method:
-            "GET"
+          method: "GET"
         }
       );
 
-
     const keys =
       data.keys || [];
-
 
     if (!keys.length) {
 
       container.innerHTML =
         `<div class="empty-log">No keys found.</div>`;
 
-
       return;
 
     }
 
-
     container.innerHTML =
       "";
-
 
     keys.forEach(
       key => {
@@ -2644,54 +2434,43 @@ async function loadAdminKeys() {
             "div"
           );
 
-
         card.className =
           "log-item";
-
 
         const title =
           document.createElement(
             "strong"
           );
 
-
         title.textContent =
           key.key_code;
-
 
         const details =
           document.createElement(
             "small"
           );
 
-
         details.textContent =
           `ID: ${key.id} • Status: ${key.status} • Device: ${key.device_id || "Not bound"}`;
-
 
         const expiry =
           document.createElement(
             "small"
           );
 
-
         expiry.textContent =
           `Expiry: ${key.expires_at || "No expiry"}`;
-
 
         const enable =
           document.createElement(
             "button"
           );
 
-
         enable.className =
           "secondary-button";
 
-
         enable.textContent =
           "ENABLE";
-
 
         enable.onclick =
           () =>
@@ -2700,20 +2479,16 @@ async function loadAdminKeys() {
               "active"
             );
 
-
         const disable =
           document.createElement(
             "button"
           );
 
-
         disable.className =
           "danger-button";
 
-
         disable.textContent =
           "DISABLE";
-
 
         disable.onclick =
           () =>
@@ -2722,20 +2497,16 @@ async function loadAdminKeys() {
               "disabled"
             );
 
-
         const reset =
           document.createElement(
             "button"
           );
 
-
         reset.className =
           "secondary-button";
 
-
         reset.textContent =
           "RESET DEVICE";
-
 
         reset.onclick =
           () =>
@@ -2743,56 +2514,26 @@ async function loadAdminKeys() {
               key.id
             );
 
+        card.appendChild(title);
+        card.appendChild(details);
+        card.appendChild(expiry);
+        card.appendChild(enable);
+        card.appendChild(disable);
+        card.appendChild(reset);
 
-        card.appendChild(
-          title
-        );
-
-
-        card.appendChild(
-          details
-        );
-
-
-        card.appendChild(
-          expiry
-        );
-
-
-        card.appendChild(
-          enable
-        );
-
-
-        card.appendChild(
-          disable
-        );
-
-
-        card.appendChild(
-          reset
-        );
-
-
-        container.appendChild(
-          card
-        );
+        container.appendChild(card);
 
       }
     );
-
 
     addActivity(
       "Admin key list refreshed"
     );
 
-  }
-
-  catch (error) {
+  } catch (error) {
 
     container.innerHTML =
       `<div class="empty-log">${error.message}</div>`;
-
 
     showAdminMessage(
       error.message,
@@ -2811,18 +2552,24 @@ async function loadAdminKeys() {
 async function generateKey() {
 
   const daysInput =
-    document.getElementById("keyDays");
+    document.getElementById(
+      "keyDays"
+    );
 
   const result =
-    document.getElementById("generatedKeyResult");
+    document.getElementById(
+      "generatedKeyResult"
+    );
 
   const button =
-    document.getElementById("generateKeyButton");
+    document.getElementById(
+      "generateKeyButton"
+    );
 
   const days =
-    Number(daysInput?.value || 30);
-
-  /* ---------- VALIDATION ---------- */
+    Number(
+      daysInput.value || 30
+    );
 
   if (
     !Number.isFinite(days) ||
@@ -2836,9 +2583,8 @@ async function generateKey() {
     );
 
     return;
-  }
 
-  /* ---------- ADMIN TOKEN ---------- */
+  }
 
   const token =
     getAdminToken();
@@ -2846,57 +2592,30 @@ async function generateKey() {
   if (!token) {
 
     showAdminMessage(
-      "ADMIN_TOKEN is missing. Save your Worker ADMIN_TOKEN first.",
+      "ADMIN_TOKEN is missing.",
       "error"
     );
 
     return;
-  }
-
-  /* ---------- LOADING ---------- */
-
-  if (button) {
-
-    button.disabled = true;
-
-    button.dataset.originalText =
-      button.textContent;
-
-    button.textContent =
-      "GENERATING...";
 
   }
 
-  if (result) {
+  button.disabled =
+    true;
 
-    result.classList.add("hidden");
+  button.textContent =
+    "GENERATING...";
 
-    result.textContent = "";
-
-  }
+  result.classList.add(
+    "hidden"
+  );
 
   showAdminMessage(
-    "Connecting to Worker and generating key...",
+    "Generating activation key...",
     ""
   );
 
   try {
-
-    console.log(
-      "[LAWANGEN] Generate Key Request",
-      {
-        endpoint:
-          API_BASE +
-          "/api/admin/keys/generate",
-
-        days,
-
-        hasAdminToken:
-          Boolean(token)
-      }
-    );
-
-    /* ---------- REQUEST ---------- */
 
     const response =
       await fetch(
@@ -2906,11 +2625,13 @@ async function generateKey() {
           method: "POST",
 
           headers: {
+
             "Content-Type":
               "application/json",
 
             "Authorization":
               `Bearer ${token}`
+
           },
 
           body:
@@ -2923,66 +2644,22 @@ async function generateKey() {
         }
       );
 
-
-    /* ---------- RAW RESPONSE ---------- */
-
-    const rawText =
-      await response.text();
-
-    console.log(
-      "[LAWANGEN] Worker HTTP Status:",
-      response.status
-    );
-
-    console.log(
-      "[LAWANGEN] Worker Raw Response:",
-      rawText
-    );
-
-
-    /* ---------- PARSE RESPONSE ---------- */
-
-    let data = {};
-
-    try {
-
-      data =
-        rawText
-          ? JSON.parse(rawText)
-          : {};
-
-    } catch {
-
-      throw new Error(
-        `Worker returned non-JSON response. HTTP ${response.status}. Response: ${rawText.slice(0, 300)}`
-      );
-
-    }
-
-
-    console.log(
-      "[LAWANGEN] Worker JSON:",
-      data
-    );
-
-
-    /* ---------- HTTP ERROR ---------- */
+    const data =
+      await response
+        .json()
+        .catch(
+          () => ({})
+        );
 
     if (!response.ok) {
 
-      const serverError =
+      throw new Error(
         data.error ||
         data.message ||
-        `HTTP ${response.status}`;
-
-      throw new Error(
-        `Generate Key failed: ${serverError}`
+        `HTTP ${response.status}`
       );
 
     }
-
-
-    /* ---------- API ERROR ---------- */
 
     if (
       data.success !== true
@@ -2996,100 +2673,86 @@ async function generateKey() {
 
     }
 
-
-    /* ---------- KEY CHECK ---------- */
-
     const generated =
       data.key?.key_code;
 
     if (!generated) {
 
-      console.error(
-        "[LAWANGEN] Missing key in response:",
-        data
-      );
-
       throw new Error(
-        "Worker responded successfully, but no key_code was returned."
+        "No key_code was returned."
       );
 
     }
 
+    result.innerHTML =
+      "";
 
-    /* ---------- SHOW GENERATED KEY ---------- */
+    const keyText =
+      document.createElement(
+        "strong"
+      );
 
-    if (result) {
+    keyText.textContent =
+      generated;
 
-      result.innerHTML = "";
+    const copyButton =
+      document.createElement(
+        "button"
+      );
 
-      const keyText =
-        document.createElement("strong");
+    copyButton.type =
+      "button";
 
-      keyText.textContent =
-        generated;
+    copyButton.className =
+      "secondary-button";
 
-      const copyButton =
-        document.createElement("button");
+    copyButton.textContent =
+      "COPY KEY";
 
-      copyButton.type =
-        "button";
+    copyButton.style.marginTop =
+      "10px";
 
-      copyButton.className =
-        "secondary-button";
+    copyButton.onclick =
+      async () => {
 
-      copyButton.textContent =
-        "COPY KEY";
+        try {
 
-      copyButton.style.marginTop =
-        "10px";
-
-      copyButton.addEventListener(
-        "click",
-        async () => {
-
-          try {
-
-            await navigator.clipboard.writeText(
+          await navigator.clipboard
+            .writeText(
               generated
             );
 
-            copyButton.textContent =
-              "COPIED ✓";
+          copyButton.textContent =
+            "COPIED ✓";
 
-            setTimeout(
-              () => {
-                copyButton.textContent =
-                  "COPY KEY";
-              },
-              1500
-            );
+          setTimeout(
+            () => {
+              copyButton.textContent =
+                "COPY KEY";
+            },
+            1500
+          );
 
-          } catch {
+        } catch {
 
-            copyButton.textContent =
-              "COPY FAILED";
-
-          }
+          copyButton.textContent =
+            "COPY FAILED";
 
         }
-      );
 
-      result.appendChild(
-        keyText
-      );
+      };
 
-      result.appendChild(
-        copyButton
-      );
+    result.appendChild(
+      keyText
+    );
 
-      result.classList.remove(
-        "hidden"
-      );
+    result.appendChild(
+      copyButton
+    );
 
-    }
-
-
-    /* ---------- SUCCESS ---------- */
+    result.classList.remove(
+      "hidden"
+    );
 
     showAdminMessage(
       `Activation key generated successfully. Expires: ${
@@ -3100,26 +2763,18 @@ async function generateKey() {
       "success"
     );
 
-
     addActivity(
       "New activation key generated"
     );
 
-
-    /* ---------- REFRESH KEY LIST ---------- */
-
     await loadAdminKeys();
-
 
   } catch (error) {
 
     console.error(
-      "[LAWANGEN] Generate Key Error:",
+      "Generate key error:",
       error
     );
-
-
-    /* ---------- DETAILED ERROR ---------- */
 
     showAdminMessage(
       `ERROR: ${error.message}`,
@@ -3128,16 +2783,11 @@ async function generateKey() {
 
   } finally {
 
-    if (button) {
+    button.disabled =
+      false;
 
-      button.disabled =
-        false;
-
-      button.textContent =
-        button.dataset.originalText ||
-        "GENERATE KEY";
-
-    }
+    button.textContent =
+      "GENERATE KEY";
 
   }
 
@@ -3145,7 +2795,7 @@ async function generateKey() {
 
 
 /* =====================================================
-   ADMIN: STATUS
+   ADMIN: CHANGE STATUS
 ===================================================== */
 
 async function adminChangeStatus(
@@ -3158,8 +2808,7 @@ async function adminChangeStatus(
     await adminRequest(
       `/api/admin/keys/${id}/status`,
       {
-        method:
-          "PUT",
+        method: "PUT",
 
         body:
           JSON.stringify({
@@ -3168,23 +2817,18 @@ async function adminChangeStatus(
       }
     );
 
-
     showAdminMessage(
       `Key ${status}.`,
       "success"
     );
 
-
     addActivity(
       `Admin changed key ${id} to ${status}`
     );
 
-
     await loadAdminKeys();
 
-  }
-
-  catch (error) {
+  } catch (error) {
 
     showAdminMessage(
       error.message,
@@ -3200,37 +2844,29 @@ async function adminChangeStatus(
    ADMIN: RESET DEVICE
 ===================================================== */
 
-async function adminResetDevice(
-  id
-) {
+async function adminResetDevice(id) {
 
   try {
 
     await adminRequest(
       `/api/admin/keys/${id}/reset`,
       {
-        method:
-          "POST"
+        method: "POST"
       }
     );
-
 
     showAdminMessage(
       "Device binding reset.",
       "success"
     );
 
-
     addActivity(
       `Admin reset device for key ${id}`
     );
 
-
     await loadAdminKeys();
 
-  }
-
-  catch (error) {
+  } catch (error) {
 
     showAdminMessage(
       error.message,
@@ -3260,7 +2896,6 @@ document
           const name =
             input.dataset.name ||
             "Developer Test";
-
 
           addActivity(
             name +
@@ -3299,27 +2934,22 @@ document
             input.dataset.name
         );
 
-
       const message =
         document.getElementById(
           "testsMessage"
         );
 
-
       if (!enabled.length) {
 
         message.textContent =
-          "کم از کم ایک controlled test ON کریں.";
-
+          "کم از کم ایک controlled test ON کریں۔";
 
         message.className =
           "message error";
 
-
         return;
 
       }
-
 
       enabled.forEach(
         name => {
@@ -3332,10 +2962,8 @@ document
         }
       );
 
-
       message.textContent =
         "Controlled developer test completed.";
-
 
       message.className =
         "message success";
@@ -3451,9 +3079,7 @@ document
 
       clearKeyState();
 
-
       updateKeyUI();
-
 
       document
         .getElementById(
@@ -3463,7 +3089,6 @@ document
           "hidden"
         );
 
-
       document
         .getElementById(
           "keyGate"
@@ -3471,7 +3096,6 @@ document
         .classList.remove(
           "hidden"
         );
-
 
       addActivity(
         "Local activation key cleared"
@@ -3483,37 +3107,94 @@ document
 
 /* =====================================================
    STARTUP
+   FIXED VERSION
 ===================================================== */
 
-  async () => {
+async function startup() {
 
-    loadAdminToken();
+  console.log(
+    "[LAWANGEN] Starting application..."
+  );
 
-    updateKeyUI();
+  loadAdminToken();
 
-    await loadDeveloperLogo();
+  updateKeyUI();
 
-    // Always require the Key Gate first.
-    document
-      .getElementById("keyGate")
-      .classList.remove("hidden");
+  await loadDeveloperLogo();
 
-    document
-      .getElementById("mainApp")
-      .classList.add("hidden");
+  /*
+    Start with Key Gate visible.
+  */
 
-    // Verify previously activated key with Worker.
-    const storedKey = getKeyState();
+  document
+    .getElementById(
+      "keyGate"
+    )
+    .classList.remove(
+      "hidden"
+    );
 
-    if (storedKey) {
-      await refreshKey();
-    }
+  document
+    .getElementById(
+      "mainApp"
+    )
+    .classList.add(
+      "hidden"
+    );
 
-    // Public connection check.
-    checkConnection();
+
+  /*
+    Check previously activated key.
+  */
+
+  const storedKey =
+    getKeyState();
+
+  if (storedKey) {
+
+    await refreshKey();
 
   }
-);
+
+
+  /*
+    Public Worker / Database check.
+  */
+
+  await checkConnection();
+
+  console.log(
+    "[LAWANGEN] Application ready."
+  );
+
+}
+
+
+/*
+  THIS IS THE IMPORTANT FIX:
+  The old code had an unattached async arrow
+  function here. Now startup actually runs.
+*/
+
+if (
+  document.readyState === "loading"
+) {
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    startup,
+    {
+      once: true
+    }
+  );
+
+} else {
+
+  startup();
+
+}
+
+</script>
 
 
 <!-- =====================================================
@@ -3535,17 +3216,24 @@ if (
           "./service-worker.js"
         )
         .then(
-          () =>
+          registration => {
+
             console.log(
-              "Service Worker registered."
-            )
+              "Service Worker registered:",
+              registration.scope
+            );
+
+          }
         )
         .catch(
-          error =>
+          error => {
+
             console.error(
-              "Service Worker:",
+              "Service Worker registration failed:",
               error
-            )
+            );
+
+          }
         );
 
     }
