@@ -452,6 +452,29 @@
 
       </div>
 
+<section class="control-card prepare-card">
+
+  <div class="prepare-game-logo">
+    <img
+      src="./assets/freefire-logo.png"
+      alt="Free Fire">
+  </div>
+
+  <h3>Free Fire</h3>
+
+  <p id="prepareStatus">
+    Ready to prepare
+  </p>
+
+  <button
+    id="prepareButton"
+    class="primary-button"
+    type="button">
+    PREPARE
+  </button>
+
+</section>
+
 
       <section class="status-card">
 
@@ -3908,6 +3931,35 @@ if (resetLogoButton) {
    BUTTON EVENTS
 =============================================== */
 
+function prepareFreeFire() {
+
+  const button =
+    document.getElementById("prepareButton");
+
+  const status =
+    document.getElementById("prepareStatus");
+
+  if (!button || !status) return;
+
+  button.disabled = true;
+  button.textContent = "PREPARING...";
+
+  status.textContent =
+    "Free Fire is ready.";
+
+  addActivity(
+    "Free Fire prepare button opened"
+  );
+
+  setTimeout(() => {
+
+    button.disabled = false;
+    button.textContent = "PREPARE";
+
+  }, 1200);
+}
+
+
 document
   .getElementById(
     "activateKeyButton"
@@ -3917,6 +3969,12 @@ document
     activateKey
   );
 
+document
+  .getElementById("prepareButton")
+  ?.addEventListener(
+    "click",
+    prepareFreeFire
+  );
 
 document
   .getElementById(
