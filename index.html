@@ -2,20 +2,15 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
     name="viewport"
     content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-  <meta
-    name="theme-color"
-    content="#080a0f">
+  <meta name="theme-color" content="#080a0f">
 
-  <meta
-    name="apple-mobile-web-app-capable"
-    content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 
   <meta
     name="apple-mobile-web-app-status-bar-style"
@@ -27,1123 +22,506 @@
 
   <title>LAWANGEN — PANEL</title>
 
-  <link
-    rel="stylesheet"
-    href="./style.css">
-
-  <link
-    rel="manifest"
-    href="./manifest.json">
-
-  <link
-    rel="apple-touch-icon"
-    href="./assets/logo.png">
-
+  <link rel="stylesheet" href="./style.css">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./assets/logo.png">
 
   <style>
-
     * {
       box-sizing: border-box;
     }
-
 
     .hidden {
       display: none !important;
     }
 
-
     body {
       margin: 0;
     }
 
-
-    /* ==========================================
-       KEY GATE
-    =========================================== */
-
     .login-screen {
-
       min-height: 100vh;
       min-height: 100dvh;
-
       width: 100%;
-
       display: flex;
-
       align-items: center;
       justify-content: center;
-
       padding: 24px;
-
     }
-
 
     .login-box {
-
       width: 100%;
       max-width: 420px;
-
       margin: 0 auto;
-
       text-align: center;
-
     }
-
 
     .brand-logo {
-
       width: 100%;
-
       display: flex;
-
       flex-direction: column;
-
       align-items: center;
       justify-content: center;
-
       text-align: center;
-
       margin-bottom: 28px;
-
     }
-
 
     .logo-mark {
-
       width: 125px;
       height: 125px;
-
       margin: 0 auto 16px;
-
       border-radius: 28px;
-
       overflow: hidden;
-
       display: flex;
-
       align-items: center;
       justify-content: center;
-
       background: #10131a;
-
     }
-
 
     .logo-mark img {
-
       width: 100%;
       height: 100%;
-
       object-fit: cover;
-
       display: block;
-
     }
-
 
     .brand-name {
-
       width: 100%;
-
       text-align: center;
-
     }
-
 
     .brand-name h1 {
-
       margin: 0;
-
     }
-
 
     .brand-name span {
-
       display: block;
-
       margin-top: 4px;
-
     }
-
 
     .login-title {
-
       text-align: center;
-
     }
-
 
     .login-box > label {
-
       display: block;
-
       text-align: left;
-
       margin-bottom: 8px;
-
     }
-
 
     .login-box input {
-
       width: 100%;
-
       text-align: center;
-
     }
-
 
     .login-box button {
-
       width: 100%;
-
       margin-top: 12px;
-
     }
 
-
-    /* ==========================================
-       GENERAL CONTROL
-    =========================================== */
+    .control-card,
+    .feature-card,
+    .slider-card,
+    .status-card,
+    .info-card > div {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+    }
 
     .control-card {
-
       padding: 16px;
-
       margin-bottom: 14px;
-
       border-radius: 18px;
-
-      background:
-        rgba(255,255,255,.04);
-
-      border:
-        1px solid
-        rgba(255,255,255,.08);
-
     }
-
-
-    .control-row {
-
-      min-height: 54px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 15px;
-
-    }
-
-
-    .control-row > div {
-
-      min-width: 0;
-
-    }
-
-
-    .control-row strong {
-
-      display: block;
-
-      font-size: 14px;
-
-    }
-
-
-    .control-row span {
-
-      display: block;
-
-      margin-top: 4px;
-
-      opacity: .55;
-
-      font-size: 11px;
-
-    }
-
-
-    /* ==========================================
-       USER SELECTIONS
-    =========================================== */
 
     .feature-section {
-
       margin-top: 18px;
-
     }
-
 
     .feature-section h3 {
-
       margin: 0 0 10px;
-
     }
-
 
     .feature-card {
-
       padding: 14px;
-
       margin-bottom: 10px;
-
       border-radius: 16px;
-
-      background:
-        rgba(255,255,255,.04);
-
-      border:
-        1px solid
-        rgba(255,255,255,.08);
-
     }
-
 
     .feature-row {
-
       min-height: 54px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       gap: 15px;
-
     }
-
 
     .feature-info {
-
       min-width: 0;
-
     }
-
 
     .feature-info strong {
-
       display: block;
-
       font-size: 14px;
-
     }
-
 
     .feature-info span {
-
       display: block;
-
       margin-top: 4px;
-
       opacity: .55;
-
       font-size: 11px;
-
     }
-
-
-    /* ==========================================
-       SWITCH
-    =========================================== */
 
     .switch {
-
       position: relative;
-
       width: 48px;
       height: 28px;
-
       flex: 0 0 auto;
-
     }
-
 
     .switch input {
-
       opacity: 0;
-
       width: 0;
       height: 0;
-
     }
-
 
     .switch span {
-
       position: absolute;
-
       inset: 0;
-
       border-radius: 30px;
-
       background: #2a2f39;
-
       transition: .2s;
-
       cursor: pointer;
-
     }
-
 
     .switch span::before {
-
       content: "";
-
       position: absolute;
-
       width: 22px;
       height: 22px;
-
       left: 3px;
       top: 3px;
-
       border-radius: 50%;
-
       background: #fff;
-
       transition: .2s;
-
     }
-
 
     .switch input:checked + span::before {
-
-      transform:
-        translateX(20px);
-
+      transform: translateX(20px);
     }
-
 
     .switch input:checked + span {
-
       background: #4ade80;
-
     }
-
-
-    /* ==========================================
-       SLIDERS
-    =========================================== */
 
     .slider-card {
-
       padding: 15px;
-
       margin-bottom: 10px;
-
       border-radius: 16px;
-
-      background:
-        rgba(255,255,255,.04);
-
-      border:
-        1px solid
-        rgba(255,255,255,.08);
-
     }
-
 
     .slider-header {
-
       display: flex;
-
       justify-content: space-between;
-
       gap: 12px;
-
       margin-bottom: 12px;
-
     }
-
 
     .slider-header strong {
-
       font-size: 14px;
-
     }
-
 
     .slider-value {
-
       opacity: .75;
-
       font-size: 13px;
-
     }
 
-
-    .range-control {
-
-      width: 100%;
-
-    }
-
-
+    .range-control,
     input[type="range"] {
-
       width: 100%;
-
     }
-
-
-    /* ==========================================
-       WARNING
-    =========================================== */
 
     .user-warning {
-
       margin: 14px 0;
-
       padding: 12px;
-
       border-radius: 12px;
-
-      background:
-        rgba(255,180,0,.08);
-
-      border:
-        1px solid
-        rgba(255,180,0,.18);
-
+      background: rgba(255,180,0,.08);
+      border: 1px solid rgba(255,180,0,.18);
       font-size: 11px;
-
       line-height: 1.5;
-
       opacity: .8;
-
     }
-
-
-    /* ==========================================
-       PROFILE
-    =========================================== */
 
     .profile-card {
-
       text-align: center;
-
       padding: 20px;
-
     }
-
 
     .profile-logo {
-
       width: 90px;
       height: 90px;
-
       margin: 0 auto 12px;
-
       border-radius: 24px;
-
       overflow: hidden;
-
     }
-
 
     .profile-logo img {
-
       width: 100%;
       height: 100%;
-
       object-fit: cover;
-
     }
 
-
-    /* ==========================================
-       DEVELOPER
-    =========================================== */
-
     .developer-only {
-
       display: none !important;
-
     }
 
-
-    body.developer-mode
-    .developer-only {
-
+    body.developer-mode .developer-only {
       display: block !important;
-
     }
-
 
     .developer-badge {
-
       display: inline-block;
-
       padding: 6px 10px;
-
       border-radius: 999px;
-
       font-size: 10px;
-
       font-weight: 800;
-
       letter-spacing: .8px;
-
-      background:
-        rgba(255,255,255,.08);
-
+      background: rgba(255,255,255,.08);
     }
-
-
-    /* ==========================================
-       GAME LAUNCHER
-    =========================================== */
 
     .game-launcher-card {
-
       margin-bottom: 16px;
-
     }
-
 
     .game-launcher {
-
       display: flex;
-
       align-items: center;
-
       gap: 12px;
-
     }
-
 
     .game-logo {
-
       width: 58px;
       height: 58px;
-
       flex: 0 0 58px;
-
       border-radius: 16px;
-
       overflow: hidden;
-
       background: #10131a;
-
     }
-
 
     .game-logo img {
-
       width: 100%;
       height: 100%;
-
       object-fit: cover;
-
       display: block;
-
     }
-
 
     .game-info {
-
       min-width: 0;
-
       flex: 1;
-
     }
-
 
     .game-info strong {
-
       display: block;
-
       font-size: 15px;
-
     }
-
 
     .game-info span {
-
       display: block;
-
       margin-top: 4px;
-
       opacity: .55;
-
       font-size: 11px;
-
     }
 
-
-    .game-launcher
-    .primary-button {
-
+    .game-launcher .primary-button {
       width: auto;
-
       min-width: 105px;
-
       margin-top: 0;
-
     }
-
-
-    /* ==========================================
-       STATUS
-    =========================================== */
 
     .status-card {
-
       display: flex;
-
       align-items: center;
-
       gap: 12px;
-
       padding: 15px;
-
       margin-bottom: 12px;
-
       border-radius: 16px;
-
-      background:
-        rgba(255,255,255,.04);
-
-      border:
-        1px solid
-        rgba(255,255,255,.08);
-
     }
-
 
     .status-icon {
-
       font-size: 18px;
-
     }
-
 
     .status-card strong {
-
       display: block;
-
     }
-
 
     .status-card span {
-
       display: block;
-
       margin-top: 3px;
-
       opacity: .6;
-
       font-size: 11px;
-
     }
-
-
-    /* ==========================================
-       PAGE HEADER
-    =========================================== */
-
-    .page-header {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 12px;
-
-      margin-bottom: 18px;
-
-    }
-
-
-    .page-header h1 {
-
-      margin: 0;
-
-    }
-
-
-    .page-header p {
-
-      margin: 4px 0 0;
-
-      opacity: .55;
-
-      font-size: 12px;
-
-    }
-
-
-    .back-button {
-
-      width: 42px;
-      height: 42px;
-
-      border: 0;
-
-      border-radius: 12px;
-
-      cursor: pointer;
-
-    }
-
-
-    /* ==========================================
-       KEY RESULT
-    =========================================== */
-
-    .key-result {
-
-      margin-top: 14px;
-
-      padding: 14px;
-
-      border-radius: 14px;
-
-      background:
-        rgba(74,222,128,.08);
-
-      border:
-        1px solid
-        rgba(74,222,128,.18);
-
-    }
-
-
-    .key-result strong {
-
-      display: block;
-
-      word-break: break-all;
-
-      margin-bottom: 10px;
-
-    }
-
-
-    /* ==========================================
-       LOGO MANAGER
-    =========================================== */
-
-    .logo-preview {
-
-      width: 100px;
-      height: 100px;
-
-      margin-bottom: 14px;
-
-      border-radius: 20px;
-
-      overflow: hidden;
-
-      background: #10131a;
-
-    }
-
-
-    .logo-preview img {
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-
-    }
-
-
-    .logo-file-input {
-
-      display: none;
-
-    }
-
-
-    .logo-file-button {
-
-      display: block;
-
-      width: 100%;
-
-      padding: 12px;
-
-      margin-bottom: 10px;
-
-      text-align: center;
-
-      border-radius: 12px;
-
-      cursor: pointer;
-
-    }
-
-
-    /* ==========================================
-       MESSAGES
-    =========================================== */
-
-    .message {
-
-      min-height: 18px;
-
-      margin: 10px 0 0;
-
-      font-size: 12px;
-
-    }
-
-
-    .message.success {
-
-      opacity: 1;
-
-    }
-
-
-    .message.error {
-
-      opacity: 1;
-
-    }
-
-
-    /* ==========================================
-       LOG
-    =========================================== */
-
-    .log-item {
-
-      padding: 12px;
-
-      margin-bottom: 8px;
-
-      border-radius: 12px;
-
-      background:
-        rgba(255,255,255,.04);
-
-    }
-
-
-    .log-item strong {
-
-      display: block;
-
-      font-size: 13px;
-
-    }
-
-
-    .log-item small {
-
-      display: block;
-
-      margin-top: 4px;
-
-      opacity: .5;
-
-      font-size: 10px;
-
-    }
-
-
-    .empty-log {
-
-      padding: 16px;
-
-      text-align: center;
-
-      opacity: .5;
-
-      font-size: 12px;
-
-    }
-
-
-    /* ==========================================
-       APP SCREENS
-    =========================================== */
-
-    .app-screen {
-
-      display: none;
-
-    }
-
-
-    .app-screen.active {
-
-      display: block;
-
-    }
-
-
-    /* ==========================================
-       INFO CARD
-    =========================================== */
 
     .info-card {
-
       display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
-
       margin-bottom: 14px;
-
     }
-
 
     .info-card > div {
-
       padding: 12px;
-
       border-radius: 14px;
-
-      background:
-        rgba(255,255,255,.04);
-
-      border:
-        1px solid
-        rgba(255,255,255,.08);
-
     }
-
 
     .info-card span {
-
       display: block;
-
       font-size: 10px;
-
       opacity: .5;
-
     }
-
 
     .info-card strong {
-
       display: block;
-
       margin-top: 5px;
-
       font-size: 12px;
-
       word-break: break-word;
-
     }
 
+    .message {
+      min-height: 18px;
+      margin: 10px 0 0;
+      font-size: 12px;
+    }
 
-    /* ==========================================
-       RESPONSIVE
-    =========================================== */
+    .message.success {
+      opacity: 1;
+    }
+
+    .message.error {
+      opacity: 1;
+    }
+
+    .app-screen {
+      display: none;
+    }
+
+    .app-screen.active {
+      display: block;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .page-header h1 {
+      margin: 0;
+    }
+
+    .page-header p {
+      margin: 4px 0 0;
+      opacity: .55;
+      font-size: 12px;
+    }
+
+    .back-button {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .key-result {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(74,222,128,.08);
+      border: 1px solid rgba(74,222,128,.18);
+    }
+
+    .key-result strong {
+      display: block;
+      word-break: break-all;
+      margin-bottom: 10px;
+    }
+
+    .log-item {
+      padding: 12px;
+      margin-bottom: 8px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .log-item strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .log-item small {
+      display: block;
+      margin-top: 4px;
+      opacity: .5;
+      font-size: 10px;
+    }
+
+    .empty-log {
+      padding: 16px;
+      text-align: center;
+      opacity: .5;
+      font-size: 12px;
+    }
 
     @media (max-width: 520px) {
-
       .info-card {
-
         grid-template-columns: 1fr;
-
       }
 
       .game-launcher {
-
         align-items: flex-start;
-
       }
 
-      .game-launcher
-      .primary-button {
-
+      .game-launcher .primary-button {
         min-width: 95px;
-
       }
-
     }
-
   </style>
-
 </head>
-
 
 <body>
 
+<div id="app" class="app">
 
-<div
-  id="app"
-  class="app">
+  <main id="keyGate" class="login-screen">
 
+    <section class="login-box">
 
-  <!-- ==========================================
-       KEY GATE
-  =========================================== -->
+      <div class="brand-logo">
 
-  <main
-    id="keyGate"
-    class="login-screen">
-
-    <section
-      class="login-box">
-
-
-      <div
-        class="brand-logo">
-
-
-        <div
-          class="logo-mark">
-
+        <div class="logo-mark">
           <img
             id="gateLogo"
             src="./assets/logo.png"
             alt="LAWANGEN">
-
         </div>
 
-
-        <div
-          class="brand-name">
-
-          <h1>
-            LAWANGEN
-          </h1>
-
-          <span>
-            PANEL
-          </span>
-
+        <div class="brand-name">
+          <h1>LAWANGEN</h1>
+          <span>PANEL</span>
         </div>
 
       </div>
 
-
-      <div
-        class="login-title">
-
-        <h2>
-          Key Activation
-        </h2>
-
-        <p>
-          Enter your device activation key
-        </p>
-
+      <div class="login-title">
+        <h2>Key Activation</h2>
+        <p>Enter your device activation key</p>
       </div>
 
-
-      <label
-        for="activationKey">
-
+      <label for="activationKey">
         Activation Key
-
       </label>
-
 
       <input
         id="activationKey"
@@ -1152,589 +530,247 @@
         autocapitalize="characters"
         placeholder="LAWANGEN-XXXXXXXXXXXXXXXX">
 
-
       <button
         id="activateKeyButton"
         class="primary-button"
         type="button">
-
         ACTIVATE KEY
-
       </button>
-
 
       <button
         id="refreshKeyButton"
         class="secondary-button"
         type="button">
-
         CHECK KEY STATUS
-
       </button>
 
-
-      <p
-        id="keyMessage"
-        class="message">
-      </p>
-
+      <p id="keyMessage" class="message"></p>
 
     </section>
 
   </main>
 
+  <div id="mainApp" class="hidden">
 
+    <header class="top-bar">
 
-  <!-- ==========================================
-       MAIN APPLICATION
-  =========================================== -->
+      <div class="app-brand">
 
-  <div
-    id="mainApp"
-    class="hidden">
-
-
-    <!-- ==========================================
-         TOP BAR
-    =========================================== -->
-
-    <header
-      class="top-bar">
-
-
-      <div
-        class="app-brand">
-
-
-        <div
-          class="small-logo">
-
+        <div class="small-logo">
           <img
             id="topLogo"
             src="./assets/logo.png"
             alt="LAWANGEN">
-
         </div>
-
 
         <div>
-
-          <strong>
-            LAWANGEN
-          </strong>
-
-          <small>
-            PANEL
-          </small>
-
+          <strong>LAWANGEN</strong>
+          <small>PANEL</small>
         </div>
 
-
       </div>
-
 
       <button
         id="profileButton"
         class="round-button"
         type="button">
-
         👤
-
       </button>
-
 
     </header>
 
+    <main id="homeScreen" class="app-screen active">
 
-    <!-- ==========================================
-         HOME
-    =========================================== -->
+      <section class="welcome-card">
 
-    <main
-      id="homeScreen"
-      class="app-screen active">
-
-
-      <section
-        class="welcome-card">
-
-
-        <div
-          class="profile-logo">
-
+        <div class="profile-logo">
           <img
             id="homeLogo"
             src="./assets/logo.png"
             alt="LAWANGEN">
-
         </div>
 
-
-        <span
-          class="developer-badge">
-
+        <span class="developer-badge">
           USER ENVIRONMENT
-
         </span>
 
-
-        <h1>
-          LAWANGEN
-        </h1>
-
-
-        <p>
-          PANEL
-        </p>
-
+        <h1>LAWANGEN</h1>
+        <p>PANEL</p>
 
       </section>
 
+      <section class="control-card game-launcher-card">
 
-      <!-- ==========================================
-           GAME LAUNCHER
-      =========================================== -->
+        <div class="game-launcher">
 
-      <section
-        class="control-card game-launcher-card">
-
-
-        <div
-          class="game-launcher">
-
-
-          <div
-            class="game-logo">
-
+          <div class="game-logo">
             <img
               src="./assets/game-logo.png"
               alt="Game Logo">
-
           </div>
 
-
-          <div
-            class="game-info">
-
-            <strong>
-              FREE FIRE
-            </strong>
-
-            <span>
-              Game Launcher
-            </span>
-
+          <div class="game-info">
+            <strong>FREE FIRE</strong>
+            <span>Game Launcher</span>
           </div>
-
 
           <button
             id="launchGameButton"
             class="primary-button"
             type="button">
-
             OPEN GAME
-
           </button>
 
-
         </div>
 
-
-        <p
-          id="launchMessage"
-          class="message">
-        </p>
-
+        <p id="launchMessage" class="message"></p>
 
       </section>
 
-
-      <div
-        class="user-warning">
-
-        Please ask your seller or developer
-        before enabling application options
-        on your main account.
-
+      <div class="user-warning">
+        Please ask your seller or developer before enabling application options on your main account.
       </div>
 
+      <section class="status-card">
 
-      <section
-        class="status-card">
-
-
-        <div
-          class="status-icon">
-
-          ●
-
-        </div>
-
+        <div class="status-icon">●</div>
 
         <div>
-
-          <strong>
-            System Status
-          </strong>
-
-          <span
-            id="statusText">
-
-            Checking...
-
-          </span>
-
+          <strong>System Status</strong>
+          <span id="statusText">Checking...</span>
         </div>
-
 
       </section>
 
-
-      <section
-        class="info-card">
-
+      <section class="info-card">
 
         <div>
-
-          <span>
-            Worker
-          </span>
-
-          <strong
-            id="workerHomeStatus">
-
-            Checking...
-
-          </strong>
-
+          <span>Worker</span>
+          <strong id="workerHomeStatus">Checking...</strong>
         </div>
-
 
         <div>
-
-          <span>
-            Database
-          </span>
-
-          <strong
-            id="databaseStatus">
-
-            Checking...
-
-          </strong>
-
+          <span>Database</span>
+          <strong id="databaseStatus">Checking...</strong>
         </div>
-
 
         <div>
-
-          <span>
-            Key
-          </span>
-
-          <strong
-            id="keyHomeStatus">
-
-            Not Activated
-
-          </strong>
-
+          <span>Key</span>
+          <strong id="keyHomeStatus">Not Activated</strong>
         </div>
-
 
       </section>
 
+      <h3 class="section-title">Selection</h3>
 
-      <h3
-        class="section-title">
+      <section class="feature-section" data-setting-group="combat">
 
-        Selection
+        <h3>Combat</h3>
 
-      </h3>
+        <div class="feature-card">
 
-
-      <!-- ==========================================
-           COMBAT
-      =========================================== -->
-
-      <section
-        class="feature-section"
-        data-setting-group="combat">
-
-
-        <h3>
-          Combat
-        </h3>
-
-
-        <div
-          class="feature-card">
-
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                Auto Headshot
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>Auto Headshot</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="autoHeadshot">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="autoHeadshot">
               <span></span>
-
             </label>
-
           </div>
 
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                Auto Kill
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>Auto Kill</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="autoKill">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="autoKill">
               <span></span>
-
             </label>
-
           </div>
 
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                Gun Switch
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>Gun Switch</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="gunSwitch">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="gunSwitch">
               <span></span>
-
             </label>
-
           </div>
 
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                Fast Gun Switch
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>Fast Gun Switch</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="fastGunSwitch">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="fastGunSwitch">
               <span></span>
-
             </label>
-
           </div>
 
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                No Recoil
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>No Recoil</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="noRecoil">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="noRecoil">
               <span></span>
-
             </label>
-
           </div>
-
 
         </div>
 
       </section>
 
+      <section class="feature-section" data-setting-group="movement">
 
-      <!-- ==========================================
-           MOVEMENT
-      =========================================== -->
+        <h3>Movement</h3>
 
-      <section
-        class="feature-section"
-        data-setting-group="movement">
+        <div class="feature-card">
 
-
-        <h3>
-          Movement
-        </h3>
-
-
-        <div
-          class="feature-card">
-
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                Fast Running
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>Fast Running</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="fastRunning">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="fastRunning">
               <span></span>
-
             </label>
-
           </div>
 
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                Teleport / Fly
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>Teleport / Fly</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="teleportFly">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="teleportFly">
               <span></span>
-
             </label>
-
           </div>
-
 
         </div>
 
+        <div class="slider-card">
 
-        <div
-          class="slider-card">
-
-
-          <div
-            class="slider-header">
-
-            <strong>
-              Running Speed
-            </strong>
-
-            <span
-              id="runningSpeedValue"
-              class="slider-value">
-
-              50
-
-            </span>
-
+          <div class="slider-header">
+            <strong>Running Speed</strong>
+            <span id="runningSpeedValue" class="slider-value">50</span>
           </div>
-
 
           <input
             id="runningSpeed"
@@ -1744,31 +780,14 @@
             max="100"
             value="50">
 
-
         </div>
 
+        <div class="slider-card">
 
-        <div
-          class="slider-card">
-
-
-          <div
-            class="slider-header">
-
-            <strong>
-              POV
-            </strong>
-
-            <span
-              id="povValue"
-              class="slider-value">
-
-              50
-
-            </span>
-
+          <div class="slider-header">
+            <strong>POV</strong>
+            <span id="povValue" class="slider-value">50</span>
           </div>
-
 
           <input
             id="povSlider"
@@ -1778,279 +797,169 @@
             max="100"
             value="50">
 
-
         </div>
-
 
       </section>
 
+      <section class="feature-section" data-setting-group="visual">
 
-      <!-- ==========================================
-           VISUAL
-      =========================================== -->
+        <h3>Visual</h3>
 
-      <section
-        class="feature-section"
-        data-setting-group="visual">
+        <div class="feature-card">
 
-
-        <h3>
-          Visual
-        </h3>
-
-
-        <div
-          class="feature-card">
-
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                ESP Line
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>ESP Line</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="espLine">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="espLine">
               <span></span>
-
             </label>
-
           </div>
 
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                ESP Name
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>ESP Name</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="espName">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="espName">
               <span></span>
-
             </label>
-
           </div>
 
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                ESP Friends
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>ESP Friends</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="espFriends">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="espFriends">
               <span></span>
-
             </label>
-
           </div>
 
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                ESP Health
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>ESP Health</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="espHealth">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="espHealth">
               <span></span>
-
             </label>
-
           </div>
 
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                ESP Box
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>ESP Box</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="espBox">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="espBox">
               <span></span>
-
             </label>
-
           </div>
 
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                Invisible Wall
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>Invisible Wall</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="invisibleWall">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="invisibleWall">
               <span></span>
-
             </label>
-
           </div>
 
-
-          <div
-            class="feature-row">
-
-            <div
-              class="feature-info">
-
-              <strong>
-                Invisible Gloo Wall
-              </strong>
-
-              <span>
-                Application setting
-              </span>
-
+          <div class="feature-row">
+            <div class="feature-info">
+              <strong>Invisible Gloo Wall</strong>
+              <span>Application setting</span>
             </div>
 
-
-            <label
-              class="switch">
-
-              <input
-                type="checkbox"
-                data-setting="invisibleGlooWall">
-
+            <label class="switch">
+              <input type="checkbox" data-setting="invisibleGlooWall">
               <span></span>
-
             </label>
-
           </div>
-
 
         </div>
 
       </section>
       
-      /* ==============================================
+      <!-- =========================================================
+     PART 2 — SETTINGS + NAVIGATION + KEY UI
+========================================================= -->
+
+<script>
+
+/* =========================================================
    USER SETTINGS
-=============================================== */
+========================================================= */
 
-const USER_SETTINGS_KEY =
-  "lawangenUserSettings";
-
-const DEVELOPER_SETTINGS_KEY =
-  "lawangenDeveloperSettings";
+const USER_SETTINGS_KEY = "lawangenUserSettings";
+const DEVELOPER_SETTINGS_KEY = "lawangenDeveloperSettings";
 
 
 function getUserSettings() {
-
   try {
-
     return JSON.parse(
-      localStorage.getItem(
-        USER_SETTINGS_KEY
-      ) || "{}"
+      localStorage.getItem(USER_SETTINGS_KEY) || "{}"
     );
-
-  } catch {
-
+  } catch (error) {
     return {};
+  }
+}
 
+
+function loadUserSettings() {
+
+  const settings = getUserSettings();
+
+  document
+    .querySelectorAll("input[data-setting]")
+    .forEach(input => {
+
+      const key = input.dataset.setting;
+
+      if (
+        Object.prototype.hasOwnProperty.call(
+          settings,
+          key
+        )
+      ) {
+        input.checked = Boolean(settings[key]);
+      }
+
+    });
+
+
+  const runningSpeed =
+    document.getElementById("runningSpeed");
+
+  const povSlider =
+    document.getElementById("povSlider");
+
+
+  if (runningSpeed && settings.runningSpeed != null) {
+    runningSpeed.value = settings.runningSpeed;
   }
 
+
+  if (povSlider && settings.pov != null) {
+    povSlider.value = settings.pov;
+  }
+
+
+  updateSliderLabels();
 }
 
 
@@ -2059,46 +968,31 @@ function saveUserSettings() {
   const settings = {};
 
   document
-    .querySelectorAll(
-      "input[data-setting]"
-    )
+    .querySelectorAll("input[data-setting]")
     .forEach(input => {
 
-      settings[
-        input.dataset.setting
-      ] = input.checked;
+      settings[input.dataset.setting] =
+        input.checked;
 
     });
 
 
   const runningSpeed =
-    document.getElementById(
-      "runningSpeed"
-    );
+    document.getElementById("runningSpeed");
 
   const povSlider =
-    document.getElementById(
-      "povSlider"
-    );
+    document.getElementById("povSlider");
 
 
   if (runningSpeed) {
-
     settings.runningSpeed =
-      Number(
-        runningSpeed.value
-      );
-
+      Number(runningSpeed.value);
   }
 
 
   if (povSlider) {
-
     settings.pov =
-      Number(
-        povSlider.value
-      );
-
+      Number(povSlider.value);
   }
 
 
@@ -2121,20 +1015,18 @@ function saveUserSettings() {
 
     message.className =
       "message success";
-
   }
 
 
-  addActivity(
-    "User selection saved"
-  );
-
+  if (typeof addActivity === "function") {
+    addActivity("User selection saved");
+  }
 }
 
 
-/* ==============================================
-   DEVELOPER → USER FEATURE SETTINGS
-=============================================== */
+/* =========================================================
+   DEVELOPER SETTINGS
+========================================================= */
 
 const DEFAULT_DEVELOPER_SETTINGS = {
 
@@ -2152,23 +1044,20 @@ function getDeveloperSettings() {
 
     return {
       ...DEFAULT_DEVELOPER_SETTINGS,
-
       ...JSON.parse(
         localStorage.getItem(
           DEVELOPER_SETTINGS_KEY
         ) || "{}"
       )
-
     };
 
-  } catch {
+  } catch (error) {
 
     return {
       ...DEFAULT_DEVELOPER_SETTINGS
     };
 
   }
-
 }
 
 
@@ -2215,10 +1104,11 @@ function saveDeveloperSettings() {
   }
 
 
-  addActivity(
-    "Developer updated user feature access"
-  );
-
+  if (typeof addActivity === "function") {
+    addActivity(
+      "Developer updated user feature access"
+    );
+  }
 }
 
 
@@ -2228,47 +1118,23 @@ function applyDeveloperSettings() {
     getDeveloperSettings();
 
 
-  const groups = {
+  document
+    .querySelectorAll(
+      "[data-setting-group]"
+    )
+    .forEach(section => {
 
-    combat:
-      document.querySelectorAll(
-        ".feature-section:nth-of-type(1)"
-      ),
+      const group =
+        section.dataset.settingGroup;
 
-    movement:
-      document.querySelectorAll(
-        ".feature-section:nth-of-type(2)"
-      ),
+      if (!group) return;
 
-    visual:
-      document.querySelectorAll(
-        ".feature-section:nth-of-type(3)"
-      ),
-
-    inventory:
-      document.querySelectorAll(
-        ".feature-section:nth-of-type(4)"
-      )
-
-  };
-
-
-  Object.keys(groups).forEach(
-    key => {
-
-      groups[key].forEach(
-        section => {
-
-          section.classList.toggle(
-            "hidden",
-            settings[key] === false
-          );
-
-        }
+      section.classList.toggle(
+        "hidden",
+        settings[group] === false
       );
 
-    }
-  );
+    });
 
 }
 
@@ -2288,7 +1154,6 @@ function loadDeveloperSettings() {
       const key =
         input.dataset.developerSetting;
 
-
       if (
         Object.prototype.hasOwnProperty.call(
           settings,
@@ -2297,9 +1162,7 @@ function loadDeveloperSettings() {
       ) {
 
         input.checked =
-          Boolean(
-            settings[key]
-          );
+          Boolean(settings[key]);
 
       }
 
@@ -2311,9 +1174,9 @@ function loadDeveloperSettings() {
 }
 
 
-/* ==============================================
-   SLIDER EVENTS
-=============================================== */
+/* =========================================================
+   SLIDERS
+========================================================= */
 
 function updateSliderLabels() {
 
@@ -2363,242 +1226,72 @@ function updateSliderLabels() {
 }
 
 
-[
-  "runningSpeed",
-  "povSlider"
-].forEach(id => {
-
-  const element =
-    document.getElementById(id);
-
-
-  if (element) {
-
-    element.addEventListener(
-      "input",
-      updateSliderLabels
-    );
-
-  }
-
-});
-
-
-/* ==============================================
-   GAME LAUNCHER
-=============================================== */
-
-function launchGame() {
-
-  const message =
-    document.getElementById(
-      "launchMessage"
-    );
-
-
-  if (message) {
-
-    message.textContent =
-      "Opening Free Fire...";
-
-    message.className =
-      "message success";
-
-  }
-
-
-  addActivity(
-    "Game launcher opened"
+document
+  .getElementById("runningSpeed")
+  ?.addEventListener(
+    "input",
+    updateSliderLabels
   );
 
 
-  /*
-    Browser/PWA کو کسی installed game کو
-    براہِ راست control یا inject کرنے کی اجازت
-    نہیں ہوتی۔ یہاں صرف launcher/deep-link
-    attempt کیا جا سکتا ہے۔
-  */
-
-  const gameURL =
-    "freefire://";
+document
+  .getElementById("povSlider")
+  ?.addEventListener(
+    "input",
+    updateSliderLabels
+  );
 
 
-  window.location.href =
-    gameURL;
+/* =========================================================
+   SCREEN NAVIGATION
+========================================================= */
+
+function openScreen(screenId) {
+
+  document
+    .querySelectorAll(".app-screen")
+    .forEach(screen => {
+
+      screen.classList.remove("active");
+
+    });
 
 
-  setTimeout(() => {
+  const target =
+    document.getElementById(screenId);
 
-    if (message) {
 
-      message.textContent =
-        "If the game did not open, launch it normally from your device.";
+  if (!target) return false;
 
-    }
 
-  }, 1800);
+  target.classList.add("active");
 
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+  return true;
 }
 
 
-/* ==============================================
-   BUTTON EVENTS
-=============================================== */
+/* =========================================================
+   BACK BUTTONS
+========================================================= */
 
 document
-  .getElementById(
-    "saveDeveloperSettings"
-  )
-  ?.addEventListener(
-    "click",
-    saveDeveloperSettings
-  );
+  .querySelectorAll("[data-back]")
+  .forEach(button => {
 
-
-document
-  .getElementById(
-    "launchGameButton"
-  )
-  ?.addEventListener(
-    "click",
-    launchGame
-  );
-
-
-document
-  .getElementById(
-    "saveUserSettings"
-  )
-  ?.addEventListener(
-    "click",
-    saveUserSettings
-  );
-
-
-document
-  .getElementById(
-    "activateKeyButton"
-  )
-  ?.addEventListener(
-    "click",
-    activateKey
-  );
-
-
-document
-  .getElementById(
-    "refreshKeyButton"
-  )
-  ?.addEventListener(
-    "click",
-    refreshKey
-  );
-
-
-document
-  .getElementById(
-    "keyRefreshButton"
-  )
-  ?.addEventListener(
-    "click",
-    refreshKey
-  );
-
-
-document
-  .getElementById(
-    "saveAdminToken"
-  )
-  ?.addEventListener(
-    "click",
-    saveAdminToken
-  );
-
-
-document
-  .getElementById(
-    "generateKeyButton"
-  )
-  ?.addEventListener(
-    "click",
-    generateKey
-  );
-
-
-document
-  .getElementById(
-    "loadAdminKeys"
-  )
-  ?.addEventListener(
-    "click",
-    loadAdminKeys
-  );
-
-
-document
-  .getElementById(
-    "testApiButton"
-  )
-  ?.addEventListener(
-    "click",
-    checkConnection
-  );
-
-
-/* ==============================================
-   DEVELOPER SETTINGS STARTUP
-=============================================== */
-
-loadDeveloperSettings();
-
-updateSliderLabels();
-
-/* ==============================================
-   CLEAR LOCAL KEY
-=============================================== */
-
-document
-  .getElementById("clearLocalKey")
-  ?.addEventListener("click", () => {
-
-    clearKeyState();
-
-    updateKeyUI();
-
-    document
-      .getElementById("mainApp")
-      ?.classList.add("hidden");
-
-    document
-      .getElementById("keyGate")
-      ?.classList.remove("hidden");
-
-    addActivity(
-      "Local activation key cleared"
-    );
-
-  });
-
-
-/* ==============================================
-   SETTINGS CHANGE LOG
-=============================================== */
-
-document
-  .querySelectorAll(
-    "input[data-setting]"
-  )
-  .forEach(input => {
-
-    input.addEventListener(
-      "change",
+    button.addEventListener(
+      "click",
       () => {
 
-        addActivity(
-          `${input.dataset.setting}: ${
-            input.checked ? "ON" : "OFF"
-          }`
-        );
+        const target =
+          button.dataset.back ||
+          "homeScreen";
+
+        openScreen(target);
 
       }
     );
@@ -2606,9 +1299,35 @@ document
   });
 
 
-/* ==============================================
-   DEVELOPER ACCESS
-=============================================== */
+/* =========================================================
+   PROFILE BUTTON
+========================================================= */
+
+document
+  .getElementById("profileButton")
+  ?.addEventListener(
+    "click",
+    () => {
+
+      if (
+        document.getElementById(
+          "profileScreen"
+        )
+      ) {
+
+        openScreen(
+          "profileScreen"
+        );
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   DEVELOPER MODE
+========================================================= */
 
 function enableDeveloperMode() {
 
@@ -2630,40 +1349,20 @@ function disableDeveloperMode() {
 }
 
 
-/* ==============================================
-   ACTIVITY CLEAR
-=============================================== */
-
-document
-  .getElementById("clearActivities")
-  ?.addEventListener(
-    "click",
-    () => {
-
-      const container =
-        document.getElementById(
-          "activitiesContainer"
-        );
-
-      if (!container) return;
-
-      container.innerHTML =
-        `<div class="empty-log">
-          No activity yet.
-        </div>`;
-
-    }
-  );
-
-
-/* ==============================================
+/* =========================================================
    KEY UI
-=============================================== */
+========================================================= */
 
 function updateKeyUI(data = null) {
 
   const key =
-    data || getKeyState();
+    data ||
+    (
+      typeof getKeyState === "function"
+        ? getKeyState()
+        : null
+    );
+
 
   const status =
     document.getElementById(
@@ -2710,7 +1409,10 @@ function updateKeyUI(data = null) {
 
 
   const keyStatus =
-    key.status || "active";
+    String(
+      key.status || "active"
+    ).toLowerCase();
+
 
   const expires =
     key.expires_at || null;
@@ -2750,13 +1452,16 @@ function updateKeyUI(data = null) {
     status.textContent =
       keyStatus.toUpperCase();
 
+
   if (expiry)
     expiry.textContent =
       expires || "No expiry";
 
+
   if (home)
     home.textContent =
       keyStatus.toUpperCase();
+
 
   if (profile)
     profile.textContent =
@@ -2768,35 +1473,368 @@ function updateKeyUI(data = null) {
 }
 
 
-/* ==============================================
-   PROFILE INFORMATION
-=============================================== */
+/* =========================================================
+   SHOW / HIDE KEY GATE
+========================================================= */
 
-function updateProfile() {
+function showKeyGate() {
 
-  setText(
-    "profileDeviceId",
-    DEVICE_ID
+  const mainApp =
+    document.getElementById(
+      "mainApp"
+    );
+
+  const keyGate =
+    document.getElementById(
+      "keyGate"
+    );
+
+
+  if (mainApp) {
+    mainApp.classList.add("hidden");
+  }
+
+
+  if (keyGate) {
+    keyGate.classList.remove("hidden");
+  }
+
+}
+
+
+function showMainApp() {
+
+  const mainApp =
+    document.getElementById(
+      "mainApp"
+    );
+
+  const keyGate =
+    document.getElementById(
+      "keyGate"
+    );
+
+
+  if (keyGate) {
+    keyGate.classList.add("hidden");
+  }
+
+
+  if (mainApp) {
+    mainApp.classList.remove("hidden");
+  }
+
+
+  openScreen("homeScreen");
+
+}
+
+
+/* =========================================================
+   KEY BUTTON EVENTS
+========================================================= */
+
+const activateButton =
+  document.getElementById(
+    "activateKeyButton"
   );
 
-  const key =
-    getKeyState();
 
-  setText(
-    "profileKeyStatus",
-    key
-      ? String(
-          key.status || "active"
-        ).toUpperCase()
-      : "Not Activated"
+if (activateButton) {
+
+  activateButton.addEventListener(
+    "click",
+    async () => {
+
+      if (
+        typeof activateKey !==
+        "function"
+      ) {
+
+        console.error(
+          "activateKey() function is missing."
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        activateButton.disabled =
+          true;
+
+        activateButton.textContent =
+          "CHECKING...";
+
+
+        await activateKey();
+
+      } catch (error) {
+
+        console.error(
+          "Key activation error:",
+          error
+        );
+
+      } finally {
+
+        activateButton.disabled =
+          false;
+
+        activateButton.textContent =
+          "ACTIVATE KEY";
+
+      }
+
+    }
   );
 
 }
 
 
-/* ==============================================
-   SETTINGS
-=============================================== */
+/* =========================================================
+   CHECK KEY STATUS
+========================================================= */
+
+const refreshKeyButton =
+  document.getElementById(
+    "refreshKeyButton"
+  );
+
+
+if (refreshKeyButton) {
+
+  refreshKeyButton.addEventListener(
+    "click",
+    async () => {
+
+      if (
+        typeof refreshKey !==
+        "function"
+      ) {
+
+        console.error(
+          "refreshKey() function is missing."
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        refreshKeyButton.disabled =
+          true;
+
+        refreshKeyButton.textContent =
+          "CHECKING...";
+
+
+        await refreshKey();
+
+      } catch (error) {
+
+        console.error(
+          "Key refresh error:",
+          error
+        );
+
+      } finally {
+
+        refreshKeyButton.disabled =
+          false;
+
+        refreshKeyButton.textContent =
+          "CHECK KEY STATUS";
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   CLEAR LOCAL KEY
+========================================================= */
+
+document
+  .getElementById("clearLocalKey")
+  ?.addEventListener(
+    "click",
+    () => {
+
+      if (
+        typeof clearKeyState ===
+        "function"
+      ) {
+
+        clearKeyState();
+
+      }
+
+
+      updateKeyUI();
+
+
+      showKeyGate();
+
+
+      if (
+        typeof addActivity ===
+        "function"
+      ) {
+
+        addActivity(
+          "Local activation key cleared"
+        );
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   USER SETTING CHANGE LOG
+========================================================= */
+
+document
+  .querySelectorAll(
+    "input[data-setting]"
+  )
+  .forEach(input => {
+
+    input.addEventListener(
+      "change",
+      () => {
+
+        if (
+          typeof addActivity ===
+          "function"
+        ) {
+
+          addActivity(
+            `${input.dataset.setting}: ${
+              input.checked
+                ? "ON"
+                : "OFF"
+            }`
+          );
+
+        }
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   DEVELOPER SETTINGS BUTTON
+========================================================= */
+
+document
+  .getElementById(
+    "saveDeveloperSettings"
+  )
+  ?.addEventListener(
+    "click",
+    saveDeveloperSettings
+  );
+
+
+/* =========================================================
+   USER SETTINGS BUTTON
+========================================================= */
+
+document
+  .getElementById(
+    "saveUserSettings"
+  )
+  ?.addEventListener(
+    "click",
+    saveUserSettings
+  );
+
+
+/* =========================================================
+   STARTUP SETTINGS
+========================================================= */
+
+loadUserSettings();
+
+loadDeveloperSettings();
+
+updateSliderLabels();
+
+
+/* =========================================================
+   IMPORTANT:
+   DO NOT PUT ANY MORE JAVASCRIPT OUTSIDE <script>
+========================================================= */
+
+</script>
+
+<!-- =========================================================
+     PART 3 — STARTUP + PROFILE + CONNECTION + SERVICE WORKER
+========================================================= -->
+
+<script>
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function updateProfile() {
+
+  if (
+    typeof setText === "function" &&
+    typeof DEVICE_ID !== "undefined"
+  ) {
+
+    setText(
+      "profileDeviceId",
+      DEVICE_ID
+    );
+
+  }
+
+
+  const key =
+    typeof getKeyState === "function"
+      ? getKeyState()
+      : null;
+
+
+  const status =
+    key
+      ? String(
+          key.status || "active"
+        ).toUpperCase()
+      : "Not Activated";
+
+
+  const profile =
+    document.getElementById(
+      "profileKeyStatus"
+    );
+
+
+  if (profile) {
+    profile.textContent = status;
+  }
+
+}
+
+
+/* =========================================================
+   APPLICATION PREFERENCES
+========================================================= */
 
 const saveSettingsSwitch =
   document.getElementById(
@@ -2886,117 +1924,442 @@ function loadApplicationPreferences() {
 }
 
 
-/* ==============================================
-   LOGOUT / KEY RESET SAFETY
-=============================================== */
+/* =========================================================
+   DEVELOPER LOGO
+========================================================= */
 
-function showKeyGate() {
+async function safeLoadDeveloperLogo() {
 
-  document
-    .getElementById(
-      "mainApp"
-    )
-    ?.classList.add(
-      "hidden"
+  try {
+
+    if (
+      typeof loadDeveloperLogo ===
+      "function"
+    ) {
+
+      await loadDeveloperLogo();
+
+    }
+
+  } catch (error) {
+
+    console.warn(
+      "Developer logo could not be loaded:",
+      error
     );
 
-  document
-    .getElementById(
-      "keyGate"
-    )
-    ?.classList.remove(
-      "hidden"
-    );
+  }
 
 }
 
 
-/* ==============================================
-   STARTUP
-=============================================== */
+/* =========================================================
+   CONNECTION STATUS
+========================================================= */
 
-async function startup() {
+async function safeCheckConnection() {
 
-  loadApplicationPreferences();
+  const statusText =
+    document.getElementById(
+      "statusText"
+    );
 
-  loadAdminToken();
+  const workerStatus =
+    document.getElementById(
+      "workerHomeStatus"
+    );
 
-  loadUserSettings();
-
-  loadDeveloperSettings();
-
-  updateSliderLabels();
-
-  updateProfile();
-
-  updateKeyUI();
-
-  await loadDeveloperLogo();
-
-
-  const storedKey =
-    getKeyState();
+  const databaseStatus =
+    document.getElementById(
+      "databaseStatus"
+    );
 
 
-  if (storedKey) {
+  try {
 
-    await refreshKey();
+    if (
+      typeof checkConnection !==
+      "function"
+    ) {
+
+      if (statusText)
+        statusText.textContent =
+          "Unavailable";
+
+      return false;
+
+    }
+
+
+    const result =
+      await checkConnection();
+
+
+    if (statusText) {
+
+      statusText.textContent =
+        "Connected";
+
+    }
+
+
+    if (workerStatus) {
+
+      workerStatus.textContent =
+        "ONLINE";
+
+    }
+
+
+    if (databaseStatus) {
+
+      databaseStatus.textContent =
+        "CONNECTED";
+
+    }
+
+
+    return result !== false;
+
+  } catch (error) {
+
+    console.error(
+      "Connection error:",
+      error
+    );
+
+
+    if (statusText)
+      statusText.textContent =
+        "Offline";
+
+
+    if (workerStatus)
+      workerStatus.textContent =
+        "OFFLINE";
+
+
+    if (databaseStatus)
+      databaseStatus.textContent =
+        "UNAVAILABLE";
+
+
+    return false;
 
   }
 
-
-  const valid =
-    updateKeyUI();
+}
 
 
-  if (valid) {
+/* =========================================================
+   STARTUP
+========================================================= */
 
-    document
-      .getElementById(
-        "keyGate"
-      )
-      ?.classList.add(
-        "hidden"
-      );
+let lawangenStarted = false;
 
-    document
-      .getElementById(
-        "mainApp"
-      )
-      ?.classList.remove(
-        "hidden"
-      );
 
-    openScreen(
-      "homeScreen"
-    );
+async function startup() {
+
+  if (lawangenStarted) {
+    return;
+  }
+
+  lawangenStarted = true;
+
+
+  try {
+
+    /* Preferences */
+
+    loadApplicationPreferences();
+
+
+    /* Admin token */
+
+    if (
+      typeof loadAdminToken ===
+      "function"
+    ) {
+
+      loadAdminToken();
+
+    }
+
+
+    /* User settings */
+
+    loadUserSettings();
+
+
+    /* Developer settings */
+
+    loadDeveloperSettings();
+
+
+    /* Slider labels */
+
+    updateSliderLabels();
+
+
+    /* Profile */
 
     updateProfile();
 
-  } else {
+
+    /* Logo */
+
+    await safeLoadDeveloperLogo();
+
+
+    /* Existing key */
+
+    const storedKey =
+      typeof getKeyState ===
+      "function"
+        ? getKeyState()
+        : null;
+
+
+    /*
+      اگر پہلے سے key موجود ہے
+      تو server سے دوبارہ verify کریں۔
+    */
+
+    if (
+      storedKey &&
+      typeof refreshKey ===
+      "function"
+    ) {
+
+      try {
+
+        await refreshKey();
+
+      } catch (error) {
+
+        console.warn(
+          "Stored key verification failed:",
+          error
+        );
+
+      }
+
+    }
+
+
+    /* Final key check */
+
+    const valid =
+      updateKeyUI();
+
+
+    if (valid) {
+
+      showMainApp();
+
+      updateProfile();
+
+    } else {
+
+      showKeyGate();
+
+    }
+
+
+    /* Worker / DB */
+
+    await safeCheckConnection();
+
+
+  } catch (error) {
+
+    console.error(
+      "LAWANGEN startup error:",
+      error
+    );
+
+
+    /*
+      اگر startup میں کوئی error آئے
+      تو login screen پھر بھی دکھائیں۔
+    */
 
     showKeyGate();
 
   }
 
+}
 
-  checkConnection();
+
+/* =========================================================
+   ACTIVATE KEY — SAFE UI FALLBACK
+========================================================= */
+
+function showActivationError(message) {
+
+  const element =
+    document.getElementById(
+      "keyMessage"
+    );
+
+
+  if (!element) return;
+
+
+  element.textContent =
+    message || "Key activation failed.";
+
+  element.className =
+    "message error";
 
 }
 
 
-/* ==============================================
-   START APP
-=============================================== */
+/* =========================================================
+   ENTER / SUBMIT KEY WITH ENTER KEY
+========================================================= */
 
-startup();
+const activationKeyInput =
+  document.getElementById(
+    "activationKey"
+  );
+
+
+if (activationKeyInput) {
+
+  activationKeyInput.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key ===
+        "Enter"
+      ) {
+
+        event.preventDefault();
+
+
+        document
+          .getElementById(
+            "activateKeyButton"
+          )
+          ?.click();
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+document
+  .querySelectorAll(
+    "[data-logout]"
+  )
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        if (
+          typeof clearKeyState ===
+          "function"
+        ) {
+
+          clearKeyState();
+
+        }
+
+
+        updateKeyUI();
+
+        showKeyGate();
+
+
+        if (
+          typeof addActivity ===
+          "function"
+        ) {
+
+          addActivity(
+            "User logged out"
+          );
+
+        }
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   CLEAR ACTIVITIES
+========================================================= */
+
+document
+  .getElementById(
+    "clearActivities"
+  )
+  ?.addEventListener(
+    "click",
+    () => {
+
+      const container =
+        document.getElementById(
+          "activitiesContainer"
+        );
+
+
+      if (!container) {
+        return;
+      }
+
+
+      container.innerHTML =
+        `
+        <div class="empty-log">
+          No activity yet.
+        </div>
+        `;
+
+    }
+  );
+
+
+/* =========================================================
+   START APPLICATION
+========================================================= */
+
+if (
+  document.readyState ===
+  "loading"
+) {
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    startup,
+    { once: true }
+  );
+
+} else {
+
+  startup();
+
+}
 
 </script>
 
 
-<!-- ==============================================
+<!-- =========================================================
      SERVICE WORKER
-=============================================== -->
+========================================================= -->
 
 <script>
 
@@ -3012,21 +2375,26 @@ if (
         .register(
           "./service-worker.js"
         )
-        .then(() => {
+        .then(
+          registration => {
 
-          console.log(
-            "LAWANGEN Service Worker registered."
-          );
+            console.log(
+              "LAWANGEN Service Worker registered.",
+              registration.scope
+            );
 
-        })
-        .catch(error => {
+          }
+        )
+        .catch(
+          error => {
 
-          console.error(
-            "Service Worker:",
-            error
-          );
+            console.error(
+              "Service Worker registration failed:",
+              error
+            );
 
-        });
+          }
+        );
 
     }
   );
