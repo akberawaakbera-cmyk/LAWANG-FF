@@ -8,18 +8,9 @@
     content="width=device-width,initial-scale=1,viewport-fit=cover">
 
   <meta name="theme-color" content="#080a0f">
-
-  <meta
-    name="apple-mobile-web-app-capable"
-    content="yes">
-
-  <meta
-    name="apple-mobile-web-app-status-bar-style"
-    content="black">
-
-  <meta
-    name="apple-mobile-web-app-title"
-    content="LAWANGEN">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="LAWANGEN">
 
   <title>LAWANGEN — INJECTOR</title>
 
@@ -33,7 +24,11 @@
     }
 
     .developer-only {
-      display: block;
+      display: none !important;
+    }
+
+    body.developer-mode .developer-only {
+      display: block !important;
     }
 
     .logo-manager {
@@ -77,14 +72,6 @@
       font-size: 13px;
     }
 
-    .feature-group {
-      margin-top: 14px;
-    }
-
-    .feature-group h3 {
-      margin-bottom: 10px;
-    }
-
     .test-note {
       opacity: .65;
       font-size: 12px;
@@ -114,14 +101,19 @@
       margin-top: 10px;
     }
 
-    .connection-dot {
+    .developer-badge {
       display: inline-block;
-      margin-left: 6px;
+      margin-top: 8px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .7px;
+      background: rgba(255,255,255,.08);
     }
 
-    button:disabled {
-      opacity: .55;
-      cursor: not-allowed;
+    .developer-login {
+      margin-top: 15px;
     }
   </style>
 </head>
@@ -131,7 +123,7 @@
 <div id="app" class="app">
 
 <!-- =====================================================
-     KEY GATE
+     USER KEY GATE
 ===================================================== -->
 
 <main id="keyGate" class="login-screen">
@@ -168,7 +160,6 @@
       type="text"
       autocomplete="off"
       autocapitalize="characters"
-      spellcheck="false"
       placeholder="LAWANGEN-XXXXXXXXXXXXXXXX">
 
     <button
@@ -227,10 +218,12 @@
 
 
 <!-- =====================================================
-     HOME
+     USER HOME
 ===================================================== -->
 
-<main id="homeScreen" class="app-screen active">
+<main
+  id="homeScreen"
+  class="app-screen active">
 
 <section class="welcome-card">
 
@@ -248,7 +241,7 @@
   </div>
 
   <span class="developer-badge">
-    DEVELOPER ENVIRONMENT
+    LAWANGEN USER
   </span>
 
   <h1>LAWANGEN</h1>
@@ -309,20 +302,8 @@
     type="button">
 
     <div class="home-icon">🔑</div>
-    <strong>Key</strong>
+    <strong>My Key</strong>
     <span>Activation & status</span>
-
-  </button>
-
-
-  <button
-    class="home-card"
-    data-screen="adminScreen"
-    type="button">
-
-    <div class="home-icon">🛠️</div>
-    <strong>Admin</strong>
-    <span>Key management</span>
 
   </button>
 
@@ -334,19 +315,7 @@
 
     <div class="home-icon">📋</div>
     <strong>Activities</strong>
-    <span>System activity</span>
-
-  </button>
-
-
-  <button
-    class="home-card"
-    data-screen="testsScreen"
-    type="button">
-
-    <div class="home-icon">🧪</div>
-    <strong>Tests</strong>
-    <span>Controlled test events</span>
+    <span>My app activity</span>
 
   </button>
 
@@ -357,20 +326,8 @@
     type="button">
 
     <div class="home-icon">🌐</div>
-    <strong>API</strong>
-    <span>Worker & database</span>
-
-  </button>
-
-
-  <button
-    class="home-card"
-    data-screen="settingsScreen"
-    type="button">
-
-    <div class="home-icon">⚙️</div>
-    <strong>Settings</strong>
-    <span>Application settings</span>
+    <strong>Connection</strong>
+    <span>Worker status</span>
 
   </button>
 
@@ -380,7 +337,7 @@
 
 
 <!-- =====================================================
-     KEY
+     USER KEY
 ===================================================== -->
 
 <main id="keyScreen" class="app-screen">
@@ -395,7 +352,7 @@
   </button>
 
   <div>
-    <h1>Key Management</h1>
+    <h1>My Key</h1>
     <p>Device activation and status</p>
   </div>
 
@@ -441,10 +398,183 @@
 
 
 <!-- =====================================================
-     ADMIN
+     ACTIVITIES
 ===================================================== -->
 
-<main id="adminScreen" class="app-screen">
+<main
+  id="activitiesScreen"
+  class="app-screen">
+
+<div class="page-header">
+
+  <button
+    class="back-button"
+    data-screen="homeScreen"
+    type="button">
+    ‹
+  </button>
+
+  <div>
+    <h1>Activities</h1>
+    <p>Application activity</p>
+  </div>
+
+</div>
+
+
+<section id="activitiesContainer">
+
+  <div class="empty-log">
+    No activity yet.
+  </div>
+
+</section>
+
+
+<button
+  id="clearActivities"
+  class="secondary-button"
+  type="button">
+  CLEAR ACTIVITIES
+</button>
+
+</main>
+
+
+<!-- =====================================================
+     USER API STATUS
+===================================================== -->
+
+<main id="apiScreen" class="app-screen">
+
+<div class="page-header">
+
+  <button
+    class="back-button"
+    data-screen="homeScreen"
+    type="button">
+    ‹
+  </button>
+
+  <div>
+    <h1>Connection</h1>
+    <p>Service connection status</p>
+  </div>
+
+</div>
+
+
+<section class="control-card">
+
+  <div class="control-row">
+
+    <div>
+      <strong>Worker</strong>
+      <span id="workerStatus">
+        Checking...
+      </span>
+    </div>
+
+    <span id="workerIndicator">●</span>
+
+  </div>
+
+
+  <div class="control-row">
+
+    <div>
+      <strong>Database</strong>
+      <span id="dbStatus">
+        Checking...
+      </span>
+    </div>
+
+    <span id="dbIndicator">●</span>
+
+  </div>
+
+</section>
+
+
+<button
+  id="testApiButton"
+  class="primary-button"
+  type="button">
+  CHECK CONNECTION
+</button>
+
+<p id="apiMessage" class="message"></p>
+
+</main>
+
+
+<!-- =====================================================
+     DEVELOPER LOGIN
+===================================================== -->
+
+<main
+  id="developerLoginScreen"
+  class="app-screen">
+
+<div class="page-header">
+
+  <button
+    class="back-button"
+    data-screen="homeScreen"
+    type="button">
+    ‹
+  </button>
+
+  <div>
+    <h1>Developer</h1>
+    <p>Developer access</p>
+  </div>
+
+</div>
+
+
+<section class="control-card">
+
+  <h3>Developer Access</h3>
+
+  <p class="test-note">
+    Developer tools are restricted to the application owner.
+  </p>
+
+  <label for="developerToken">
+    Developer / Admin Token
+  </label>
+
+  <input
+    id="developerToken"
+    type="password"
+    autocomplete="off"
+    placeholder="Enter developer token">
+
+  <button
+    id="developerLoginButton"
+    class="primary-button"
+    type="button">
+    ENTER DEVELOPER MODE
+  </button>
+
+  <p
+    id="developerLoginMessage"
+    class="message">
+  </p>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     DEVELOPER ADMIN
+===================================================== -->
+
+<main
+  id="adminScreen"
+  class="app-screen developer-only">
 
 <div class="page-header">
 
@@ -457,32 +587,10 @@
 
   <div>
     <h1>Admin Panel</h1>
-    <p>Secure key administration</p>
+    <p>Developer key administration</p>
   </div>
 
 </div>
-
-
-<section class="control-card">
-
-  <label for="adminToken">
-    Admin Token
-  </label>
-
-  <input
-    id="adminToken"
-    type="password"
-    autocomplete="off"
-    placeholder="Enter ADMIN_TOKEN">
-
-  <button
-    id="saveAdminToken"
-    class="secondary-button"
-    type="button">
-    SAVE ADMIN TOKEN
-  </button>
-
-</section>
 
 
 <section class="control-card">
@@ -540,52 +648,12 @@
 
 
 <!-- =====================================================
-     ACTIVITIES
+     DEVELOPER TESTS
 ===================================================== -->
 
-<main id="activitiesScreen" class="app-screen">
-
-<div class="page-header">
-
-  <button
-    class="back-button"
-    data-screen="homeScreen"
-    type="button">
-    ‹
-  </button>
-
-  <div>
-    <h1>Activities</h1>
-    <p>System activity</p>
-  </div>
-
-</div>
-
-
-<section id="activitiesContainer">
-
-  <div class="empty-log">
-    No activity yet.
-  </div>
-
-</section>
-
-
-<button
-  id="clearActivities"
-  class="secondary-button"
-  type="button">
-  CLEAR ACTIVITIES
-</button>
-
-</main>
-
-
-<!-- =====================================================
-     CONTROLLED TESTS
-===================================================== -->
-
-<main id="testsScreen" class="app-screen">
+<main
+  id="testsScreen"
+  class="app-screen developer-only">
 
 <div class="page-header">
 
@@ -609,9 +677,9 @@
   <h3>Detection Test Features</h3>
 
   <p class="test-note">
-    These switches are UI-only developer test events.
-    They do not modify gameplay, aim, memory, or
-    anti-cheat systems.
+    These are UI-only controlled developer test events.
+    They do not modify gameplay, memory, aim,
+    or anti-cheat systems.
   </p>
 
 
@@ -622,7 +690,10 @@
     </div>
 
     <label class="switch">
-      <input type="checkbox" data-test data-name="Headshot Test">
+      <input
+        type="checkbox"
+        data-test
+        data-name="Headshot Test">
       <span></span>
     </label>
   </div>
@@ -635,7 +706,10 @@
     </div>
 
     <label class="switch">
-      <input type="checkbox" data-test data-name="Auto Headshot Test">
+      <input
+        type="checkbox"
+        data-test
+        data-name="Auto Headshot Test">
       <span></span>
     </label>
   </div>
@@ -648,7 +722,10 @@
     </div>
 
     <label class="switch">
-      <input type="checkbox" data-test data-name="Silent Headshot Test">
+      <input
+        type="checkbox"
+        data-test
+        data-name="Silent Headshot Test">
       <span></span>
     </label>
   </div>
@@ -661,7 +738,10 @@
     </div>
 
     <label class="switch">
-      <input type="checkbox" data-test data-name="SP Line Test">
+      <input
+        type="checkbox"
+        data-test
+        data-name="SP Line Test">
       <span></span>
     </label>
   </div>
@@ -674,7 +754,10 @@
     </div>
 
     <label class="switch">
-      <input type="checkbox" data-test data-name="SP Health Test">
+      <input
+        type="checkbox"
+        data-test
+        data-name="SP Health Test">
       <span></span>
     </label>
   </div>
@@ -687,7 +770,10 @@
     </div>
 
     <label class="switch">
-      <input type="checkbox" data-test data-name="Help Box Test">
+      <input
+        type="checkbox"
+        data-test
+        data-name="Help Box Test">
       <span></span>
     </label>
   </div>
@@ -700,7 +786,10 @@
     </div>
 
     <label class="switch">
-      <input type="checkbox" data-test data-name="Enemy Detection Test">
+      <input
+        type="checkbox"
+        data-test
+        data-name="Enemy Detection Test">
       <span></span>
     </label>
   </div>
@@ -713,7 +802,10 @@
     </div>
 
     <label class="switch">
-      <input type="checkbox" data-test data-name="Visual Detection Test">
+      <input
+        type="checkbox"
+        data-test
+        data-name="Visual Detection Test">
       <span></span>
     </label>
   </div>
@@ -726,7 +818,10 @@
     </div>
 
     <label class="switch">
-      <input type="checkbox" data-test data-name="Aim Anomaly Test">
+      <input
+        type="checkbox"
+        data-test
+        data-name="Aim Anomaly Test">
       <span></span>
     </label>
   </div>
@@ -739,7 +834,10 @@
     </div>
 
     <label class="switch">
-      <input type="checkbox" data-test data-name="Speed Anomaly Test">
+      <input
+        type="checkbox"
+        data-test
+        data-name="Speed Anomaly Test">
       <span></span>
     </label>
   </div>
@@ -754,99 +852,21 @@
   RUN CONTROLLED TEST
 </button>
 
-<p id="testsMessage" class="message"></p>
+<p
+  id="testsMessage"
+  class="message">
+</p>
 
 </main>
 
 
 <!-- =====================================================
-     API
+     DEVELOPER SETTINGS
 ===================================================== -->
 
-<main id="apiScreen" class="app-screen">
-
-<div class="page-header">
-
-  <button
-    class="back-button"
-    data-screen="homeScreen"
-    type="button">
-    ‹
-  </button>
-
-  <div>
-    <h1>API</h1>
-    <p>Worker and database connection</p>
-  </div>
-
-</div>
-
-
-<section class="control-card">
-
-  <div class="control-row">
-
-    <div>
-      <strong>Worker</strong>
-      <span id="workerStatus">Checking...</span>
-    </div>
-
-    <span id="workerIndicator">●</span>
-
-  </div>
-
-
-  <div class="control-row">
-
-    <div>
-      <strong>Database</strong>
-      <span id="dbStatus">Checking...</span>
-    </div>
-
-    <span id="dbIndicator">●</span>
-
-  </div>
-
-</section>
-
-
-<section class="info-card">
-
-  <div>
-    <span>Worker</span>
-    <strong>LAWANGEN</strong>
-  </div>
-
-  <div>
-    <span>API</span>
-    <strong>/api/test</strong>
-  </div>
-
-  <div>
-    <span>Database</span>
-    <strong>/api/db-test</strong>
-  </div>
-
-</section>
-
-
-<button
-  id="testApiButton"
-  class="primary-button"
-  type="button">
-  CHECK CONNECTION
-</button>
-
-<p id="apiMessage" class="message"></p>
-
-</main>
-
-
-<!-- =====================================================
-     SETTINGS
-===================================================== -->
-
-<main id="settingsScreen" class="app-screen">
+<main
+  id="settingsScreen"
+  class="app-screen">
 
 <div class="page-header">
 
@@ -859,22 +879,43 @@
 
   <div>
     <h1>Settings</h1>
-    <p>Developer application settings</p>
+    <p>Application settings</p>
   </div>
 
 </div>
 
 
-<section class="control-card developer-only">
+<section class="control-card">
 
-  <div class="page-header">
+  <h3>Profile</h3>
+
+  <p class="test-note">
+    User profile and normal application settings.
+  </p>
+
+  <div class="control-row">
 
     <div>
-      <h3>Developer Logo</h3>
-      <p>Change the application profile/logo</p>
+      <strong>Device ID</strong>
+      <span id="settingsDeviceId">
+        —
+      </span>
     </div>
 
   </div>
+
+</section>
+
+
+<!-- Developer-only settings -->
+
+<section class="control-card developer-only">
+
+  <h3>Developer Logo</h3>
+
+  <p class="test-note">
+    Only developer mode can change the application logo.
+  </p>
 
 
   <div class="logo-manager">
@@ -919,20 +960,27 @@
     </button>
 
 
-    <p id="logoManagerMessage" class="message"></p>
+    <p
+      id="logoManagerMessage"
+      class="message">
+    </p>
 
   </div>
 
 </section>
 
 
-<section class="control-card">
+<section class="control-card developer-only">
+
+  <h3>Developer Mode</h3>
 
   <div class="control-row">
 
     <div>
       <strong>Developer Mode</strong>
-      <span>Developer testing environment</span>
+      <span>
+        Developer tools access
+      </span>
     </div>
 
     <label class="switch">
@@ -950,7 +998,9 @@
 
     <div>
       <strong>Activity Logging</strong>
-      <span>Record local activity</span>
+      <span>
+        Record local activity
+      </span>
     </div>
 
     <label class="switch">
@@ -966,11 +1016,29 @@
 </section>
 
 
+<section class="control-card developer-only">
+
+  <h3>Admin Token</h3>
+
+  <input
+    id="adminToken"
+    type="password"
+    autocomplete="off"
+    placeholder="ADMIN_TOKEN">
+
+  <button
+    id="saveAdminToken"
+    class="secondary-button"
+    type="button">
+    SAVE ADMIN TOKEN
+  </button>
+
+  <p id="adminTokenMessage" class="message"></p>
+
+</section>
+
+
 <section class="control-card">
-
-  <h3>Device</h3>
-
-  <p id="settingsDeviceId">—</p>
 
   <button
     id="clearLocalKey"
@@ -985,42 +1053,46 @@
 
 
 <!-- =====================================================
-     BOTTOM NAVIGATION
+     DEVELOPER BOTTOM NAVIGATION
 ===================================================== -->
 
 <nav class="bottom-navigation">
 
-  <button
-    class="nav-button active"
-    data-screen="homeScreen"
-    type="button">
-    <span>⌂</span>
-    <small>Home</small>
-  </button>
+<button
+  class="nav-button active"
+  data-screen="homeScreen"
+  type="button">
+  <span>⌂</span>
+  <small>Home</small>
+</button>
 
-  <button
-    class="nav-button"
-    data-screen="keyScreen"
-    type="button">
-    <span>🔑</span>
-    <small>Key</small>
-  </button>
 
-  <button
-    class="nav-button"
-    data-screen="adminScreen"
-    type="button">
-    <span>🛠️</span>
-    <small>Admin</small>
-  </button>
+<button
+  class="nav-button"
+  data-screen="keyScreen"
+  type="button">
+  <span>🔑</span>
+  <small>Key</small>
+</button>
 
-  <button
-    class="nav-button"
-    data-screen="settingsScreen"
-    type="button">
-    <span>⚙</span>
-    <small>Settings</small>
-  </button>
+
+<button
+  id="developerNavButton"
+  class="nav-button"
+  data-screen="developerLoginScreen"
+  type="button">
+  <span>🛠️</span>
+  <small>Developer</small>
+</button>
+
+
+<button
+  class="nav-button"
+  data-screen="settingsScreen"
+  type="button">
+  <span>⚙</span>
+  <small>Settings</small>
+</button>
 
 </nav>
 
@@ -1029,7 +1101,7 @@
 
 
 <!-- =====================================================
-     JAVASCRIPT
+     MAIN JAVASCRIPT
 ===================================================== -->
 
 <script>
@@ -1049,18 +1121,20 @@ const API_BASE =
 function getDeviceId() {
 
   let id =
-    localStorage.getItem("lawangenDeviceId");
+    localStorage.getItem(
+      "lawangenDeviceId"
+    );
 
   if (!id) {
 
     if (
       window.crypto &&
-      typeof window.crypto.randomUUID === "function"
+      crypto.randomUUID
     ) {
 
       id =
         "DEV-" +
-        window.crypto.randomUUID()
+        crypto.randomUUID()
           .replaceAll("-", "")
           .slice(0, 16)
           .toUpperCase();
@@ -1082,23 +1156,23 @@ function getDeviceId() {
       "lawangenDeviceId",
       id
     );
+
   }
 
   return id;
 }
 
 
-const DEVICE_ID = getDeviceId();
+const DEVICE_ID =
+  getDeviceId();
 
 
-document.getElementById(
-  "deviceIdText"
-).textContent = DEVICE_ID;
+/* =====================================================
+   ELEMENT HELPERS
+===================================================== */
 
-
-document.getElementById(
-  "settingsDeviceId"
-).textContent = DEVICE_ID;
+const $ = id =>
+  document.getElementById(id);
 
 
 /* =====================================================
@@ -1110,7 +1184,9 @@ function getKeyState() {
   try {
 
     return JSON.parse(
-      localStorage.getItem("lawangenKey") || "null"
+      localStorage.getItem(
+        "lawangenKey"
+      ) || "null"
     );
 
   } catch {
@@ -1154,552 +1230,44 @@ function getAdminToken() {
 }
 
 
-function loadAdminToken() {
-
-  const input =
-    document.getElementById("adminToken");
-
-  if (input) {
-    input.value = getAdminToken();
-  }
-
-}
-
-
 function saveAdminToken() {
 
-  const input =
-    document.getElementById("adminToken");
-
   const token =
-    input.value.trim();
+    $("adminToken").value.trim();
+
 
   if (!token) {
 
-    showAdminMessage(
-      "Please enter your ADMIN_TOKEN.",
-      "error"
-    );
+    $("adminTokenMessage").textContent =
+      "ADMIN_TOKEN درج کریں۔";
+
+    $("adminTokenMessage").className =
+      "message error";
 
     return;
+
   }
+
 
   localStorage.setItem(
     "lawangenAdminToken",
     token
   );
 
-  showAdminMessage(
-    "Admin token saved locally.",
-    "success"
-  );
 
-  addActivity(
-    "Admin token configured"
-  );
+  $("adminTokenMessage").textContent =
+    "Admin token locally saved.";
+
+  $("adminTokenMessage").className =
+    "message success";
 
 }
 
 
-/* =====================================================
-   MESSAGE HELPERS
-===================================================== */
+function loadAdminToken() {
 
-function showAdminMessage(
-  text,
-  type = ""
-) {
-
-  const element =
-    document.getElementById("adminMessage");
-
-  if (!element) return;
-
-  element.textContent = text;
-  element.className = "message " + type;
-
-}
-
-
-function showLogoMessage(
-  text,
-  type = ""
-) {
-
-  const element =
-    document.getElementById("logoManagerMessage");
-
-  if (!element) return;
-
-  element.textContent = text;
-  element.className = "message " + type;
-
-}
-
-
-/* =====================================================
-   LOGO DATABASE
-===================================================== */
-
-const LOGO_DB_NAME = "LAWANGEN_Logo_DB";
-const LOGO_STORE = "logos";
-const LOGO_KEY = "applicationLogo";
-
-
-function openLogoDatabase() {
-
-  return new Promise(
-    (resolve, reject) => {
-
-      const request =
-        indexedDB.open(
-          LOGO_DB_NAME,
-          1
-        );
-
-      request.onupgradeneeded = () => {
-
-        const db =
-          request.result;
-
-        if (
-          !db.objectStoreNames.contains(
-            LOGO_STORE
-          )
-        ) {
-
-          db.createObjectStore(
-            LOGO_STORE
-          );
-
-        }
-
-      };
-
-      request.onsuccess = () =>
-        resolve(request.result);
-
-      request.onerror = () =>
-        reject(request.error);
-
-    }
-  );
-
-}
-
-
-async function saveLogo(data) {
-
-  const db =
-    await openLogoDatabase();
-
-  return new Promise(
-    (resolve, reject) => {
-
-      const transaction =
-        db.transaction(
-          LOGO_STORE,
-          "readwrite"
-        );
-
-      transaction.objectStore(
-        LOGO_STORE
-      ).put(
-        data,
-        LOGO_KEY
-      );
-
-      transaction.oncomplete = () => {
-        db.close();
-        resolve();
-      };
-
-      transaction.onerror = () => {
-        db.close();
-        reject(transaction.error);
-      };
-
-    }
-  );
-
-}
-
-
-async function loadSavedLogo() {
-
-  try {
-
-    const db =
-      await openLogoDatabase();
-
-    return new Promise(
-      (resolve, reject) => {
-
-        const request =
-          db
-            .transaction(
-              LOGO_STORE,
-              "readonly"
-            )
-            .objectStore(
-              LOGO_STORE
-            )
-            .get(
-              LOGO_KEY
-            );
-
-        request.onsuccess = () => {
-
-          db.close();
-
-          resolve(
-            request.result || null
-          );
-
-        };
-
-        request.onerror = () => {
-
-          db.close();
-
-          reject(
-            request.error
-          );
-
-        };
-
-      }
-    );
-
-  } catch {
-
-    return null;
-
-  }
-
-}
-
-
-async function deleteSavedLogo() {
-
-  try {
-
-    const db =
-      await openLogoDatabase();
-
-    return new Promise(
-      (resolve, reject) => {
-
-        const request =
-          db
-            .transaction(
-              LOGO_STORE,
-              "readwrite"
-            )
-            .objectStore(
-              LOGO_STORE
-            )
-            .delete(
-              LOGO_KEY
-            );
-
-        request.onsuccess = () => {
-
-          db.close();
-          resolve();
-
-        };
-
-        request.onerror = () => {
-
-          db.close();
-          reject(request.error);
-
-        };
-
-      }
-    );
-
-  } catch {
-
-    return;
-
-  }
-
-}
-
-
-function applyLogoToApplication(logo) {
-
-  document
-    .querySelectorAll(
-      "#gateLogo, #topLogo, #homeLogo, #developerLogoPreview"
-    )
-    .forEach(
-      image => {
-        image.src = logo;
-      }
-    );
-
-}
-
-
-async function loadDeveloperLogo() {
-
-  const saved =
-    await loadSavedLogo();
-
-  if (!saved) return;
-
-  applyLogoToApplication(saved);
-
-}
-
-
-const logoInput =
-  document.getElementById(
-    "developerLogoInput"
-  );
-
-
-if (logoInput) {
-
-  logoInput.addEventListener(
-    "change",
-    event => {
-
-      const file =
-        event.target.files?.[0];
-
-      if (!file) return;
-
-      if (
-        ![
-          "image/png",
-          "image/jpeg",
-          "image/webp"
-        ].includes(file.type)
-      ) {
-
-        showLogoMessage(
-          "Please select PNG, JPG or WEBP.",
-          "error"
-        );
-
-        return;
-
-      }
-
-      const reader =
-        new FileReader();
-
-      reader.onload = () => {
-
-        const preview =
-          document.getElementById(
-            "developerLogoPreview"
-          );
-
-        preview.src =
-          reader.result;
-
-        preview.dataset.pendingLogo =
-          reader.result;
-
-        showLogoMessage(
-          "Image selected. Press APPLY LOGO.",
-          ""
-        );
-
-      };
-
-      reader.readAsDataURL(file);
-
-    }
-  );
-
-}
-
-
-document
-  .getElementById(
-    "applyDeveloperLogo"
-  )
-  .addEventListener(
-    "click",
-    async () => {
-
-      const preview =
-        document.getElementById(
-          "developerLogoPreview"
-        );
-
-      const logo =
-        preview.dataset.pendingLogo;
-
-      if (!logo) {
-
-        showLogoMessage(
-          "First select an image from the gallery.",
-          "error"
-        );
-
-        return;
-
-      }
-
-      try {
-
-        await saveLogo(logo);
-
-        applyLogoToApplication(logo);
-
-        delete preview.dataset.pendingLogo;
-
-        showLogoMessage(
-          "Logo saved successfully.",
-          "success"
-        );
-
-        addActivity(
-          "Developer application logo changed"
-        );
-
-      } catch (error) {
-
-        console.error(
-          "Logo save error:",
-          error
-        );
-
-        showLogoMessage(
-          "Logo could not be saved.",
-          "error"
-        );
-
-      }
-
-    }
-  );
-
-
-document
-  .getElementById(
-    "resetDeveloperLogo"
-  )
-  .addEventListener(
-    "click",
-    async () => {
-
-      await deleteSavedLogo();
-
-      const defaultLogo =
-        "./assets/logo.png";
-
-      applyLogoToApplication(
-        defaultLogo
-      );
-
-      const preview =
-        document.getElementById(
-          "developerLogoPreview"
-        );
-
-      preview.src =
-        defaultLogo;
-
-      delete preview.dataset.pendingLogo;
-
-      showLogoMessage(
-        "Default logo restored.",
-        "success"
-      );
-
-      addActivity(
-        "Developer logo reset"
-      );
-
-    }
-  );
-
-
-/* =====================================================
-   KEY UI
-===================================================== */
-
-function updateKeyUI(data = null) {
-
-  const key =
-    data || getKeyState();
-
-  const status =
-    document.getElementById(
-      "keyStatusText"
-    );
-
-  const expiry =
-    document.getElementById(
-      "keyExpiryText"
-    );
-
-  const home =
-    document.getElementById(
-      "keyHomeStatus"
-    );
-
-  if (!key) {
-
-    status.textContent =
-      "Not Activated";
-
-    expiry.textContent =
-      "—";
-
-    home.textContent =
-      "Not Activated";
-
-    return false;
-
-  }
-
-  const keyStatus =
-    key.status || "active";
-
-  const expires =
-    key.expires_at || null;
-
-  if (
-    expires &&
-    Number.isFinite(
-      new Date(expires).getTime()
-    ) &&
-    Date.now() >=
-      new Date(expires).getTime()
-  ) {
-
-    status.textContent =
-      "EXPIRED";
-
-    expiry.textContent =
-      expires;
-
-    home.textContent =
-      "EXPIRED";
-
-    return false;
-
-  }
-
-  status.textContent =
-    keyStatus.toUpperCase();
-
-  expiry.textContent =
-    expires || "No expiry";
-
-  home.textContent =
-    keyStatus.toUpperCase();
-
-  return keyStatus === "active";
+  $("adminToken").value =
+    getAdminToken();
 
 }
 
@@ -1709,56 +1277,72 @@ function updateKeyUI(data = null) {
 ===================================================== */
 
 const activitiesContainer =
-  document.getElementById(
-    "activitiesContainer"
-  );
+  $("activitiesContainer");
 
 
 function addActivity(text) {
 
   const logging =
-    document.getElementById(
-      "loggingSwitch"
-    );
+    $("loggingSwitch");
+
 
   if (
     logging &&
     !logging.checked
-  ) return;
+  ) {
 
-  if (!activitiesContainer) return;
+    return;
+
+  }
+
 
   const empty =
     activitiesContainer.querySelector(
       ".empty-log"
     );
 
+
   if (empty) {
     empty.remove();
   }
 
+
   const item =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
+
 
   item.className =
     "log-item";
 
+
   const strong =
-    document.createElement("strong");
+    document.createElement(
+      "strong"
+    );
+
 
   strong.textContent =
     text;
 
+
   const small =
-    document.createElement("small");
+    document.createElement(
+      "small"
+    );
+
 
   small.textContent =
     new Date().toLocaleString();
 
+
   item.appendChild(strong);
   item.appendChild(small);
 
-  activitiesContainer.prepend(item);
+  activitiesContainer.prepend(
+    item
+  );
 
 }
 
@@ -1792,6 +1376,7 @@ function openScreen(id) {
     }
   );
 
+
   navigationButtons.forEach(
     button => {
 
@@ -1802,6 +1387,7 @@ function openScreen(id) {
 
     }
   );
+
 
   window.scrollTo(
     0,
@@ -1821,9 +1407,24 @@ navigationButtons.forEach(
         const id =
           button.dataset.screen;
 
-        if (id) {
-          openScreen(id);
+
+        if (id === "adminScreen" ||
+            id === "testsScreen") {
+
+          if (!document.body.classList.contains("developer-mode")) {
+
+            openScreen(
+              "developerLoginScreen"
+            );
+
+            return;
+
+          }
+
         }
+
+
+        openScreen(id);
 
       }
     );
@@ -1832,16 +1433,562 @@ navigationButtons.forEach(
 );
 
 
-document
-  .getElementById(
-    "profileButton"
-  )
+/* =====================================================
+   PROFILE
+===================================================== */
+
+$("profileButton")
   .addEventListener(
     "click",
-    () => openScreen(
-      "settingsScreen"
-    )
+    () => {
+
+      openScreen(
+        "settingsScreen"
+      );
+
+    }
   );
+
+
+/* =====================================================
+   LOGO DATABASE
+===================================================== */
+
+const LOGO_DB_NAME =
+  "LAWANGEN_Logo_DB";
+
+const LOGO_STORE =
+  "logos";
+
+const LOGO_KEY =
+  "applicationLogo";
+
+
+function openLogoDatabase() {
+
+  return new Promise(
+    (resolve, reject) => {
+
+      const request =
+        indexedDB.open(
+          LOGO_DB_NAME,
+          1
+        );
+
+
+      request.onupgradeneeded =
+        () => {
+
+          const db =
+            request.result;
+
+
+          if (
+            !db.objectStoreNames.contains(
+              LOGO_STORE
+            )
+          ) {
+
+            db.createObjectStore(
+              LOGO_STORE
+            );
+
+          }
+
+        };
+
+
+      request.onsuccess =
+        () =>
+          resolve(
+            request.result
+          );
+
+
+      request.onerror =
+        () =>
+          reject(
+            request.error
+          );
+
+    }
+  );
+
+}
+
+
+async function saveLogo(data) {
+
+  const db =
+    await openLogoDatabase();
+
+
+  return new Promise(
+    (resolve, reject) => {
+
+      const transaction =
+        db.transaction(
+          LOGO_STORE,
+          "readwrite"
+        );
+
+
+      transaction
+        .objectStore(
+          LOGO_STORE
+        )
+        .put(
+          data,
+          LOGO_KEY
+        );
+
+
+      transaction.oncomplete =
+        () => {
+
+          db.close();
+
+          resolve();
+
+        };
+
+
+      transaction.onerror =
+        () => {
+
+          db.close();
+
+          reject(
+            transaction.error
+          );
+
+        };
+
+    }
+  );
+
+}
+
+
+async function loadSavedLogo() {
+
+  try {
+
+    const db =
+      await openLogoDatabase();
+
+
+    return new Promise(
+      (resolve, reject) => {
+
+        const request =
+          db
+            .transaction(
+              LOGO_STORE,
+              "readonly"
+            )
+            .objectStore(
+              LOGO_STORE
+            )
+            .get(
+              LOGO_KEY
+            );
+
+
+        request.onsuccess =
+          () => {
+
+            db.close();
+
+            resolve(
+              request.result || null
+            );
+
+          };
+
+
+        request.onerror =
+          () => {
+
+            db.close();
+
+            reject(
+              request.error
+            );
+
+          };
+
+      }
+    );
+
+  } catch {
+
+    return null;
+
+  }
+
+}
+
+
+async function deleteSavedLogo() {
+
+  try {
+
+    const db =
+      await openLogoDatabase();
+
+
+    return new Promise(
+      resolve => {
+
+        const request =
+          db
+            .transaction(
+              LOGO_STORE,
+              "readwrite"
+            )
+            .objectStore(
+              LOGO_STORE
+            )
+            .delete(
+              LOGO_KEY
+            );
+
+
+        request.onsuccess =
+          () => {
+
+            db.close();
+
+            resolve();
+
+          };
+
+
+        request.onerror =
+          () => {
+
+            db.close();
+
+            resolve();
+
+          };
+
+      }
+    );
+
+  } catch {
+
+    return;
+
+  }
+
+}
+
+
+function applyLogoToApplication(logo) {
+
+  document
+    .querySelectorAll(
+      "#gateLogo, " +
+      "#topLogo, " +
+      "#homeLogo, " +
+      "#developerLogoPreview"
+    )
+    .forEach(
+      image => {
+
+        image.src =
+          logo;
+
+      }
+    );
+
+}
+
+
+async function loadDeveloperLogo() {
+
+  const saved =
+    await loadSavedLogo();
+
+
+  if (!saved) {
+    return;
+  }
+
+
+  applyLogoToApplication(
+    saved
+  );
+
+}
+
+
+$("developerLogoInput")
+  .addEventListener(
+    "change",
+    event => {
+
+      const file =
+        event.target.files?.[0];
+
+
+      if (!file) {
+        return;
+      }
+
+
+      if (
+        ![
+          "image/png",
+          "image/jpeg",
+          "image/webp"
+        ].includes(file.type)
+      ) {
+
+        $("logoManagerMessage").textContent =
+          "صرف PNG, JPG یا WEBP image استعمال کریں۔";
+
+        $("logoManagerMessage").className =
+          "message error";
+
+        return;
+
+      }
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        () => {
+
+          $("developerLogoPreview").src =
+            reader.result;
+
+          $("developerLogoPreview")
+            .dataset.pendingLogo =
+              reader.result;
+
+          $("logoManagerMessage").textContent =
+            "Image selected. APPLY LOGO دبائیں۔";
+
+          $("logoManagerMessage").className =
+            "message";
+
+        };
+
+
+      reader.readAsDataURL(
+        file
+      );
+
+    }
+  );
+
+
+$("applyDeveloperLogo")
+  .addEventListener(
+    "click",
+    async () => {
+
+      if (
+        !document.body.classList.contains(
+          "developer-mode"
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      const preview =
+        $("developerLogoPreview");
+
+
+      const logo =
+        preview.dataset.pendingLogo;
+
+
+      if (!logo) {
+
+        $("logoManagerMessage").textContent =
+          "پہلے image select کریں۔";
+
+        $("logoManagerMessage").className =
+          "message error";
+
+        return;
+
+      }
+
+
+      try {
+
+        await saveLogo(
+          logo
+        );
+
+
+        applyLogoToApplication(
+          logo
+        );
+
+
+        delete preview.dataset.pendingLogo;
+
+
+        $("logoManagerMessage").textContent =
+          "Logo saved successfully.";
+
+        $("logoManagerMessage").className =
+          "message success";
+
+
+        addActivity(
+          "Developer logo changed"
+        );
+
+      } catch {
+
+        $("logoManagerMessage").textContent =
+          "Logo save نہیں ہو سکا۔";
+
+        $("logoManagerMessage").className =
+          "message error";
+
+      }
+
+    }
+  );
+
+
+$("resetDeveloperLogo")
+  .addEventListener(
+    "click",
+    async () => {
+
+      if (
+        !document.body.classList.contains(
+          "developer-mode"
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      await deleteSavedLogo();
+
+
+      const defaultLogo =
+        "./assets/logo.png";
+
+
+      applyLogoToApplication(
+        defaultLogo
+      );
+
+
+      $("developerLogoPreview").src =
+        defaultLogo;
+
+
+      delete $("developerLogoPreview")
+        .dataset.pendingLogo;
+
+
+      $("logoManagerMessage").textContent =
+        "Default logo restored.";
+
+      $("logoManagerMessage").className =
+        "message success";
+
+
+      addActivity(
+        "Developer logo reset"
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   KEY UI
+===================================================== */
+
+function updateKeyUI(data = null) {
+
+  const key =
+    data || getKeyState();
+
+
+  if (!key) {
+
+    $("keyStatusText").textContent =
+      "Not Activated";
+
+    $("keyExpiryText").textContent =
+      "—";
+
+    $("keyHomeStatus").textContent =
+      "Not Activated";
+
+    return false;
+
+  }
+
+
+  const status =
+    key.status || "active";
+
+
+  const expires =
+    key.expires_at || null;
+
+
+  if (
+    expires &&
+    Number.isFinite(
+      new Date(expires).getTime()
+    ) &&
+    Date.now() >=
+      new Date(expires).getTime()
+  ) {
+
+    $("keyStatusText").textContent =
+      "EXPIRED";
+
+    $("keyExpiryText").textContent =
+      expires;
+
+    $("keyHomeStatus").textContent =
+      "EXPIRED";
+
+    return false;
+
+  }
+
+
+  $("keyStatusText").textContent =
+    status.toUpperCase();
+
+
+  $("keyExpiryText").textContent =
+    expires || "No expiry";
+
+
+  $("keyHomeStatus").textContent =
+    status.toUpperCase();
+
+
+  return status === "active";
+
+}
 
 
 /* =====================================================
@@ -1850,50 +1997,22 @@ document
 
 async function checkConnection() {
 
-  const status =
-    document.getElementById(
-      "statusText"
-    );
+  $("statusText").textContent =
+    "Checking...";
 
-  const worker =
-    document.getElementById(
-      "workerStatus"
-    );
-
-  const workerHome =
-    document.getElementById(
-      "workerHomeStatus"
-    );
-
-  const db =
-    document.getElementById(
-      "dbStatus"
-    );
-
-  const databaseHome =
-    document.getElementById(
-      "databaseStatus"
-    );
-
-  const workerIndicator =
-    document.getElementById(
-      "workerIndicator"
-    );
-
-  const dbIndicator =
-    document.getElementById(
-      "dbIndicator"
-    );
 
   try {
 
     const response =
       await fetch(
-        API_BASE + "/api/test",
+        API_BASE +
+        "/api/test",
         {
-          cache: "no-store"
+          cache:
+            "no-store"
         }
       );
+
 
     if (!response.ok) {
       throw new Error(
@@ -1901,8 +2020,10 @@ async function checkConnection() {
       );
     }
 
+
     const data =
       await response.json();
+
 
     if (!data.success) {
       throw new Error(
@@ -1910,86 +2031,82 @@ async function checkConnection() {
       );
     }
 
-    worker.textContent =
+
+    $("workerStatus").textContent =
       "Online";
 
-    workerHome.textContent =
+    $("workerHomeStatus").textContent =
       "Online";
 
-    workerIndicator.textContent =
+    $("workerIndicator").textContent =
       "●";
+
 
     const dbResponse =
       await fetch(
-        API_BASE + "/api/db-test",
+        API_BASE +
+        "/api/db-test",
         {
-          cache: "no-store"
+          cache:
+            "no-store"
         }
       );
+
 
     const dbData =
       await dbResponse.json();
 
+
     if (
       dbResponse.ok &&
       dbData.success &&
-      dbData.database === "connected"
+      dbData.database ===
+        "connected"
     ) {
 
-      db.textContent =
+      $("dbStatus").textContent =
         "Connected";
 
-      databaseHome.textContent =
+      $("databaseStatus").textContent =
         "Connected";
 
-      dbIndicator.textContent =
+      $("dbIndicator").textContent =
         "●";
 
-      status.textContent =
+      $("statusText").textContent =
         "SYSTEM ONLINE";
 
     } else {
 
-      db.textContent =
+      $("dbStatus").textContent =
         "Not Connected";
 
-      databaseHome.textContent =
+      $("databaseStatus").textContent =
         "Not Connected";
 
-      dbIndicator.textContent =
-        "●";
-
-      status.textContent =
+      $("statusText").textContent =
         "DATABASE ERROR";
 
     }
 
-    addActivity(
-      "Worker and database checked"
-    );
 
   } catch (error) {
 
-    worker.textContent =
+    $("workerStatus").textContent =
       "Offline";
 
-    workerHome.textContent =
+    $("workerHomeStatus").textContent =
       "Offline";
 
-    db.textContent =
+    $("dbStatus").textContent =
       "Error";
 
-    databaseHome.textContent =
+    $("databaseStatus").textContent =
       "Error";
 
-    status.textContent =
+    $("statusText").textContent =
       "CONNECTION ERROR";
 
-    workerIndicator.textContent =
-      "●";
-
-    dbIndicator.textContent =
-      "●";
 
     console.error(
       "Connection error:",
@@ -2002,30 +2119,26 @@ async function checkConnection() {
 
 
 /* =====================================================
-   ACTIVATE KEY
+   USER KEY ACTIVATION
 ===================================================== */
 
 async function activateKey() {
 
   const input =
-    document.getElementById(
-      "activationKey"
-    );
+    $("activationKey");
 
   const message =
-    document.getElementById(
-      "keyMessage"
-    );
+    $("keyMessage");
 
   const button =
-    document.getElementById(
-      "activateKeyButton"
-    );
+    $("activateKeyButton");
+
 
   const key =
     input.value
       .trim()
       .toUpperCase();
+
 
   if (!key) {
 
@@ -2039,17 +2152,20 @@ async function activateKey() {
 
   }
 
+
   button.disabled =
     true;
 
   button.textContent =
     "CHECKING...";
 
+
   message.textContent =
     "Checking key...";
 
   message.className =
     "message";
+
 
   try {
 
@@ -2058,21 +2174,28 @@ async function activateKey() {
         API_BASE +
         "/api/keys/activate",
         {
-          method: "POST",
+          method:
+            "POST",
 
           headers: {
             "Content-Type":
               "application/json"
           },
 
-          body: JSON.stringify({
-            key_code: key,
-            device_id: DEVICE_ID
-          }),
+          body:
+            JSON.stringify({
+              key_code:
+                key,
 
-          cache: "no-store"
+              device_id:
+                DEVICE_ID
+            }),
+
+          cache:
+            "no-store"
         }
       );
+
 
     const data =
       await response
@@ -2080,6 +2203,7 @@ async function activateKey() {
         .catch(
           () => ({})
         );
+
 
     if (
       !response.ok ||
@@ -2093,6 +2217,7 @@ async function activateKey() {
       );
 
     }
+
 
     const keyState = {
 
@@ -2118,13 +2243,16 @@ async function activateKey() {
 
     };
 
+
     saveKeyState(
       keyState
     );
 
+
     updateKeyUI(
       keyState
     );
+
 
     message.textContent =
       "Key activated successfully.";
@@ -2132,31 +2260,31 @@ async function activateKey() {
     message.className =
       "message success";
 
+
     addActivity(
       "Activation key verified"
     );
 
-    document
-      .getElementById(
-        "keyGate"
-      )
+
+    $("keyGate")
       .classList.add(
         "hidden"
       );
 
-    document
-      .getElementById(
-        "mainApp"
-      )
+
+    $("mainApp")
       .classList.remove(
         "hidden"
       );
+
 
     openScreen(
       "homeScreen"
     );
 
+
     await checkConnection();
+
 
   } catch (error) {
 
@@ -2164,6 +2292,7 @@ async function activateKey() {
       "Key activation error:",
       error
     );
+
 
     message.textContent =
       error.message ||
@@ -2194,6 +2323,7 @@ async function refreshKey() {
   const stored =
     getKeyState();
 
+
   if (!stored) {
 
     updateKeyUI();
@@ -2202,6 +2332,7 @@ async function refreshKey() {
 
   }
 
+
   try {
 
     const response =
@@ -2209,27 +2340,28 @@ async function refreshKey() {
         API_BASE +
         "/api/keys/status",
         {
-          method: "POST",
+          method:
+            "POST",
 
           headers: {
             "Content-Type":
               "application/json"
           },
 
-          body: JSON.stringify({
+          body:
+            JSON.stringify({
+              key_code:
+                stored.key,
 
-            key_code:
-              stored.key,
-
-            device_id:
-              DEVICE_ID
-
-          }),
+              device_id:
+                DEVICE_ID
+            }),
 
           cache:
             "no-store"
         }
       );
+
 
     const data =
       await response
@@ -2238,33 +2370,33 @@ async function refreshKey() {
           () => ({})
         );
 
+
     if (
       !response.ok ||
       !data.success
     ) {
 
       clearKeyState();
+
       updateKeyUI();
 
-      document
-        .getElementById(
-          "mainApp"
-        )
+
+      $("mainApp")
         .classList.add(
           "hidden"
         );
 
-      document
-        .getElementById(
-          "keyGate"
-        )
+
+      $("keyGate")
         .classList.remove(
           "hidden"
         );
 
+
       return;
 
     }
+
 
     const updated = {
 
@@ -2281,49 +2413,193 @@ async function refreshKey() {
 
     };
 
+
     saveKeyState(
       updated
     );
 
-    const active =
-      updateKeyUI(
-        updated
-      );
 
-    if (!active) {
+    updateKeyUI(
+      updated
+    );
 
-      document
-        .getElementById(
-          "mainApp"
-        )
+
+    if (
+      data.status !==
+      "active"
+    ) {
+
+      $("mainApp")
         .classList.add(
           "hidden"
         );
 
-      document
-        .getElementById(
-          "keyGate"
-        )
+
+      $("keyGate")
         .classList.remove(
           "hidden"
         );
 
     }
 
-    addActivity(
-      "Key status refreshed"
-    );
-
   } catch (error) {
 
     console.error(
-      "KEY STATUS ERROR:",
+      "Key status error:",
       error
     );
 
   }
 
 }
+
+
+/* =====================================================
+   DEVELOPER LOGIN
+===================================================== */
+
+$("developerLoginButton")
+  .addEventListener(
+    "click",
+    async () => {
+
+      const token =
+        $("developerToken")
+          .value
+          .trim();
+
+
+      if (!token) {
+
+        $("developerLoginMessage").textContent =
+          "Developer token درج کریں۔";
+
+        $("developerLoginMessage").className =
+          "message error";
+
+        return;
+
+      }
+
+
+      $("developerLoginButton").disabled =
+        true;
+
+      $("developerLoginButton").textContent =
+        "VERIFYING...";
+
+
+      try {
+
+        const response =
+          await fetch(
+            API_BASE +
+            "/api/admin/keys",
+            {
+              method:
+                "GET",
+
+              headers: {
+                "Authorization":
+                  `Bearer ${token}`,
+
+                "Content-Type":
+                  "application/json"
+              },
+
+              cache:
+                "no-store"
+            }
+          );
+
+
+        const data =
+          await response
+            .json()
+            .catch(
+              () => ({})
+            );
+
+
+        if (!response.ok) {
+
+          if (
+            response.status ===
+            401
+          ) {
+
+            throw new Error(
+              "Unauthorized — Developer/Admin token غلط ہے۔"
+            );
+
+          }
+
+          throw new Error(
+            data.error ||
+            data.message ||
+            `Developer access failed (${response.status})`
+          );
+
+        }
+
+
+        localStorage.setItem(
+          "lawangenAdminToken",
+          token
+        );
+
+
+        document.body.classList.add(
+          "developer-mode"
+        );
+
+
+        $("developerLoginMessage").textContent =
+          "Developer mode enabled.";
+
+        $("developerLoginMessage").className =
+          "message success";
+
+
+        addActivity(
+          "Developer mode enabled"
+        );
+
+
+        openScreen(
+          "adminScreen"
+        );
+
+
+        await loadAdminKeys();
+
+
+      } catch (error) {
+
+        console.error(
+          "Developer login:",
+          error
+        );
+
+
+        $("developerLoginMessage").textContent =
+          error.message;
+
+        $("developerLoginMessage").className =
+          "message error";
+
+      } finally {
+
+        $("developerLoginButton").disabled =
+          false;
+
+        $("developerLoginButton").textContent =
+          "ENTER DEVELOPER MODE";
+
+      }
+
+    }
+  );
 
 
 /* =====================================================
@@ -2338,13 +2614,15 @@ async function adminRequest(
   const token =
     getAdminToken();
 
+
   if (!token) {
 
     throw new Error(
-      "ADMIN_TOKEN is not configured."
+      "Developer/Admin token is not configured."
     );
 
   }
+
 
   const headers = {
 
@@ -2358,14 +2636,17 @@ async function adminRequest(
 
   };
 
+
   const response =
     await fetch(
-      API_BASE + path,
+      API_BASE +
+      path,
       {
         ...options,
         headers
       }
     );
+
 
   const data =
     await response
@@ -2374,7 +2655,20 @@ async function adminRequest(
         () => ({})
       );
 
+
   if (!response.ok) {
+
+    if (
+      response.status ===
+      401
+    ) {
+
+      throw new Error(
+        "Unauthorized — Admin token غلط ہے۔"
+      );
+
+    }
+
 
     throw new Error(
       data.error ||
@@ -2383,6 +2677,7 @@ async function adminRequest(
     );
 
   }
+
 
   return data;
 
@@ -2396,12 +2691,12 @@ async function adminRequest(
 async function loadAdminKeys() {
 
   const container =
-    document.getElementById(
-      "adminKeysContainer"
-    );
+    $("adminKeysContainer");
+
 
   container.innerHTML =
     `<div class="empty-log">Loading...</div>`;
+
 
   try {
 
@@ -2409,12 +2704,15 @@ async function loadAdminKeys() {
       await adminRequest(
         "/api/admin/keys",
         {
-          method: "GET"
+          method:
+            "GET"
         }
       );
 
+
     const keys =
       data.keys || [];
+
 
     if (!keys.length) {
 
@@ -2425,8 +2723,10 @@ async function loadAdminKeys() {
 
     }
 
+
     container.innerHTML =
       "";
+
 
     keys.forEach(
       key => {
@@ -2436,37 +2736,46 @@ async function loadAdminKeys() {
             "div"
           );
 
+
         card.className =
           "log-item";
+
 
         const title =
           document.createElement(
             "strong"
           );
 
+
         title.textContent =
           key.key_code;
+
 
         const details =
           document.createElement(
             "small"
           );
 
+
         details.textContent =
           `ID: ${key.id} • Status: ${key.status} • Device: ${key.device_id || "Not bound"}`;
+
 
         const expiry =
           document.createElement(
             "small"
           );
 
+
         expiry.textContent =
           `Expiry: ${key.expires_at || "No expiry"}`;
+
 
         const enable =
           document.createElement(
             "button"
           );
+
 
         enable.className =
           "secondary-button";
@@ -2481,10 +2790,12 @@ async function loadAdminKeys() {
               "active"
             );
 
+
         const disable =
           document.createElement(
             "button"
           );
+
 
         disable.className =
           "danger-button";
@@ -2499,10 +2810,12 @@ async function loadAdminKeys() {
               "disabled"
             );
 
+
         const reset =
           document.createElement(
             "button"
           );
+
 
         reset.className =
           "secondary-button";
@@ -2516,6 +2829,7 @@ async function loadAdminKeys() {
               key.id
             );
 
+
         card.appendChild(title);
         card.appendChild(details);
         card.appendChild(expiry);
@@ -2523,24 +2837,25 @@ async function loadAdminKeys() {
         card.appendChild(disable);
         card.appendChild(reset);
 
-        container.appendChild(card);
+        container.appendChild(
+          card
+        );
 
       }
     );
 
-    addActivity(
-      "Admin key list refreshed"
-    );
 
   } catch (error) {
 
     container.innerHTML =
       `<div class="empty-log">${error.message}</div>`;
 
-    showAdminMessage(
-      error.message,
-      "error"
-    );
+
+    $("adminMessage").textContent =
+      error.message;
+
+    $("adminMessage").className =
+      "message error";
 
   }
 
@@ -2553,25 +2868,11 @@ async function loadAdminKeys() {
 
 async function generateKey() {
 
-  const daysInput =
-    document.getElementById(
-      "keyDays"
-    );
-
-  const result =
-    document.getElementById(
-      "generatedKeyResult"
-    );
-
-  const button =
-    document.getElementById(
-      "generateKeyButton"
-    );
-
   const days =
     Number(
-      daysInput.value || 30
+      $("keyDays").value || 30
     );
+
 
   if (
     !Number.isFinite(days) ||
@@ -2579,28 +2880,20 @@ async function generateKey() {
     days > 3650
   ) {
 
-    showAdminMessage(
-      "Days must be between 1 and 3650.",
-      "error"
-    );
+    $("adminMessage").textContent =
+      "Days must be between 1 and 3650.";
+
+    $("adminMessage").className =
+      "message error";
 
     return;
 
   }
 
-  const token =
-    getAdminToken();
 
-  if (!token) {
+  const button =
+    $("generateKeyButton");
 
-    showAdminMessage(
-      "ADMIN_TOKEN is missing.",
-      "error"
-    );
-
-    return;
-
-  }
 
   button.disabled =
     true;
@@ -2608,99 +2901,66 @@ async function generateKey() {
   button.textContent =
     "GENERATING...";
 
-  result.classList.add(
-    "hidden"
-  );
 
-  showAdminMessage(
-    "Generating activation key...",
-    ""
-  );
+  $("generatedKeyResult")
+    .classList.add(
+      "hidden"
+    );
+
 
   try {
 
-    const response =
-      await fetch(
-        API_BASE +
+    const data =
+      await adminRequest(
         "/api/admin/keys/generate",
         {
-          method: "POST",
-
-          headers: {
-
-            "Content-Type":
-              "application/json",
-
-            "Authorization":
-              `Bearer ${token}`
-
-          },
+          method:
+            "POST",
 
           body:
             JSON.stringify({
               days
-            }),
-
-          cache:
-            "no-store"
+            })
         }
       );
 
-    const data =
-      await response
-        .json()
-        .catch(
-          () => ({})
-        );
-
-    if (!response.ok) {
-
-      throw new Error(
-        data.error ||
-        data.message ||
-        `HTTP ${response.status}`
-      );
-
-    }
-
-    if (
-      data.success !== true
-    ) {
-
-      throw new Error(
-        data.error ||
-        data.message ||
-        "Worker returned success=false."
-      );
-
-    }
 
     const generated =
       data.key?.key_code;
 
+
     if (!generated) {
 
       throw new Error(
-        "No key_code was returned."
+        "Worker نے key_code واپس نہیں کیا۔"
       );
 
     }
 
+
+    const result =
+      $("generatedKeyResult");
+
+
     result.innerHTML =
       "";
+
 
     const keyText =
       document.createElement(
         "strong"
       );
 
+
     keyText.textContent =
       generated;
+
 
     const copyButton =
       document.createElement(
         "button"
       );
+
 
     copyButton.type =
       "button";
@@ -2711,8 +2971,6 @@ async function generateKey() {
     copyButton.textContent =
       "COPY KEY";
 
-    copyButton.style.marginTop =
-      "10px";
 
     copyButton.onclick =
       async () => {
@@ -2727,14 +2985,6 @@ async function generateKey() {
           copyButton.textContent =
             "COPIED ✓";
 
-          setTimeout(
-            () => {
-              copyButton.textContent =
-                "COPY KEY";
-            },
-            1500
-          );
-
         } catch {
 
           copyButton.textContent =
@@ -2744,6 +2994,7 @@ async function generateKey() {
 
       };
 
+
     result.appendChild(
       keyText
     );
@@ -2752,36 +3003,34 @@ async function generateKey() {
       copyButton
     );
 
+
     result.classList.remove(
       "hidden"
     );
 
-    showAdminMessage(
-      `Activation key generated successfully. Expires: ${
+
+    $("adminMessage").textContent =
+      `Key generated successfully. Expires: ${
         data.key?.expires_at ||
         data.expires_at ||
         "No expiry"
-      }`,
-      "success"
-    );
+      }`;
 
-    addActivity(
-      "New activation key generated"
-    );
+    $("adminMessage").className =
+      "message success";
+
 
     await loadAdminKeys();
 
+
   } catch (error) {
 
-    console.error(
-      "Generate key error:",
-      error
-    );
+    $("adminMessage").textContent =
+      "ERROR: " +
+      error.message;
 
-    showAdminMessage(
-      `ERROR: ${error.message}`,
-      "error"
-    );
+    $("adminMessage").className =
+      "message error";
 
   } finally {
 
@@ -2797,7 +3046,7 @@ async function generateKey() {
 
 
 /* =====================================================
-   ADMIN: CHANGE STATUS
+   ADMIN STATUS
 ===================================================== */
 
 async function adminChangeStatus(
@@ -2810,7 +3059,8 @@ async function adminChangeStatus(
     await adminRequest(
       `/api/admin/keys/${id}/status`,
       {
-        method: "PUT",
+        method:
+          "PUT",
 
         body:
           JSON.stringify({
@@ -2819,23 +3069,23 @@ async function adminChangeStatus(
       }
     );
 
-    showAdminMessage(
-      `Key ${status}.`,
-      "success"
-    );
 
-    addActivity(
-      `Admin changed key ${id} to ${status}`
-    );
+    $("adminMessage").textContent =
+      `Key ${status}.`;
+
+    $("adminMessage").className =
+      "message success";
+
 
     await loadAdminKeys();
 
   } catch (error) {
 
-    showAdminMessage(
-      error.message,
-      "error"
-    );
+    $("adminMessage").textContent =
+      error.message;
+
+    $("adminMessage").className =
+      "message error";
 
   }
 
@@ -2843,37 +3093,40 @@ async function adminChangeStatus(
 
 
 /* =====================================================
-   ADMIN: RESET DEVICE
+   ADMIN RESET DEVICE
 ===================================================== */
 
-async function adminResetDevice(id) {
+async function adminResetDevice(
+  id
+) {
 
   try {
 
     await adminRequest(
       `/api/admin/keys/${id}/reset`,
       {
-        method: "POST"
+        method:
+          "POST"
       }
     );
 
-    showAdminMessage(
-      "Device binding reset.",
-      "success"
-    );
 
-    addActivity(
-      `Admin reset device for key ${id}`
-    );
+    $("adminMessage").textContent =
+      "Device binding reset.";
+
+    $("adminMessage").className =
+      "message success";
+
 
     await loadAdminKeys();
 
   } catch (error) {
 
-    showAdminMessage(
-      error.message,
-      "error"
-    );
+    $("adminMessage").textContent =
+      error.message;
+
+    $("adminMessage").className =
+      "message error";
 
   }
 
@@ -2895,12 +3148,8 @@ document
         "change",
         () => {
 
-          const name =
-            input.dataset.name ||
-            "Developer Test";
-
           addActivity(
-            name +
+            input.dataset.name +
             ": " +
             (
               input.checked
@@ -2916,42 +3165,35 @@ document
   );
 
 
-document
-  .getElementById(
-    "runTestsButton"
-  )
+$("runTestsButton")
   .addEventListener(
     "click",
     () => {
 
       const enabled =
         [
-          ...document
-            .querySelectorAll(
-              "input[data-test]:checked"
-            )
+          ...document.querySelectorAll(
+            "input[data-test]:checked"
+          )
         ]
         .map(
           input =>
             input.dataset.name
         );
 
-      const message =
-        document.getElementById(
-          "testsMessage"
-        );
 
       if (!enabled.length) {
 
-        message.textContent =
+        $("testsMessage").textContent =
           "کم از کم ایک controlled test ON کریں۔";
 
-        message.className =
+        $("testsMessage").className =
           "message error";
 
         return;
 
       }
+
 
       enabled.forEach(
         name => {
@@ -2964,10 +3206,11 @@ document
         }
       );
 
-      message.textContent =
+
+      $("testsMessage").textContent =
         "Controlled developer test completed.";
 
-      message.className =
+      $("testsMessage").className =
         "message success";
 
     }
@@ -2978,84 +3221,56 @@ document
    BUTTON EVENTS
 ===================================================== */
 
-document
-  .getElementById(
-    "activateKeyButton"
-  )
+$("activateKeyButton")
   .addEventListener(
     "click",
     activateKey
   );
 
 
-document
-  .getElementById(
-    "refreshKeyButton"
-  )
+$("refreshKeyButton")
   .addEventListener(
     "click",
     refreshKey
   );
 
 
-document
-  .getElementById(
-    "keyRefreshButton"
-  )
+$("keyRefreshButton")
   .addEventListener(
     "click",
     refreshKey
   );
 
 
-document
-  .getElementById(
-    "saveAdminToken"
-  )
+$("saveAdminToken")
   .addEventListener(
     "click",
     saveAdminToken
   );
 
 
-document
-  .getElementById(
-    "generateKeyButton"
-  )
+$("generateKeyButton")
   .addEventListener(
     "click",
     generateKey
   );
 
 
-document
-  .getElementById(
-    "loadAdminKeys"
-  )
+$("loadAdminKeys")
   .addEventListener(
     "click",
     loadAdminKeys
   );
 
 
-document
-  .getElementById(
-    "testApiButton"
-  )
+$("testApiButton")
   .addEventListener(
     "click",
     checkConnection
   );
 
 
-/* =====================================================
-   CLEAR ACTIVITIES
-===================================================== */
-
-document
-  .getElementById(
-    "clearActivities"
-  )
+$("clearActivities")
   .addEventListener(
     "click",
     () => {
@@ -3067,14 +3282,7 @@ document
   );
 
 
-/* =====================================================
-   CLEAR LOCAL KEY
-===================================================== */
-
-document
-  .getElementById(
-    "clearLocalKey"
-  )
+$("clearLocalKey")
   .addEventListener(
     "click",
     () => {
@@ -3083,25 +3291,45 @@ document
 
       updateKeyUI();
 
-      document
-        .getElementById(
-          "mainApp"
-        )
+
+      $("mainApp")
         .classList.add(
           "hidden"
         );
 
-      document
-        .getElementById(
-          "keyGate"
-        )
+
+      $("keyGate")
         .classList.remove(
           "hidden"
         );
 
-      addActivity(
-        "Local activation key cleared"
+
+      openScreen(
+        "homeScreen"
       );
+
+    }
+  );
+
+
+$("developerModeSwitch")
+  .addEventListener(
+    "change",
+    event => {
+
+      if (
+        !event.target.checked
+      ) {
+
+        document.body.classList.remove(
+          "developer-mode"
+        );
+
+        openScreen(
+          "homeScreen"
+        );
+
+      }
 
     }
   );
@@ -3109,48 +3337,45 @@ document
 
 /* =====================================================
    STARTUP
-   FIXED VERSION
 ===================================================== */
 
-async function startup() {
+async function startApplication() {
 
-  console.log(
-    "[LAWANGEN] Starting application..."
-  );
+  $("deviceIdText").textContent =
+    DEVICE_ID;
+
+  $("settingsDeviceId").textContent =
+    DEVICE_ID;
+
 
   loadAdminToken();
 
   updateKeyUI();
 
+
   await loadDeveloperLogo();
 
+
   /*
-    Start with Key Gate visible.
+    Always show User Key Gate
+    until Worker confirms the key.
   */
 
-  document
-    .getElementById(
-      "keyGate"
-    )
+  $("keyGate")
     .classList.remove(
       "hidden"
     );
 
-  document
-    .getElementById(
-      "mainApp"
-    )
+
+  $("mainApp")
     .classList.add(
       "hidden"
     );
 
 
-  /*
-    Check previously activated key.
-  */
-
   const storedKey =
     getKeyState();
+
 
   if (storedKey) {
 
@@ -3160,41 +3385,20 @@ async function startup() {
 
 
   /*
-    Public Worker / Database check.
+    Public connection check.
   */
 
   await checkConnection();
 
-  console.log(
-    "[LAWANGEN] Application ready."
-  );
-
 }
 
 
-/*
-  THIS IS THE IMPORTANT FIX:
-  The old code had an unattached async arrow
-  function here. Now startup actually runs.
-*/
+/* Start correctly */
 
-if (
-  document.readyState === "loading"
-) {
-
-  document.addEventListener(
-    "DOMContentLoaded",
-    startup,
-    {
-      once: true
-    }
-  );
-
-} else {
-
-  startup();
-
-}
+document.addEventListener(
+  "DOMContentLoaded",
+  startApplication
+);
 
 </script>
 
@@ -3218,24 +3422,17 @@ if (
           "./service-worker.js"
         )
         .then(
-          registration => {
-
+          () =>
             console.log(
-              "Service Worker registered:",
-              registration.scope
-            );
-
-          }
+              "Service Worker registered."
+            )
         )
         .catch(
-          error => {
-
+          error =>
             console.error(
-              "Service Worker registration failed:",
+              "Service Worker:",
               error
-            );
-
-          }
+            )
         );
 
     }
@@ -3247,3 +3444,861 @@ if (
 
 </body>
 </html>
+
+
+<!-- =====================================================
+     USER APPLICATION
+===================================================== -->
+
+<div id="userApp" class="hidden">
+
+  <!-- TOP BAR -->
+  <header class="top-bar">
+
+    <div class="app-brand">
+
+      <div class="small-logo">
+        <img
+          id="userTopLogo"
+          src="./assets/logo.png"
+          alt="LAWANGEN">
+      </div>
+
+      <div>
+        <strong>LAWANGEN</strong>
+        <small>INJECTOR</small>
+      </div>
+
+    </div>
+
+    <button
+      id="userProfileButton"
+      class="round-button"
+      type="button">
+      👤
+    </button>
+
+  </header>
+
+
+  <!-- =================================================
+       USER HOME
+  ================================================== -->
+
+  <main
+    id="userHomeScreen"
+    class="user-screen active">
+
+    <section class="welcome-card">
+
+      <div class="developer-hero-logo">
+
+        <div class="developer-logo-mark">
+
+          <img
+            id="userHomeLogo"
+            src="./assets/logo.png"
+            alt="LAWANGEN">
+
+        </div>
+
+      </div>
+
+      <h1>LAWANGEN</h1>
+
+      <p>INJECTOR</p>
+
+      <span class="developer-badge">
+        USER PANEL
+      </span>
+
+    </section>
+
+
+    <!-- CONNECTION STATUS -->
+
+    <section class="status-card">
+
+      <div class="status-icon">
+        ●
+      </div>
+
+      <div>
+
+        <strong>System Status</strong>
+
+        <span id="userSystemStatus">
+          Checking...
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- KEY STATUS -->
+
+    <section class="info-card">
+
+      <div>
+
+        <span>Key</span>
+
+        <strong id="userKeyStatus">
+          Active
+        </strong>
+
+      </div>
+
+      <div>
+
+        <span>Device</span>
+
+        <strong id="userDeviceStatus">
+          Connected
+        </strong>
+
+      </div>
+
+      <div>
+
+        <span>Expiry</span>
+
+        <strong id="userExpiryStatus">
+          —
+        </strong>
+
+      </div>
+
+    </section>
+
+
+    <h3 class="section-title">
+      Selection
+    </h3>
+
+
+    <!-- FEATURES -->
+
+    <section class="control-card">
+
+      <div class="control-row">
+
+        <div>
+          <strong>Headshot</strong>
+          <span>Visual control</span>
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            class="user-feature"
+            data-feature="Headshot">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+          <strong>SP Line</strong>
+          <span>Visual line display</span>
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            class="user-feature"
+            data-feature="SP Line">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+          <strong>SP Health</strong>
+          <span>Health information display</span>
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            class="user-feature"
+            data-feature="SP Health">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+          <strong>Enemy Detection</strong>
+          <span>Visual detection interface</span>
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            class="user-feature"
+            data-feature="Enemy Detection">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+          <strong>Flash Protection</strong>
+          <span>Display protection setting</span>
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            class="user-feature"
+            data-feature="Flash Protection">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+          <strong>Aim Assist</strong>
+          <span>Interface setting</span>
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            class="user-feature"
+            data-feature="Aim Assist">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+          <strong>Player Info</strong>
+          <span>Player information display</span>
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            class="user-feature"
+            data-feature="Player Info">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+
+      <div class="control-row">
+
+        <div>
+          <strong>Help Box</strong>
+          <span>Interface assistance</span>
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            class="user-feature"
+            data-feature="Help Box">
+
+          <span></span>
+
+        </label>
+
+      </div>
+
+    </section>
+
+
+    <button
+      id="applyFeaturesButton"
+      class="primary-button"
+      type="button">
+
+      APPLY SELECTION
+
+    </button>
+
+
+    <p
+      id="userFeatureMessage"
+      class="message">
+    </p>
+
+  </main>
+
+
+  <!-- =================================================
+       USER PROFILE
+  ================================================== -->
+
+  <main
+    id="userProfileScreen"
+    class="user-screen">
+
+    <div class="page-header">
+
+      <button
+        class="back-button"
+        data-user-screen="userHomeScreen"
+        type="button">
+
+        ‹
+
+      </button>
+
+      <div>
+
+        <h1>Profile</h1>
+
+        <p>
+          User account
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <section class="info-card">
+
+      <div>
+
+        <span>Device ID</span>
+
+        <strong id="profileDeviceId">
+          —
+        </strong>
+
+      </div>
+
+
+      <div>
+
+        <span>Key Status</span>
+
+        <strong id="profileKeyStatus">
+          Active
+        </strong>
+
+      </div>
+
+
+      <div>
+
+        <span>Expiry</span>
+
+        <strong id="profileExpiry">
+          —
+        </strong>
+
+      </div>
+
+    </section>
+
+
+    <section class="control-card">
+
+      <h3>
+        Account
+      </h3>
+
+      <button
+        id="userRefreshKey"
+        class="secondary-button"
+        type="button">
+
+        REFRESH KEY
+
+      </button>
+
+
+      <button
+        id="userLogout"
+        class="danger-button"
+        type="button">
+
+        LOG OUT
+
+      </button>
+
+    </section>
+
+
+    <p
+      id="profileMessage"
+      class="message">
+    </p>
+
+  </main>
+
+
+  <!-- =================================================
+       USER BOTTOM NAVIGATION
+  ================================================== -->
+
+  <nav class="bottom-navigation">
+
+    <button
+      class="nav-button active"
+      data-user-screen="userHomeScreen"
+      type="button">
+
+      <span>⌂</span>
+
+      <small>
+        Home
+      </small>
+
+    </button>
+
+
+    <button
+      class="nav-button"
+      data-user-screen="userProfileScreen"
+      type="button">
+
+      <span>👤</span>
+
+      <small>
+        Profile
+      </small>
+
+    </button>
+
+  </nav>
+
+</div>
+
+
+<!-- =====================================================
+     USER JAVASCRIPT
+===================================================== -->
+
+<script>
+
+function openUserScreen(id) {
+
+  document
+    .querySelectorAll(".user-screen")
+    .forEach(screen => {
+
+      screen.classList.toggle(
+        "active",
+        screen.id === id
+      );
+
+    });
+
+
+  document
+    .querySelectorAll(
+      "[data-user-screen]"
+    )
+    .forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.userScreen === id
+      );
+
+    });
+
+
+  window.scrollTo(
+    0,
+    0
+  );
+
+}
+
+
+/* USER NAVIGATION */
+
+document
+  .querySelectorAll(
+    "[data-user-screen]"
+  )
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        openUserScreen(
+          button.dataset.userScreen
+        );
+
+      }
+    );
+
+  });
+
+
+/* PROFILE */
+
+document
+  .getElementById(
+    "userProfileButton"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      openUserScreen(
+        "userProfileScreen"
+      );
+
+    }
+  );
+
+
+/* LOAD USER DATA */
+
+function loadUserProfile() {
+
+  const key =
+    getKeyState();
+
+
+  document
+    .getElementById(
+      "profileDeviceId"
+    )
+    .textContent =
+    DEVICE_ID;
+
+
+  if (!key) {
+
+    document
+      .getElementById(
+        "profileKeyStatus"
+      )
+      .textContent =
+      "Not Activated";
+
+
+    document
+      .getElementById(
+        "profileExpiry"
+      )
+      .textContent =
+      "—";
+
+    return;
+
+  }
+
+
+  document
+    .getElementById(
+      "profileKeyStatus"
+    )
+    .textContent =
+    (
+      key.status ||
+      "active"
+    ).toUpperCase();
+
+
+  document
+    .getElementById(
+      "profileExpiry"
+    )
+    .textContent =
+    key.expires_at ||
+    "No expiry";
+
+
+  document
+    .getElementById(
+      "userKeyStatus"
+    )
+    .textContent =
+    (
+      key.status ||
+      "active"
+    ).toUpperCase();
+
+
+  document
+    .getElementById(
+      "userExpiryStatus"
+    )
+    .textContent =
+    key.expires_at ||
+    "No expiry";
+
+}
+
+
+/* FEATURE SELECTION */
+
+document
+  .querySelectorAll(
+    ".user-feature"
+  )
+  .forEach(input => {
+
+    input.addEventListener(
+      "change",
+      () => {
+
+        const feature =
+          input.dataset.feature;
+
+
+        addActivity(
+          feature +
+          " " +
+          (
+            input.checked
+              ? "enabled"
+              : "disabled"
+          )
+        );
+
+      }
+    );
+
+  });
+
+
+/* APPLY */
+
+document
+  .getElementById(
+    "applyFeaturesButton"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      const enabled =
+        [
+          ...
+          document.querySelectorAll(
+            ".user-feature:checked"
+          )
+        ]
+        .map(
+          input =>
+            input.dataset.feature
+        );
+
+
+      const message =
+        document.getElementById(
+          "userFeatureMessage"
+        );
+
+
+      if (!enabled.length) {
+
+        message.textContent =
+          "Please select at least one option.";
+
+        message.className =
+          "message error";
+
+        return;
+
+      }
+
+
+      /*
+        UI ONLY
+
+        یہ صرف application interface
+        میں selected options save کرتا ہے۔
+        کسی game process، memory یا
+        anti-cheat کو modify نہیں کرتا۔
+      */
+
+      localStorage.setItem(
+        "lawangenUserFeatures",
+        JSON.stringify(
+          enabled
+        )
+      );
+
+
+      message.textContent =
+        enabled.length +
+        " options selected.";
+
+      message.className =
+        "message success";
+
+
+      addActivity(
+        "User selection applied"
+      );
+
+    }
+  );
+
+
+/* LOAD SAVED FEATURES */
+
+function loadUserFeatures() {
+
+  let saved = [];
+
+  try {
+
+    saved =
+      JSON.parse(
+        localStorage.getItem(
+          "lawangenUserFeatures"
+        ) ||
+        "[]"
+      );
+
+  } catch {
+
+    saved = [];
+
+  }
+
+
+  document
+    .querySelectorAll(
+      ".user-feature"
+    )
+    .forEach(input => {
+
+      input.checked =
+        saved.includes(
+          input.dataset.feature
+        );
+
+    });
+
+}
+
+
+/* LOG OUT */
+
+document
+  .getElementById(
+    "userLogout"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      clearKeyState();
+
+      document
+        .getElementById(
+          "userApp"
+        )
+        .classList.add(
+          "hidden"
+        );
+
+
+      document
+        .getElementById(
+          "keyGate"
+        )
+        .classList.remove(
+          "hidden"
+        );
+
+
+      document
+        .getElementById(
+          "activationKey"
+        )
+        .value = "";
+
+
+      document
+        .getElementById(
+          "keyMessage"
+        )
+        .textContent =
+        "You have been logged out.";
+
+
+      document
+        .getElementById(
+          "keyMessage"
+        )
+        .className =
+        "message success";
+
+    }
+  );
+
+
+/* REFRESH KEY */
+
+document
+  .getElementById(
+    "userRefreshKey"
+  )
+  .addEventListener(
+    "click",
+    async () => {
+
+      await refreshKey();
+
+      loadUserProfile();
+
+    }
+  );
+
+
+/* START USER UI */
+
+loadUserProfile();
+
+loadUserFeatures();
+
+</script>
