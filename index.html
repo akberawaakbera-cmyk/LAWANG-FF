@@ -260,6 +260,42 @@
       opacity: .8;
     }
 
+<!-- ==========================================
+     GAME LAUNCHER
+=========================================== -->
+
+<section class="control-card game-launcher-card">
+
+  <div class="game-launcher">
+
+    <div class="game-logo">
+      <img
+        src="./assets/game-logo.png"
+        alt="Game">
+    </div>
+
+    <div class="game-info">
+      <strong>FREE FIRE</strong>
+      <span>Game Launcher</span>
+    </div>
+
+    <button
+      id="launchGameButton"
+      class="primary-button"
+      type="button">
+      LAUNCH
+    </button>
+
+  </div>
+
+  <p
+    id="launchMessage"
+    class="message">
+  </p>
+
+</section>
+
+
     /* ================================
        PROFILE
     ================================= */
@@ -378,6 +414,103 @@
     </section>
 
   </main>
+
+<!-- ==========================================
+     USER FEATURE CONTROL
+=========================================== -->
+
+<section class="control-card">
+
+  <span class="developer-badge">
+    USER CONTROL
+  </span>
+
+  <h3>User Feature Settings</h3>
+
+  <p>
+    Control which application settings are
+    available to users.
+  </p>
+
+
+  <div class="control-row">
+    <div>
+      <strong>Combat Settings</strong>
+      <span>User access</span>
+    </div>
+
+    <label class="switch">
+      <input
+        type="checkbox"
+        data-developer-setting="combat"
+        checked>
+      <span></span>
+    </label>
+  </div>
+
+
+  <div class="control-row">
+    <div>
+      <strong>Movement Settings</strong>
+      <span>User access</span>
+    </div>
+
+    <label class="switch">
+      <input
+        type="checkbox"
+        data-developer-setting="movement"
+        checked>
+      <span></span>
+    </label>
+  </div>
+
+
+  <div class="control-row">
+    <div>
+      <strong>Visual Settings</strong>
+      <span>User access</span>
+    </div>
+
+    <label class="switch">
+      <input
+        type="checkbox"
+        data-developer-setting="visual"
+        checked>
+      <span></span>
+    </label>
+  </div>
+
+
+  <div class="control-row">
+    <div>
+      <strong>Inventory Settings</strong>
+      <span>User access</span>
+    </div>
+
+    <label class="switch">
+      <input
+        type="checkbox"
+        data-developer-setting="inventory"
+        checked>
+      <span></span>
+    </label>
+  </div>
+
+
+  <button
+    id="saveDeveloperSettings"
+    class="primary-button"
+    type="button">
+    SAVE USER SETTINGS
+  </button>
+
+
+  <p
+    id="developerSettingsMessage"
+    class="message">
+  </p>
+
+</section>
 
 
   <!-- ==========================================
