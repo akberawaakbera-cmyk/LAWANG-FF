@@ -1290,3 +1290,120 @@ input[type="range"] {
   }
 
 }
+
+@keyframes screenFade {
+  ...
+}
+
+/* =========================================================
+   FREE FIRE PREPARE
+========================================================= */
+
+.prepare-card {
+  width: 100%;
+  margin: 14px 0;
+
+  padding: 18px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #121722,
+      #0e131d
+    );
+
+  border: 1px solid #20283a;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.prepare-game-logo {
+  width: 86px;
+  height: 86px;
+
+  margin: 0 auto 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #1d2940,
+      #080b13 72%
+    );
+
+  border: 1px solid #303b54;
+}
+
+.prepare-game-logo img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+.prepare-card h3 {
+  margin: 5px 0 5px;
+
+  font-size: 16px;
+
+  color: #ffffff;
+}
+
+.prepare-card p {
+  margin: 0 0 12px;
+
+  color: #707988;
+
+  font-size: 11px;
+}
+
+#prepareButton {
+  width: 100%;
+
+  min-height: 50px;
+
+  margin-top: 5px;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #3478f6,
+      #6955ff
+    );
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+  box-shadow:
+    0 9px 25px rgba(76, 91, 255, 0.25);
+}
+
+#prepareButton:active {
+  transform: scale(0.98);
+}
+
+#prepareButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
