@@ -1291,6 +1291,21 @@ input[type="range"] {
 
 }
 
+#selectPrepareLogo {
+  margin-top: 10px;
+}
+
+#prepareLogoPreview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+}
+
+.prepare-game-logo.has-image #prepareLogoPreview {
+  display: block;
+}
+
 @keyframes screenFade {
   ...
 }
