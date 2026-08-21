@@ -1716,6 +1716,55 @@
      JAVASCRIPT
 =============================================== -->
 
+const prepareLogoInput = document.getElementById("prepareLogoInput");
+const selectPrepareLogo = document.getElementById("selectPrepareLogo");
+const prepareLogoPreview = document.getElementById("prepareLogoPreview");
+const prepareLogoBox = document.querySelector(".prepare-game-logo");
+
+if (selectPrepareLogo && prepareLogoInput) {
+
+  selectPrepareLogo.addEventListener("click", () => {
+    prepareLogoInput.click();
+  });
+
+  prepareLogoInput.addEventListener("change", (event) => {
+
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("Please select an image.");
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+
+      prepareLogoPreview.src = e.target.result;
+
+      prepareLogoBox.classList.add("has-image");
+
+      localStorage.setItem(
+        "prepareLogo",
+        e.target.result
+      );
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
+const savedPrepareLogo = localStorage.getItem("prepareLogo");
+
+if (savedPrepareLogo && prepareLogoPreview) {
+
+  prepareLogoPreview.src = savedPrepareLogo;
+
+  prepareLogoBox.classList.add("has-image");
+}
+
 <script>
 
 "use strict";
