@@ -453,6 +453,33 @@ export default {
         }, 500);
       }
     }
+    
+    
+    // ADMIN: TEMPORARY DEVELOPER TEST ACCESS
+if (url.pathname === "/api/admin/test-access" && request.method === "POST") {
+  const configError = requireAdmin();
+  if (configError) return configError;
+
+  if (!isAdmin(request)) {
+    return json({
+      success: false,
+      error: "Unauthorized."
+    }, 401);
+  }
+
+  const minutes = 15;
+
+  const expiresAt = new Date(
+    Date.now() + minutes * 60 * 1000
+  ).toISOString();
+
+  return json({
+    success: true,
+    test_access: true,
+    expires_at: expiresAt,
+    message: `Developer test access granted for ${minutes} minutes.`
+  });
+}
 
     // =====================================================
     // ADMIN: LIST KEYS
