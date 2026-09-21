@@ -117,6 +117,63 @@ export default {
     }
 
     // =====================================================
+    // ADMIN: TEMPORARY TEST ACCESS
+    // POST /api/admin/test-access
+    //
+    // This does NOT modify or disable activation keys.
+    // It only gives the authorized developer a short-lived
+    // test-access response.
+    // =====================================================
+
+    if (
+      url.pathname === "/api/admin/test-access" &&
+      request.method === "POST"
+    ) {
+      const configError = requireAdmin();
+
+      if (configError) return configError;
+
+      if (!isAdmin(request)) {
+        return json({
+          success: false,
+          error: "Unauthorized."
+        }, 401);
+      }
+
+      try {
+        const body = await request.json().catch(() => ({}));
+
+        let minutes = Number(body.minutes || 15);
+
+        if (
+          !Number.isFinite(minutes) ||
+          minutes < 1 ||
+          minutes > 60
+        ) {
+          minutes = 15;
+        }
+
+        const expiresAt = new Date(
+          Date.now() + minutes * 60 * 1000
+        ).toISOString();
+
+        return json({
+          success: true,
+          test_access: true,
+          role: "developer",
+          expires_at: expiresAt,
+          minutes
+        });
+
+      } catch (error) {
+        return json({
+          success: false,
+          error: error.message
+        }, 500);
+      }
+    }
+
+    // =====================================================
     // USER: ACTIVATE KEY
     // =====================================================
 
@@ -187,10 +244,7 @@ export default {
           }, 403);
         }
 
-        // =================================================
         // EXPIRY
-        // =================================================
-
         if (key.expires_at) {
           const expiry = new Date(
             key.expires_at
@@ -217,10 +271,7 @@ export default {
           }
         }
 
-        // =================================================
         // DEVICE CHECK
-        // =================================================
-
         if (
           key.device_id &&
           key.device_id !== deviceId
@@ -228,14 +279,12 @@ export default {
           return json({
             success: false,
             status: "device_mismatch",
-            error: "This key is already activated on another device."
+            error:
+              "This key is already activated on another device."
           }, 403);
         }
 
-        // =================================================
         // BIND DEVICE
-        // =================================================
-
         await env.DB
           .prepare(`
             UPDATE keys
@@ -253,7 +302,6 @@ export default {
         return json({
           success: true,
           status: "active",
-
           message: "Key activated successfully.",
 
           account: {
@@ -348,14 +396,12 @@ export default {
           return json({
             success: false,
             status: "device_mismatch",
-            error: "Key belongs to another device."
+            error:
+              "Key belongs to another device."
           }, 403);
         }
 
-        // =================================================
         // EXPIRY
-        // =================================================
-
         if (key.expires_at) {
           const expiry = new Date(
             key.expires_at
@@ -410,7 +456,6 @@ export default {
 
     // =====================================================
     // ADMIN: LIST KEYS
-    // GET /api/admin/keys
     // =====================================================
 
     if (
@@ -467,7 +512,6 @@ export default {
 
     // =====================================================
     // ADMIN: GENERATE KEY
-    // POST /api/admin/keys/generate
     // =====================================================
 
     if (
@@ -501,7 +545,6 @@ export default {
           body.days || 30
         );
 
-        // Only these two roles are allowed.
         const role =
           body.role === "developer"
             ? "developer"
@@ -514,14 +557,12 @@ export default {
         ) {
           return json({
             success: false,
-            error: "days must be between 1 and 3650."
+            error:
+              "days must be between 1 and 3650."
           }, 400);
         }
 
-        // =================================================
         // RANDOM KEY
-        // =================================================
-
         const bytes = new Uint8Array(12);
 
         crypto.getRandomValues(bytes);
@@ -544,10 +585,7 @@ export default {
         const keyCode =
           `${prefix}-${randomPart}`;
 
-        // =================================================
         // EXPIRY
-        // =================================================
-
         const expiresAt = new Date(
           Date.now() +
           days *
@@ -557,10 +595,7 @@ export default {
           1000
         ).toISOString();
 
-        // =================================================
         // INSERT
-        // =================================================
-
         const result = await env.DB
           .prepare(`
             INSERT INTO keys
@@ -646,7 +681,8 @@ export default {
       }
 
       try {
-        const id = adminStatusMatch[1];
+        const id =
+          adminStatusMatch[1];
 
         const body =
           await request.json();
