@@ -1725,6 +1725,163 @@
      JAVASCRIPT
 =============================================== -->
 
+const TEST_ACCESS_KEY = "lawangenDeveloperTestAccessExpiresAt";
+
+function getTestAccessExpiry() {
+  const value = localStorage.getItem(TEST_ACCESS_KEY);
+
+  if (!value) return null;
+
+  const time = new Date(value).getTime();
+
+  if (!Number.isFinite(time) || time <= Date.now()) {
+    localStorage.removeItem(TEST_ACCESS_KEY);
+    return null;
+  }
+
+  return time;
+}
+
+function hasTestAccess() {
+  return Boolean(getTestAccessExpiry());
+}
+
+function clearTestAccess() {
+  localStorage.removeItem(TEST_ACCESS_KEY);
+  document.body.classList.remove("developer-mode");
+}
+
+function showMainApp() {
+  document.getElementById("keyGate")?.classList.add("hidden");
+  document.getElementById("mainApp")?.classList.remove("hidden");
+
+  if (typeof openScreen === "function") {
+    openScreen("homeScreen");
+  }
+}
+
+async function requestDeveloperTestAccess() {
+  const message = document.getElementById("developerTestMessage");
+  const button = document.getElementById("developerTestButton");
+
+  const token = getAdminToken();
+
+  if (!token) {
+    if (message) {
+      message.textContent =
+        "Please enter and save ADMIN_TOKEN first.";
+      message.className = "message error";
+    }
+    return;
+  }
+
+  if (button) {
+    button.disabled = true;
+    button.textContent = "AUTHORIZING...";
+  }
+
+  try {
+    const response = await fetch(
+      API_BASE + "/api/admin/test-access",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        cache: "no-store"
+      }
+    );
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok || data.success !== true) {
+      throw new Error(
+        data.error || "Developer test access failed."
+      );
+    }
+
+    localStorage.setItem(
+      TEST_ACCESS_KEY,
+      data.expires_at
+    );
+
+    document.body.classList.add("developer-mode");
+
+    if (message) {
+      message.textContent =
+        "Developer test access activated for 15 minutes.";
+      message.className = "message success";
+    }
+
+    showMainApp();
+
+    if (typeof checkConnection === "function") {
+      checkConnection();
+    }
+
+    scheduleTestAccessExpiry();
+
+  } catch (error) {
+
+    if (message) {
+      message.textContent = error.message;
+      message.className = "message error";
+    }
+
+  } finally {
+
+    if (button) {
+      button.disabled = false;
+      button.textContent = "DEVELOPER TEST ACCESS";
+    }
+  }
+}
+
+function scheduleTestAccessExpiry() {
+  const expiry = getTestAccessExpiry();
+
+  if (!expiry) return;
+
+  const delay = Math.max(
+    0,
+    expiry - Date.now()
+  );
+
+  setTimeout(() => {
+
+    clearTestAccess();
+
+    if (typeof clearKeyState === "function") {
+      clearKeyState();
+    }
+
+    document.getElementById("mainApp")
+      ?.classList.add("hidden");
+
+    document.getElementById("keyGate")
+      ?.classList.remove("hidden");
+
+    const message =
+      document.getElementById("developerTestMessage");
+
+    if (message) {
+      message.textContent =
+        "Developer test access expired. Activation key required.";
+
+      message.className = "message error";
+    }
+
+  }, delay + 100);
+}
+
+document
+  .getElementById("developerTestButton")
+  ?.addEventListener(
+    "click",
+    requestDeveloperTestAccess
+  );
+
 const prepareLogoInput = document.getElementById("prepareLogoInput");
 const selectPrepareLogo = document.getElementById("selectPrepareLogo");
 const prepareLogoPreview = document.getElementById("prepareLogoPreview");
@@ -4388,6 +4545,17 @@ async function startup() {
 
 startup();
 
+if (hasTestAccess()) {
+  document.body.classList.add("developer-mode");
+
+  showMainApp();
+
+  scheduleTestAccessExpiry();
+
+  checkConnection();
+
+  return;
+}
 
 </script>
 
